@@ -27,12 +27,13 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
   + Yandex (yandex.ru) 
 * Base classes to create additional clients; 
 * Basic principles of operation with API of different providers. 
+
 Less code, more functionality!
 
 ### System Requirements
 
 * Microsoft Windows XP, 7 or later with .NET Framework 3.5, 4.0 or 4.5 
-* Microsoft Visual Studio 2010 (recommended Professional Edition with Service Pack 1) or later 
+* Microsoft Visual Studio 2010 (recommended Professional Edition with Service Pack 1) or later.
 
 ### See Also
 
