@@ -1,0 +1,16 @@
+﻿@Code
+    Layout = Nothing
+End Code
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ошибка</title>
+</head>
+<body>
+    <h2>
+        Произошла ошибка при обработке вашего запроса.
+    </h2>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿@model Nemiro.OAuth.AuthorizationResult
+@{
+  ViewBag.Title = "Login Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login Result</h2>
+<pre>
+  @if (Model.IsSuccessfully)
+  {
+    var user = Model.UserInfo;
+    @:Provider: @Model.ProviderName
+    @:User ID:  @user.UserId
+    @:Name:     @user.DisplayName
+    @:Email:    @user.Email
+  }
+  else
+  {
+    @Model.ErrorInfo.Message
+  }
+</pre>
+
+<hr />
+
+@Html.ActionLink("Try again", "Index")

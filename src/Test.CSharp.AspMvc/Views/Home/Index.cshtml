@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@Html.Raw(Test.Resources.Strings.IndexAbout)
+
+@* !!!USE JAVASCRIPT LINKS TO PREVENT THEM FROM INDEXING!!! *@
+<ul style="width:600px;margin-left:auto;margin-right:auto;">
+  @foreach (var client in Nemiro.OAuth.OAuthManager.RegisteredClients)
+  {
+    <li class="@(client.Value.ProviderName == "Yandex" ? "clear" : "")">@*split buttons*@
+      @*link and image*@
+      <a href="javascript:window.location.href='@Url.Action("ExternalLogin", new { provider = client.Key })'">
+        <img src="@Url.Action("Icon", new { id = client.Key })" alt="@client.Key" />
+      </a>
+    </li>
+    
+  }
+</ul>
+
+<div class="clear"></div>
+
+<div class="message warning">
+  <div class="title">@Test.Resources.Strings.Warning</div>
+  <div class="text">@Test.Resources.Strings.UseJavaScriptLinks</div>
+</div>
+
+<div class="message warning">
+  <div class="title">@Test.Resources.Strings.Warning</div>
+  <div class="text">@Html.Raw(String.Format(Test.Resources.Strings.Port59962, 59962))</div>
+</div>

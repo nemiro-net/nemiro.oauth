@@ -1,0 +1,1 @@
+﻿This is resources for web samples.
