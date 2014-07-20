@@ -4,7 +4,7 @@ You can easily open the solution in newer versions of Visual Studio.
 If you are using **Visual Studio Express** edition, then, unfortunately, will not be so easy.
 
 If you are using **Visual Studio 2010 without Service Pack 1**, then, unfortunately, you can not open the solution file. 
-You can install **Service Pack 1** (or the latest version of VS) or modify the solution file for VS2010 without SP1.
+You can install **Service Pack 1** or the latest version of Visual Studio, or modify the solution file for VS2010 without SP1.
 
 The main project is located in the **Nemiro.OAuth** folder. 
 In other folders are examples.
