@@ -15,7 +15,7 @@
 			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
 			returnUrl += 'code=' + getParameterByName('code');
 		}
-		if getParameterByName('state') != '') {
+		if (getParameterByName('state') != '') {
 			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
 			returnUrl += 'state=' + getParameterByName('state');
 		}
