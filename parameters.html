@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <link rel="SHORTCUT ICON" href="./../icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./../styles/branding.css" />
+    <link rel="stylesheet" type="text/css" href="./../styles/branding-en-US.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Parameters</title>
+    <meta name="Language" content="en-us" />
+  <link type='text/css' rel='stylesheet' href='styles/highlight.css' /><script type='text/javascript' src='scripts/highlight_ac.js'></script></head>
+  <body class="primary-mtps-offline-document">
+    <div class="OH_outerDiv">
+      <div class="OH_outerContent">
+        <div id="mainSection">
+          <div id="mainBody">
+            <h1>Parameters</h1>
+            <p>You can add in any parameters to authorization address. Use the <b>Parameters</b> property.</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span>OAuthManager.RegisterClient
+<span class="highlight-spacerShort"></span>(
+<span class="highlight-spacerShort"></span>  <span class="highlight-keyword">new</span> FacebookClient
+<span class="highlight-spacerShort"></span>  (
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;1435890426686808&quot;</span>,
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;c6057dfae399beee9e8dc46a4182e8fd&quot;</span>
+<span class="highlight-spacerShort"></span>  ) 
+<span class="highlight-spacerShort"></span>  { 
+<span class="highlight-spacerShort"></span>    Parameters = <span class="highlight-keyword">new</span> NameValueCollection { { <span class="highlight-literal">&quot;display&quot;</span>, <span class="highlight-literal">&quot;popup&quot;</span> } }
+<span class="highlight-spacerShort"></span>  }
+<span class="highlight-spacerShort"></span>);</pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span>OAuthManager.RegisterClient _
+<span class="highlight-spacerShort"></span>(
+<span class="highlight-spacerShort"></span>  <span class="highlight-keyword">New</span> FacebookClient _
+<span class="highlight-spacerShort"></span>  (
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;1435890426686808&quot;</span>,
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;c6057dfae399beee9e8dc46a4182e8fd&quot;</span>
+<span class="highlight-spacerShort"></span>  ) _
+<span class="highlight-spacerShort"></span>  <span class="highlight-keyword">With</span>
+<span class="highlight-spacerShort"></span>  {
+<span class="highlight-spacerShort"></span>    .Parameters = <span class="highlight-keyword">New</span> NameValueCollection() From {{<span class="highlight-literal">&quot;display&quot;</span>, <span class="highlight-literal">&quot;popup&quot;</span>}}
+<span class="highlight-spacerShort"></span>  }
+<span class="highlight-spacerShort"></span>)</pre>
+            <p><b>NOTE:</b> The Parameters property value must be set before redirecting user to an authorization page (as shown in the above examples).</p>
+            <h2>See Also</h2>
+            <p><a href="/access_token.html">Access token</a><br /><a href="/scope.html">Scope</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="OH_footer" class="OH_footer"><p><a href="https://oauth.nemiro.net" target="_blank">Copyright © Aleksey Nemiro, 2014</a></p></div>
+  </body>
+</html>

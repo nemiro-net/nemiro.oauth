@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- @SortOrder 1 -->
+<html xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <title>How to use...</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Language" content="en-us" />
+    <link rel="SHORTCUT ICON" href="./../icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./../styles/branding.css" />
+    <link rel="stylesheet" type="text/css" href="./../styles/branding-en-US.css" />
+  <link type='text/css' rel='stylesheet' href='styles/highlight.css' /><script type='text/javascript' src='scripts/highlight_ac.js'></script></head>
+  <body class="primary-mtps-offline-document">
+    <div class="OH_outerDiv">
+      <div class="OH_outerContent">
+        <div id="mainSection">
+          <div id="mainBody">
+            <h1>How to use the library in your projects?</h1>
+            <p>Add to your project a reference to the <b>Nemiro.OAuth</b> assembly and import namespace <b>Nemiro.OAuth</b> and <b>Nemiro.OAuth.Clients</b>:</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">using</span> Nemiro.OAuth;
+<span class="highlight-spacerShort"></span><span class="highlight-keyword">using</span> Nemiro.OAuth.Clients;</pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">Imports</span> Nemiro.OAuth
+<span class="highlight-spacerShort"></span><span class="highlight-keyword">Imports</span> Nemiro.OAuth.Clients</pre>
+            <p>And now you can use classes of the library.</p>
+            <p>For example, registration the <b>Twitter</b> client in the application:</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span>OAuthManager.RegisterClient
+<span class="highlight-spacerShort"></span>(
+<span class="highlight-spacerShort"></span>  <span class="highlight-keyword">new</span> TwitterClient
+<span class="highlight-spacerShort"></span>  (
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;cXzSHLUy57C4gTBgMGRDuqQtr&quot;</span>,
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;3SSldiSb5H4XeEMOIIF4osPWxOy19jrveDcPHaWtHDQqgDYP9P&quot;</span>
+<span class="highlight-spacerShort"></span>  )
+<span class="highlight-spacerShort"></span>);</pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span>OAuthManager.RegisterClient _
+<span class="highlight-spacerShort"></span>(
+<span class="highlight-spacerShort"></span>  <span class="highlight-keyword">New</span> TwitterClient _
+<span class="highlight-spacerShort"></span>  (
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;cXzSHLUy57C4gTBgMGRDuqQtr&quot;</span>,
+<span class="highlight-spacerShort"></span>    <span class="highlight-literal">&quot;3SSldiSb5H4XeEMOIIF4osPWxOy19jrveDcPHaWtHDQqgDYP9P&quot;</span>
+<span class="highlight-spacerShort"></span>  )
+<span class="highlight-spacerShort"></span>)</pre>
+            <p>And obtaining addresses for authorization:</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">string</span> url = OAuthWeb.GetAuthorizationUrl(<span class="highlight-literal">&quot;twitter&quot;</span>);</pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">Dim</span> url <span class="highlight-keyword">As</span> <span class="highlight-keyword">String</span> = OAuthWeb.GetAuthorizationUrl(<span class="highlight-literal">&quot;twitter&quot;</span>)</pre>
+            <p>Verification of the authorization results by URL.</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">var</span> result = OAuthWeb.VerifyAuthorization(<span class="highlight-literal">&quot;result url&quot;</span>);
+<span class="highlight-spacerShort"></span><span class="highlight-keyword">if</span> (result.IsSuccessfully)
+<span class="highlight-spacerShort"></span>{
+<span class="highlight-spacerShort"></span>  <span class="highlight-comment">// ..successfully.. </span>
+<span class="highlight-spacerShort"></span>}</pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">Dim</span> result <span class="highlight-keyword">As</span> AuthorizationResult = OAuthWeb.VerifyAuthorization(<span class="highlight-literal">&quot;result url&quot;</span>)
+<span class="highlight-spacerShort"></span><span class="highlight-keyword">If</span> result.IsSuccessfully <span class="highlight-keyword">Then</span> 
+<span class="highlight-spacerShort"></span>  <span class="highlight-comment">&#39; ..successfully..</span>
+<span class="highlight-spacerShort"></span><span class="highlight-keyword">End</span> <span class="highlight-keyword">If</span></pre>
+            <p>And get user profile details.</p>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">var</span> user = result.UserInfo;
+<span class="highlight-spacerShort"></span><span class="highlight-comment">// ...</span></pre>
+            <div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>VB</div><pre class="highlight-pre"><span class="highlight-spacerShort"></span><span class="highlight-keyword">Dim</span> user <span class="highlight-keyword">As</span> UserInfo = result.UserInfo
+<span class="highlight-spacerShort"></span><span class="highlight-comment">&#39; ...</span></pre>
+            <p>In the description of the classes you can find more detailed examples.</p>
+            <p>If you need real examples of using the library, please <a href="https://github.com/alekseynemiro/nemiro.oauth.dll/zipball/master"><b>download Nemiro.OAuth</b></a>.</p>
+
+            <h2>See Also</h2>
+            <p><a href="/installation.html">Installation</a><br /><a href="/error.html">Problems &amp; Solutions</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="OH_footer" class="OH_footer"><p><a href="https://oauth.nemiro.net" target="_blank">Copyright © Aleksey Nemiro, 2014</a></p></div>
+  </body>
+</html>
