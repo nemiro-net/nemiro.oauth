@@ -36,6 +36,5 @@ Less code, more functionality!
 
 ### See Also
 
-http://oauth.nemiro.net
-
-http://nemiro.net 
+* http://oauth.nemiro.net
+* http://nemiro.net 
