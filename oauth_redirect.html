@@ -10,16 +10,18 @@
 			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 	var returnUrl = getParameterByName('returnUrl');
-	if(returnUrl == ''){
-		returnUrl = 'http://localhost:59962/Home/ExternalLoginResult' + window.location.search;
-		if(getParameterByName('code') != ''){
+	if (returnUrl != '') {
+		if (getParameterByName('code') != '') {
 			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
 			returnUrl += 'code=' + getParameterByName('code');
 		}
-		if(getParameterByName('state') != ''){
+		if getParameterByName('state') != '') {
 			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
 			returnUrl += 'state=' + getParameterByName('state');
 		}
+	}
+	else {
+		returnUrl = 'http://localhost:59962/Home/ExternalLoginResult' + window.location.search;
 	}
 	
 	document.getElementById('redirect').innerHTML = returnUrl;
