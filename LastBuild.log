@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder" version="2014.2.15.0 Beta" projectFile="F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Nemiro.OAuth.shfbproj" started="20.07.2014 19:47:25">
+<shfbBuild product="Sandcastle Help File Builder" version="2014.2.15.0 Beta" projectFile="F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Nemiro.OAuth.shfbproj" started="20.07.2014 20:10:00">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -20,7 +20,7 @@ Copying XML comments files
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, Английский (США))...
-    Last step completed in 00:00:00.0030
+    Last step completed in 00:00:00.0060
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
@@ -29,7 +29,7 @@ Generating API filter for MRefBuilder...
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
-‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 19:47:25.
+‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 20:10:01.
 Џа&#174;ҐЄв &quot;F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\GenerateRefInfo.proj&quot; ў г&#167;&#171;Ґ 1 (жҐ&#171;ҐўлҐ &#174;ЎкҐЄвл Ї&#174; г&#172;&#174;&#171;з&#160;&#173;Ёо).
 PrepareForBuild:
   ‘&#174;&#167;&#164;&#160;&#173;ЁҐ Є&#160;в&#160;&#171;&#174;Ј&#160; &quot;obj\Debug\&quot;.
@@ -48,13 +48,13 @@ GenerateRefInfo:
 
 ‘Ў&#174;аЄ&#160; гбЇҐи&#173;&#174; &#167;&#160;ўҐаиҐ&#173;&#160;.
 
-‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:01.85
-    Last step completed in 00:00:02.2561
+‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:01.84
+    Last step completed in 00:00:02.2311
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
-‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 19:47:28.
+‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 20:10:03.
 Џа&#174;ҐЄв &quot;F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\TransformManifest.proj&quot; ў г&#167;&#171;Ґ 1 (жҐ&#171;ҐўлҐ &#174;ЎкҐЄвл Ї&#174; г&#172;&#174;&#171;з&#160;&#173;Ёо).
 TransformManifest:
   XslTransform (v2014.1.26.0)
@@ -74,12 +74,12 @@ TransformManifest:
 
 ‘Ў&#174;аЄ&#160; гбЇҐи&#173;&#174; &#167;&#160;ўҐаиҐ&#173;&#160;.
 
-‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:01.44
-    Last step completed in 00:00:01.8501
+‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:01.41
+    Last step completed in 00:00:01.8111
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0340
+    Last step completed in 00:00:00.0330
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
@@ -167,7 +167,7 @@ F:\[Мои проекты]\Nemiro .NET Framework\Documentations\license.html -&g
 F:\[Мои проекты]\Nemiro .NET Framework\Documentations\oauth.png -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\oauth.png
 F:\[Мои проекты]\Nemiro .NET Framework\Documentations\share42.js -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\share42.js
 F:\[Мои проекты]\Nemiro .NET Framework\Documentations\version.html -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\version.html
-    Last step completed in 00:00:00.2540
+    Last step completed in 00:00:00.2140
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
@@ -180,7 +180,7 @@ F:\[Мои проекты]\Nemiro .NET Framework\Documentations\scope.html -&gt;
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
-‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 19:47:30.
+‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 20:10:05.
 Џа&#174;ҐЄв &quot;F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\GenerateIntermediateTOC.proj&quot; ў г&#167;&#171;Ґ 1 (жҐ&#171;ҐўлҐ &#174;ЎкҐЄвл Ї&#174; г&#172;&#174;&#171;з&#160;&#173;Ёо).
 GenerateIntermediateTOC:
   XslTransform (v2014.1.26.0)
@@ -191,24 +191,24 @@ GenerateIntermediateTOC:
 
 ‘Ў&#174;аЄ&#160; гбЇҐи&#173;&#174; &#167;&#160;ўҐаиҐ&#173;&#160;.
 
-‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:00.90
+‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:00.87
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:01.3011
+    Last step completed in 00:00:01.2611
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.0320
+    Last step completed in 00:00:00.0310
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\sandcastle.config
-    Last step completed in 00:00:00.0350
+    Last step completed in 00:00:00.0340
 </buildStep>
 <buildStep step="BuildReferenceTopics">
 Building reference help topics...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
-‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 19:47:31.
+‘Ў&#174;аЄ&#160; &#173;&#160;з&#160;в&#160; 20.07.2014 20:10:06.
 Џа&#174;ҐЄв &quot;F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\BuildReferenceTopics.proj&quot; ў г&#167;&#171;Ґ 1 (жҐ&#171;ҐўлҐ &#174;ЎкҐЄвл Ї&#174; г&#172;&#174;&#171;з&#160;&#173;Ёо).
 BuildReferenceTopics:
   BuildAssembler (v2014.1.26.0)
@@ -223,14 +223,14 @@ BuildReferenceTopics:
 
 ‘Ў&#174;аЄ&#160; гбЇҐи&#173;&#174; &#167;&#160;ўҐаиҐ&#173;&#160;.
 
-‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:09.44
-    Last step completed in 00:00:09.8486
+‡&#160;ва&#160;зҐ&#173;&#173;&#174;Ґ ўаҐ&#172;п: 00:00:09.86
+    Last step completed in 00:00:10.2526
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
 
 Clearing any prior web output
-    Last step completed in 00:00:00.0790
+    Last step completed in 00:00:00.0950
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -246,7 +246,7 @@ Processed 334 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\WebKI.xml
 Saving website table of contents to F:\[Њ&#174;Ё Їа&#174;ҐЄвл]\Nemiro .NET Framework\Documentations\Help\Working\WebTOC.xml
-    Last step completed in 00:00:01.6681
+    Last step completed in 00:00:01.7781
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -345,16 +345,16 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\Web\SyncTOC.gif 
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\Web\TOC.css -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\.\TOC.css
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\Web\TOC.js -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\.\TOC.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\Web\Web.Config -&gt; F:\[Мои проекты]\Nemiro .NET Framework\Documentations\Help\Working\Output\Website\.\Web.Config
-    Last step completed in 00:00:00.1980
+    Last step completed in 00:00:00.2190
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
-    Last step completed in 00:00:00.0020
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
-    Last step completed in 00:00:00.9461
+    Last step completed in 00:00:00.9761
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
@@ -365,15 +365,15 @@ Copied 300 files
 Copied 400 files
 Copied 500 files
 Copied 538 files for the website content
-    Last step completed in 00:00:00.3870
+    Last step completed in 00:00:00.3710
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1260
+    Last step completed in 00:00:00.1350
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 07.20.2014 07:47 .  Total time: 00:00:19,5061
+Build completed successfully at 07.20.2014 08:10 .  Total time: 00:00:19,9491
 
 </buildStep>
 </shfbBuild>
