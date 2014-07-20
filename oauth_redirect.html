@@ -1,0 +1,12 @@
+<script type="text/javascript">
+	function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	var returnUrl = getParameterByName('returnUrl');
+	if(returlUrl == null || returlUrl == ''){
+		returnUrl = 'http://localhost:59962/Home/ExternalLoginResult' + window.location.search;
+	}
+	window.location.href = returnUrl;
+</script>
