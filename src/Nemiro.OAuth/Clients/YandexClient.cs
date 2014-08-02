@@ -405,11 +405,19 @@ namespace Nemiro.OAuth.Clients
     /// </summary>
     public override UserInfo GetUserInfo()
     {
+        return GetUserInfo(this.AccessToken);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    public override UserInfo GetUserInfo(RequestResult accessToken)
+    {
       // query parameters
       var parameters = new NameValueCollection
       { 
         { "format", "json" },
-        { "oauth_token", this.AccessToken["access_token"].ToString() },
+        { "oauth_token", accessToken["access_token"].ToString() },
       };
 
       // execute the request

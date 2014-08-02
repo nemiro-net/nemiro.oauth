@@ -313,7 +313,7 @@ namespace Nemiro.OAuth.Clients
       // scope list
       this.Scope = "public_profile,email"; //,user_website,user_birthday
     }
-    
+
     /// <summary>
     /// Gets the user details.
     /// </summary>
@@ -327,10 +327,26 @@ namespace Nemiro.OAuth.Clients
     /// </returns>
     public override UserInfo GetUserInfo()
     {
+        return GetUserInfo(this.AccessToken);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
+    /// </para>
+    /// </remarks>
+    /// <returns>
+    /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
+    /// </returns>
+    public override UserInfo GetUserInfo(RequestResult accessToken)
+    {
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "access_token" , this.AccessToken["access_token"].ToString() }
+        { "access_token" , accessToken["access_token"].ToString() }
       };
 
       // execute the request

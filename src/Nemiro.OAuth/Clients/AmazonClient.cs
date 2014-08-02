@@ -227,16 +227,24 @@ namespace Nemiro.OAuth.Clients
     {
       this.Scope = "profile";
     }
-        
-    /// <summary>
+
+      /// <summary>
+      /// Gets the user details.
+      /// </summary>
+      public override UserInfo GetUserInfo()
+      {
+          return GetUserInfo(this.AccessToken);
+      }
+
+      /// <summary>
     /// Gets the user details.
     /// </summary>
-    public override UserInfo GetUserInfo()
+      public override UserInfo GetUserInfo(RequestResult accessToken)
     {
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "access_token" , this.AccessToken["access_token"].ToString() }
+        { "access_token" , accessToken["access_token"].ToString() }
       };
 
       // execute the request
