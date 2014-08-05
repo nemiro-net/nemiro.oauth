@@ -23,151 +23,12 @@ using System.Timers;
 namespace Nemiro.OAuth
 {
 
-  /// <summary>
-  /// Represents helper class for management of OAuth clients.
-  /// </summary>
-  /// <example>
-  /// <para>You can use this class to register clients in your project.</para>
-  /// <code lang="C#">
-  /// OAuthManager.RegisterClient
-  /// (
-  ///   new FacebookClient
-  ///   (
-  ///     "1435890426686808", 
-  ///     "c6057dfae399beee9e8dc46a4182e8fd"
-  ///   )
-  /// );
-  /// </code>
-  /// <code lang="VB">
-  /// OAuthManager.RegisterClient _
-  /// (
-  ///   New FacebookClient _
-  ///   (
-  ///     "1435890426686808", 
-  ///     "c6057dfae399beee9e8dc46a4182e8fd"
-  ///   )
-  /// )
-  /// </code>
-  /// </example>
-  public static class OAuthManager
-  {
-
-    #region ..fields & properties..
-
-    private static Timer _Timer = new Timer(60000);
-    
-    private static Dictionary<string, OAuthRequest> _Requets = new Dictionary<string, OAuthRequest>();
-
     /// <summary>
-    /// Gets the list of the active requests.
+    /// Represents helper class for management of OAuth clients.
     /// </summary>
-    internal static Dictionary<string, OAuthRequest> Requets
-    {
-      get
-      {
-        return _Requets;
-      }
-    }
-
-    private static Dictionary<string, OAuthBase> _RegisteredClients = new Dictionary<string, OAuthBase>(StringComparer.OrdinalIgnoreCase);
-
-    /// <summary>
-    /// Gets the list of the registered clients.
-    /// </summary>
-    public static Dictionary<string, OAuthBase> RegisteredClients
-    {
-      get
-      {
-        return _RegisteredClients;
-      }
-    }
-
-    #endregion
-    #region ..constructor..
-
-    /// <summary>
-    /// Initializes the <see cref="OAuthManager"/>.
-    /// </summary>
-    static OAuthManager()
-    {
-      _Timer.Elapsed += Timer_Elapsed;
-    }
-
-    #endregion
-    #region ..methods..
-
-    /// <summary>
-    /// The method is called when the interval elapsed.
-    /// </summary>
-    /// <param name="sender">Instance of the object that raised the event.</param>
-    /// <param name="e">The event data.</param>
-    private static void Timer_Elapsed(object sender, EventArgs e)
-    {
-      if (_Requets.Count <= 0) 
-      {
-        // no active requests, stop the time
-        _Timer.Stop();
-        return; 
-      }
-
-      // lifetime request - 20 minutes
-      // remove old requests
-      var now = DateTime.Now;
-      var toRemove = _Requets.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
-
-      foreach (var itm in toRemove)
-      {
-        if (_Requets.ContainsKey(itm.Key))
-        {
-          OAuthManager.RemoveRequet(itm.Key);
-        }
-      }
-
-      // change the status of the timer
-      _Timer.Enabled = (_Requets.Count > 0);
-    }
-
-    /// <summary>
-    /// Adds the specified request to the collection.
-    /// </summary>
-    /// <param name="key">The unique request key.</param>
-    /// <param name="client">The client instance.</param>
-    internal static void AddRequet(string key, OAuthBase client)
-    {
-      OAuthManager.Requets.Add(key, new OAuthRequest(client));
-      _Timer.Start();
-    }
-
-    /// <summary>
-    /// Removes the request from collection.
-    /// </summary>
-    /// <param name="key">The unique request key to remove..</param>
-    internal static void RemoveRequet(string key)
-    {
-      if (_Requets.ContainsKey(key))
-      {
-        _Requets.Remove(key);
-      }
-      _Timer.Enabled = (_Requets.Count > 0);
-    }
-
-    /// <summary>
-    /// Registers the specified client in the application.
-    /// </summary>
-    /// <param name="client">The client instance.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
-    /// <exception cref="DuplicateProviderException">If you attempt to register the already registered client.</exception>
     /// <example>
+    /// <para>You can use this class to register clients in your project.</para>
     /// <code lang="C#">
-    /// OAuthManager.RegisterClient
-    /// (
-    ///   new GoogleClient
-    ///   (
-    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
-    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
-    ///   )
-    /// );
-    /// 
     /// OAuthManager.RegisterClient
     /// (
     ///   new FacebookClient
@@ -180,15 +41,6 @@ namespace Nemiro.OAuth
     /// <code lang="VB">
     /// OAuthManager.RegisterClient _
     /// (
-    ///   New GoogleClient _
-    ///   (
-    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
-    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
-    ///   )
-    /// )
-    /// 
-    /// OAuthManager.RegisterClient _
-    /// (
     ///   New FacebookClient _
     ///   (
     ///     "1435890426686808", 
@@ -197,24 +49,155 @@ namespace Nemiro.OAuth
     /// )
     /// </code>
     /// </example>
-    public static void RegisterClient(OAuthBase client)
+    public static class OAuthManager
     {
-      if (client == null)
-      {
-        throw new ArgumentNullException("client");
-      }
-      if (_RegisteredClients.ContainsKey(client.ProviderName))
-      {
-        throw new DuplicateProviderException(client.ProviderName);
-      }
-      // add client
-      _RegisteredClients.Add(client.ProviderName, client);
-      // remove from watching
-      OAuthManager.RemoveRequet(client.State.ToString());
+
+        #region ..fields & properties..
+        
+        private static IRequestCache _requestCache;
+
+        private static Dictionary<string, OAuthBase> _RegisteredClients = new Dictionary<string, OAuthBase>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Gets the list of the registered clients.
+        /// </summary>
+        public static Dictionary<string, OAuthBase> RegisteredClients
+        {
+            get
+            {
+                return _RegisteredClients;
+            }
+        }
+
+        #endregion
+        #region ..constructor..
+
+        /// <summary>
+        /// Initializes the <see cref="OAuthManager"/>.
+        /// </summary>
+        static OAuthManager()
+        {
+            _requestCache = new RequestMemoryCache();
+            _requestCache.Initialise("Nemiro.OAuth");
+        }
+
+        #endregion
+        #region ..methods..
+        
+        /// <summary>
+        /// Adds the specified request to the collection.
+        /// </summary>
+        /// <param name="key">The unique request key.</param>
+        /// <param name="client">The client instance.</param>
+        internal static void AddRequet(string key, OAuthBase client)
+        {
+            _requestCache.Set(key, new OAuthRequest(client), TimeSpan.FromMinutes(20));
+        }
+
+        /// <summary>
+        /// Removes the request from collection.
+        /// </summary>
+        /// <param name="key">The unique request key to remove..</param>
+        internal static void RemoveRequet(string key)
+        {
+            _requestCache.Remove(key);
+        }
+
+        /// <summary>
+        /// Gets a request from collection
+        /// </summary>
+        /// <param name="key">The unique request key to get</param>
+        /// <returns></returns>
+        internal static OAuthRequest GetRequest(string key)
+        {
+            if (_requestCache.Exists(key))
+            {
+                return _requestCache.Get<OAuthRequest>(key);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Registers the specified client in the application.
+        /// </summary>
+        /// <param name="client">The client instance.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
+        /// <exception cref="DuplicateProviderException">If you attempt to register the already registered client.</exception>
+        /// <example>
+        /// <code lang="C#">
+        /// OAuthManager.RegisterClient
+        /// (
+        ///   new GoogleClient
+        ///   (
+        ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+        ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+        ///   )
+        /// );
+        /// 
+        /// OAuthManager.RegisterClient
+        /// (
+        ///   new FacebookClient
+        ///   (
+        ///     "1435890426686808", 
+        ///     "c6057dfae399beee9e8dc46a4182e8fd"
+        ///   )
+        /// );
+        /// </code>
+        /// <code lang="VB">
+        /// OAuthManager.RegisterClient _
+        /// (
+        ///   New GoogleClient _
+        ///   (
+        ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+        ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+        ///   )
+        /// )
+        /// 
+        /// OAuthManager.RegisterClient _
+        /// (
+        ///   New FacebookClient _
+        ///   (
+        ///     "1435890426686808", 
+        ///     "c6057dfae399beee9e8dc46a4182e8fd"
+        ///   )
+        /// )
+        /// </code>
+        /// </example>
+        public static void RegisterClient(OAuthBase client)
+        {
+            if (client == null)
+            {
+                throw new ArgumentNullException("client");
+            }
+            if (_RegisteredClients.ContainsKey(client.ProviderName))
+            {
+                throw new DuplicateProviderException(client.ProviderName);
+            }
+            // add client
+            _RegisteredClients.Add(client.ProviderName, client);
+            // remove from watching
+            OAuthManager.RemoveRequet(client.State.ToString());
+        }
+
+        /// <summary>
+        /// Register a cache to use to store the requests
+        /// </summary>
+        /// <param name="cache"><see cref="IRequestCache"/> to use to store the requests</param>
+        /// <remarks>Use this if you need to store the requests in a shared key value store
+        /// I.e. if you are using a web farm
+        /// </remarks>
+        public static void RegisterCache(IRequestCache cache)
+        {
+            if (cache == null)
+            {
+                throw new ArgumentNullException("cache");
+            }
+            cache.Initialise("Nemiro.OAuth");
+            _requestCache = cache;
+        }
+
+        #endregion
+
     }
-
-    #endregion
-
-  }
 
 }
