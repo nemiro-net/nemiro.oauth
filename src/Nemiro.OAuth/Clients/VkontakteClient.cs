@@ -536,7 +536,7 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     ) 
     {
-      this.Scope = "status";
+      this.Scope = "status,email";
     }
 
 
@@ -611,6 +611,13 @@ namespace Nemiro.OAuth.Clients
           return Sex.None;
         }
       );
+
+      // email, thanks to Aleksander (KamAz) Kryatov (http://vk.com/acid_rock)
+      if (this.AccessToken.ContainsKey("email"))
+      {
+        ((Dictionary<string, object>)((Array)result["response"]).GetValue(0)).Add("at_email", this.AccessToken["email"]);
+        map.Add("at_email", "Email", typeof(string));
+      }
 
       // parse the server response and returns the UserInfo instance
       return new UserInfo(((Array)result["response"]).GetValue(0) as Dictionary<string, object>, map);

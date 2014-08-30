@@ -57,7 +57,7 @@ namespace Test.CSharp.WinForms
         ) 
         { 
           Parameters = new NameValueCollection { { "display", "popup" } },
-          Scope = "status,friends"
+          Scope = "status,friends,email"
         }
       );
 

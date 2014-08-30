@@ -32,7 +32,7 @@ Public Class Form1
       With
       {
         .Parameters = New NameValueCollection() From {{"display", "popup"}},
-        .Scope = "status,friends"
+        .Scope = "status,friends,email"
       }
     )
 
