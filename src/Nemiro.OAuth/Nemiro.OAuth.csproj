@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +64,7 @@
     <Compile Include="Exceptions\DuplicateProviderException.cs" />
     <Compile Include="Exceptions\NullHttpContextException.cs" />
     <Compile Include="Exceptions\RequestException.cs" />
+    <Compile Include="IRequestCache.cs" />
     <Compile Include="OAuthBase.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
     <Compile Include="Enums.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="OAuthRequest.cs" />
     <Compile Include="OAuthWeb.cs" />
     <Compile Include="OAuth\OAuthAccessToken.cs" />
+    <Compile Include="RequestMemoryCache.cs" />
     <Compile Include="RequestResult.cs" />
     <Compile Include="OAuth\OAuthAuthorization.cs" />
     <Compile Include="Clients\MailRuClient.cs" />
