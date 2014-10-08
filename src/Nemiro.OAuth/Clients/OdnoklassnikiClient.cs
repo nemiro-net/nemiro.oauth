@@ -536,61 +536,6 @@ namespace Nemiro.OAuth.Clients
     /// </summary>
     public string ApplicationKey { get; protected set; }
     
-    private string _ReturnUrl = "";
-    /// <summary>
-    /// Return URL.
-    /// </summary>
-    /// <remarks>Odnoklassniki does not support the "state". For this to work, you must always specify a return URL.</remarks>
-    public override string ReturnUrl
-    {
-      get
-      {
-        return _ReturnUrl;
-      }
-      set
-      {
-        if (_ReturnUrl != value)
-        {
-          this.AuthorizationCode = "";
-        }
-        _ReturnUrl = value;
-        if (!String.IsNullOrEmpty(_ReturnUrl))
-        {
-          _ReturnUrl += _ReturnUrl.Contains("?") ? "&" : "?";
-          _ReturnUrl += String.Format("state={0}", Helpers.UrlEncode(this.State.ToString()));
-        }
-      }
-    }
-
-    /// <summary>
-    /// Unique key of the request. Is automatically set.
-    /// </summary>
-    public override string State
-    {
-      get
-      {
-        return base.State;
-      }
-      protected set
-      {
-        base.State = value;
-        if (!String.IsNullOrEmpty(this.ReturnUrl) && this.ReturnUrl.IndexOf("?") != -1)
-        {
-          var qs = HttpUtility.ParseQueryString(this.ReturnUrl.Substring(this.ReturnUrl.IndexOf("?") + 1));
-          if (!String.IsNullOrEmpty(qs["state"]))
-          {
-            qs.Remove("state");
-            string returnUrl = this.ReturnUrl.Substring(0, this.ReturnUrl.IndexOf("?"));
-            if (qs.Count > 0)
-            {
-              returnUrl += "?" + qs.ToParametersString("&");
-            }
-            this.ReturnUrl = returnUrl;
-          }
-        }
-      }
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="OdnoklassnikiClient"/>.
     /// </summary>

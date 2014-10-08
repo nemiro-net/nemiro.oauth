@@ -2232,6 +2232,11 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.AuthorizationResult"/> class.
             </summary>
         </member>
+        <member name="P:Nemiro.OAuth.AuthorizationResult.ProtocolVersion">
+            <summary>
+            OAuth version. For example: 1.0, 2.0.
+            </summary>
+        </member>
         <member name="P:Nemiro.OAuth.AuthorizationResult.ProviderName">
             <summary>
             Provider name. For example: facebook, twitter, google.
@@ -3982,17 +3987,6 @@
         <member name="P:Nemiro.OAuth.Clients.OdnoklassnikiClient.ApplicationKey">
             <summary>
             Public Key for access to API.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.Clients.OdnoklassnikiClient.ReturnUrl">
-            <summary>
-            Return URL.
-            </summary>
-            <remarks>Odnoklassniki does not support the "state". For this to work, you must always specify a return URL.</remarks>
-        </member>
-        <member name="P:Nemiro.OAuth.Clients.OdnoklassnikiClient.State">
-            <summary>
-            Unique key of the request. Is automatically set.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.Clients.YandexClient">
