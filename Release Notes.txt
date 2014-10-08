@@ -4,5 +4,5 @@ October 8th, 2014
 
 The new version includes minor changes.
 
-- Updated protocol for Odnoklassini.ru
+- Updated protocol for Odnoklassniki.ru
 + Improved client for the VKontakte: added the ability to receive an email address.
