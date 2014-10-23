@@ -1,8 +1,17 @@
-NEMIRO.OAuth.DLL V1.2 RELEASE NOTES
+Nemiro.OAuth Release Notes
 
-October 8th, 2014
+This document summarizes the major changes in recent releases.
 
-The new version includes minor changes.
+v1.3 (October 23th, 2014)
 
-- Updated protocol for Odnoklassniki.ru
-+ Improved client for the VKontakte: added the ability to receive an email address.
+* Fixed SSL3 problem.
+
+v1.2 (October 8th, 2014)
+
+* Updated protocol for Odnoklassniki.ru
+* Improved client for the VKontakte: added the ability 
+  to receive an email address.
+
+v1.1 (20 July, 2014)
+
+* First version released.

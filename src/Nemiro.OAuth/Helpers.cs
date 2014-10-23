@@ -46,7 +46,8 @@ namespace Nemiro.OAuth
     /// </summary>
     static Helpers()
     {
-      // ignore ssl errors
+      ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+      // ignore errors
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true; 
     }
 
@@ -144,6 +145,8 @@ namespace Nemiro.OAuth
 
       // http method
       req.Method = httpMethod.ToUpper();
+
+      // req.ProtocolVersion = HttpVersion.Version10;
 
       // user-agent (required for some providers)
       req.UserAgent = "Nemiro.OAuth";

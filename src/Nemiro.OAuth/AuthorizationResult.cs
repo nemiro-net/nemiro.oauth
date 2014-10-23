@@ -28,6 +28,11 @@ namespace Nemiro.OAuth
   {
 
     /// <summary>
+    /// OAuth version. For example: 1.0, 2.0.
+    /// </summary>
+    public string ProtocolVersion { get; protected internal set; }
+
+    /// <summary>
     /// Provider name. For example: facebook, twitter, google.
     /// </summary>
     public string ProviderName { get; protected internal set; }

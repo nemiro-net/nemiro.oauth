@@ -579,7 +579,8 @@ namespace Nemiro.OAuth
         var client = OAuthManager.Requets[requestId].Client;
         client.AuthorizationCode = code;
 
-        result.ProviderName = client.ProviderName;        
+        result.ProviderName = client.ProviderName;
+        result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
 
         // is not empty and not error
