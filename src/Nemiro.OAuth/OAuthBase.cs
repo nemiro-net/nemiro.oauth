@@ -292,6 +292,17 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
+    /// Gets the user details via API of the provider using an existing access token.
+    /// </summary>
+    /// <remarks>
+    /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
+    /// </remarks>
+    public virtual UserInfo GetUserInfo(RequestResult accessToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     /// Creates a shallow copy of the current object.
     /// </summary>
     /// <param name="parameters">The query parameters for new copy object.</param>

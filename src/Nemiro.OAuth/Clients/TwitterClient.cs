@@ -378,11 +378,18 @@ namespace Nemiro.OAuth.Clients
       SignatureMethods.HMACSHA1 // only HMAC-SHA1
     ) { }
 
-
     /// <summary>
     /// Gets the user details.
     /// </summary>
     public override UserInfo GetUserInfo()
+    {
+        return GetUserInfo(this.AccessToken);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    public override UserInfo GetUserInfo(RequestResult accessToken)
     {
       // help: https://dev.twitter.com/docs/api/1/get/users/show
 
@@ -391,13 +398,13 @@ namespace Nemiro.OAuth.Clients
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "user_id", this.AccessToken["user_id"].ToString() },
-        { "screen_name", this.AccessToken["screen_name"].ToString() },
+        { "user_id", accessToken["user_id"].ToString() },
+        { "screen_name", accessToken["screen_name"].ToString() },
         { "include_entities", "false" }
       };
 
-      this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
-      this.Authorization["oauth_signature"] = this.GetSignature("GET", new Uri(url), this.AccessToken["oauth_token_secret"].ToString(), parameters);
+      this.Authorization["oauth_token"] = accessToken["oauth_token"];
+      this.Authorization["oauth_signature"] = this.GetSignature("GET", new Uri(url), accessToken["oauth_token_secret"].ToString(), parameters);
 
       // execute the request
       var result = Helpers.ExecuteRequest

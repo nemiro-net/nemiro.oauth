@@ -539,20 +539,28 @@ namespace Nemiro.OAuth.Clients
       this.Scope = "status,email";
     }
 
-
     /// <summary>
     /// Gets the user details.
     /// </summary>
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo()
     {
+        return GetUserInfo(this.AccessToken);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    /// <exception cref="ApiException"/>
+    public override UserInfo GetUserInfo(RequestResult accessToken)
+    {
       // help: http://vk.com/dev/users.get
 
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "user_ids", this.AccessToken["user_id"].ToString() },
-        { "access_token" , this.AccessToken["access_token"].ToString() },
+        { "user_ids", accessToken["user_id"].ToString() },
+        { "access_token" , accessToken["access_token"].ToString() },
         { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" }
       };
 

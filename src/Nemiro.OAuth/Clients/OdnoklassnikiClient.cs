@@ -560,6 +560,15 @@ namespace Nemiro.OAuth.Clients
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo()
     {
+        return GetUserInfo(this.AccessToken);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    /// <exception cref="ApiException"/>
+    public override UserInfo GetUserInfo(RequestResult accessToken)
+    {
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=46137373#APIДокументация(Русский)-users.getCurrentUser
       // query parameters
       var parameters = new NameValueCollection
@@ -573,11 +582,11 @@ namespace Nemiro.OAuth.Clients
       // signature base string
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=75989046
       string signatureBaseString = parameters.Sort().ToParametersString(true);
-      signatureBaseString += Helpers.GetMD5Hash(((OAuth2AccessToken)this.AccessToken).Value + this.ApplicationSecret);
+      signatureBaseString += Helpers.GetMD5Hash(((OAuth2AccessToken)accessToken).Value + this.ApplicationSecret);
 
       // calculate the signature
       parameters["sig"] = Helpers.GetMD5Hash(signatureBaseString);
-      parameters["access_token"] = ((OAuth2AccessToken)this.AccessToken).Value;
+      parameters["access_token"] = ((OAuth2AccessToken)accessToken).Value;
 
       // execute the request
       var result = Helpers.ExecuteRequest
