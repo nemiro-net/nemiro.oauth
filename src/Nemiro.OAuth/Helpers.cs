@@ -46,9 +46,6 @@ namespace Nemiro.OAuth
     /// </summary>
     static Helpers()
     {
-      ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-      // ignore errors
-      ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true; 
     }
 
     /// <summary>
@@ -133,6 +130,16 @@ namespace Nemiro.OAuth
       if (String.IsNullOrEmpty(url)) { throw new ArgumentNullException("url"); }
       if (String.IsNullOrEmpty(httpMethod)) { httpMethod = "POST"; }
 
+      // todo: think about it
+      // copy servicePointManager
+      // var serverCertificateValidationCallback = ServicePointManager.ServerCertificateValidationCallback;
+      // var securityProtocol = ServicePointManager.SecurityProtocol;
+      // set protocols
+      ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+      // ignore errors
+      ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+      // --
+
       // set parameters to the URL if the request is executed using the GET method
       if (httpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase) && parameters != null && parameters.Count > 0)
       {
@@ -211,11 +218,18 @@ namespace Nemiro.OAuth
         exception = ex;
       }
 
+      // restore ServicePointManager
+      //ServicePointManager.ServerCertificateValidationCallback = serverCertificateValidationCallback;
+      //ServicePointManager.SecurityProtocol = securityProtocol;
+      // --
+
+      // exception
       if (exception != null)
       {
         throw new RequestException(contentType, result, exception);
       }
 
+      // result
       return new RequestResult(contentType, result);
     }
 
