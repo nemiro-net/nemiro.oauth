@@ -26,10 +26,10 @@ namespace Nemiro.OAuth.Clients
 {
 
   /// <summary>
-  /// OAuth client for <b>Foursquare</b>.
+  /// OAuth client for <b>SoundCloud</b>.
   /// </summary>
   /// <remarks>
-  /// <h1>Register and Configure a Foursquare Application</h1>
+  /// <h1>Register and Configure a SoundCloud Application</h1>
   /// <list type="table">
   /// <item>
   /// <term><img src="../img/warning.png" alt="(!)" title="" /></term>
@@ -40,33 +40,33 @@ namespace Nemiro.OAuth.Clients
   /// </term>
   /// </item>
   /// </list>
-  /// <para>Open the <b><see href="https://foursquare.com/oauth">Foursquare App</see></b> and <b>Create app</b>.</para>
+  /// <para>Open the <b><see href="https://developers.soundcloud.com/">SoundCloud for Developers</see></b> and <b><see href="http://soundcloud.com/you/apps/new">Register a new app</see></b>.</para>
   /// <para>
   /// In the application settings  you can found <b>Client ID</b> and <b>Client Secret</b>.
-  /// Use this for creating an instance of the <see cref="FoursquareClient"/> class.
+  /// Use this for creating an instance of the <see cref="SoundCloudClient"/> class.
   /// </para>
   /// <code lang="C#">
   /// OAuthManager.RegisterClient
   /// (
-  ///   new FoursquareClient
+  ///   new SoundCloudClient
   ///   (
-  ///     "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q", 
-  ///     "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+  ///     "42b58d31e399664a3fb8503bfcaaa9ba", 
+  ///     "f9d85648da59fb95ec131b40c7645c31"
   ///   )
   /// );
   /// </code>
   /// <code lang="VB">
   /// OAuthManager.RegisterClient _
   /// (
-  ///   New FoursquareClient _
+  ///   New SoundCloudClient _
   ///   (
-  ///     "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q", 
-  ///     "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+  ///     "42b58d31e399664a3fb8503bfcaaa9ba", 
+  ///     "f9d85648da59fb95ec131b40c7645c31"
   ///   )
   /// )
   /// </code>
   /// <para>
-  /// For more details, please visit <see href="https://developer.foursquare.com/">Foursquare for Developers</see>.
+  /// For more details, please visit <see href="https://developers.soundcloud.com/">SoundCloud for Developers</see>.
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
@@ -79,7 +79,7 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YandexClient"/>
-  public class FoursquareClient : OAuth2Client
+  public class SoundCloudClient : OAuth2Client
   {
 
     /// <summary>
@@ -89,23 +89,25 @@ namespace Nemiro.OAuth.Clients
     {
       get
       {
-        return "Foursquare";
+        return "SoundCloud";
       }
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FoursquareClient"/>.
+    /// Initializes a new instance of the <see cref="SoundCloudClient"/>.
     /// </summary>
-    /// <param name="clientId">The <b>Client ID</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
-    /// <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
-    public FoursquareClient(string clientId, string clientSecret) : base
+    /// <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+    /// <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+    public SoundCloudClient(string clientId, string clientSecret) : base
     (
-      "https://foursquare.com/oauth2/authenticate",
-      "https://foursquare.com/oauth2/access_token", 
+      "https://soundcloud.com/connect",
+      "https://api.soundcloud.com/oauth2/token", 
       clientId,
       clientSecret
     ) 
-    { }
+    {
+      this.Scope = "non-expiring";
+    }
     
     /// <summary>
     /// Gets the user details.
@@ -115,20 +117,17 @@ namespace Nemiro.OAuth.Clients
     /// </returns>
     public override UserInfo GetUserInfo()
     {
-      // https://developer.foursquare.com/docs/users/users
-
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "oauth_token" , this.AccessToken["access_token"].ToString() },
-        { "v", "20141025" }
+        { "oauth_token" , this.AccessToken["access_token"].ToString() }
       };
 
       // execute the request
       var result = Helpers.ExecuteRequest
       (
         "GET",
-        "https://api.foursquare.com/v2/users/self",
+        "https://api.soundcloud.com/me.json",
         parameters,
         null
       );
@@ -136,69 +135,14 @@ namespace Nemiro.OAuth.Clients
       // field mapping
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));
-      map.Add("firstName", "FirstName");
-      map.Add("lastName", "LastName");
-      map.Add
-      (
-        "photo", "Userpic",
-        delegate(object value)
-        {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("prefix") || !v.ContainsKey("suffix")) { return null; }
-          return String.Format("{0}300x300{1}", v["prefix"], v["suffix"]);
-        }
-      );
-      map.Add
-      (
-        "contact", "Email",
-        delegate(object value)
-        {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("email")) { return null; }
-          return v["email"].ToString();
-        }
-      );
-      map.Add
-      (
-        "contact", "Phone",
-        delegate(object value)
-        {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("phone")) { return null; }
-          return v["phone"].ToString();
-        }
-      );
-      map.Add
-      (
-        "gender", "Sex",
-        delegate(object value)
-        {
-          if (value.ToString().Equals("male", StringComparison.OrdinalIgnoreCase))
-          {
-            return Sex.Male;
-          }
-          else if (value.ToString().Equals("female", StringComparison.OrdinalIgnoreCase))
-          {
-            return Sex.Female;
-          }
-          return Sex.None;
-        }
-      );
+      map.Add("username", "DisplayName");
+      map.Add("permalink_url", "Url"); // website
+      map.Add("avatar_url", "Userpic");
+      map.Add("first_name", "FirstName");
+      map.Add("last_name", "LastName");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(((Dictionary<string, object>)result["response"])["user"] as Dictionary<string, object>, map);
+      return new UserInfo(result.Result as Dictionary<string, object>, map);
     }
 
   }
