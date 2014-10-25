@@ -43,7 +43,7 @@ namespace Nemiro.OAuth.Clients
   /// <para>Open the <b><see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see></b> and <b>Create app</b>.</para>
   /// <para>Choose the <b>Dropbox API app</b> type.</para>
   /// <para>
-  /// In the application settings  you can found <b>Client ID</b> and <b>Client Secret</b>.
+  /// In the application settings  you can found <b>App key</b> and <b>App secret</b>.
   /// Use this for creating an instance of the <see cref="DropboxClient"/> class.
   /// </para>
   /// <code lang="C#">
