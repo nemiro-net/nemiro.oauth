@@ -19,6 +19,14 @@
 			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
 			returnUrl += 'state=' + getParameterByName('state');
 		}
+		if (getParameterByName('oauth_token') != '') {
+			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
+			returnUrl += 'oauth_token=' + getParameterByName('oauth_token');
+		}
+		if (getParameterByName('oauth_verifier') != '') {
+			returnUrl += (returnUrl.indexOf('?') == - 1 ? '?' : '&');
+			returnUrl += 'oauth_verifier=' + getParameterByName('oauth_verifier');
+		}
 	}
 	else {
 		returnUrl = 'http://localhost:59962/Home/ExternalLoginResult' + window.location.search;
