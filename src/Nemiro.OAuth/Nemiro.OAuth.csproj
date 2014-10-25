@@ -51,6 +51,7 @@
     <Compile Include="Clients\AmazonClient.cs" />
     <Compile Include="Clients\LiveClient.cs" />
     <Compile Include="Clients\GitHubClient.cs" />
+    <Compile Include="Clients\DropboxClient.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Clients\FacebookClient.cs" />
     <Compile Include="Clients\OdnoklassnikiClient.cs" />
