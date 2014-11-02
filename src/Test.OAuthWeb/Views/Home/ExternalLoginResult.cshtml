@@ -1,0 +1,120 @@
+﻿@model Nemiro.OAuth.AuthorizationResult
+@{
+  ViewBag.Title = "Login Result";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--table>
+  <tr>
+    <th>Provider:</th>
+    <td>@Model.ProviderName</td>
+  </tr>
+</table-->
+@if (Model.IsSuccessfully)
+{
+  <img src="@Url.Action("Icon", new { id = Model.ProviderName })" alt="@Model.ProviderName" title="" width="100" height="100" />
+  <section>
+    @{var user = Model.UserInfo; }
+    <h3>@Test.Resources.Strings.UserInfoTitle</h3>
+    <table>
+      @if (!String.IsNullOrEmpty(user.UserId))
+      {
+        <tr>
+          <th>User ID:</th>
+          <td>@user.UserId</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.UserName))
+      {
+        <tr>
+          <th>Login:</th>
+          <td>@user.UserName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Email))
+      {
+        <tr>
+          <th>Email:</th>
+          <td>@user.Email</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.DisplayName))
+      {
+        <tr>
+          <th>Display name:</th>
+          <td>@user.DisplayName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.FirstName))
+      {
+        <tr>
+          <th>First name:</th>
+          <td>@user.FirstName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.LastName))
+      {
+        <tr>
+          <th>Last name:</th>
+          <td>@user.LastName</td>
+        </tr>
+      }
+      @if (user.Birthday.HasValue)
+      {
+        <tr>
+          <th>Birthday:</th>
+          <td>@user.Birthday.Value.ToShortDateString()</td>
+        </tr>
+      }
+      @if (user.Sex == Nemiro.OAuth.Sex.Male || user.Sex == Nemiro.OAuth.Sex.Female)
+      {      
+        <tr>
+          <th>Sex:</th>
+          <td>@user.Sex.ToString()</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Phone))
+      {      
+        <tr>
+          <th>Phone:</th>
+          <td>@user.Phone</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Url))
+      {
+        <tr>
+          <th>Url:</th>
+          <td><a href="@user.Url" target="_blank">@user.Url</a></td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Userpic))
+      {
+        <tr>
+          <th>Photo:</th>
+          <td><img src="@user.Userpic" style="max-width:300px;" alt="photo" title="" /></td>
+        </tr>
+      }
+    </table>
+  </section>
+  
+      if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
+      {
+    <div style="margin-top:24px;margin-bottom:8px;" class="buttons">@Html.Partial(Model.ProviderName, Model.AccessToken)</div>
+    <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
+  
+    <script type="text/javascript">
+      function OnComplete() {
+        $('#apiResults').show();
+      }
+    </script>
+      }
+}
+else
+{
+  @Model.ErrorInfo.Message
+}
+
+<hr />
+<br />
+@Html.ActionLink(Test.Resources.Strings.BackToProviders, "Index")
+<br /><br /><br />

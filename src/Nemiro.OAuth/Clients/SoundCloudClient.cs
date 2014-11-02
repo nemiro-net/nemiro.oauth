@@ -70,20 +70,25 @@ namespace Nemiro.OAuth.Clients
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class SoundCloudClient : OAuth2Client
   {
 
     /// <summary>
-    /// Unique provider name: <b>Foursquare</b>.
+    /// Unique provider name: <b>SoundCloud</b>.
     /// </summary>
     public override string ProviderName
     {
@@ -124,7 +129,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://api.soundcloud.com/me.json",

@@ -117,12 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AudioList" xml:space="preserve">
+    <value>Список музыки</value>
+  </data>
+  <data name="BackToProviders" xml:space="preserve">
+    <value>Вернуться к списку поставщиков</value>
+  </data>
+  <data name="ClientIdIsRequired" xml:space="preserve">
+    <value>Client ID для [{0}] не найден. Пожалуйста, укажите идентификатор приложения в параметре [oauth:{0}:id], либо удалите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="ClientKeyIsRequired" xml:space="preserve">
+    <value>Cleint Secret для [{0}] не найден. Пожалуйста, укажите секретный ключ в параметре [oauth:{0}:key], либо удалите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>Список контактов</value>
+  </data>
+  <data name="CurrentStatus" xml:space="preserve">
+    <value>Текущий статус</value>
+  </data>
   <data name="DefaultAbout" xml:space="preserve">
     <value>&lt;p&gt;На этой странице выведен список всех зарегистрированных в приложении поставщиков OAuth.&lt;/p&gt;
 &lt;p&gt;Регистрация поставщиков производится в файле &lt;strong&gt;Global.asax&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Перенаправление на авторизацию можно найти в серверном коде этой страницы.&lt;/p&gt;
 &lt;p&gt;Обработка результатов авторизации производится на странице &lt;strong&gt;ExternalLoginResult.asxp&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Попробуйте пройти процедуру авторизации, нажав на любую из кнопок.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoFeedback" xml:space="preserve">
+    <value>&lt;p&gt;Если что-то не работает или работает неправильно, пожалуйста, &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;сообщите об этом разработчику&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoIntro" xml:space="preserve">
+    <value>&lt;p&gt;Библиотека &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; предназначена для реализации авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; в проектах &lt;strong&gt;.NET Framework (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Библиотека является бесплатной. Исходный код &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;открыт&lt;/a&gt; и предоставляется по лицензии &lt;strong&gt;Apache 2.0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  Для проверки работы библиотеки, нажмите на одну из иконок, расположенных ниже.&lt;br /&gt;
+  Если потребуется, пройдите процедуру аутентификации на внешнем сайте.&lt;br /&gt;
+  Разрешите тестовому приложению доступ к запрашиваемым данным.&lt;br /&gt;
+  Если все работает правильно, то после авторизации на внешнем ресурсе, вы вернетесь обратно на сайт &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, 
+  где сможете проверить работу с &lt;strong&gt;API&lt;/strong&gt; выбранного поставщика &lt;strong&gt;OAuth&lt;/strong&gt;.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoSecurity" xml:space="preserve">
+    <value>&lt;h2&gt;Это безопасно?&lt;/h2&gt;
+&lt;p&gt;Да, безопасно. Ваши учетные данные известны только серверу-поставщику &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  После аутентификации и авторизации, поставщик передает на страницу обратного вызова специальный код авторизации. 
+  Этот код одноразовый и, как правило, с довольно ограниченным сроком действия.
+  Сама страница обратного вызова всегда возвращает HTTP-код 403, чтобы полностью исключить попадание в поисковый индекс.
+&lt;/p&gt;
+&lt;p&gt;Библиотека &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; использует код авторизации для получения маркера доступа (&lt;strong&gt;access token&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;Маркер доступа записывается в сессию (&lt;strong&gt;session&lt;/strong&gt;) сервера и ни в каком виде не выводится на страницах сайта.&lt;/p&gt;
+&lt;p&gt;Маркер доступа используется для работы с &lt;strong&gt;API&lt;/strong&gt; поставщиков &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Все запросы делаются по защищенному протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;В опубликованном исходном коде сайта &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, параметры доступа к поставщикам &lt;strong&gt;OAuth&lt;/strong&gt;, в целях безопасности, отсутствуют.&lt;/p&gt;
+&lt;p&gt;
+  Некоторые поставщики требуют, чтобы страница обратного вызова открывалась по протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;. 
+  Для демонстрации работы авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; используется самоподписанный сертификат. 
+  Браузер вас об этом предупредит. Вы можете проигнорировать это предупреждение.
+  Причин для беспокойства, с учетом изложенного выше, нет.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoTechInfo" xml:space="preserve">
+    <value>&lt;h2&gt;Техническая информация&lt;/h2&gt;
+&lt;p&gt;Версия Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
+&lt;p&gt;Версия .NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;</value>
+    <comment>&lt;h2&gt;Техническая информация&lt;/h2&gt;
+&lt;p&gt;Версия Nemiro.OAuth:&lt;br /&gt;v@(System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuthWeb)).GetName().Version)&lt;/p&gt;
+&lt;p&gt;Версия .NET Framework:&lt;br /&gt;v@(Environment.Version)&lt;/p&gt;</comment>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>Демонстрация работы библиотеки Nemiro.OAuth</value>
+  </data>
+  <data name="DemoUsefulLinks" xml:space="preserve">
+    <value>&lt;h2&gt;Полезные ссылки&lt;/h2&gt;
+&lt;p&gt;
+  Исходный код:&lt;br /&gt;
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;https://github.com/alekseynemiro/nemiro.oauth.dll&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Документация:&lt;br /&gt;
+  &lt;a href="http://oauth.nemiro.net/"&gt;http://oauth.nemiro.net/&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Статья «Авторизация по протоколу OAuth в проектах .NET Framework»:&lt;br /&gt;
+  &lt;a href="http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art"&gt;http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Другие проекты:&lt;br /&gt;
+  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="FriendsList" xml:space="preserve">
+    <value>Список друзей</value>
+  </data>
+  <data name="GroupsList" xml:space="preserve">
+    <value>Список групп</value>
   </data>
   <data name="IndexAbout" xml:space="preserve">
     <value>&lt;p&gt;На этой странице выведен список всех зарегистрированных в приложении поставщиков OAuth.&lt;/p&gt;
@@ -131,13 +219,56 @@
 &lt;p&gt;Обработка результатов авторизации производится в методе &lt;strong&gt;ExternalLoginResult&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Попробуйте пройти процедуру авторизации, нажав на любую из кнопок.&lt;/p&gt;</value>
   </data>
+  <data name="InterestsList" xml:space="preserve">
+    <value>Список интересов</value>
+  </data>
+  <data name="LikesList" xml:space="preserve">
+    <value>Список лайков</value>
+  </data>
+  <data name="NoForLocalhost" xml:space="preserve">
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;Этот сайт работает правильно только на домене oauth-test.nemiro.net!&lt;/h1&gt;
+  &lt;h2 style="color:red;text-align:center;"&gt;Используйте другие проекты, для проверки работы с OAuth на локальном сервере.&lt;/h2&gt;</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Примечание</value>
+  </data>
+  <data name="Photoalbums" xml:space="preserve">
+    <value>Фотоальбомы</value>
+  </data>
   <data name="Port59962" xml:space="preserve">
     <value>Все приложения настроены на порт &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;Если у вас используется другой порт, то обработка и вывод результатов авторизации работать не будут.&lt;br /&gt;Вы можете явно указать номер порта в вашем веб-приложении (меню: Проект =&amp;gt; Свойства =&amp;gt; вкладка Веб =&amp;gt; Порт), или создать и использовать собственные приложения на сайтах поставщиков (таких как: facebook, twitter, vkontakte и т.п.).</value>
+  </data>
+  <data name="PublicKeyIsRequired" xml:space="preserve">
+    <value>Public Key для [{0}] не найден. Пожалуйста, укажите публичный ключ в параметре [oauth:{0}:publicKey], либо удилите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="SeeAlsoDemo" xml:space="preserve">
+    <value>Если что-то не работает в &lt;strong&gt;localhost&lt;/strong&gt;, вы можете проверить работу библиотеки на сервере &lt;a href="http://demo-oauth.nemiro.net/"&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;.</value>
+  </data>
+  <data name="SessionIsDead" xml:space="preserve">
+    <value>Срок действия сессии истек. Пожалуйста, пройдите процедуру авторизации повторно, чтобы получить новый маркер доступа для работы с API.</value>
+  </data>
+  <data name="Twits" xml:space="preserve">
+    <value>Мои твиты</value>
+  </data>
+  <data name="TwitterFollowersList" xml:space="preserve">
+    <value>Мои преследователи</value>
+  </data>
+  <data name="UpdatesList" xml:space="preserve">
+    <value>Что нового?</value>
   </data>
   <data name="UseJavaScriptLinks" xml:space="preserve">
     <value>Используйте ссылки JavaScript, чтобы исключить их индексацию. Индексация таких ссылок может негативно отразиться на производительности.</value>
   </data>
+  <data name="UserInfoTitle" xml:space="preserve">
+    <value>Информация о пользователе</value>
+  </data>
   <data name="Warning" xml:space="preserve">
     <value>Предупреждение</value>
+  </data>
+  <data name="YandexDiskContent" xml:space="preserve">
+    <value>Содержимое Яндекс.Диск</value>
+  </data>
+  <data name="YandexDiskSummary" xml:space="preserve">
+    <value>Информация о Яндекс.Диск</value>
   </data>
 </root>

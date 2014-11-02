@@ -54,6 +54,8 @@
     <Compile Include="Clients\DropboxClient.cs" />
     <Compile Include="Clients\FoursquareClient.cs" />
     <Compile Include="Clients\SoundCloudClient.cs" />
+    <Compile Include="Clients\YahooClient.cs" />
+    <Compile Include="Clients\LinkedInClient.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Clients\FacebookClient.cs" />
     <Compile Include="Clients\OdnoklassnikiClient.cs" />
@@ -66,10 +68,12 @@
     <Compile Include="Exceptions\DuplicateProviderException.cs" />
     <Compile Include="Exceptions\NullHttpContextException.cs" />
     <Compile Include="Exceptions\RequestException.cs" />
+    <Compile Include="Exceptions\UnknownProviderException.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="OAuthBase.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Helpers.cs" />
+    <Compile Include="OAuthUtility.cs" />
     <Compile Include="OAuth2\OAuth2Client.cs" />
     <Compile Include="Extensions\NameValueCollectionExtension.cs" />
     <Compile Include="OAuthRequest.cs" />

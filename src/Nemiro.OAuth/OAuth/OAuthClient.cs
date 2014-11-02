@@ -108,10 +108,10 @@ namespace Nemiro.OAuth
       this.RequestTokenUrl = requestTokenUrl;
 
       this.Authorization["oauth_consumer_key"] = consumerKey;
-      this.Authorization["oauth_nonce"] = Helpers.GetRandomKey();
+      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
       this.Authorization["oauth_signature"] = "";
       this.Authorization["oauth_signature_method"] = signatureMethod;
-      this.Authorization["oauth_timestamp"] = Helpers.GetTimeStamp();
+      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
       this.Authorization["oauth_token"] = "";
       this.Authorization["oauth_version"] = "1.0";
     }
@@ -123,43 +123,10 @@ namespace Nemiro.OAuth
     /// Gets base string of the signature for current request.
     /// </summary>
     /// <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+    [Obsolete("Use OAuthUtility.", false)]
     private string GetSignatureBaseString(string httpMethod, Uri url, NameValueCollection parameters)
     {
-      if (String.IsNullOrEmpty(httpMethod)) { throw new ArgumentNullException("httpMethod"); }
-      if (url == null) { throw new ArgumentNullException("url"); }
-
-      if (parameters == null) { parameters = new NameValueCollection(); }
-
-      // append the authorization headers
-      foreach (var itm in this.Authorization.Parameters)
-      {
-        if (itm.Key == "oauth_signature") { continue; }
-        parameters.Add(itm.Key, itm.Value.ToString());
-      }
-
-      // append the query parameters
-      string queryString = url.GetComponents(UriComponents.Query, UriFormat.Unescaped);
-      if (!String.IsNullOrEmpty(queryString))
-      {
-        foreach (string q in queryString.Split('&'))
-        {
-          string[] p = q.Split('=');
-          string key = p.First(), value = (p.Length > 1 ? p.Last() : "");
-          parameters.Add(key, value);
-        }
-      }
-
-      // sorting and build base string of the signature
-      StringBuilder signBaseString = new StringBuilder();
-      foreach (var itm in parameters.Sort().ToKeyValuePairCollection())
-      {
-        if (signBaseString.Length > 0) { signBaseString.Append(Helpers.UrlEncode("&")); }
-        signBaseString.Append(Helpers.UrlEncode(String.Format("{0}={1}", itm.Key, Helpers.UrlEncode(itm.Value))));
-      }
-
-      signBaseString.Insert(0, String.Format("{0}&{1}&", httpMethod.ToUpper(), Helpers.UrlEncode(url.ToString())));
-
-      return signBaseString.ToString();
+      return OAuthUtility.GetSignatureBaseString(httpMethod, url, parameters, this.Authorization);
     }
 
     /// <summary>
@@ -169,14 +136,10 @@ namespace Nemiro.OAuth
     /// <param name="url">The request URI.</param>
     /// <param name="tokenSecret">The token secret.</param>
     /// <param name="parameters">The query parameters.</param>
+    [Obsolete("Use OAuthUtility.", false)]
     public OAuthSignature GetSignature(string httpMethod, Uri url, string tokenSecret, NameValueCollection parameters)
     {
-      return new OAuthSignature
-      (
-        this.Authorization["oauth_signature_method"].ToString(),
-        String.Format("{0}&{1}", this.ApplicationSecret, tokenSecret),
-        this.GetSignatureBaseString(httpMethod, url, parameters)
-      );
+      return OAuthUtility.GetSignature(httpMethod, url, this.ApplicationSecret, tokenSecret, parameters, this.Authorization);
     }
 
     /// <summary>
@@ -201,11 +164,12 @@ namespace Nemiro.OAuth
         this.Authorization.Parameters.Remove("oauth_callback");
       }
 
-      this.Authorization["oauth_signature"] = this.GetSignature("POST", new Uri(this.RequestTokenUrl), "", null);
+      this.Authorization.SetSignature("POST", new Uri(this.RequestTokenUrl), this.ApplicationSecret, "", null);
+      //this.Authorization["oauth_signature"] = this.GetSignature("POST", new Uri(this.RequestTokenUrl), "", null);
 
       _RequestToken = new OAuthRequestToken
       (
-        Helpers.ExecuteRequest
+        OAuthUtility.ExecuteRequest
         (
           "POST", 
           this.RequestTokenUrl, 
@@ -223,32 +187,34 @@ namespace Nemiro.OAuth
     protected override void GetAccessToken()
     {
       base.GetAccessToken();
+      
+      this.Authorization.Parameters.Remove("oauth_signature");
 
+      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
+      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
+      this.Authorization["oauth_verifier"] =this.AuthorizationCode;
       this.Authorization["oauth_token"] = this.RequestToken.OAuthToken;
-      this.Authorization["oauth_signature"] = this.GetSignature
+      this.Authorization.SetSignature
       (
         "POST",
-        new Uri(this.RequestTokenUrl),
+        new Uri(this.AccessTokenUrl),
+        this.ApplicationSecret,
         this.Authorization["oauth_token"].ToString(),
-        new NameValueCollection
-        { 
-          { "oauth_verifier", this.AuthorizationCode } 
-        }
+        null
       );
 
       base.AccessToken = new OAuthAccessToken
       (
-        Helpers.ExecuteRequest
+        OAuthUtility.ExecuteRequest
         (
           "POST", 
           this.AccessTokenUrl, 
-          new NameValueCollection 
-          { 
-            { "oauth_verifier", this.AuthorizationCode } 
-          }, 
+          null, 
           this.Authorization.ToString()
         )
       );
+
+      this.Authorization.Parameters.Remove("oauth_verifier");
     }
 
     /// <summary>
@@ -256,8 +222,8 @@ namespace Nemiro.OAuth
     /// </summary>
     private void UpdateStamp()
     {
-      this.Authorization["oauth_nonce"] = Helpers.GetRandomKey();
-      this.Authorization["oauth_timestamp"] = Helpers.GetTimeStamp();
+      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
+      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
     }
 
     #endregion

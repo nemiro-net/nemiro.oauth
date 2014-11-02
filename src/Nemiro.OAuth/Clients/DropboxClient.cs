@@ -71,14 +71,19 @@ namespace Nemiro.OAuth.Clients
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class DropboxClient : OAuth2Client
   {
@@ -123,7 +128,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://api.dropbox.com/1/account/info",

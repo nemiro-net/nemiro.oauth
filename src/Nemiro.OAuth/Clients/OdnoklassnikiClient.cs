@@ -508,14 +508,19 @@ namespace Nemiro.OAuth.Clients
   /// </code>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class OdnoklassnikiClient : OAuth2Client
   {
@@ -573,14 +578,14 @@ namespace Nemiro.OAuth.Clients
       // signature base string
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=75989046
       string signatureBaseString = parameters.Sort().ToParametersString(true);
-      signatureBaseString += Helpers.GetMD5Hash(((OAuth2AccessToken)this.AccessToken).Value + this.ApplicationSecret);
+      signatureBaseString += OAuthUtility.GetMD5Hash(((OAuth2AccessToken)this.AccessToken).Value + this.ApplicationSecret);
 
       // calculate the signature
-      parameters["sig"] = Helpers.GetMD5Hash(signatureBaseString);
+      parameters["sig"] = OAuthUtility.GetMD5Hash(signatureBaseString);
       parameters["access_token"] = ((OAuth2AccessToken)this.AccessToken).Value;
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "POST",
         "http://api.odnoklassniki.ru/fb.do",

@@ -105,6 +105,15 @@ namespace Test.CSharp.AspWebForms
           "764dcefe49b441c8c6244c93e5d5d04de54fda6dfdc83da9693bf346f4dc4515"
         ) { ReturnUrl = "http://localhost" }
       );
+
+      OAuthManager.RegisterClient
+      (
+        new FoursquareClient
+        (
+          "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
+          "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+        )
+      );
     }
   }
 }

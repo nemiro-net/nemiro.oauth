@@ -209,19 +209,23 @@ namespace Nemiro.OAuth
     {
       switch (contentType.ToLower())
       {
-        case "application/json":
         case "text/json":
-        case "application/javascript":
         case "text/javascript":
+        case "application/json":
+        case "application/javascript":
           this.Result = new JavaScriptSerializer().DeserializeObject(source);
           break;
 
         case "text/xml":
+        case "application/xml":
+        case "application/atom+xml":
+        case "application/atomsvc+xml":
           this.Result = XDocument.Parse(source);
           break;
 
         case "text/html":
         case "text/plain":
+        case "application/x-www-form-urlencoded": // for some cases
           if (Regex.IsMatch(source, @"([^\x3D]+)=([^\x26]*)", RegexOptions.Multiline | RegexOptions.Singleline | RegexOptions.IgnoreCase))
           {
             NameValueCollection items = new NameValueCollection();

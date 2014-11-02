@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Timers;
+using System.Collections.Specialized;
 
 namespace Nemiro.OAuth
 {
@@ -55,11 +56,22 @@ namespace Nemiro.OAuth
     #region ..fields & properties..
 
     private static Timer _Timer = new Timer(60000);
-    
-    private static Dictionary<string, OAuthRequest> _Requets = new Dictionary<string, OAuthRequest>();
 
+    private static Dictionary<string, Type> _AllClients = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
     /// <summary>
-    /// Gets the list of the active requests.
+    /// Gets the list of all clients.
+    /// </summary>
+    internal static Dictionary<string, Type> AllClients
+    {
+      get
+      {
+        return _AllClients;
+      }
+    } 
+   
+    private static Dictionary<string, OAuthRequest> _Requets = new Dictionary<string, OAuthRequest>();
+    /// <summary>
+    /// Gets the list of active requests.
     /// </summary>
     internal static Dictionary<string, OAuthRequest> Requets
     {
@@ -70,9 +82,8 @@ namespace Nemiro.OAuth
     }
 
     private static Dictionary<string, OAuthBase> _RegisteredClients = new Dictionary<string, OAuthBase>(StringComparer.OrdinalIgnoreCase);
-
     /// <summary>
-    /// Gets the list of the registered clients.
+    /// Gets the list of registered clients.
     /// </summary>
     public static Dictionary<string, OAuthBase> RegisteredClients
     {
@@ -81,7 +92,7 @@ namespace Nemiro.OAuth
         return _RegisteredClients;
       }
     }
-
+    
     #endregion
     #region ..constructor..
 
@@ -90,6 +101,32 @@ namespace Nemiro.OAuth
     /// </summary>
     static OAuthManager()
     {
+      // get all clients
+      var types = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where
+      (
+        itm =>
+        itm.BaseType != null &&
+        (itm.BaseType == typeof(OAuthClient) || itm.BaseType == typeof(OAuth2Client))
+      );
+      // creating clients list
+      foreach (var t in types)
+      {
+        var param = new ArrayList();
+        foreach (var p in t.GetConstructors().First().GetParameters())
+        {
+          if (p.ParameterType == typeof(string))
+          {
+            param.Add("123");
+          }
+          else
+          {
+            throw new NotSupportedException(String.Format("Supported only string data types for parameters constructors of providers class. Please, check {0} class.", t.Name));
+          }
+        }
+        var client = Activator.CreateInstance(t, param.ToArray()) as OAuthBase;
+        _AllClients.Add(client.ProviderName, t);
+      }
+      // --
       _Timer.Elapsed += Timer_Elapsed;
     }
 
@@ -213,6 +250,85 @@ namespace Nemiro.OAuth
       OAuthManager.RemoveRequet(client.State.ToString());
     }
 
+    /// <summary>
+    /// Registers the specified client in the application.
+    /// </summary>
+    /// <param name="providerName">The provider name.</param>
+    /// <param name="clientId">The application identifier obtained from the provider website.</param>
+    /// <param name="clientSecret">The application secret key obtained from the provider website.</param>
+    /// <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
+    /// <param name="scope">List of scope that will be requested from the provider. Only for OAuth 2.0.</param>
+    /// <param name="parameters">Additional parameters that will be transferred to the provider website.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="providerName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
+    /// <exception cref="UnknownProviderException">Provider not found by <paramref name="providerName"/>.</exception>
+    /// <exception cref="NotSupportedException">The <paramref name="providerName"/> not suppored <paramref name="scope"/>.</exception>
+    /// <example>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "google", 
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "facebook"
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "google",
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "facebook",
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// )
+    /// </code>
+    /// </example>
+    public static void RegisterClient(string providerName, string clientId, string clientSecret, string scope = null, NameValueCollection parameters = null, object[] initArgs = null)
+    {
+      if (String.IsNullOrEmpty(providerName)) { throw new ArgumentNullException("providerName"); }
+      if (String.IsNullOrEmpty(clientId)) { throw new ArgumentNullException("clientId"); }
+      if (String.IsNullOrEmpty(clientSecret)) { throw new ArgumentNullException("clientSecret"); }
+      // searching provider by name
+      if (!OAuthManager.AllClients.ContainsKey(providerName))
+      {
+        throw new UnknownProviderException("Provider [{0}] not found. Please, check provider name.", providerName);
+      }
+      // init parameters
+      var parm = new ArrayList();
+      parm.Add(clientId);
+      parm.Add(clientSecret);
+      if (initArgs != null && initArgs.Length > 0)
+      {
+        parm.AddRange(initArgs);
+      } 
+      // creating client instance
+      OAuthBase client = Activator.CreateInstance(OAuthManager.AllClients[providerName], parm.ToArray()) as OAuthBase;
+      if (!String.IsNullOrEmpty(scope))
+      {
+        if (client.GetType().BaseType != typeof(OAuth2Client))
+        {
+          throw new NotSupportedException("The scope supported only for OAuth 2.0 clients.");
+        }
+        ((OAuth2Client)client).Scope = scope;
+      }
+      if (parameters != null)
+      {
+        client.Parameters = parameters;
+      }
+      // add client
+      OAuthManager.RegisterClient(client);
+    }
     #endregion
 
   }

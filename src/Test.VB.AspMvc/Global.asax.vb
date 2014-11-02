@@ -119,6 +119,41 @@ Public Class MvcApplication
       ) With {.ReturnUrl = "http://localhost"}
     )
 
+    OAuthManager.RegisterClient _
+    (
+      New DropboxClient _
+      (
+        "0le6wsyp3y085wy",
+        "48afwq9yth83y7u"
+      )
+    )
+
+    OAuthManager.RegisterClient _
+    (
+      New FoursquareClient _
+      (
+        "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
+        "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+      )
+    )
+
+    OAuthManager.RegisterClient _
+    (
+      New SoundCloudClient _
+      (
+        "42b58d31e399664a3fb8503bfcaaa9ba",
+        "f9d85648da59fb95ec131b40c7645c31"
+      )
+    )
+
+    OAuthManager.RegisterClient _
+    (
+      New LinkedInClient _
+      (
+        "75vufylz829iim",
+        "VOf14z4T1jie4ezS"
+      )
+    )
   End Sub
 
 End Class

@@ -314,14 +314,19 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> For proper processing, you will need to download and put on your site a <b>receiver.html</b> file.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class MailRuClient : OAuth2Client
   {
@@ -391,9 +396,9 @@ namespace Nemiro.OAuth.Clients
 
       string signatureBaseString = parameters.Sort().ToParametersString();
 
-      parameters["sig"] = Helpers.GetMD5Hash(signatureBaseString + this.ApplicationSecret);
+      parameters["sig"] = OAuthUtility.GetMD5Hash(signatureBaseString + this.ApplicationSecret);
 
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "POST",
         "http://www.appsmail.ru/platform/api",

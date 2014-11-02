@@ -276,14 +276,19 @@ namespace Nemiro.OAuth.Clients
   /// </code>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class GoogleClient : OAuth2Client
   {
@@ -352,7 +357,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",

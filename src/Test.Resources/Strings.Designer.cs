@@ -61,6 +61,60 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of music.
+        /// </summary>
+        public static string AudioList {
+            get {
+                return ResourceManager.GetString("AudioList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Back to list of providers.
+        /// </summary>
+        public static string BackToProviders {
+            get {
+                return ResourceManager.GetString("BackToProviders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Client ID for [{0}] not found. Please set value to the [oauth:{0}:id] parameter or remove [{0}] from [oauth:clients]..
+        /// </summary>
+        public static string ClientIdIsRequired {
+            get {
+                return ResourceManager.GetString("ClientIdIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cleint Secret for [{0}] not found. Please set value to the [oauth:{0}:key] parameter or remove [{0}] from [oauth:clients]..
+        /// </summary>
+        public static string ClientKeyIsRequired {
+            get {
+                return ResourceManager.GetString("ClientKeyIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of contacts.
+        /// </summary>
+        public static string ContactsList {
+            get {
+                return ResourceManager.GetString("ContactsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get status.
+        /// </summary>
+        public static string CurrentStatus {
+            get {
+                return ResourceManager.GetString("CurrentStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
         ///&lt;p&gt;Clients registration occurs in the &lt;strong&gt;Global.asax&lt;/strong&gt; file.&lt;/p&gt;
         ///&lt;p&gt;Redirects to the login page you can found in the server code of the page.&lt;/p&gt;
@@ -70,6 +124,104 @@ namespace Test.Resources {
         public static string DefaultAbout {
             get {
                 return ResourceManager.GetString("DefaultAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;p&gt;If something is not working or is not working properly, please &lt;a href=&quot;https://github.com/alekseynemiro/nemiro.oauth.dll/issues&quot;&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;.
+        /// </summary>
+        public static string DemoFeedback {
+            get {
+                return ResourceManager.GetString("DemoFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;p&gt;&lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; is a class library for authorization via &lt;strong&gt;OAuth&lt;/strong&gt; protocol in &lt;strong&gt;.NET Framework. (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
+        ///&lt;p&gt;The library is &lt;a href=&quot;https://github.com/alekseynemiro/nemiro.oauth.dll&quot;&gt;open source&lt;/a&gt; and is licensed under the &lt;strong&gt;Apache License Version 2.0&lt;/strong&gt;.&lt;/p&gt;
+        ///&lt;p&gt;
+        ///  To test, click on one of the icons below. Provide the required permissions for test application.&lt;br /&gt;
+        ///  If everything works correctly, then after login, you will redirect to th [остаток строки не уместился]&quot;;.
+        /// </summary>
+        public static string DemoIntro {
+            get {
+                return ResourceManager.GetString("DemoIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;h2&gt;Is it safe?&lt;/h2&gt;
+        ///&lt;p&gt;Yes safely.&lt;/p&gt;
+        ///&lt;p&gt;
+        ///  After authentication and authorization, the provider server sends special authorization code to the callback page.
+        ///  This code is a one-off and has a limited duration.
+        ///&lt;/p&gt;
+        ///&lt;p&gt;The &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; library uses the authorization code for convertion to an &lt;strong&gt;access token&lt;/strong&gt;.&lt;/p&gt;
+        ///&lt;p&gt;The access token is stored in the server &lt;strong&gt;session&lt;/strong&gt;.&lt;/p&gt;
+        ///&lt;p&gt;The access token is used to work with &lt;strong&gt;API&lt;/strong&gt; and does not appear  [остаток строки не уместился]&quot;;.
+        /// </summary>
+        public static string DemoSecurity {
+            get {
+                return ResourceManager.GetString("DemoSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;h2&gt;Technical information&lt;/h2&gt;
+        ///&lt;p&gt;Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
+        ///&lt;p&gt;.NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;.
+        /// </summary>
+        public static string DemoTechInfo {
+            get {
+                return ResourceManager.GetString("DemoTechInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Nemiro.OAuth demo site.
+        /// </summary>
+        public static string DemoTitle {
+            get {
+                return ResourceManager.GetString("DemoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;h2&gt;Additional resources&lt;/h2&gt;
+        ///&lt;p&gt;
+        ///  Source code:&lt;br /&gt;
+        ///  &lt;a href=&quot;https://github.com/alekseynemiro/nemiro.oauth.dll&quot;&gt;https://github.com/alekseynemiro/nemiro.oauth.dll&lt;/a&gt;
+        ///&lt;/p&gt;
+        ///&lt;p&gt;
+        ///Documentation:&lt;br /&gt;
+        ///  &lt;a href=&quot;http://oauth.nemiro.net/&quot;&gt;http://oauth.nemiro.net/&lt;/a&gt;
+        ///&lt;/p&gt;
+        ///&lt;p&gt;
+        ///  Other projects:&lt;br /&gt;
+        ///  &lt;a href=&quot;http://nemiro.net/&quot;&gt;http://nemiro.net/&lt;/a&gt;
+        ///&lt;/p&gt;.
+        /// </summary>
+        public static string DemoUsefulLinks {
+            get {
+                return ResourceManager.GetString("DemoUsefulLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of friends.
+        /// </summary>
+        public static string FriendsList {
+            get {
+                return ResourceManager.GetString("FriendsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of groups.
+        /// </summary>
+        public static string GroupsList {
+            get {
+                return ResourceManager.GetString("GroupsList", resourceCulture);
             }
         }
         
@@ -87,11 +239,110 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of interests.
+        /// </summary>
+        public static string InterestsList {
+            get {
+                return ResourceManager.GetString("InterestsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of likes.
+        /// </summary>
+        public static string LikesList {
+            get {
+                return ResourceManager.GetString("LikesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;h1 style=&quot;color:red;text-align:center;&quot;&gt;This site works correctly only on the oauth-test.nemiro.net!&lt;/h1&gt;.
+        /// </summary>
+        public static string NoForLocalhost {
+            get {
+                return ResourceManager.GetString("NoForLocalhost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of photo albums.
+        /// </summary>
+        public static string Photoalbums {
+            get {
+                return ResourceManager.GetString("Photoalbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All applications are configured on the port &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;If you have another port, the results will not shown.&lt;br /&gt;Configure the port settings for this web project (Project =&amp;gt; Properties =&amp;gt; Web =&amp;gt; Specified port), or use your own configuration applications (on sites of providers)..
         /// </summary>
         public static string Port59962 {
             get {
                 return ResourceManager.GetString("Port59962", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Public Key for [{0}] not found. Please set value to the [oauth:{0}:publicKey] parameter or remove [{0}] from [oauth:clients]..
+        /// </summary>
+        public static string PublicKeyIsRequired {
+            get {
+                return ResourceManager.GetString("PublicKeyIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на See also &lt;a href=&quot;http://demo-oauth.nemiro.net/&quot;&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;..
+        /// </summary>
+        public static string SeeAlsoDemo {
+            get {
+                return ResourceManager.GetString("SeeAlsoDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The session ended. Please authorize in again to create a new session..
+        /// </summary>
+        public static string SessionIsDead {
+            get {
+                return ResourceManager.GetString("SessionIsDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of twits.
+        /// </summary>
+        public static string Twits {
+            get {
+                return ResourceManager.GetString("Twits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of followers.
+        /// </summary>
+        public static string TwitterFollowersList {
+            get {
+                return ResourceManager.GetString("TwitterFollowersList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get list of news.
+        /// </summary>
+        public static string UpdatesList {
+            get {
+                return ResourceManager.GetString("UpdatesList", resourceCulture);
             }
         }
         
@@ -105,11 +356,38 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на User Info.
+        /// </summary>
+        public static string UserInfoTitle {
+            get {
+                return ResourceManager.GetString("UserInfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Warning.
         /// </summary>
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Get files list of Yandex.Disk.
+        /// </summary>
+        public static string YandexDiskContent {
+            get {
+                return ResourceManager.GetString("YandexDiskContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Summary info of Yandex.Disk.
+        /// </summary>
+        public static string YandexDiskSummary {
+            get {
+                return ResourceManager.GetString("YandexDiskSummary", resourceCulture);
             }
         }
     }

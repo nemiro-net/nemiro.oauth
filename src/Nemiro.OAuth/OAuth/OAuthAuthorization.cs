@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Specialized;
 
 namespace Nemiro.OAuth
 {
@@ -89,6 +90,31 @@ namespace Nemiro.OAuth
     #region ..methods..
 
     /// <summary>
+    /// Sets signature.
+    /// </summary>
+    /// <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+    /// <param name="url">The request URI.</param>
+    /// <param name="tokenSecret">The token secret.</param>
+    /// <param name="parameters">The query parameters.</param>
+    /// <param name="applicationSecret">The application secret key obtained from the provider website.</param>
+    public void SetSignature(string httpMethod, string url, string applicationSecret, string tokenSecret, NameValueCollection parameters)
+    {
+      this.SetSignature(httpMethod, url, applicationSecret, tokenSecret, parameters);
+    }
+    /// <summary>
+    /// Sets signature.
+    /// </summary>
+    /// <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+    /// <param name="url">The request URI.</param>
+    /// <param name="tokenSecret">The token secret.</param>
+    /// <param name="parameters">The query parameters.</param>
+    /// <param name="applicationSecret">The application secret key obtained from the provider website.</param>
+    public void SetSignature(string httpMethod, Uri url, string applicationSecret, string tokenSecret, NameValueCollection parameters)
+    {
+      this["oauth_signature"] = OAuthUtility.GetSignature(httpMethod, url, applicationSecret, tokenSecret, parameters, this);
+    }
+
+    /// <summary>
     /// Returns OAuth string of the current object for Authorization header. 
     /// </summary>
     public override string ToString()
@@ -97,7 +123,7 @@ namespace Nemiro.OAuth
       foreach (var itm in this.ParametersSorted)
       {
         if (result.Length > 0) { result.Append(", "); }
-        result.AppendFormat("{0}=\"{1}\"", itm.Key, Helpers.UrlEncode(itm.Value.ToString()));
+        result.AppendFormat("{0}=\"{1}\"", itm.Key, OAuthUtility.UrlEncode(itm.Value.ToString()));
       }
       result.Insert(0, "OAuth ");
       return result.ToString();

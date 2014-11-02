@@ -29,3 +29,8 @@ End Code
   <div class="title">@Test.Resources.Strings.Warning</div>
   <div class="text">@Html.Raw(String.Format(Test.Resources.Strings.Port59962, 48179))</div>
 </div>
+
+<div class="message note">
+  <div class="title">@Test.Resources.Strings.Note</div>
+  <div class="text">@Html.Raw(Test.Resources.Strings.SeeAlsoDemo)</div>
+</div>

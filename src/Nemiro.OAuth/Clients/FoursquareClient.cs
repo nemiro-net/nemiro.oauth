@@ -70,14 +70,19 @@ namespace Nemiro.OAuth.Clients
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class FoursquareClient : OAuth2Client
   {
@@ -125,7 +130,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://api.foursquare.com/v2/users/self",
@@ -157,13 +162,7 @@ namespace Nemiro.OAuth.Clients
         "contact", "Email",
         delegate(object value)
         {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("email")) { return null; }
-          return v["email"].ToString();
+          return OAuthUtility.GetDictionaryValueOrNull(value, "email");
         }
       );
       map.Add
@@ -171,13 +170,7 @@ namespace Nemiro.OAuth.Clients
         "contact", "Phone",
         delegate(object value)
         {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("phone")) { return null; }
-          return v["phone"].ToString();
+          return OAuthUtility.GetDictionaryValueOrNull(value, "phone");
         }
       );
       map.Add

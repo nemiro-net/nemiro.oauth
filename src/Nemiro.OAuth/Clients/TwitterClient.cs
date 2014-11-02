@@ -340,14 +340,19 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URL</b> in the <b>Twitter Application Settings</b>.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class TwitterClient : OAuthClient
   {
@@ -397,10 +402,11 @@ namespace Nemiro.OAuth.Clients
       };
 
       this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
-      this.Authorization["oauth_signature"] = this.GetSignature("GET", new Uri(url), this.AccessToken["oauth_token_secret"].ToString(), parameters);
+      this.Authorization.SetSignature("GET", new Uri(url), this.ApplicationSecret, this.AccessToken["oauth_token_secret"].ToString(), parameters);
+      //this.Authorization["oauth_signature"] = this.GetSignature("GET", new Uri(url), this.AccessToken["oauth_token_secret"].ToString(), parameters);
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         url,

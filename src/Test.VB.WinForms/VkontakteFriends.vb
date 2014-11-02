@@ -16,7 +16,7 @@ Public Class VkontakteFriends
     }
 
     ' execute the request
-    Dim result As RequestResult = Helpers.ExecuteRequest _
+    Dim result As RequestResult = OAuthUtility.ExecuteRequest _
     (
       "GET",
       "https://api.vk.com/method/friends.get",

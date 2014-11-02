@@ -30,7 +30,7 @@ namespace Test.CSharp.WinForms
       };
 
       // execute the request
-      var result = Nemiro.OAuth.Helpers.ExecuteRequest
+      var result = Nemiro.OAuth.OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://api.vk.com/method/friends.get",

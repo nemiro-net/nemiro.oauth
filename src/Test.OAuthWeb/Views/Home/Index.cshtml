@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = Test.Resources.Strings.DemoTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Request.IsLocal)
+{
+  @Html.Raw(Test.Resources.Strings.NoForLocalhost)
+}
+
+<h1>@Test.Resources.Strings.DemoTitle</h1>
+
+@Html.Raw(Test.Resources.Strings.DemoIntro)
+
+@* !!!USE JAVASCRIPT LINKS TO PREVENT THEM FROM INDEXING!!! *@
+<ul style="width:600px;margin-left:auto;margin-right:auto;">
+  @foreach (var client in Nemiro.OAuth.OAuthManager.RegisteredClients)
+  {
+    <li>
+      @*link and image*@
+      <a href="javascript:window.location.href='@Url.Action("ExternalLogin", new { provider = client.Key })'">
+        <img src="@Url.Action("Icon", new { id = client.Key })" alt="@client.Key" title="@client.Key" width="100" height="100" />
+      </a>
+    </li>
+  }
+</ul>
+
+<div class="clear"></div>
+
+@Html.Raw(Test.Resources.Strings.DemoFeedback)
+<p>&nbsp;</p>
+
+@Html.Raw(Test.Resources.Strings.DemoSecurity)
+
+@Html.Raw(String.Format(Test.Resources.Strings.DemoTechInfo, System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuthWeb)).GetName().Version, Environment.Version))
+
+@Html.Raw(Test.Resources.Strings.DemoUsefulLinks)
+
+<div class="clear"></div>
+
+<br /><br /><br />
+
+<!--div style="text-align:center;font-size:11px;margin-top:24px;margin-bottom:24px;color:#999999;border-top:1px solid #999999;padding-top:12px;">
+  © Aleksey Nemiro, 2014<br />
+  <a href="http://twitter.com/aleksey_nemiro" rel="external nofollow" target="_blank">Twitter</a> ·
+  <a href="http://www.facebook.com/aleksey.nemiro" rel="external nofollow" target="_blank">Facebook</a> ·
+  <a href="http://vk.com/aleksey.nemiro" rel="external nofollow" target="_blank">ВКонтакте</a> ·
+  <a href="http://kbyte.ru/ru/Private/Profile.aspx?uid=1" rel="external nofollow" target="_blank">Kbyte</a>
+</div-->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter25622822 = new Ya.Metrika({ id: 25622822,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true
+        });
+      } catch (e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+      d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+  })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25622822" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->

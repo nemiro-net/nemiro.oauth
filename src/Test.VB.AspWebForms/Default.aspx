@@ -37,6 +37,11 @@
           <div class="title"><%=Test.Resources.Strings.Warning%></div>
           <div class="text"><%=String.Format(Test.Resources.Strings.Port59962, 34060)%></div>
         </div>
+
+        <div class="message note">
+          <div class="title"><%=Test.Resources.Strings.Note%></div>
+          <div class="text"><%=Test.Resources.Strings.SeeAlsoDemo%></div>
+        </div>
       </div>
     </form>
   </body>

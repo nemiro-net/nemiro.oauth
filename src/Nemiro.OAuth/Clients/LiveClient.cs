@@ -179,14 +179,19 @@ namespace Nemiro.OAuth.Clients
   /// <para><img src="../img/live006.png" alt="User Info" /></para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class LiveClient : OAuth2Client
   {
@@ -235,7 +240,7 @@ namespace Nemiro.OAuth.Clients
         { "access_token" , this.AccessToken["access_token"].ToString() }
       };
 
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://apis.live.net/v5.0/me",

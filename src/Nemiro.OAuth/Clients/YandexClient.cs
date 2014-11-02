@@ -344,14 +344,19 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URI</b> in the <b>Yandex Application Settings</b>.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
+  /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
+  /// <seealso cref="SoundCloudClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
+  /// <seealso cref="YahooClient"/>
   /// <seealso cref="YandexClient"/>
   public class YandexClient : OAuth2Client
   {
@@ -413,7 +418,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "GET",
         "https://login.yandex.ru/info",
@@ -424,6 +429,7 @@ namespace Nemiro.OAuth.Clients
       // field mapping
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));
+      map.Add("login", "UserName");
       map.Add("first_name", "FirstName");
       map.Add("last_name", "LastName");
       map.Add("display_name", "DisplayName");

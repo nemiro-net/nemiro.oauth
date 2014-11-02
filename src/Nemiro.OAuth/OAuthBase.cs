@@ -238,7 +238,7 @@ namespace Nemiro.OAuth
       this.ApplicationSecret = applicationSecret;
 
       // set unique identifier to the instance
-      this.State = Helpers.GetRandomKey();
+      this.State = OAuthUtility.GetRandomKey();
       // add the instance to the clients collection
       OAuthManager.AddRequet(this.State, this);
     }
@@ -323,7 +323,7 @@ namespace Nemiro.OAuth
     {
       OAuthBase result = this.MemberwiseClone() as OAuthBase;
       
-      result.State = Helpers.GetRandomKey();
+      result.State = OAuthUtility.GetRandomKey();
       result.AccessToken = null;
       result.AuthorizationCode = null;
 

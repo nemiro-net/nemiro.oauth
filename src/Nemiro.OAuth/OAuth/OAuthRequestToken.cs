@@ -99,7 +99,7 @@ namespace Nemiro.OAuth
       _OAuthCallbackConfirmed = Convert.ToBoolean(base["oauth_callback_confirmed"]);
       _AuthorizationUrl = authorizeUrl;
       _AuthorizationUrl += _AuthorizationUrl.EndsWith("?") ? "&" : "?";
-      _AuthorizationUrl += String.Format("oauth_token={0}", Helpers.UrlEncode(_OAuthToken));
+      _AuthorizationUrl += String.Format("oauth_token={0}", OAuthUtility.UrlEncode(_OAuthToken));
       if (parameters != null && parameters.Count > 0)
       {
         _AuthorizationUrl += "&" + parameters.ToParametersString("&");

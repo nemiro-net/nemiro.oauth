@@ -51,15 +51,15 @@ namespace Nemiro.OAuth
       {
         string result = this.AuthorizeUrl;
         result += result.Contains("?") ? "&" : "?";
-        result += String.Format("client_id={0}&response_type=code", Helpers.UrlEncode(this.ApplicationId));
-        result += String.Format("&state={0}", Helpers.UrlEncode(this.State.ToString()));
+        result += String.Format("client_id={0}&response_type=code", OAuthUtility.UrlEncode(this.ApplicationId));
+        result += String.Format("&state={0}", OAuthUtility.UrlEncode(this.State.ToString()));
         if (!String.IsNullOrEmpty(this.Scope))
         {
-          result += String.Format("&scope={0}", Helpers.UrlEncode(this.Scope));
+          result += String.Format("&scope={0}", OAuthUtility.UrlEncode(this.Scope));
         }
         if (!String.IsNullOrEmpty(this.ReturnUrl))
         {
-          result += String.Format("&redirect_uri={0}", Helpers.UrlEncode(this.ReturnUrl));
+          result += String.Format("&redirect_uri={0}", OAuthUtility.UrlEncode(this.ReturnUrl));
         }
         if (this.Parameters != null && this.Parameters.Count > 0)
         {
@@ -106,7 +106,7 @@ namespace Nemiro.OAuth
         parameters.Add("redirect_uri", this.ReturnUrl);
       }
 
-      var result = Helpers.ExecuteRequest
+      var result = OAuthUtility.ExecuteRequest
       (
         "POST",
         this.AccessTokenUrl,

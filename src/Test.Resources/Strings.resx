@@ -117,12 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AudioList" xml:space="preserve">
+    <value>Get list of music</value>
+  </data>
+  <data name="BackToProviders" xml:space="preserve">
+    <value>Back to list of providers</value>
+  </data>
+  <data name="ClientIdIsRequired" xml:space="preserve">
+    <value>Client ID for [{0}] not found. Please set value to the [oauth:{0}:id] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="ClientKeyIsRequired" xml:space="preserve">
+    <value>Cleint Secret for [{0}] not found. Please set value to the [oauth:{0}:key] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>Get list of contacts</value>
+  </data>
+  <data name="CurrentStatus" xml:space="preserve">
+    <value>Get status</value>
+  </data>
   <data name="DefaultAbout" xml:space="preserve">
     <value>&lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
 &lt;p&gt;Clients registration occurs in the &lt;strong&gt;Global.asax&lt;/strong&gt; file.&lt;/p&gt;
 &lt;p&gt;Redirects to the login page you can found in the server code of the page.&lt;/p&gt;
 &lt;p&gt;The result is handled in the &lt;strong&gt;ExternalLoginResult&lt;/strong&gt; page.&lt;/p&gt;
 &lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoFeedback" xml:space="preserve">
+    <value>&lt;p&gt;If something is not working or is not working properly, please &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoIntro" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; is a class library for authorization via &lt;strong&gt;OAuth&lt;/strong&gt; protocol in &lt;strong&gt;.NET Framework. (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The library is &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;open source&lt;/a&gt; and is licensed under the &lt;strong&gt;Apache License Version 2.0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  To test, click on one of the icons below. Provide the required permissions for test application.&lt;br /&gt;
+  If everything works correctly, then after login, you will redirect to the &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, &lt;br /&gt;
+  where you can check work with an &lt;strong&gt;API&lt;/strong&gt; of the &lt;strong&gt;OAuth&lt;/strong&gt; provider.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoSecurity" xml:space="preserve">
+    <value>&lt;h2&gt;Is it safe?&lt;/h2&gt;
+&lt;p&gt;Yes safely.&lt;/p&gt;
+&lt;p&gt;
+  After authentication and authorization, the provider server sends special authorization code to the callback page.
+  This code is a one-off and has a limited duration.
+&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; library uses the authorization code for convertion to an &lt;strong&gt;access token&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The access token is stored in the server &lt;strong&gt;session&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The access token is used to work with &lt;strong&gt;API&lt;/strong&gt; and does not appear on the site.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoTechInfo" xml:space="preserve">
+    <value>&lt;h2&gt;Technical information&lt;/h2&gt;
+&lt;p&gt;Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
+&lt;p&gt;.NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;</value>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>Nemiro.OAuth demo site</value>
+  </data>
+  <data name="DemoUsefulLinks" xml:space="preserve">
+    <value>&lt;h2&gt;Additional resources&lt;/h2&gt;
+&lt;p&gt;
+  Source code:&lt;br /&gt;
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;https://github.com/alekseynemiro/nemiro.oauth.dll&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Documentation:&lt;br /&gt;
+  &lt;a href="http://oauth.nemiro.net/"&gt;http://oauth.nemiro.net/&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Other projects:&lt;br /&gt;
+  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="FriendsList" xml:space="preserve">
+    <value>Get list of friends</value>
+  </data>
+  <data name="GroupsList" xml:space="preserve">
+    <value>Get list of groups</value>
   </data>
   <data name="IndexAbout" xml:space="preserve">
     <value>&lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
@@ -131,13 +201,55 @@
 &lt;p&gt;The result is handled in the &lt;strong&gt;ExternalLoginResult&lt;/strong&gt; method.&lt;/p&gt;
 &lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
   </data>
+  <data name="InterestsList" xml:space="preserve">
+    <value>Get list of interests</value>
+  </data>
+  <data name="LikesList" xml:space="preserve">
+    <value>Get list of likes</value>
+  </data>
+  <data name="NoForLocalhost" xml:space="preserve">
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;This site works correctly only on the oauth-test.nemiro.net!&lt;/h1&gt;</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Photoalbums" xml:space="preserve">
+    <value>Get list of photo albums</value>
+  </data>
   <data name="Port59962" xml:space="preserve">
     <value>All applications are configured on the port &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;If you have another port, the results will not shown.&lt;br /&gt;Configure the port settings for this web project (Project =&amp;gt; Properties =&amp;gt; Web =&amp;gt; Specified port), or use your own configuration applications (on sites of providers).</value>
+  </data>
+  <data name="PublicKeyIsRequired" xml:space="preserve">
+    <value>Public Key for [{0}] not found. Please set value to the [oauth:{0}:publicKey] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="SeeAlsoDemo" xml:space="preserve">
+    <value>See also &lt;a href="http://demo-oauth.nemiro.net/"&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;.</value>
+  </data>
+  <data name="SessionIsDead" xml:space="preserve">
+    <value>The session ended. Please authorize in again to create a new session.</value>
+  </data>
+  <data name="Twits" xml:space="preserve">
+    <value>Get list of twits</value>
+  </data>
+  <data name="TwitterFollowersList" xml:space="preserve">
+    <value>Get list of followers</value>
+  </data>
+  <data name="UpdatesList" xml:space="preserve">
+    <value>Get list of news</value>
   </data>
   <data name="UseJavaScriptLinks" xml:space="preserve">
     <value>Use JavaScript links to prevent them from indexing.</value>
   </data>
+  <data name="UserInfoTitle" xml:space="preserve">
+    <value>User Info</value>
+  </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="YandexDiskContent" xml:space="preserve">
+    <value>Get files list of Yandex.Disk</value>
+  </data>
+  <data name="YandexDiskSummary" xml:space="preserve">
+    <value>Summary info of Yandex.Disk</value>
   </data>
 </root>

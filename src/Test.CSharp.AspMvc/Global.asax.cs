@@ -128,8 +128,16 @@ namespace Test.CSharp.AspMvc
           "amzn1.application-oa2-client.f0ffe4edc256488dae00dcaf96d75d1b",
           "764dcefe49b441c8c6244c93e5d5d04de54fda6dfdc83da9693bf346f4dc4515"
         ) { ReturnUrl = "http://localhost" }
-      );
+      ); 
 
+      OAuthManager.RegisterClient
+      (
+        new FoursquareClient
+        (
+          "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
+          "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+        )
+      );
     }
   }
 }

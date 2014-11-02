@@ -73,9 +73,29 @@ namespace Test.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] dropbox {
+            get {
+                object obj = ResourceManager.GetObject("dropbox", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] facebook {
             get {
                 object obj = ResourceManager.GetObject("facebook", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] foursquare {
+            get {
+                object obj = ResourceManager.GetObject("foursquare", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -96,6 +116,16 @@ namespace Test.Resources {
         public static byte[] google {
             get {
                 object obj = ResourceManager.GetObject("google", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] linkedin {
+            get {
+                object obj = ResourceManager.GetObject("linkedin", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -133,6 +163,16 @@ namespace Test.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] soundcloud {
+            get {
+                object obj = ResourceManager.GetObject("soundcloud", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] twitter {
             get {
                 object obj = ResourceManager.GetObject("twitter", resourceCulture);
@@ -146,6 +186,16 @@ namespace Test.Resources {
         public static byte[] vk {
             get {
                 object obj = ResourceManager.GetObject("vk", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] yahoo {
+            get {
+                object obj = ResourceManager.GetObject("yahoo", resourceCulture);
                 return ((byte[])(obj));
             }
         }

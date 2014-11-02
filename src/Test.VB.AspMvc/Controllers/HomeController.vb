@@ -13,7 +13,11 @@ Namespace Test.VB.AspMvc
 
     Function Icon(id As String) As ActionResult
       ' image from resource
-      Return File(CType(Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), Byte()), "image/png")
+      Try
+        Return File(CType(Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), Byte()), "image/png")
+      Catch ex As Exception
+        Return Nothing
+      End Try
     End Function
 
     ''' <summary>
@@ -24,13 +28,19 @@ Namespace Test.VB.AspMvc
       Dim returnUrl As String = Url.Action("ExternalLoginResult", "Home", Nothing, Nothing, Request.Url.Host)
 
       ' not suppored localhost (it is only for localhost)
-      Dim notSupportedLocalhost() As String = {"live", "mail.ru", "github"}
+      Dim notSupportedLocalhost() As String = {"live", "mail.ru", "github", "yahoo"}
       If notSupportedLocalhost.Any(Function(itm) itm.Equals(provider, StringComparison.OrdinalIgnoreCase)) Then
         returnUrl = String.Format("http://oauth.nemiro.net/oauth_redirect.html?returnUrl={0}", Server.UrlEncode(returnUrl))
       End If
 
       ' redirect to authorization page of the specified provider
-      Return Redirect(OAuthWeb.GetAuthorizationUrl(provider, returnUrl))
+      Try
+        Return Redirect(OAuthWeb.GetAuthorizationUrl(provider, returnUrl))
+      Catch ex As Threading.ThreadAbortException
+        Return Nothing
+      Catch ex As Exception
+        Return Content(ex.Message)
+      End Try
     End Function
 
     ''' <summary>
