@@ -4,7 +4,7 @@ This document summarizes the major changes in recent releases.
 
 v1.4 (November 2, 2014)
 
-* Fixed SSL3 problem, completely.
+* Fixed SSL3 problem, completely;
 * Fixed problems with Content-Type;
 * Fixed minor bugs in OAuthClient (for OAith 1.0);
 * Username-getting for the Yandex;
