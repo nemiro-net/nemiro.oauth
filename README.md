@@ -54,12 +54,22 @@ For example, **Facebook**:
 
 **C#**
 ```C#
-OAuthManager.RegisterClient("facebook", "1435890426686808", "c6057dfae399beee9e8dc46a4182e8fd");
+OAuthManager.RegisterClient
+(
+	"facebook", 
+	"1435890426686808", 
+	"c6057dfae399beee9e8dc46a4182e8fd"
+);
 ```
 
 **Visual Basic .NET**
-```VB
-OAuthManager.RegisterClient("facebook", "1435890426686808", "c6057dfae399beee9e8dc46a4182e8fd")
+```Visual Basic
+OAuthManager.RegisterClient _
+(
+	"facebook", 
+	"1435890426686808", 
+	"c6057dfae399beee9e8dc46a4182e8fd"
+)
 ```
 
 3. Create a page to handle the callback. And add code to obtain user data with external server.
@@ -90,7 +100,7 @@ public partial class ExternalLoginResult : System.Web.UI.Page
 ```
 
 **Visual Basic .NET**
-```VB
+```Visual Basic
 Public Class ExternalLoginResult
   Inherits System.Web.UI.Page
 
@@ -119,7 +129,7 @@ OAuthWeb.RedirectToAuthorization("facebook", returnUrl);
 ```
 
 **Visual Basic .NET**
-```VB
+```Visual Basic
 Dim returnUrl As String = New Uri(Request.Url, "ExternalLoginResult.aspx").AbsoluteUri
 OAuthWeb.RedirectToAuthorization("facebook", returnUrl)
 ```
