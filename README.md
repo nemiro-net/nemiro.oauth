@@ -29,7 +29,7 @@ http://demo-oauth.nemiro.net/
   + Microsoft Live 
   + Mail.Ru 
   + Odnoklassniki (odnoklassniki.ru)
-  +	SoundCloud 
+  + SoundCloud 
   + Twitter 
   + VK (vkontakte, vk.com) 
   + Yahoo! 
