@@ -20,19 +20,19 @@ http://demo-oauth.nemiro.net/
 * Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number; 
 * Ready-to-Use OAuth clients for: 
   + Amazon 
-	+ Dropbox 
+  + Dropbox 
   + Facebook 
-	+ Facebook 
+  + Foursquare
   + GitHub 
   + Google 
-	+ LinkedIn 
+  + LinkedIn 
   + Microsoft Live 
   + Mail.Ru 
   + Odnoklassniki (odnoklassniki.ru)
-	+	SoundCloud 
+  +	SoundCloud 
   + Twitter 
   + VK (vkontakte, vk.com) 
-	+ Yahoo! 
+  + Yahoo! 
   + Yandex (yandex.ru) 
 * Base classes to create additional clients; 
 * Basic principles of operation with API of different providers. 
