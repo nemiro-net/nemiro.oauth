@@ -63,7 +63,7 @@ OAuthManager.RegisterClient
 ```
 
 **Visual Basic .NET**
-```Visual Basic
+```VBNet
 OAuthManager.RegisterClient _
 (
 	"facebook", 
@@ -100,7 +100,7 @@ public partial class ExternalLoginResult : System.Web.UI.Page
 ```
 
 **Visual Basic .NET**
-```Visual Basic
+```VBNet
 Public Class ExternalLoginResult
   Inherits System.Web.UI.Page
 
@@ -129,7 +129,7 @@ OAuthWeb.RedirectToAuthorization("facebook", returnUrl);
 ```
 
 **Visual Basic .NET**
-```Visual Basic
+```VBNet
 Dim returnUrl As String = New Uri(Request.Url, "ExternalLoginResult.aspx").AbsoluteUri
 OAuthWeb.RedirectToAuthorization("facebook", returnUrl)
 ```
