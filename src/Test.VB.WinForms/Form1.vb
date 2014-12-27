@@ -54,17 +54,6 @@ Public Class Form1
       )
     )
 
-    OAuthManager.RegisterClient _
-    (
-      New OdnoklassnikiClient _
-      (
-        "1094959360",
-        "E45991423E8C5AE249B44E84",
-        "CBACMEECEBABABABA"
-      ) _
-      With {.ReturnUrl = "http://localhost"}
-    )
-
     ' add buttons to the form
     For Each providerName As String In OAuthManager.RegisteredClients.Keys
       Dim btn As New Button()

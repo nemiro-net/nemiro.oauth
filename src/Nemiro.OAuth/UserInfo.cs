@@ -34,7 +34,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets or sets a collection containing the API request results.
     /// </summary>
-    public Dictionary<string, object> Items { get; protected internal set; }
+    public UniValue Items { get; protected internal set; }
 
     /// <summary>
     /// Gets or sets the user ID.
@@ -110,7 +110,15 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="source">The data source.</param>
     /// <param name="mapping">The mapping rules.</param>
-    public UserInfo(Dictionary<string, object> source, ApiDataMapping mapping)
+    [Obsolete("Please use an overloads. // v1.5", false)]
+    public UserInfo(Dictionary<string, object> source, ApiDataMapping mapping) : this(new UniValue(source), mapping) { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UserInfo"/> class.
+    /// </summary>
+    /// <param name="source">The data source.</param>
+    /// <param name="mapping">The mapping rules.</param>
+    public UserInfo(UniValue source, ApiDataMapping mapping)
     {
       this.Items = source;
       var t = typeof(UserInfo);
@@ -119,10 +127,11 @@ namespace Nemiro.OAuth
         var item = mapping.FirstOrDefault(itm => itm.DestinationName == p.Name);
         if (item != null && source.ContainsKey(item.SourceName))
         {
-          object value = source[item.SourceName];
+          object vr = null;
+          UniValue vs = source[item.SourceName];
           if (item.Parse != null)
           {
-            value = item.Parse(value);
+            vr = item.Parse(vs);
           }
           else
           {
@@ -137,69 +146,73 @@ namespace Nemiro.OAuth
               f.DateTimeFormat.FullDateTimePattern = formatDateTime;
               f.DateTimeFormat.ShortDatePattern = formatDateTime;
               DateTime dateValue;
-              if (DateTime.TryParse(value.ToString(), f, DateTimeStyles.NoCurrentDateDefault, out dateValue))
+              if (DateTime.TryParse(vs.ToString(), f, DateTimeStyles.NoCurrentDateDefault, out dateValue))
               {
-                value = dateValue;
+                vr = dateValue;
               }
               else
               {
-                value = null;
+                vr = null;
               }
             }
             else if (item.Type == typeof(bool))
             {
-              value = Convert.ToBoolean(value);
+              vr = Convert.ToBoolean(vs);
             }
             else if (item.Type == typeof(Int16))
             {
-              value = Convert.ToInt16(value);
+              vr = Convert.ToInt16(vs);
             }
             else if (item.Type == typeof(Int32))
             {
-              value = Convert.ToInt32(value);
+              vr = Convert.ToInt32(vs);
             }
             else if (item.Type == typeof(Int64))
             {
-              value = Convert.ToInt64(value);
+              vr = Convert.ToInt64(vs);
             }
             else if (item.Type == typeof(UInt16))
             {
-              value = Convert.ToUInt16(value);
+              vr = Convert.ToUInt16(vs);
             }
             else if (item.Type == typeof(UInt32))
             {
-              value = Convert.ToUInt32(value);
+              vr = Convert.ToUInt32(vs);
             }
             else if (item.Type == typeof(UInt64))
             {
-              value = Convert.ToUInt64(value);
+              vr = Convert.ToUInt64(vs);
             }
             else if (item.Type == typeof(double))
             {
-              value = Convert.ToDouble(value);
+              vr = Convert.ToDouble(vs);
             }
             else if (item.Type == typeof(Single))
             {
-              value = Convert.ToSingle(value);
+              vr = Convert.ToSingle(vs);
             }
             else if (item.Type == typeof(decimal))
             {
-              value = Convert.ToDecimal(value);
+              vr = Convert.ToDecimal(vs);
             }
             else if (item.Type == typeof(byte))
             {
-              value = Convert.ToByte(value);
+              vr = Convert.ToByte(vs);
             }
             else if (item.Type == typeof(char))
             {
-              value = Convert.ToChar(value);
+              vr = Convert.ToChar(vs);
             }
             else if (item.Type == typeof(string))
             {
-              value = Convert.ToString(value);
+              vr = Convert.ToString(vs);
+            }
+            else
+            {
+              vr = Convert.ToString(vs);
             }
           }
-          p.SetValue(this, value, null);
+          p.SetValue(this, vr, null);
         }
       }
     }

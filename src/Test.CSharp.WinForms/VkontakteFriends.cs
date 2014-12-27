@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Specialized;
+using Nemiro.OAuth;
 
 namespace Test.CSharp.WinForms
 {
@@ -38,7 +39,7 @@ namespace Test.CSharp.WinForms
         null
       );
 
-      foreach (Dictionary<string, object> itm in (Array)result["response"])
+      foreach (UniValue itm in result["response"])
       {
         string friendName = "";
         if (itm.ContainsKey("first_name") && itm.ContainsKey("last_name"))

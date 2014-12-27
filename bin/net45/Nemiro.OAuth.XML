@@ -14,6 +14,837 @@
             Represents the base class for results of remote requests.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.UniValue">
+            <summary>
+            The universal type that represents a value.
+            </summary>
+            <remarks>
+            <para><see cref="T:Nemiro.OAuth.UniValue"/> represents any type of data.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/> with a specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor(System.Object,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/> with a specified value and attributes.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="attributes">The collection of an attributes.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor(System.Object,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/> with a specified value and reference to parent.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="parent">The instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor(System.Object,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/> with a specified value, attributes and reference to parent.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="attributes">The collection of an attributes.</param>
+            <param name="parent">The instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToDictionary">
+            <summary>
+            Copies items of the <see cref="T:Nemiro.OAuth.UniValue"/> to a new <see cref="T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</see>.
+            </summary>
+            <returns>
+            <para>A <see cref="T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</see> containing copies of the elements of the <see cref="T:Nemiro.OAuth.UniValue"/>.</para>
+            <para>A <b>null</b> value, if the <see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> property is <b>false</b> or the <see cref="T:Nemiro.OAuth.UniValue"/> is empty.</para>
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToNameValueCollection">
+            <summary>
+            Copies items of the <see cref="T:Nemiro.OAuth.UniValue"/> to a new <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <returns>
+            <para>A <see cref="T:System.Collections.Specialized.NameValueCollection"/> containing copies of the elements of the <see cref="T:Nemiro.OAuth.UniValue"/>.</para>
+            <para>A <b>null</b> value, if the <see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> property is <b>false</b> or the <see cref="T:Nemiro.OAuth.UniValue"/> is empty.</para>
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToBinary">
+            <summary>
+            Returns a <see cref="T:System.Byte"/> array that represents the current <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <returns>
+            <para>A <see cref="T:System.Byte"/> array containing the current <see cref="T:Nemiro.OAuth.UniValue"/>.</para>
+            <para>A <b>null</b> value, if the property <see cref="P:Nemiro.OAuth.UniValue.IsBinary"/> and <see cref="P:Nemiro.OAuth.UniValue.IsString"/> is <b>false</b> or the <see cref="T:Nemiro.OAuth.UniValue"/> is empty.</para>
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ContainsKey(System.String)">
+            <summary>
+            Determines whether the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/> contains the specified key.
+            </summary>
+            <param name="key">The key to locate in the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/>.</param>
+            <returns><b>true</b> if the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is <b>null</b>.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ContainsAttribute(System.String)">
+            <summary>
+            Determines whether the <see cref="P:Nemiro.OAuth.UniValue.Attributes"/> contains the specified key.
+            </summary>
+            <param name="key">The key to locate in the <see cref="P:Nemiro.OAuth.UniValue.Attributes"/>.</param>
+            <returns><b>true</b> if the <see cref="P:Nemiro.OAuth.UniValue.Attributes"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Add(System.String,Nemiro.OAuth.UniValue)">
+            <summary>
+            Adds the specified key and value to the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the element to add.</param>
+            <returns>
+            <para>Returns the added element.</para>
+            </returns>
+            <remarks>
+            <para>
+            If the current <see cref="T:Nemiro.OAuth.UniValue"/> is not a collection (<see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
+            If the current <see cref="T:Nemiro.OAuth.UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Add(System.String,Nemiro.OAuth.UniValue,Nemiro.OAuth.UniValue)">
+            <summary>
+            Adds the specified key and value to the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the element to add.</param>
+            <param name="parent">The reference to parent of the elemet to add.</param>
+            <returns>
+            <para>Returns the added element.</para>
+            </returns>
+            <remarks>
+            <para>
+            If the current <see cref="T:Nemiro.OAuth.UniValue"/> is not a collection (<see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
+            If the current <see cref="T:Nemiro.OAuth.UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Remove(System.String)">
+            <summary>
+            Removes the value with the specified key from the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="key">The key of the element to remove.</param>
+            <returns>
+            <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
+            This method returns <b>false</b> if key is not found in the <see cref="T:Nemiro.OAuth.UniValue"/> or is not collection (<see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> is <b>false</b>).
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ParseXElement(Nemiro.OAuth.UniValueCollection,System.Xml.Linq.XElement,Nemiro.OAuth.UniValue)">
+            <summary>
+            Parses the <see cref="T:System.Xml.Linq.XElement"/> and converts to <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+            <param name="result">The reference to the collection, which will be placed the result of parsing <paramref name="itm"/>.</param>
+            <param name="itm">The <see cref="T:System.Xml.Linq.XElement"/> for parsing.</param>
+            <param name="parent">The reference to parent.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetAttributeValue(System.String)">
+            <summary>
+            Returns the <see cref="T:Nemiro.OAuth.UniValue"/> of the specified attribute.
+            </summary>
+            <param name="attributeName">The name of the attribute whose value you want to get.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetParent">
+            <summary>
+            Returns parent for new instance of <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Create">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Create(System.Object)">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/> and <param name="attributes"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/> and reference to <param name="parent"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/>, <param name="attributes"/> and reference to <param name="parent"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.CreateEmpty(System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes an empty <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="attributes"/> and reference to <param name="parent"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ParseJson(System.String)">
+            <summary>
+            Converts the specified <b>JSON</b> string to an <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="text">A string containing a <b>JSON</b> data to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.UniValue"/> instance.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException">The <paramref name="text"/> length exceeds the value of <see cref="F:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ArgumentException">The recursion limit defined by <see cref="F:System.Int32.MaxValue"/> was exceeded.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="text"/> contains an unexpected character sequence.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="text"/> is a dictionary type and a non-string key value was encountered.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="text"/> includes member definitions that are not available on the target type.</exception>
+            <exception cref="T:System.InvalidOperationException">It is not possible to convert <paramref name="text"/> to the target type.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ParseXml(System.String)">
+            <summary>
+            Converts the specified <b>XML</b> string to an <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="text">A string containing a <b>XML</b> data to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.UniValue"/> instance.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ParseParameters(System.String)">
+            <summary>
+            Converts the specified parameters string to an <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="text">A string containing an url parameters to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.UniValue"/> instance.</returns>
+            <exception cref="T:System.IO.InvalidDataException"><paramref name="text"/> contains an <b>CR</b> or <b>LF</b> characters.</exception>
+            <remarks>
+            <para>If <paramref name="text"/> is <b>null</b> or empty, the function returns an <see cref="P:Nemiro.OAuth.UniValue.Empty"/> instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.TryParseJson(System.String,Nemiro.OAuth.UniValue@)">
+            <summary>
+            Converts the specified <b>JSON</b> string to an <see cref="T:Nemiro.OAuth.UniValue"/>. A return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="text">A string containing a <b>JSON</b> data to parse.</param>
+            <param name="result">If successful, this parameter takes the result of parsing data.</param>
+            <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.TryParseXml(System.String,Nemiro.OAuth.UniValue@)">
+            <summary>
+            Converts the specified <b>XML</b> string to an <see cref="T:Nemiro.OAuth.UniValue"/>. A return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="text">A string containing a <b>XML</b> data to parse.</param>
+            <param name="result">If successful, this parameter takes the result of parsing data.</param>
+            <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.TryParseParameters(System.String,Nemiro.OAuth.UniValue@)">
+            <summary>
+            Converts the specified url parameters string to an <see cref="T:Nemiro.OAuth.UniValue"/>. A return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="text">A string containing an url parameters to parse.</param>
+            <param name="result">If successful, this parameter takes the result of parsing data.</param>
+            <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.IsNullOrEmpty(Nemiro.OAuth.UniValue)">
+            <summary>
+            Indicates whether the specified value is null or an <see cref="P:Nemiro.OAuth.UniValue.Empty"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance to test.</param>
+            <returns><b>true</b> if the <paramref name="value"/> parameter is <b>null</b> or <see cref="P:Nemiro.OAuth.UniValue.HasValue"/> is <b>false</b>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetTypeCode">
+            <summary>
+            Gets the underlying type code of the <see cref="P:Nemiro.OAuth.UniValue.Data"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToBoolean(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent <see cref="T:System.Boolean"/> value using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information. </param>
+            <returns>A <see cref="T:System.Boolean"/> value equivalent to the value of this instance.</returns>
+            <exception cref="T:System.FormatException"/>
+            <exception cref="T:System.InvalidCastException"/>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToByte(System.IFormatProvider)">
+            <summary>
+            Converts the value this instance to an equivalent 8-bit unsigned integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 8-bit unsigned integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToChar(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent Unicode character using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A Unicode character equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToDateTime(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent <see cref="T:System.DateTime"/> using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A <see cref="T:System.DateTime"/> instance equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToDecimal(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent <see cref="T:System.Decimal"/> number using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A <see cref="T:System.Decimal"/> number equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToDouble(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent double-precision floating-point number using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A double-precision floating-point number equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToInt16(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 16-bit signed integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 16-bit signed integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToInt32(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 32-bit signed integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 32-bit signed integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToInt64(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 64-bit signed integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 64-bit signed integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToSByte(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 8-bit signed integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 8-bit signed integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToSingle(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent single-precision floating-point number using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A single-precision floating-point number equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToString(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent <see cref="T:System.String"/> using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>A <see cref="T:System.String"/> instance equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToType(System.Type,System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an <see cref="T:System.Object"/> of the specified <see cref="T:System.Type"/> that has an equivalent value, using the specified culture-specific formatting information.
+            </summary>
+            <param name="conversionType">The <see cref="T:System.Type"/> to which the value of this instance is converted. </param>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An <see cref="T:System.Object"/> instance of type <paramref name="conversionType"/> whose value is equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToUInt16(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 16-bit unsigned integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 16-bit unsigned integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToUInt32(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 32-bit unsigned integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 32-bit unsigned integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToUInt64(System.IFormatProvider)">
+            <summary>
+            Converts the value of this instance to an equivalent 64-bit unsigned integer using the specified culture-specific formatting information.
+            </summary>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+            <returns>An 64-bit unsigned integer equivalent to the value of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Clone">
+            <summary>
+            Creates a new object that is a copy of the current <see cref="T:Nemiro.OAuth.UniValue"/> instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.System#Collections#Generic#IEnumerable{Nemiro#OAuth#UniValue}#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator">System.Collections.IEnumerator&lt;UniValue&gt;</see> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>A hash code for the current <see cref="T:Nemiro.OAuth.UniValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Equals(System.Object)">
+            <summary>
+            Determines whether two object instances are equal.
+            </summary>
+            <param name="o">The object to compare with the current instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+            <returns><b>true</b> if the specified object is equal to the current <see cref="T:Nemiro.OAuth.UniValue"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Equals(Nemiro.OAuth.UniValue)">
+            <summary>
+            Determines whether two <see cref="T:Nemiro.OAuth.UniValue"/> instances are equal.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> to compare with the current instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+            <returns><b>true</b> if the specified <see cref="T:Nemiro.OAuth.UniValue"/> is equal to the current <see cref="T:Nemiro.OAuth.UniValue"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Equals(System.String)">
+            <summary>
+            Determines whether this instance and another specified <see cref="T:System.String"/> object have the same value.
+            </summary>
+            <param name="value">The string to compare to this instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+            <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.Equals(System.String,System.StringComparison)">
+            <summary>
+            Determines whether this string and a specified <see cref="T:System.String"/> object have the same value. A parameter specifies the culture, case, and sort rules used in the comparison.
+            </summary>
+            <param name="value">The string to compare to this instance.</param>
+            <param name="comparisonType">One of the enumeration values that specifies how the strings will be compared. </param>
+            <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Collections.Specialized.NameValueCollection">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Collections.Generic.Dictionary{System.String,System.Object}">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</see>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~Nemiro.OAuth.UniValue[]">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:Nemiro.OAuth.UniValue"/> array.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Array">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an array.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Byte[]">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.IO.Stream">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Byte">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.SByte">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.SByte"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Char">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Char"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Boolean">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Boolean"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.DateTime">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Int16">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.Int16"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Int32">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Int64">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.UInt16">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.UInt16"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.UInt32">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.UInt32"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.UInt64">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as an <see cref="T:System.UInt64"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Double">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Double"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Decimal">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Decimal"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.Single">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.Single"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Explicit(Nemiro.OAuth.UniValue)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.UniValue"/> as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Collections.Specialized.NameValueCollection)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Collections.Generic.Dictionary{System.String,System.Object})~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</see>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Array)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from array.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Byte[])~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.String)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Int16)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Int16"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Int32)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Int64)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.UInt16)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.UInt16"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.UInt32)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.UInt32"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.UInt64)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.UInt64"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Boolean)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Boolean"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.DateTime)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Byte)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.SByte)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.SByte"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Char)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Char"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Decimal)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Decimal"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Double)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Double"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Single)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Single"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(System.Text.StringBuilder)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Implicit(Nemiro.OAuth.UniValueCollection)~Nemiro.OAuth.UniValue">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.UniValue"/> instance from <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Inequality(Nemiro.OAuth.UniValue,Nemiro.OAuth.UniValue)">
+            <summary>
+            Indicate whether two <see cref="T:Nemiro.OAuth.UniValue"/> are not equal.
+            </summary>
+            <param name="x">The first <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+            <param name="y">The second <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Equality(Nemiro.OAuth.UniValue,Nemiro.OAuth.UniValue)">
+            <summary>
+            Indicate whether two <see cref="T:Nemiro.OAuth.UniValue"/> are equal.
+            </summary>
+            <param name="x">The first <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+            <param name="y">The second <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Inequality(Nemiro.OAuth.UniValue,System.String)">
+            <summary>
+            Indicate whether <see cref="T:Nemiro.OAuth.UniValue"/> and <see cref="T:System.String"/> are not equal.
+            </summary>
+            <param name="x">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+            <param name="y">The string.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.op_Equality(Nemiro.OAuth.UniValue,System.String)">
+            <summary>
+            Indicate whether <see cref="T:Nemiro.OAuth.UniValue"/> and <see cref="T:System.String"/> are equal.
+            </summary>
+            <param name="x">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
+            <param name="y">The string.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Data">
+            <summary>
+            Gets or sets the value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.CollectionItems">
+            <summary>
+            Gets a collection of string keys and <see cref="T:Nemiro.OAuth.UniValue"/> values of the current <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <remarks>
+            <para>Has a <b>null</b> value, if the <see cref="P:Nemiro.OAuth.UniValue.IsCollection"/> property is <b>false</b>.</para>
+            </remarks>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Attributes">
+            <summary>
+            Gets or sets an attributes of the XML item (only for XML). 
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Item(System.String)">
+            <summary>
+            Gets the value associated with the specified key of the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/>.
+            </summary>
+            <param name="key">The key of the value to get.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Item(System.Int32)">
+            <summary>
+            Gets the value associated with the specified index of the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/>.
+            </summary>
+            <param name="index">The index of the value to get.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsValue">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsTypedValue">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:Nemiro.OAuth.UniTypedValue"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsCollection">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsBinary">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:System.Byte"/> array.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsString">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsDateTime">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsBoolean">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to <see cref="T:System.Boolean"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsNumeric">
+            <summary>
+            Gets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is equal to numeric type.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.HasValue">
+            <summary>
+            Gets a value indicating whether the current <see cref="T:Nemiro.OAuth.UniValue"/> object has a value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.HasAttributes">
+            <summary>
+            Gets a value indicating whether the current <see cref="T:Nemiro.OAuth.UniValue"/> object has an attributes (only for xml data type).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Count">
+            <summary>
+            Gets the number of elements actually contained in the <see cref="P:Nemiro.OAuth.UniValue.CollectionItems"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Key">
+            <summary>
+            Gets or sets the key for the current item, if the current item included into the collection.
+            </summary>
+            <remarks>
+            <para>Assigned automatically when parsing data of <b>JSON</b>, <b>XML</b> or <b>query string</b>.</para>
+            <para><b>root</b> for root elements.</para>
+            <para><b>value</b> for <see cref="T:Nemiro.OAuth.UniTypedValue"/>.</para>
+            <para><b>____</b> for new collections created by the developer manually.</para>
+            </remarks>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Parent">
+            <summary>
+            The parent of the current item, if the current item included into the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.IsArraySubtype">
+            <summary>
+            Gets or sets a value that indicates whether the data type of the <see cref="T:Nemiro.OAuth.UniValue"/> is array.
+            </summary>
+            <remarks>
+            <para>This affects the representation of the object as a string. For arrays in a <b>JSON</b> is not use the <see cref="P:Nemiro.OAuth.UniValue.Key"/>.</para>
+            </remarks>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Unreferenced">
+            <summary>
+            Gets or sets a value that indicates whether the type is unreferenced.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.Empty">
+            <summary>
+            Represents the empty <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
         <member name="M:Nemiro.OAuth.RequestResult.#ctor(Nemiro.OAuth.RequestResult)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class.
@@ -25,30 +856,67 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class.
             </summary>
             <param name="contentType">The content type of the response.</param>
-            <param name="source">The source  of the response.</param>
+            <param name="source">The source of the response.</param>
         </member>
-        <member name="M:Nemiro.OAuth.RequestResult.ParseSource(System.String,System.String)">
+        <member name="M:Nemiro.OAuth.RequestResult.#ctor(System.String,System.Byte[],System.Collections.Specialized.NameValueCollection,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class.
+            </summary>
+            <param name="contentType">The content type of the response.</param>
+            <param name="source">The source of the response.</param>
+            <param name="httpHeaders">The HTTP headers of the response.</param>
+            <param name="statusCode">The HTTP status code of the response.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.RequestResult.ParseSource">
             <summary>
             Parses the source to the <see cref="P:Nemiro.OAuth.RequestResult.Result"/>.
             </summary>
-            <param name="contentType">The content type of the response.</param>
-            <param name="source">The source  of the response.</param>
         </member>
-        <member name="M:Nemiro.OAuth.RequestResult.ContainsKey(System.String)">
+        <member name="M:Nemiro.OAuth.RequestResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Determines whether the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> contains the specified key.
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestResult"/>.
             </summary>
-            <param name="key">The key to locate in the <see cref="P:Nemiro.OAuth.RequestResult.Result"/>.</param>
-            <returns><b>true</b> if the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> contains an element with the specified key; otherwise, <b>false</b>.</returns>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
         </member>
-        <member name="M:Nemiro.OAuth.RequestResult.ToString">
+        <member name="M:Nemiro.OAuth.RequestResult.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Returs the <see cref="P:Nemiro.OAuth.RequestResult.Source"/>.
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
             </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.StatusCode">
+            <summary>
+            Gets or sets the HTTP status code of the output returned to the client.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.IsSuccessfully">
+            <summary>
+            Gets a value indicating whether the current request result is successful or not.
+            </summary>
+            <remarks>
+            <para>Successful result - is a response code from <b>200</b> to <b>299</b>.</para>
+            </remarks>
         </member>
         <member name="P:Nemiro.OAuth.RequestResult.ContentType">
             <summary>
             Gets or sets the content type of the response.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.HttpHeaders">
+            <summary>
+            Gets or sets the http headers of the response.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.ContentDisposition">
+            <summary>
+            Gets the <c>Content-Disposition</c> header of the response.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.FileName">
+            <summary>
+            Gets the file name, if <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is file.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.RequestResult.Source">
@@ -56,46 +924,39 @@
             Gets or sets the source of the response.
             </summary>
         </member>
+        <member name="P:Nemiro.OAuth.RequestResult.IsFile">
+            <summary>
+            Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is file or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestResult.IsEmpty">
+            <summary>
+            Gets a value indicating whether the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is empty or not.
+            </summary>
+        </member>
         <member name="P:Nemiro.OAuth.RequestResult.Result">
             <summary>
             Gets or sets the processed result of the response.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.RequestResult.Item(System.String)">
+        <member name="P:Nemiro.OAuth.RequestResult.IsNameValueCollection">
             <summary>
-            Gets the value associated with the specified key of the <see cref="P:Nemiro.OAuth.RequestResult.Result"/>.
-            </summary>
-            <param name="key">The key of the value to get.</param>
-        </member>
-        <member name="P:Nemiro.OAuth.RequestResult.Item(System.Int32)">
-            <summary>
-            Gets the value associated with the specified index of the <see cref="P:Nemiro.OAuth.RequestResult.Result"/>.
-            </summary>
-            <param name="index">The index of the value to get.</param>
-        </member>
-        <member name="P:Nemiro.OAuth.RequestResult.IsArray">
-            <summary>
-            Gets a value indicating whether the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is array or not.
+            Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is <see cref="T:System.Collections.Specialized.NameValueCollection"/> or not.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.RequestResult.IsDictionary">
             <summary>
-            Gets a value indicating whether the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is <see cref="T:System.Collections.Generic.Dictionary`2"/> or not.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.RequestResult.IsNameValueCollection">
-            <summary>
-            Gets a value indicating whether the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is <see cref="T:System.Collections.Specialized.NameValueCollection"/> or not.
+            Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is <see cref="T:System.Collections.Generic.Dictionary`2"/> or not.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.RequestResult.IsXml">
             <summary>
-            Gets a value indicating whether the <see cref="T:System.Collections.Specialized.NameValueCollection"/> is XML or not.
+            Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is XML or not.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.RequestResult.IsEmpty">
+        <member name="P:Nemiro.OAuth.RequestResult.IsArray">
             <summary>
-            Gets a value indicating whether the <see cref="T:System.Collections.Specialized.NameValueCollection"/> is empty or not.
+            Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is array or not.
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.AccessToken.#ctor(Nemiro.OAuth.RequestResult)">
@@ -108,6 +969,20 @@
             <summary>
             Returns the <see cref="P:Nemiro.OAuth.AccessToken.Value"/>.
             </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.AccessToken"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         </member>
         <member name="P:Nemiro.OAuth.AccessToken.Value">
             <summary>
@@ -426,11 +1301,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -824,11 +1701,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1011,11 +1890,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1094,11 +1975,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1181,11 +2064,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1262,11 +2147,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1343,11 +2230,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1426,11 +2315,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1509,11 +2400,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1539,6 +2432,237 @@
             Unique provider name: <b>LinkedIn</b>.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.Clients.TumblrClient">
+            <summary>
+            OAuth client for <b>Tumblr</b>.
+            </summary>
+            <remarks>
+            <h1>Register and Configure a Tumblr Application</h1>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term>
+            <b>Web Management Interface may change over time. Applications registration shown below may differ.</b><br/>
+            If the interface is changed, you need to register the application and get <b>Client ID</b> and <b>Client Secret</b>. For web projects, configure <b>return URLs</b>.<br/>
+            If you have any problems with this, please <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues">visit issues</see>. If you do not find a solution to your problem, you can <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues/new">create a new question</see>.
+            </term>
+            </item>
+            </list>
+            <para>Open the <b><see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see></b>, and <b>Register an application</b>.</para>
+            <para>
+            In the application settings  you can found <b>Consumer Key</b> and <b>Consumer Secret</b>.
+            Use this for creating an instance of the <see cref="T:Nemiro.OAuth.Clients.TumblrClient"/> class.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new TumblrClient
+              (
+                "2EZbsj2oF8OAouPlDWSVnESetAchImzPLV4q0IcQH7DGKECuzJ", 
+                "4WZ3HBDwNuz5ZDZY8qyK1qA5QFHEJY7gkPK6ooYFCN4yw6crKd"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New TumblrClient _
+              (
+                "2EZbsj2oF8OAouPlDWSVnESetAchImzPLV4q0IcQH7DGKECuzJ", 
+                "4WZ3HBDwNuz5ZDZY8qyK1qA5QFHEJY7gkPK6ooYFCN4yw6crKd"
+              )
+            )
+            </code>
+            <para>
+            For more details, please visit <see href="https://www.tumblr.com/docs/en/api/v2">Tumblr API Documentation</see>.
+            </para>
+            </remarks>
+            <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
+        </member>
+        <member name="T:Nemiro.OAuth.OAuthClient">
+            <summary>
+            Represents base properties and method for OAuth 1.0 client.
+            </summary>
+            <remarks>
+            <para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthClient"/> class.
+            </summary>
+            <param name="requestTokenUrl">The address for the request token.</param>
+            <param name="authorizeUrl">The address for login.</param>
+            <param name="accessTokenUrl">The address for the access token.</param>
+            <param name="consumerKey">The application identifier.</param>
+            <param name="consumerSecret">The application secret key.</param>
+            <param name="signatureMethod">The name of hashing algorithm to calculate the signature: HMAC-SHA1 (default) or PLAINTEXT.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Gets base string of the signature for current request.
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetSignature(System.String,System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Gets signature for the current request.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="tokenSecret">The token secret.</param>
+            <param name="parameters">The query parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetRequestToken">
+            <summary>
+            Gets the request token from the remote server.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetAccessToken">
+            <summary>
+            Gets the access token from the remote server.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.RequestTokenUrl">
+            <summary>
+            Gets or sets the address for the request token.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.Authorization">
+            <summary>
+            Get the authorization parameters.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.AuthorizationUrl">
+            <summary>
+            Gets the endpoint of the authorization.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.RequestToken">
+            <summary>
+            Gets or sets the request token.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.TumblrClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.Clients.TumblrClient"/>.
+            </summary>
+            <param name="consumerKey">The <b>Consumer Key</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
+            <param name="consumerSecret">The <b>Consumer Secret</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.TumblrClient.GetUserInfo">
+            <summary>
+            Gets an user details.
+            </summary>
+            <returns>
+            <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
+            </returns>
+        </member>
+        <member name="P:Nemiro.OAuth.Clients.TumblrClient.ProviderName">
+            <summary>
+            Unique provider name: <b>Tumblr</b>.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.Clients.InstagramClient">
+            <summary>
+            OAuth client for <b>Instagram</b>.
+            </summary>
+            <remarks>
+            <h1>Register and Configure a Instagram Application</h1>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term>
+            <b>Web Management Interface may change over time. Applications registration shown below may differ.</b><br/>
+            If the interface is changed, you need to register the application and get <b>Client ID</b> and <b>Client Secret</b>. For web projects, configure <b>return URLs</b>.<br/>
+            If you have any problems with this, please <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues">visit issues</see>. If you do not find a solution to your problem, you can <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues/new">create a new question</see>.
+            </term>
+            </item>
+            </list>
+            <para><b><see href="http://instagram.com/developer/register/">Register as Developer</see></b> and <b><see href="http://instagram.com/developer/clients/register/">Register new Client ID</see></b>.</para>
+            <para>
+            In the application settings  you can found <b>Client ID</b> and <b>Client Key</b>.
+            Use this for creating an instance of the <see cref="T:Nemiro.OAuth.Clients.InstagramClient"/> class.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new InstagramClient
+              (
+                "215a1941ebed4e4fa74e94dd84762836", 
+                "ba53a710e1624870bc066e7a9ae38601"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New InstagramClient _
+              (
+                "215a1941ebed4e4fa74e94dd84762836", 
+                "ba53a710e1624870bc066e7a9ae38601"
+              )
+            )
+            </code>
+            <para>
+            For more details, please visit <see href="http://instagram.com/developer/">Instagram Developer Documentation</see>.
+            </para>
+            </remarks>
+            <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.InstagramClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.Clients.InstagramClient"/>.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.InstagramClient.GetUserInfo">
+            <summary>
+            Gets the user details.
+            </summary>
+            <returns>
+            <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
+            </returns>
+        </member>
+        <member name="P:Nemiro.OAuth.Clients.InstagramClient.ProviderName">
+            <summary>
+            Unique provider name: <b>Instagram</b>.
+            </summary>
+        </member>
         <member name="T:Nemiro.OAuth.ApiException">
             <summary>
             The exception that is thrown when server of API returns error.
@@ -1555,12 +2679,65 @@
             </summary>
             <param name="result">The result of the request.</param>
             <param name="contentType">The content type of the server request result.</param>
-            <param name="innerException">The exception that is the cause of the current exception, or a <c>null</c> reference (<c>Nothing</c> in Visual Basic) if no inner exception is specified.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.RequestException.#ctor(System.String,System.Byte[],System.Exception,System.Collections.Specialized.NameValueCollection,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestException"/> class with a specified server request result, content type and the exception that is the cause of this exception.
+            </summary>
+            <param name="result">The result of the request.</param>
+            <param name="contentType">The content type of the server request result.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
+            <param name="headers">The HTTP headers of the output.</param>
+            <param name="statusCode">The HTTP status code of the output.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.RequestException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.RequestException"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.RequestException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         </member>
         <member name="P:Nemiro.OAuth.RequestException.RequestResult">
             <summary>
             Instance of the <see cref="P:Nemiro.OAuth.RequestException.RequestResult"/>.
             </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestException.StatusCode">
+            <summary>
+            Gets the HTTP status code of the output returned to the client.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestException.ContentType">
+            <summary>
+            Gets the content type of the response.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.RequestException.HttpHeaders">
+            <summary>
+            Gets the http headers of the response.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.ApiException.#ctor(Nemiro.OAuth.RequestResult,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified <see cref="T:Nemiro.OAuth.RequestResult"/> and the exception that is the cause of this exception.
+            </summary>
+            <param name="result">The result of the request.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ApiException.#ctor(Nemiro.OAuth.RequestResult,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified <see cref="T:Nemiro.OAuth.RequestResult"/> and error message.
+            </summary>
+            <param name="result">The result of the request.</param>
+            <param name="message">The error message that explains the reason for this exception.</param>
         </member>
         <member name="M:Nemiro.OAuth.ApiException.#ctor(System.String)">
             <summary>
@@ -1573,31 +2750,33 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified error message and the exception that is the cause of this exception.
             </summary>
             <param name="message">The error message that explains the reason for this exception.</param>
-            <param name="innerException">The exception that is the cause of the current exception, or a <c>null</c> reference (<c>Nothing</c> in Visual Basic) if no inner exception is specified.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.ApiException.#ctor(Nemiro.OAuth.RequestResult,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified <see cref="T:Nemiro.OAuth.RequestResult"/> and the exception that is the cause of this exception.
-            </summary>
-            <param name="result">The result of the request.</param>
-            <param name="innerException">The exception that is the cause of the current exception, or a <c>null</c> reference (<c>Nothing</c> in Visual Basic) if no inner exception is specified.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.ApiException.#ctor(Nemiro.OAuth.RequestResult,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified <see cref="T:Nemiro.OAuth.RequestResult"/> and error message.
-            </summary>
-            <param name="result">The result of the request.</param>
-            <param name="message">The error message that explains the reason for this exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
         </member>
         <member name="M:Nemiro.OAuth.ApiException.#ctor(System.String,System.String,System.Exception)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified server request result, content type and the exception that is the cause of this exception.
             </summary>
             <param name="result">The result of the request.</param>
-            <param name="innerException">The exception that is the cause of the current exception, or a <c>null</c> reference (<c>Nothing</c> in Visual Basic) if no inner exception is specified.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
+            <param name="contentType">The content type of the server request result.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ApiException.#ctor(System.String,System.Byte[],System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified server request result, content type and the exception that is the cause of this exception.
+            </summary>
+            <param name="result">The result of the request.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a <b>null</b> reference (<b>Nothing</b> in Visual Basic) if no inner exception is specified.</param>
             <param name="contentType">The content type of the server request result.</param>
         </member>
         <member name="M:Nemiro.OAuth.ApiException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified server request result, content type and a error message.
+            </summary>
+            <param name="result">The result of the request.</param>
+            <param name="message">The error message that explains the reason for this exception.</param>
+            <param name="contentType">The content type of the server request result.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ApiException.#ctor(System.String,System.Byte[],System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.ApiException"/> class with a specified server request result, content type and a error message.
             </summary>
@@ -1840,11 +3019,13 @@
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -1952,14 +3133,6 @@
                )
              )
              </code>
-             <list type="table">
-             <item>
-             <term><img src="../img/warning.png" alt="(!)" title=""/></term>
-             <term>
-             <b>Odnoklassniki does not support the "state". For this to work, you must always specify a return URL.</b>
-             </term>
-             </item>
-             </list>
              <para>
              For more details, please visit to the <see href="http://apiok.ru/wiki/pages/viewpage.action?pageId=42476300">Odnoklassniki API Documentation</see>.
              </para>
@@ -2365,11 +3538,13 @@
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -2401,8 +3576,15 @@
         </member>
         <member name="T:Nemiro.OAuth.CustomParse">
             <summary>
-            Represents a method that is called for parsing item of the API data.
+            Represents a method that is called for parsing item of the <b>API</b> data.
             </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.UniValue"/> instance to parse.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.ExecuteRequestAsyncCallback">
+            <summary>
+            References a method to be called when a corresponding asynchronous web request completes.
+            </summary>
+            <param name="result">The result of the asynchronous web request.</param>
         </member>
         <member name="T:Nemiro.OAuth.ErrorResult">
             <summary>
@@ -2414,6 +3596,26 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.ErrorResult"/> class.
             </summary>
             <param name="result">The request results.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ErrorResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.EmptyResult"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ErrorResult.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.ErrorResult.IsSuccessfully">
+            <summary>
+            Gets a value indicating whether the current request result is successful or not.
+            </summary>
+            <remarks>Always has the value <b>false</b>.</remarks>
         </member>
         <member name="T:Nemiro.OAuth.AccessDeniedException">
             <summary>
@@ -2507,6 +3709,26 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.EmptyResult"/> class.
             </summary>
         </member>
+        <member name="M:Nemiro.OAuth.EmptyResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.EmptyResult"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.EmptyResult.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.EmptyResult.IsSuccessfully">
+            <summary>
+            Gets a value indicating whether the current request result is successful or not.
+            </summary>
+            <remarks>Always has the value <b>false</b>.</remarks>
+        </member>
         <member name="T:Nemiro.OAuth.DuplicateProviderException">
             <summary>
             The exception that is thrown when you attempt to register the already registered client.
@@ -2517,6 +3739,16 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.DuplicateProviderException"/> class.
             </summary>
             <param name="providerName">The name of the provider.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.MultipleRequestBodyException">
+            <summary>
+            The exception that is thrown when <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> has more than one <see cref="T:Nemiro.OAuth.HttpRequestBody"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.MultipleRequestBodyException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.MultipleRequestBodyException"/>.
+            </summary>
         </member>
         <member name="T:Nemiro.OAuth.NullHttpContextException">
             <summary>
@@ -2548,6 +3780,16 @@
             <param name="message">The error message that explains the reason for this exception.</param>
             <param name="args">An object array that contains zero or more objects to format.</param>
         </member>
+        <member name="T:Nemiro.OAuth.IncompatibleHttpParametersException">
+            <summary>
+            The exception that is thrown when adding a <see cref="T:Nemiro.OAuth.HttpFile"/> to the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> and collection has one a <see cref="T:Nemiro.OAuth.HttpRequestBody"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.IncompatibleHttpParametersException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.IncompatibleHttpParametersException"/>.
+            </summary>
+        </member>
         <member name="T:Nemiro.OAuth.Helpers">
             <summary>
             The main helper class.
@@ -2568,14 +3810,15 @@
         </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.#cctor">
             <summary>
-            This is helper class.
+            This is main helper class.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.PercentEncode(System.String,System.Text.Encoding)">
             <summary>
-            Percent encoding (only for OAuth 1.0).
+            Percent encoding.
             </summary>
-            <param name="value">Value for encoding.</param>
+            <param name="value">The text to encode.</param>
+            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
             <remarks>
             <para>For more details, please see:</para>
             <list type="bullet">
@@ -2583,6 +3826,27 @@
             <item><description><see href="http://tools.ietf.org/html/rfc3986"/></description></item>
             </list>
             </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)">
+            <summary>
+            Percent encoding.
+            </summary>
+            <param name="value">The text to encode.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType)">
+            <summary>
+            Encodes a <b>URL</b> string using the specified encoding object.
+            </summary>
+            <param name="value">The text to encode.</param>
+            <param name="encodingType">The type of the encoder.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType,System.Text.Encoding)">
+            <summary>
+            Encodes a <b>URL</b> string using the specified encoding object.
+            </summary>
+            <param name="value">The text to encode.</param>
+            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
+            <param name="encodingType">The type of the encoder.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.GetTimeStamp">
             <summary>
@@ -2616,15 +3880,66 @@
             <param name="args">An object array that contains zero or more objects to format. </param>
             <returns>The string representation, in base 64.</returns>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,System.Collections.Specialized.NameValueCollection,System.String,System.Collections.Specialized.NameValueCollection)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.Get(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
             <summary>
-            Performs a web request.
+            Performs a web request using a <b>GET</b> method.
             </summary>
-            <param name="method">HTTP Method: <b>POST</b> (default) or <b>GET</b>.</param>
             <param name="endpoint">URL to which will be sent to web request.</param>
             <param name="parameters">Parameters to be passed to web request.</param>
             <param name="authorization">Authorization header value.</param>
             <param name="headers">HTTP headers for web request.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Post(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request using a <b>POST</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Put(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request using a <b>PUT</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Delete(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Performs a web request using a <b>DELETE</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request.
+            </summary>
+            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
             <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
@@ -2635,12 +3950,87 @@
             </summary>
             <param name="resp"><see cref="T:System.Net.HttpWebResponse"/> instance.</param>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>GET</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.PostAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>POST</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.PutAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>PUT</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.DeleteAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>DELETE</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequestAsync(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request.
+            </summary>
+            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.GetDictionaryValueOrNull(System.Object,System.String)">
             <summary>
             Gets the value of the specified <paramref name="key"/>, if the <paramref name="source"/> is a <see cref="T:System.Collections.Generic.Dictionary`2"/>.
             </summary>
             <param name="source">Source of data.</param>
             <param name="key">The key is to be obtained.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetNumber(System.Object)">
+            <summary>
+            Returns a string containing a number.
+            </summary>
+            <param name="value">The value for processing.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.GetSignature(System.String,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
             <summary>
@@ -2676,6 +4066,681 @@
             </summary>
             <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
         </member>
+        <member name="T:Nemiro.OAuth.HttpAuthorization">
+            <summary>
+            Represents a HTTP authorization header.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.#ctor(Nemiro.OAuth.AuthorizationType,Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> class with specific authorization type and value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> class from specific source.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.Remove(System.String)">
+            <summary>
+            Removes the value with the specified key from the <see cref="P:Nemiro.OAuth.HttpAuthorization.Value"/>.
+            </summary>
+            <param name="key">The key of the element to remove.</param>
+            <returns>
+            <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
+            This method returns <b>false</b> if key is not found in the <see cref="P:Nemiro.OAuth.HttpAuthorization.Value"/> or is not collection.
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.ToString">
+            <summary>
+            Returns OAuth string of the current object for Authorization header. 
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.Build(System.String,System.String,System.String,Nemiro.OAuth.HttpParameterCollection)">
+            <summary>
+            Invoked before sending a web request.
+            </summary>
+            <param name="httpMethod">HTTP Method of the request: <b>POST</b>, <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
+            <param name="url">URL of the web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="parameters">>Parameters of the web request.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpAuthorization.op_Implicit(System.String)~Nemiro.OAuth.HttpAuthorization">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.HttpAuthorization"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.HttpAuthorization"/>.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpAuthorization.AuthorizationType">
+            <summary>
+            Gets or sets authorization method.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpAuthorization.Value">
+            <summary>
+            Gets or sets parameters of the authorization.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpAuthorization.Parameters">
+            <summary>
+            Authorization parameters.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpAuthorization.ParametersSorted">
+            <summary>
+            Sorted authorization parameters.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpAuthorization.Item(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpFile">
+            <summary>
+            Implements a file to transfer in a HTTP request.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpParameter">
+            <summary>
+            Implements a HTTP paramter.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameter"/> class.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(Nemiro.OAuth.HttpParameterType,System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameter"/> class.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+            <param name="parameterType">The type of the parameter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameter.ToString">
+            <summary>
+            Returns a string that represents the current parameter.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameter.Name">
+            <summary>
+            Gets or sets parameter name.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameter.Value">
+            <summary>
+            Gets or sets parameter value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameter.ParameterType">
+            <summary>
+            Gets or sets type of the parameter.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpFile.#ctor(System.String,System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpFile"/> class.
+            </summary>
+            <param name="fileContent">Content of the file.</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="parameterName">The name of the parameter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpFile.#ctor(System.String,System.Web.HttpPostedFile)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpFile"/> class.
+            </summary>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="file">The posted file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpFile.#ctor(System.String,System.String,System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpFile"/> class.
+            </summary>
+            <param name="fileContent">Content of the file.</param>
+            <param name="fileName">Name of the file.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="contentType">MIME type of the file.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpFile.FileName">
+            <summary>
+            Gets or sets the filename.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpFile.ContentType">
+            <summary>
+            Gets or sets Content-Type of the file.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpParameterCollection">
+            <summary>
+            Collection of HTTP parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.#ctor(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> class.
+            </summary>
+            <param name="source">The collection of parameters.</param>
+            <remarks>
+            <para>If the <paramref name="source"/> parameter has a value of <b>null</b> (<b>Nothing</b> for VB), it will not be added to the collection.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> class.
+            </summary>
+            <param name="source">The body of a request.</param>
+            <remarks>
+            <para>If the <paramref name="source"/> parameter has a value of <b>null</b> (<b>Nothing</b> for VB), it will not be added to the collection.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> class.
+            </summary>
+            <param name="source">The body of a request.</param>
+            <remarks>
+            <para>If the <paramref name="source"/> parameter has a value of <b>null</b> (<b>Nothing</b> for VB), it will not be added to the collection.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.#ctor(Nemiro.OAuth.HttpParameter[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> class.
+            </summary>
+            <param name="source">The array of parameters.</param>
+            <remarks>
+            <para>If the <paramref name="source"/> parameter has a value of <b>null</b> (<b>Nothing</b> for VB), it will not be added to the collection.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(Nemiro.OAuth.HttpParameter)">
+            <summary>
+            Adds a parameter to the end of the collection.
+            </summary>
+            <param name="item">The parameter to be added to the collection.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.Object)">
+            <summary>
+            Adds a parameter to the end of the collection.
+            </summary>
+            <param name="name">The name of parameter.</param>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.String)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpParameter"/> to the end of the collection.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(Nemiro.OAuth.HttpParameterType,System.String,System.String)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpParameter"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="parameterValue">The value of the parameter.</param>
+            <param name="parameterType">The type of the parameter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.Web.HttpPostedFile)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFile"/> to the end of the collection.
+            </summary>
+            <param name="name">The name of parameter.</param>
+            <param name="file">The posted file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.Web.HttpPostedFile)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpRequestBody"/> to the end of the collection.
+            </summary>
+            <param name="file">The posted file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFile"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="contentType">The Content-Type of the file.</param>
+            <param name="fileContent">The content of the file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.String,System.Byte[])">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFile"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="fileContent">The content of the file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.String,System.String,System.IO.Stream)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFile"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="contentType">The Content-Type of the file.</param>
+            <param name="inputStream">The file stream.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.String,System.String,System.IO.Stream)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFile"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="inputStream">The file stream.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.IO.Stream)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpRequestBody"/> to the end of the collection.
+            </summary>
+            <param name="inputStream">The content of the request.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.Byte[])">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpRequestBody"/> to the end of the collection.
+            </summary>
+            <param name="requestBody">The content of the request.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Add(System.Object)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpRequestBody"/> to the end of the collection.
+            </summary>
+            <param name="requestBody">The content of the request.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddRange(System.Collections.Generic.IEnumerable{Nemiro.OAuth.HttpParameter})">
+            <summary>
+            Adds the items of the specified collection to the end of the current instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </summary>
+            <param name="collection">The collection whose items should be added to the end of the current instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddUrlParameter(System.String,System.String)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpUrlParameter"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="parameterValue">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddFormParameter(System.String,System.String)">
+            <summary>
+            Adds a <see cref="T:Nemiro.OAuth.HttpFormParameter"/> to the end of the collection.
+            </summary>
+            <param name="parameterName">The name of parameter.</param>
+            <param name="parameterValue">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Insert(System.Int32,Nemiro.OAuth.HttpParameter)">
+            <summary>
+            Inserts an element into the instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which item should be inserted.</param>
+            <param name="item">The <see cref="T:Nemiro.OAuth.HttpParameter"/> to insert.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{Nemiro.OAuth.HttpParameter})">
+            <summary>
+            Inserts the elements of a collection into the instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which the new elements should be inserted.</param>
+            <param name="collection">The collection whose elements should be inserted into the instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Remove(Nemiro.OAuth.HttpParameter)">
+            <summary>
+            Removes the first occurrence of a specific parameter from the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </summary>
+            <param name="item">The parameter to remove from the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>. </param>
+            <returns>
+            <b>true</b> if <paramref name="item"/> is successfully removed; otherwise, <b>false</b>. 
+            This method also returns <b>false</b> if <paramref name="item"/> was not found in the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.RemoveAll(System.Predicate{Nemiro.OAuth.HttpParameter})">
+            <summary>
+            Removes all the elements that match the conditions defined by the specified predicate.
+            </summary>
+            <param name="math">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to remove.</param>
+            <returns>The number of elements removed from the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the specified index of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </summary>
+            <param name="index">The zero-based index of the element to remove.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of elements from the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </summary>
+            <param name="index">The zero-based starting index of the range of elements to remove.</param>
+            <param name="count">The number of elements to remove.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.Clear">
+            <summary>
+            Removes all elements from the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.UpdateCollectionStatus">
+            <summary>
+            Updates status of the collection.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.CheckType(System.Type)">
+            <summary>
+            Checks parameters types.
+            </summary>
+            <param name="t">The type for checking.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters">
+            <summary>
+            Returns a string query parameters encoded by default method (<see cref="M:System.Web.HttpUtility.UrlEncode(System.String)"/>).
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(System.String)">
+            <summary>
+            Returns a string of query parameters with a specified separator.
+            </summary>
+            <param name="separator">The separator of query parameters. For example: &amp;</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(System.String,Nemiro.OAuth.UrlEncodingType)">
+            <summary>
+            Returns a string of query parameters with a specified encoding parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(Nemiro.OAuth.UrlEncodingType)">
+            <summary>
+            Returns a string of query parameters with a specified encoding parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(Nemiro.OAuth.HttpParameterType)">
+            <summary>
+            Returns a string of query parameters with a specified encoding parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(Nemiro.OAuth.UrlEncodingType,Nemiro.OAuth.HttpParameterType)">
+            <summary>
+            Returns a string of query parameters with a specified encoding parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(System.String,Nemiro.OAuth.HttpParameterType)">
+            <summary>
+            Returns a string of query parameters with a specified encoding parameters.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToStringParameters(System.String,Nemiro.OAuth.UrlEncodingType,Nemiro.OAuth.HttpParameterType)">
+            <summary>
+            Returns a string of query parameters with a specified separator and encoding parameters.
+            </summary>
+            <param name="separator">The separator of query parameters.</param>
+            <param name="encodingType">The type of the encoder.</param>
+            <param name="parametersType">The types of parameters to be used.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToNameValueCollection(System.Boolean)">
+            <summary>
+            Copies elements of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> to a new <see cref="T:System.Collections.Specialized.NameValueCollection"/> instance.
+            </summary>
+            <param name="onlyUrlParameters">The <b>true</b> value included into the results only the <see cref="T:Nemiro.OAuth.HttpUrlParameter"/> parameters. The default value is <b>false</b> - all parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.ToRequestBody(System.String)">
+            <summary>
+            Gets a body for the request.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.WriteToRequestStream(System.Net.HttpWebRequest)">
+            <summary>
+            Writes the parameters to the request.
+            </summary>
+            <param name="req">The instance of the request.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddFile(System.String,System.String,System.String,System.Byte[],System.IO.Stream)">
+            <summary>
+            Adds a file to the request.
+            </summary>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="fileName">The filename.</param>
+            <param name="contentType">The Content-Type of the file.</param>
+            <param name="body">The content of the file.</param>
+            <param name="output">The output stream instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddQuery(System.String,System.String,System.IO.Stream)">
+            <summary>
+            Adds a query parameter to the request.
+            </summary>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+            <param name="output">The output stream instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.op_Implicit(Nemiro.OAuth.HttpParameter[])~Nemiro.OAuth.HttpParameterCollection">
+            <summary>
+            The assignment operator for array of the <see cref="T:Nemiro.OAuth.HttpParameter"/>.
+            </summary>
+            <param name="value">The array that will be used as the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.op_Implicit(System.Collections.Specialized.NameValueCollection)~Nemiro.OAuth.HttpParameterCollection">
+            <summary>
+            The assignment operator for the <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <param name="value">The collection that will be used as the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.op_Implicit(System.Byte[])~Nemiro.OAuth.HttpParameterCollection">
+            <summary>
+            The assignment operator for the byte array.
+            </summary>
+            <param name="value">The byte array of the request body.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.op_Implicit(System.IO.Stream)~Nemiro.OAuth.HttpParameterCollection">
+            <summary>
+            The assignment operator for the <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="value">The instance of the <see cref="T:System.IO.Stream"/> of the request body.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/>.</returns>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameterCollection.HasFiles">
+            <summary>
+            Gets a value indicating whether the current collection has a files.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameterCollection.IsRequestBody">
+            <summary>
+            Gets a value indicating whether the current collection has a <see cref="T:Nemiro.OAuth.HttpRequestBody"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameterCollection.Boundary">
+            <summary>
+            Gets a boundary for a request.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameterCollection.Encoding">
+            <summary>
+            Gets or sets code page for parameters encoding.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements a value of the HTTP paramter.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/> class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.ToEncodedString">
+            <summary>
+            Returns an encoded string of the value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.ToEncodedString(Nemiro.OAuth.UrlEncodingType)">
+            <summary>
+            Returns an encoded string of the value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.ToString">
+            <summary>
+            Returns a string that represents the current value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.ToByteArray">
+            <summary>
+            Returns a byte array that represents the current value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Int16)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Int16"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Int32)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Int64)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.UInt16)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.UInt16"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.UInt32)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.UInt32"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.UInt64)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.UInt64"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Decimal)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Decimal"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Double)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Double"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Single)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Single"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.DateTime)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.String)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Byte)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Byte[])~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the array of the <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.IO.Stream)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameterValue.Value">
+            <summary>
+            Gets or sets value.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpRequestBody">
+            <summary>
+            Implements a request body.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpRequestBody.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpRequestBody"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpRequestBody.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpRequestBody"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpRequestBody.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpRequestBody"/> class with a specified value.
+            </summary>
+            <param name="value">The parameter value.</param>
+        </member>
         <member name="T:Nemiro.OAuth.OAuth2AccessToken">
             <summary>
             The access token class for OAuth 2.0.
@@ -2686,6 +4751,20 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> class.
             </summary>
             <param name="result">Result of request to the OAuth server.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         </member>
         <member name="P:Nemiro.OAuth.OAuth2AccessToken.ExpiresIn">
             <summary>
@@ -2706,6 +4785,87 @@
         <member name="P:Nemiro.OAuth.OAuth2AccessToken.TokenType">
             <summary>
             The type of the token issued. Value is case insensitive.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpParameterType">
+            <summary>
+            The list of the types a HTTP parameters.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Unformed">
+            <summary>
+            Unformed parameter.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Url">
+            <summary>
+            Parameter of the query string.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Form">
+            <summary>
+            Parameter of the form.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.File">
+            <summary>
+            File.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.RequestBody">
+            <summary>
+            Body of the request.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.UrlEncodingType">
+            <summary>
+            The list of url encding methods.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.None">
+            <summary>
+            Without encoding.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.Auto">
+            <summary>
+            <see cref="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding"/> for POST requests when a conetent-type is x-www-form-urlencoded.
+            And <see cref="F:Nemiro.OAuth.UrlEncodingType.Default"/> for other requests.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.Default">
+            <summary>
+            x-www-form-urlencoded (spaces encoded as plus (+) signs).
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding">
+            <summary>
+            RFC 3986 (spaces encoded as %20).
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.AuthorizationType">
+            <summary>
+            The list of authorization type.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Basic">
+            <summary>
+            Basic
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Bearer">
+            <summary>
+            Bearer
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Digest">
+            <summary>
+            Digest
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.OAuth">
+            <summary>
+            OAuth
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.Sex">
@@ -3270,14 +5430,63 @@
             </summary>
             <param name="result">Result of request to the OAuth server.</param>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
         <member name="P:Nemiro.OAuth.OAuthAccessToken.TokenSecret">
             <summary>
             The access token issued by the authorization server.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.Properties.Resources">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.Properties.Resources.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.Properties.Resources.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.Properties.Resources.alekseynemiro">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.Properties.Resources.mediakit">
+             <summary>
+               Ищет локализованную строку, похожую на Aleksey Sergeevich Nemiro is a Russian developer of applications and websites, 
+            author of articles on programming and information technology.
+            
+            Aleksey was born on October 3, 1983 in the city of Vladivostok (Primorsky Krai, Russia).
+            In 2009, Aleksey migrated to the city of Yoshkar-Ola (Mari El, Russia).
+            
+            Started programming in 1998 on the G-Basic and QBasic.
+            
+            At various times worked with programming languages and technologies: 
+            Visaul Basic, Delphi, C, Visual C++, Java, PHP, ASP VBScript and JScript [остаток строки не уместился]&quot;;.
+             </summary>
+        </member>
         <member name="T:Nemiro.OAuth.OAuthAuthorization">
             <summary>
-            Represents authorization parameters for OAuth.
+            Represents authorization parameters for OAuth 1.0.
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.OAuthAuthorization.#ctor">
@@ -3285,7 +5494,35 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> class.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthAuthorization.SetSignature(System.String,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.#ctor(Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> class with specific value.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.UpdateStamp">
+            <summary>
+            Updates the nonce and the timestamp.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.GetSignatureBaseString(System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets base string of the signature for current request (OAuth 1.0).
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets base string of the signature for current request (OAuth 1.0).
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.op_Implicit(System.String)~Nemiro.OAuth.OAuthAuthorization">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.OAuthAuthorization"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.OAuthAuthorization"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.SetSignature(System.String,System.String,System.String,System.String,Nemiro.OAuth.HttpParameterCollection)">
             <summary>
             Sets signature.
             </summary>
@@ -3305,26 +5542,76 @@
             <param name="parameters">The query parameters.</param>
             <param name="applicationSecret">The application secret key obtained from the provider website.</param>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthAuthorization.ToString">
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.SetSignature(System.String,System.Uri,System.Collections.Specialized.NameValueCollection)">
             <summary>
-            Returns OAuth string of the current object for Authorization header. 
+            Sets signature.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="parameters">The query parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAuthorization.SetSignature(System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Sets signature.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="parameters">The query parameters.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.ConsumerKey">
+            <summary>
+            Gets or sets the consumer key.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.OAuthAuthorization.Parameters">
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.ConsumerSecret">
             <summary>
-            Authorization parameters.
+            Gets or sets the consumer secret.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.OAuthAuthorization.ParametersSorted">
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Token">
             <summary>
-            Sorted authorization parameters.
+            Gets or sets the token.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.OAuthAuthorization.Item(System.String)">
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.TokenSecret">
             <summary>
-            Gets or sets the value associated with the specified key.
+            Gets or sets the secret token.
             </summary>
-            <param name="key">The key of the value to get or set.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.SignatureMethod">
+            <summary>
+            Gets or sets the signature method.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Nonce">
+            <summary>
+            Gets or sets the nonce.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Timestamp">
+            <summary>
+            Gets or sets the timestamp.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Version">
+            <summary>
+            Gets or sets the version of the OAuth.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Signature">
+            <summary>
+            Gets or sets the signature.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Callback">
+            <summary>
+            Gets or sets the callback address.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAuthorization.Verifier">
+            <summary>
+            Gets or sets the verifier code.
+            </summary>
         </member>
         <member name="T:Nemiro.OAuth.Clients.MailRuClient">
              <summary>
@@ -3620,11 +5907,13 @@
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -3654,76 +5943,6 @@
         <member name="P:Nemiro.OAuth.Clients.MailRuClient.ReturnUrl">
             <summary>
             Return URL.
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.OAuthClient">
-            <summary>
-            Represents base properties and method for OAuth 1.0 client.
-            </summary>
-            <remarks>
-            <para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849"/>.</para>
-            </remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthClient"/> class.
-            </summary>
-            <param name="requestTokenUrl">The address for the request token.</param>
-            <param name="authorizeUrl">The address for login.</param>
-            <param name="accessTokenUrl">The address for the access token.</param>
-            <param name="consumerKey">The application identifier.</param>
-            <param name="consumerSecret">The application secret key.</param>
-            <param name="signatureMethod">The name of hashing algorithm to calculate the signature: HMAC-SHA1 (default) or PLAINTEXT.</param>
-            <exception cref="T:System.ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Gets base string of the signature for current request.
-            </summary>
-            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetSignature(System.String,System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Gets signature for the current request.
-            </summary>
-            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
-            <param name="url">The request URI.</param>
-            <param name="tokenSecret">The token secret.</param>
-            <param name="parameters">The query parameters.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetRequestToken">
-            <summary>
-            Gets the request token from the remote server.
-            </summary>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetAccessToken">
-            <summary>
-            Gets the access token from the remote server.
-            </summary>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.UpdateStamp">
-            <summary>
-            Updates the nonce and timestamp.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.RequestTokenUrl">
-            <summary>
-            Gets or sets the address for the request token.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.Authorization">
-            <summary>
-            Get the authorization parameters.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.AuthorizationUrl">
-            <summary>
-            Gets the endpoint of the authorization.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.RequestToken">
-            <summary>
-            Gets or sets the request token.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.OAuthManager">
@@ -3966,6 +6185,20 @@
             <summary>
             Returns the <see cref="P:Nemiro.OAuth.OAuthRequestToken.OAuthToken"/>.
             </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthRequestToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthRequestToken"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthRequestToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         </member>
         <member name="P:Nemiro.OAuth.OAuthRequestToken.OAuthToken">
             <summary>
@@ -4306,11 +6539,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -4791,11 +7026,13 @@
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -5149,11 +7386,13 @@
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
@@ -5181,12 +7420,222 @@
             Return URL.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.HttpUrlParameter">
+            <summary>
+            Implements a parameter of url.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpUrlParameter.#ctor(System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpUrlParameter"/> class with a specified parameter name and value.
+            </summary>
+            <param name="value">The parameter value.</param>
+            <param name="name">The parameter name.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.UniTypedValue">
+            <summary>
+            Additional type for references.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.UniValueCollection">
+            <summary>
+            Represents the collection of the <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.#ctor(Nemiro.OAuth.UniValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/> with a specified reference to parent.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.#ctor(Nemiro.OAuth.UniValueCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/> by other an instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Add(System.String,Nemiro.OAuth.UniValue)">
+            <summary>
+            Adds the specified key and value to the collection.
+            </summary>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the element to add.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.ContainsKey(System.String)">
+            <summary>
+            Determines whether the collection contains the specified key.
+            </summary>
+            <param name="key">The key to locate in the collection.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is <b>null</b>.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Remove(System.String)">
+            <summary>
+            Removes the value with the specified key from the collection.
+            </summary>
+            <param name="key">The key of the element to remove.</param>
+            <returns>
+            <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Equals(System.Object)">
+            <summary>
+            Determines whether two object instances are equal.
+            </summary>
+            <param name="o">The object to compare with the current instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.</param>
+            <returns><b>true</b> if the specified object is equal to the current <see cref="T:Nemiro.OAuth.UniValueCollection"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.ItemToString(System.Collections.Generic.KeyValuePair{System.String,Nemiro.OAuth.UniValue})">
+            <summary>
+            Returns a string that represents the specified item of the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+            <param name="itm">The item to converted.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.ValueToString(Nemiro.OAuth.UniValue)">
+            <summary>
+            Returns a string that represents the specified <see cref="T:Nemiro.OAuth.UniValue"/> instance.
+            </summary>
+            <param name="value">The value to converted.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Add(System.Collections.Generic.KeyValuePair{System.String,Nemiro.OAuth.UniValue})">
+            <summary>
+            Adds the specified item to the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Clear">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Contains(System.Collections.Generic.KeyValuePair{System.String,Nemiro.OAuth.UniValue})">
+            <summary>
+            Determines whether the collection contains a specific value.
+            </summary>
+            <param name="item">The object to locate in the collection.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.Remove(System.Collections.Generic.KeyValuePair{System.String,Nemiro.OAuth.UniValue})">
+            <summary>
+            Removes the first occurrence of a specific object from the collection. 
+            </summary>
+            <param name="item">The object to remove from the collection.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.TryGetValue(System.String,Nemiro.OAuth.UniValue@)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <param name="key">The key whose value to get.</param>
+            <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the <see cref="P:Nemiro.OAuth.UniValue.Empty"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.CopyTo(System.Collections.Generic.KeyValuePair{System.String,Nemiro.OAuth.UniValue}[],System.Int32)">
+            <summary>
+            [Is not implemented] Copies the elements of the collection to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from collection. The <see cref="T:System.Array"/> must have zero-based indexing. </param>
+            <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#String@Nemiro#OAuth#UniValue}}#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+            <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueCollection.op_Implicit(Nemiro.OAuth.UniValue)~Nemiro.OAuth.UniValueCollection">
+            <summary>
+            Returns <see cref="T:Nemiro.OAuth.UniValueCollection"/> instance from <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+            <param name="value">The value from which will be returned the <see cref="T:Nemiro.OAuth.UniValueCollection"/>.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Items">
+            <summary>
+            Gets or sets items of the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Parent">
+            <summary>
+            The reference to parent.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Item(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to get or set.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Keys">
+            <summary>
+            Gets a collection containing the keys in the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Values">
+            <summary>
+            Gets a collection containing the values in the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.Count">
+            <summary>
+            Gets the number of elements contained in the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.System#Collections#Generic#IDictionary{System#String@Nemiro#OAuth#UniValue}#Keys">
+            <summary>
+            Gets a collection containing the keys in the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.System#Collections#Generic#IDictionary{System#String@Nemiro#OAuth#UniValue}#Values">
+            <summary>
+            Gets a collection containing the values in the collection.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueCollection.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the collection is read-only. Always <b>false</b>.
+            </summary>
+        </member>
         <member name="T:Nemiro.OAuth.UserInfo">
             <summary>
             Represents the user profile info.
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.UserInfo.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},Nemiro.OAuth.ApiDataMapping)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class.
+            </summary>
+            <param name="source">The data source.</param>
+            <param name="mapping">The mapping rules.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UserInfo.#ctor(Nemiro.OAuth.UniValue,Nemiro.OAuth.ApiDataMapping)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class.
             </summary>
@@ -5349,6 +7798,18 @@
             <summary>
             Gets or sets a custom parser of the data.
             </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpFormParameter">
+            <summary>
+            Implements a form parameter.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpFormParameter.#ctor(System.String,Nemiro.OAuth.HttpParameterValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpFormParameter"/> class with a specified parameter name and value.
+            </summary>
+            <param name="value">The parameter value.</param>
+            <param name="name">The parameter name.</param>
         </member>
     </members>
 </doc>

@@ -14,7 +14,15 @@ namespace Test.CSharp.AspWebForms
     public void ProcessRequest(HttpContext context)
     {
       context.Response.ContentType = "image/png";
-      byte[] buffer = (byte[])Test.Resources.Images.ResourceManager.GetObject(context.Request.QueryString["id"].ToLower().Replace(".", ""));
+      byte[] buffer = null;
+      try
+      {
+        buffer = (byte[])Test.Resources.Images.ResourceManager.GetObject(context.Request.QueryString["id"].ToLower().Replace(".", ""));
+      }
+      catch
+      {
+        buffer = (byte[])Test.Resources.Images.ResourceManager.GetObject("error");
+      }
       context.Response.OutputStream.Write(buffer, 0, buffer.Length);
     }
 

@@ -75,11 +75,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -130,13 +132,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://api.foursquare.com/v2/users/self",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Get("https://api.foursquare.com/v2/users/self", parameters);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -146,43 +142,38 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "photo", "Userpic",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>))
-          {
-            return null;
-          }
-          var v = value as Dictionary<string, object>;
-          if (!v.ContainsKey("prefix") || !v.ContainsKey("suffix")) { return null; }
-          return String.Format("{0}300x300{1}", v["prefix"], v["suffix"]);
+          if (!value.HasValue || !value.ContainsKey("prefix") || !value.ContainsKey("suffix")) { return null; }
+          return String.Format("{0}300x300{1}", value["prefix"], value["suffix"]);
         }
       );
       map.Add
       (
         "contact", "Email",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          return OAuthUtility.GetDictionaryValueOrNull(value, "email");
+          return value["email"].ToString();
         }
       );
       map.Add
       (
         "contact", "Phone",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          return OAuthUtility.GetDictionaryValueOrNull(value, "phone");
+          return value["phone"].ToString();
         }
       );
       map.Add
       (
         "gender", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value.ToString().Equals("male", StringComparison.OrdinalIgnoreCase))
+          if (value.Equals("male", StringComparison.OrdinalIgnoreCase))
           {
             return Sex.Male;
           }
-          else if (value.ToString().Equals("female", StringComparison.OrdinalIgnoreCase))
+          else if (value.Equals("female", StringComparison.OrdinalIgnoreCase))
           {
             return Sex.Female;
           }
@@ -191,7 +182,7 @@ namespace Nemiro.OAuth.Clients
       );
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(((Dictionary<string, object>)result["response"])["user"] as Dictionary<string, object>, map);
+      return new UserInfo(result["response"]["user"], map);
     }
 
   }

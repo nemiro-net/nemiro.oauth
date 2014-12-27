@@ -83,6 +83,26 @@ namespace Test.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] empty {
+            get {
+                object obj = ResourceManager.GetObject("empty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] error {
+            get {
+                object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] facebook {
             get {
                 object obj = ResourceManager.GetObject("facebook", resourceCulture);
@@ -116,6 +136,16 @@ namespace Test.Resources {
         public static byte[] google {
             get {
                 object obj = ResourceManager.GetObject("google", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] instagram {
+            get {
+                object obj = ResourceManager.GetObject("instagram", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -166,6 +196,16 @@ namespace Test.Resources {
         public static byte[] soundcloud {
             get {
                 object obj = ResourceManager.GetObject("soundcloud", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] tumblr {
+            get {
+                object obj = ResourceManager.GetObject("tumblr", resourceCulture);
                 return ((byte[])(obj));
             }
         }

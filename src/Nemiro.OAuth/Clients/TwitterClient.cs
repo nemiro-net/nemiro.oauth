@@ -345,11 +345,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -394,25 +396,16 @@ namespace Nemiro.OAuth.Clients
       string url = "https://api.twitter.com/1.1/users/show.json";
 
       // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "user_id", this.AccessToken["user_id"].ToString() },
-        { "screen_name", this.AccessToken["screen_name"].ToString() },
-        { "include_entities", "false" }
-      };
+      var parameters = new HttpParameterCollection();
+      parameters.AddUrlParameter("user_id", this.AccessToken["user_id"].ToString());
+      parameters.AddUrlParameter("screen_name", this.AccessToken["screen_name"].ToString());
+      parameters.AddUrlParameter("include_entities", "false");
 
       this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
-      this.Authorization.SetSignature("GET", new Uri(url), this.ApplicationSecret, this.AccessToken["oauth_token_secret"].ToString(), parameters);
-      //this.Authorization["oauth_signature"] = this.GetSignature("GET", new Uri(url), this.AccessToken["oauth_token_secret"].ToString(), parameters);
+      this.Authorization.TokenSecret = this.AccessToken["oauth_token_secret"].ToString();
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        url,
-        parameters,
-        this.Authorization.ToString()
-      );
+      var result = OAuthUtility.Get(url, parameters, this.Authorization);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -426,7 +419,7 @@ namespace Nemiro.OAuth.Clients
       //map.Add("location", "Url");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

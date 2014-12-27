@@ -12,7 +12,7 @@
 </table-->
 @if (Model.IsSuccessfully)
 {
-  <img src="@Url.Action("Icon", new { id = Model.ProviderName })" alt="@Model.ProviderName" title="" width="100" height="100" />
+  <a href="/"><img src="@Url.Action("Icon", new { id = Model.ProviderName })" alt="@Model.ProviderName" title="" width="100" height="100" /></a>
   <section>
     @{var user = Model.UserInfo; }
     <h3>@Test.Resources.Strings.UserInfoTitle</h3>
@@ -97,17 +97,26 @@
     </table>
   </section>
   
-      if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
-      {
-    <div style="margin-top:24px;margin-bottom:8px;" class="buttons">@Html.Partial(Model.ProviderName, Model.AccessToken)</div>
+  if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
+  {
+    <div id="buttons">
+			<div id="processing"></div>
+			@Html.Partial(Model.ProviderName, Model.AccessToken)
+		</div>
     <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
   
     <script type="text/javascript">
-      function OnComplete() {
-        $('#apiResults').show();
-      }
+    	function OnBegin() {
+    		$('#processing').height($('#processing').parent().height() + 10);
+    		$('#processing').show();
+    	}
+
+    	function OnComplete() {
+    		$('#processing').hide('slow');
+    		$('#apiResults').show();
+    	}
     </script>
-      }
+  }
 }
 else
 {

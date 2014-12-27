@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = Test.Resources.Strings.DemoTitle;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = Test.Resources.Strings.DemoTitle;
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @if (Request.IsLocal)
@@ -13,26 +13,37 @@
 @Html.Raw(Test.Resources.Strings.DemoIntro)
 
 @* !!!USE JAVASCRIPT LINKS TO PREVENT THEM FROM INDEXING!!! *@
-<ul style="width:600px;margin-left:auto;margin-right:auto;">
+<ul style="width:600px;margin-left:auto;margin-right:auto;" class="oauth">
   @foreach (var client in Nemiro.OAuth.OAuthManager.RegisteredClients)
   {
     <li>
       @*link and image*@
-      <a href="javascript:window.location.href='@Url.Action("ExternalLogin", new { provider = client.Key })'">
+      <a href="#" onclick="window.location.href='@Url.Action("ExternalLogin", new { provider = client.Key })'; return false;">
         <img src="@Url.Action("Icon", new { id = client.Key })" alt="@client.Key" title="@client.Key" width="100" height="100" />
       </a>
     </li>
   }
+  <li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
+	<li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
+	<li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
 </ul>
 
 <div class="clear"></div>
 
 @Html.Raw(Test.Resources.Strings.DemoFeedback)
-<p>&nbsp;</p>
+<hr />
 
-@Html.Raw(Test.Resources.Strings.DemoSecurity)
+@Html.Raw(String.Format(Test.Resources.Strings.DemoTechInfo, System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuthWeb)).GetName().Version, ViewBag.Version))
 
-@Html.Raw(String.Format(Test.Resources.Strings.DemoTechInfo, System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuthWeb)).GetName().Version, Environment.Version))
+<h2>@Html.Raw(Test.Resources.Strings.InstallViaNuGet)</h2>
+
+<code>PM&gt; Install-Package Nemiro.OAuth</code>
+
+<h2>@Test.Resources.Strings.Download</h2>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.4.zip">v1.4</a> <span class="date-release">@(new DateTime(2014, 11, 2).ToString("dd MMMM yyyy"))</span></p>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.3.zip">v1.3</a> <span class="date-release">@(new DateTime(2014, 10, 23).ToString("dd MMMM yyyy"))</span></p>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.2.zip">v1.2</a> <span class="date-release">@(new DateTime(2014, 10, 8).ToString("dd MMMM yyyy"))</span></p>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.1.zip">v1.1</a> <span class="date-release">@(new DateTime(2014, 7, 20).ToString("dd MMMM yyyy"))</span></p>
 
 @Html.Raw(Test.Resources.Strings.DemoUsefulLinks)
 

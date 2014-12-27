@@ -24,6 +24,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception that is thrown when a user fails to login.
   /// </summary>
+	[Serializable]
   public class AuthorizationException : Exception
   {
 

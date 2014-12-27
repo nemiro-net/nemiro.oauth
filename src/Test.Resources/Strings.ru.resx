@@ -145,6 +145,53 @@
   <data name="DemoFeedback" xml:space="preserve">
     <value>&lt;p&gt;Если что-то не работает или работает неправильно, пожалуйста, &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;сообщите об этом разработчику&lt;/a&gt;.&lt;/p&gt;</value>
   </data>
+  <data name="DemoHow" xml:space="preserve">
+    <value>&lt;h2&gt;Как работает этот сайт?&lt;/h2&gt;
+
+&lt;p&gt;Демонстрационный сайт &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt; имеет немного другой код, чем представленные в &lt;a href="http://oauth.nemiro.net/"&gt;документации&lt;/a&gt; примеры.&lt;/p&gt;
+&lt;p&gt;Параметры конфигурации приложений для поставщиков &lt;strong&gt;OAuth&lt;/strong&gt; находятся в файле &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Web.config"&gt;web.config&lt;/a&gt; (в целях безопасности, секретные ключи были удалены из публичного файла).&lt;/p&gt;
+&lt;p&gt;Список поставщиков &lt;strong&gt;OAuth&lt;/strong&gt;, которые нужно использовать на сайте, находится в параметре &lt;strong&gt;oauth:clients&lt;/strong&gt;. Имена поставщиков записываются через запятую, без пробелов.&lt;/p&gt;
+&lt;p&gt;
+  Идентификаторы и секретные ключи приложений указываются в параметрах &lt;strong&gt;oauth:{имя поставщика}:id&lt;/strong&gt; и &lt;strong&gt;oauth:{имя поставщика}:key&lt;/strong&gt;.&lt;br /&gt;
+  Где &lt;strong&gt;{имя поставщика}&lt;/strong&gt; - это имя поставщика &lt;strong&gt;OAuth&lt;/strong&gt;, для которого предназначены указанные настройки.
+&lt;/p&gt;
+&lt;p&gt;
+  Помимо этого, в файле &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Web.config"&gt;web.config&lt;/a&gt;,
+  в параметре &lt;strong&gt;oauth:{имя поставщика}:scope&lt;/strong&gt; можно указать права доступа, которые необходимы приложению.
+  Список прав нужно указывать в том формате, в котором требует поставщик &lt;strong&gt;OAuth&lt;/strong&gt; (см. документацию на сайте конкретного поставщика).
+&lt;/p&gt;
+&lt;p&gt;
+  Инициализация поставщиков производится в методе &lt;strong&gt;RegistrationOAuthClients&lt;/strong&gt; 
+  файла &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Global.asax.cs"&gt;Global.asax&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Перенаправление на авторизацию осуществляется в методе &lt;strong&gt;ExternalLogin&lt;/strong&gt; 
+  контроллера &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Controllers/HomeController.cs"&gt;HomeController&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Обработка результатов авторизации происходит в методе &lt;strong&gt;ExternalLoginResult&lt;/strong&gt;. 
+  Полученные с внешего сервера данные заносятся в &lt;strong&gt;Session&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Для работы с &lt;strong&gt;API&lt;/strong&gt;, для отдельных поставщиков, сделаны свои представления, которые можно найти в папке 
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/Test.OAuthWeb/Views/Shared"&gt;Shared&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Отправка запросов к &lt;strong&gt;API&lt;/strong&gt; и обработка ответов осуществляется в контроллере 
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Controllers/ApiController.cs"&gt;ApiController&lt;/a&gt;.
+  Исключение составляет базовая информация о пользователе, которая получается непосредственно библиотекой &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Все тексты и изображения, которые выводятся на этом сайте, 
+  находятся в отдельном &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/Test.Resources"&gt;проекте-ресурсов&lt;/a&gt;.
+  Исключая, конечно данные, которые были получены от &lt;strong&gt;API&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Вывод иконок поставщиков &lt;strong&gt;OAuth&lt;/strong&gt; из ресурсов осуществляется методом &lt;strong&gt;Icon&lt;/strong&gt;
+  контроллера &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Controllers/HomeController.cs"&gt;HomeController&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;При желании, вы можете использовать подобную реализацию в собственных проектах.&lt;/p&gt;</value>
+  </data>
   <data name="DemoIntro" xml:space="preserve">
     <value>&lt;p&gt;Библиотека &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; предназначена для реализации авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; в проектах &lt;strong&gt;.NET Framework (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Библиотека является бесплатной. Исходный код &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;открыт&lt;/a&gt; и предоставляется по лицензии &lt;strong&gt;Apache 2.0&lt;/strong&gt;.&lt;/p&gt;
@@ -157,7 +204,7 @@
 &lt;/p&gt;</value>
   </data>
   <data name="DemoSecurity" xml:space="preserve">
-    <value>&lt;h2&gt;Это безопасно?&lt;/h2&gt;
+    <value>&lt;h2&gt;Этот сайт безопасно использовать?&lt;/h2&gt;
 &lt;p&gt;Да, безопасно. Ваши учетные данные известны только серверу-поставщику &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;
   После аутентификации и авторизации, поставщик передает на страницу обратного вызова специальный код авторизации. 
@@ -168,21 +215,25 @@
 &lt;p&gt;Маркер доступа записывается в сессию (&lt;strong&gt;session&lt;/strong&gt;) сервера и ни в каком виде не выводится на страницах сайта.&lt;/p&gt;
 &lt;p&gt;Маркер доступа используется для работы с &lt;strong&gt;API&lt;/strong&gt; поставщиков &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Все запросы делаются по защищенному протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;В опубликованном исходном коде сайта &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, параметры доступа к поставщикам &lt;strong&gt;OAuth&lt;/strong&gt;, в целях безопасности, отсутствуют.&lt;/p&gt;
+&lt;p&gt;В &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/Test.OAuthWeb"&gt;опубликованном исходном коде&lt;/a&gt; сайта &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, параметры доступа к поставщикам &lt;strong&gt;OAuth&lt;/strong&gt;, в целях безопасности, &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/Test.OAuthWeb/Web.config"&gt;отсутствуют&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;
   Некоторые поставщики требуют, чтобы страница обратного вызова открывалась по протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;. 
   Для демонстрации работы авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; используется самоподписанный сертификат. 
-  Браузер вас об этом предупредит. Вы можете проигнорировать это предупреждение.
-  Причин для беспокойства, с учетом изложенного выше, нет.
+  Браузер вас об этом предупредит. Вы можете проигнорировать это предупреждение,
+ причин для беспокойства, с учетом изложенного выше, нет.
 &lt;/p&gt;</value>
   </data>
   <data name="DemoTechInfo" xml:space="preserve">
     <value>&lt;h2&gt;Техническая информация&lt;/h2&gt;
-&lt;p&gt;Версия Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
-&lt;p&gt;Версия .NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;</value>
-    <comment>&lt;h2&gt;Техническая информация&lt;/h2&gt;
-&lt;p&gt;Версия Nemiro.OAuth:&lt;br /&gt;v@(System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuthWeb)).GetName().Version)&lt;/p&gt;
-&lt;p&gt;Версия .NET Framework:&lt;br /&gt;v@(Environment.Version)&lt;/p&gt;</comment>
+&lt;p&gt;Последний официальный релиз &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;:&lt;/p&gt;
+&lt;h3&gt;v{1}&lt;/h3&gt;
+&lt;p&gt;Версия &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; на этом сервере:&lt;/p&gt;
+&lt;h3&gt;v{0}&lt;/h3&gt;
+&lt;p&gt;Номер версии последнего релиза библиотеки &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; может отличаться от номера версии, который размещен на этом сервере. Если номер версии на этом сервере выше, то вероятно в ближайшее время следует ожидать появления новой версии официального релиза.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;em&gt;Первое число - основная версия, на данный момент «один». Изменение номера основной версии не гарантирует совместимость с предыдущими номерами основных версий проекта. В ближайшем будущем изменение основной версии не планируется;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Второе число - младшая версия, меняется при изменении в функционале библиотеки: добавлении новых методов и классов, улучшении старых, удалении не нужных объектов, с сохранением совместимости с предыдущими версиями в рамках основной версии;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Третье число - содержит информацию о платформе, для которой предназначена сборка. Это целое число, содержащее номер версии &lt;strong&gt;.NET Framework&lt;/strong&gt;;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Четвертое число - номер ревизии в локальной системе контроля версий (номер редакции). Номер может меняться часто и скачками. Этот номер живет своей, отдельной жизнью, не стоит обращать на него особого внимания.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</value>
   </data>
   <data name="DemoTitle" xml:space="preserve">
     <value>Демонстрация работы библиотеки Nemiro.OAuth</value>
@@ -204,7 +255,36 @@
 &lt;p&gt;
   Другие проекты:&lt;br /&gt;
   &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
-&lt;/p&gt;</value>
+&lt;/p&gt;
+&lt;h3&gt;Регистрация и управление приложениями на сайтах поставщиков OAuth&lt;/h3&gt;
+	&lt;p&gt;Amazon:&lt;br /&gt;
+		&lt;a href="http://login.amazon.com/manageApps"&gt;http://login.amazon.com/manageApps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dropbox:&lt;br /&gt;&lt;a href="https://www.dropbox.com/developers/apps"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Facebook:&lt;br /&gt;
+		&lt;a href="https://developers.facebook.com/"&gt;https://developers.facebook.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Foursquare:&lt;br /&gt;&lt;a href="https://foursquare.com/oauth"&gt;https://foursquare.com/oauth&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;GitHub:&lt;br /&gt;
+		&lt;a href="https://github.com/settings/applications/"&gt;https://github.com/settings/applications/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Google:&lt;br /&gt;
+		&lt;a href="https://console.developers.google.com/"&gt;https://console.developers.google.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;LinkedIn:&lt;br /&gt;&lt;a href="https://developer.linkedin.com/"&gt;https://developer.linkedin.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Microsoft Live:&lt;br /&gt;
+		&lt;a href="https://account.live.com/developers/applications/index"&gt;https://account.live.com/developers/applications/index&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Mail.Ru:&lt;br /&gt;
+		&lt;a href="http://api.mail.ru/sites/my/"&gt;http://api.mail.ru/sites/my/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Одноклассники:&lt;br /&gt;
+		&lt;a href="http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev"&gt;http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SoundCloud:&lt;br /&gt;&lt;a href="https://developers.soundcloud.com/"&gt;https://developers.soundcloud.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Twitter:&lt;br /&gt;
+		&lt;a href="https://apps.twitter.com/"&gt;https://apps.twitter.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;ВКонтакте:&lt;br /&gt;
+		&lt;a href="http://vk.com/dev"&gt;http://vk.com/dev&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Yahoo!:&lt;br /&gt;&lt;a href="https://developer.yahoo.com/"&gt;https://developer.yahoo.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Яндекс:&lt;br /&gt;
+		&lt;a href="https://oauth.yandex.ru/client/my"&gt;https://oauth.yandex.ru/client/my&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
   </data>
   <data name="FriendsList" xml:space="preserve">
     <value>Список друзей</value>
@@ -218,6 +298,9 @@
 &lt;p&gt;Код перенаправления на авторизацию можно найти в методе &lt;strong&gt;ExternalLogin&lt;/strong&gt; контроллера &lt;strong&gt;HomeController&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Обработка результатов авторизации производится в методе &lt;strong&gt;ExternalLoginResult&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Попробуйте пройти процедуру авторизации, нажав на любую из кнопок.&lt;/p&gt;</value>
+  </data>
+  <data name="InstallViaNuGet" xml:space="preserve">
+    <value>Установить через &lt;a href="https://www.nuget.org/packages/Nemiro.OAuth/"&gt;NuGet&lt;/a&gt;</value>
   </data>
   <data name="InterestsList" xml:space="preserve">
     <value>Список интересов</value>

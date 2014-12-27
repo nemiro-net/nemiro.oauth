@@ -137,6 +137,15 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DemoHow {
+            get {
+                return ResourceManager.GetString("DemoHow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;p&gt;&lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; is a class library for authorization via &lt;strong&gt;OAuth&lt;/strong&gt; protocol in &lt;strong&gt;.NET Framework. (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
         ///&lt;p&gt;The library is &lt;a href=&quot;https://github.com/alekseynemiro/nemiro.oauth.dll&quot;&gt;open source&lt;/a&gt; and is licensed under the &lt;strong&gt;Apache License Version 2.0&lt;/strong&gt;.&lt;/p&gt;
         ///&lt;p&gt;
@@ -168,8 +177,13 @@ namespace Test.Resources {
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;h2&gt;Technical information&lt;/h2&gt;
-        ///&lt;p&gt;Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
-        ///&lt;p&gt;.NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;.
+        ///&lt;p&gt;Latest release of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;:&lt;/p&gt;
+        ///&lt;h3&gt;v{1}&lt;/h3&gt;
+        ///&lt;p&gt;Version of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; on the current server:&lt;/p&gt;
+        ///&lt;h3&gt;v{0}&lt;/h3&gt;
+        ///&lt;p&gt;NOTE: The version number of the library on the server may differ from the number of the latest release.&lt;/p&gt;
+        ///&lt;ul&gt;&lt;li&gt;&lt;em&gt;The first number - is the major version number. Now it is 1. In the near future the number change is not planned;&lt;/em&gt;&lt;/li&gt;
+        ///&lt;li&gt;&lt;em&gt;The second number - is the minor version number. Is incr [остаток строки не уместился]&quot;;.
         /// </summary>
         public static string DemoTechInfo {
             get {
@@ -199,11 +213,23 @@ namespace Test.Resources {
         ///&lt;p&gt;
         ///  Other projects:&lt;br /&gt;
         ///  &lt;a href=&quot;http://nemiro.net/&quot;&gt;http://nemiro.net/&lt;/a&gt;
-        ///&lt;/p&gt;.
+        ///
+        ///&lt;h3&gt;Registration and management of applications&lt;/h3&gt;
+        ///	&lt;p&gt;Amazon:&lt;br /&gt;
+        ///		&lt;a href=&quot;http://login.amazon.com/manageApps&quot;&gt;http://login.amazon.com/ [остаток строки не уместился]&quot;;.
         /// </summary>
         public static string DemoUsefulLinks {
             get {
                 return ResourceManager.GetString("DemoUsefulLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Download.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
             }
         }
         
@@ -235,6 +261,15 @@ namespace Test.Resources {
         public static string IndexAbout {
             get {
                 return ResourceManager.GetString("IndexAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Install via &lt;a href=&quot;https://www.nuget.org/packages/Nemiro.OAuth/&quot;&gt;NuGet&lt;/a&gt;.
+        /// </summary>
+        public static string InstallViaNuGet {
+            get {
+                return ResourceManager.GetString("InstallViaNuGet", resourceCulture);
             }
         }
         

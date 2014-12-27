@@ -53,7 +53,7 @@ namespace Nemiro.OAuth
     {
       get
       {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
       }
     }
 
@@ -67,7 +67,7 @@ namespace Nemiro.OAuth
     {
       get
       {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
       }
     }
 

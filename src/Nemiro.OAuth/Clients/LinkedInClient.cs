@@ -75,11 +75,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -131,11 +133,10 @@ namespace Nemiro.OAuth.Clients
       // https://developer.linkedin.com/documents/profile-fields
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
+      var result = OAuthUtility.Get
       (
-        method: "GET",
         endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)",
-        authorization: String.Format("Bearer {0}", this.AccessToken["access_token"]),
+        authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"]),
         headers: new NameValueCollection { { "x-li-format", "json" } }
       );
 
@@ -148,7 +149,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("emailAddress", "Email");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

@@ -19,6 +19,8 @@ using System.Linq;
 using System.Text;
 using System.Collections.Specialized;
 using Nemiro.OAuth.Extensions;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace Nemiro.OAuth
 {
@@ -26,6 +28,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the request token results.
   /// </summary>
+	[Serializable]
   public class OAuthRequestToken : RequestResult
   {
 
@@ -116,6 +119,46 @@ namespace Nemiro.OAuth
     {
       return this.OAuthToken;
     }
+
+    #endregion
+		#region ..serialization..
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuthRequestToken"/>.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+    /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    protected OAuthRequestToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
+			_OAuthToken = info.GetString("OAuthToken");
+			_OAuthTokenSecret = info.GetString("OAuthTokenSecret");
+			_AuthorizationUrl = info.GetString("AuthorizationUrl");
+			_OAuthCallbackConfirmed = info.GetBoolean("OAuthCallbackConfirmed");
+    }
+
+    /// <summary>
+    /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+    /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+		public override void GetObjectData(SerializationInfo info, StreamingContext context)
+		{
+			if (info == null)
+			{
+				throw new ArgumentNullException("info");
+			}
+			info.AddValue("OAuthToken", this.OAuthToken);
+			info.AddValue("OAuthTokenSecret", this.OAuthTokenSecret);
+			info.AddValue("AuthorizationUrl", this.AuthorizationUrl);
+			info.AddValue("OAuthCallbackConfirmed", this.OAuthCallbackConfirmed);
+			base.GetObjectData(info, context);
+		}
 
     #endregion
 

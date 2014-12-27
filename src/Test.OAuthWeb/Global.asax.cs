@@ -62,6 +62,7 @@ namespace Test.OAuthWeb
     {
       foreach (string clientName in ConfigurationManager.AppSettings["oauth:clients"].Split(','))
       {
+        if (String.IsNullOrEmpty(clientName)) { continue; }
         if (String.IsNullOrEmpty(ConfigurationManager.AppSettings[String.Format("oauth:{0}:id", clientName)]))
         {
           throw new ArgumentNullException(String.Format(Test.Resources.Strings.ClientIdIsRequired, clientName));

@@ -1,8 +1,10 @@
-﻿using System;
+﻿// (c) Aleksey Nemiro, 2014
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Nemiro.OAuth;
 
 namespace Test.OAuthWeb.Controllers
 {
@@ -11,14 +13,38 @@ namespace Test.OAuthWeb.Controllers
 
     public ActionResult Index()
     {
+      try
+      {
+        if (HttpContext.Cache["LatestRelease"] == null)
+        {
+          var result = OAuthUtility.Get("https://www.nuget.org/api/v2/Search()?$orderby=Id&$skip=0&$top=30&searchTerm=%27Nemiro.OAuth%27&targetFramework=%27%27&includePrerelease=false");
+          ViewBag.Version = result["d"].First()["Version"].ToString();
+          HttpContext.Cache.Add("LatestRelease", ViewBag.Version, null, DateTime.Now.AddHours(1), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Normal, null);
+        }
+        else
+        {
+          ViewBag.Version = HttpContext.Cache["LatestRelease"].ToString();
+        }
+      }
+      catch(Exception ex)
+      {
+        ViewBag.Version = "ERR: " + ex.Message;
+      }
       return View();
     }
 
     [OutputCache(Duration = 1800, Location = System.Web.UI.OutputCacheLocation.ServerAndClient, VaryByParam = "id")]
     public ActionResult Icon(string id)
     {
-      // image from resource
-      return File((byte[])Test.Resources.Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), "image/png");
+      try
+      {
+        // image from resource
+        return File((byte[])Test.Resources.Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), "image/png");
+      }
+      catch
+      {
+        return File((byte[])Test.Resources.Images.ResourceManager.GetObject("error"), "image/png");
+      }
     }
 
     /// <summary>

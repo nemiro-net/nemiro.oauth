@@ -77,11 +77,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -137,13 +139,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://api.github.com/user",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Get("https://api.github.com/user", parameters);
 
       // help: https://developer.github.com/v3/users/#get-the-authenticated-user
 
@@ -157,7 +153,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("avatar_url", "Userpic", typeof(DateTime), @"MM\/dd\/yyyy");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

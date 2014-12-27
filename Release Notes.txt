@@ -2,6 +2,20 @@ Nemiro.OAuth Release Notes
 
 This document summarizes the major changes in recent releases.
 
+v1.5 (December 27, 2014)
+
+In version 1.5 were made significant changes and improvements, 
+which are mainly aimed at simplifying integration with a variety of API.
+
+* Improved transmission parameters in the web request, added support for file transfer;
+* Added support for query: PUT and DELETE;
+* Added methods to perform asynchronous requests;
+* Simplified mechanism for generating and usage of the authorization header;
+* Added support for Unicode to URL encoding method (RFC-3986);  
+* Unified mechanism for handling responses in various data formats (XML, JSON, PLAIN). 
+  Created universal type - UniValue.
+* Added OAuth clients for: Instagram and Tumblr.
+
 v1.4 (November 2, 2014)
 
 * Fixed SSL3 problem, completely;

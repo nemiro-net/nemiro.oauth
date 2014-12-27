@@ -6,7 +6,12 @@ Public Class Icon
 
   Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
     context.Response.ContentType = "image/png"
-    Dim buffer() As Byte = CType(Test.Resources.Images.ResourceManager.GetObject(context.Request.QueryString("id").ToLower().Replace(".", "")), Byte())
+    Dim buffer() As Byte = Nothing
+    Try
+      buffer = CType(Test.Resources.Images.ResourceManager.GetObject(context.Request.QueryString("id").ToLower().Replace(".", "")), Byte())
+    Catch ex As Exception
+      buffer = CType(Test.Resources.Images.ResourceManager.GetObject("error"), Byte())
+    End Try
     context.Response.OutputStream.Write(buffer, 0, buffer.Length)
   End Sub
 

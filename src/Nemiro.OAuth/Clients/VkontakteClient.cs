@@ -482,11 +482,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -562,24 +564,11 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://api.vk.com/method/users.get",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Get("https://api.vk.com/method/users.get", parameters);
 
       if (result.ContainsKey("error"))
       {
-        throw new ApiException
-        (
-          result, 
-          new ApiException
-          (
-            ((Dictionary<string, object>)result["error"])["error_msg"].ToString()
-          )
-        );
+        throw new ApiException(result, result["error"]["error_msg"].ToString());
       }
 
       // field mapping
@@ -594,16 +583,16 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "site", "Url",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null || String.IsNullOrEmpty(value.ToString())) { return null; }
+          if (value.HasValue || String.IsNullOrEmpty(value.ToString())) { return null; }
           return value.ToString().Split(' ').First();
         }
       );
       map.Add
       (
         "sex", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
           if (Convert.ToInt32(value) == 2)
           {
@@ -617,15 +606,16 @@ namespace Nemiro.OAuth.Clients
         }
       );
 
-      // email, thanks to Aleksander (KamAz) Kryatov (http://vk.com/acid_rock)
+      // email, thanks to Aleksander (KamAz) Kryatov (http://vk.com/acid_rock) for idea
       if (this.AccessToken.ContainsKey("email"))
       {
-        ((Dictionary<string, object>)((Array)result["response"]).GetValue(0)).Add("at_email", this.AccessToken["email"]);
+        result["response"].First().Add("at_email", this.AccessToken["email"]);
         map.Add("at_email", "Email", typeof(string));
       }
+      // --
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(((Array)result["response"]).GetValue(0) as Dictionary<string, object>, map);
+      return new UserInfo(result["response"].First(), map);
     }
 
   }

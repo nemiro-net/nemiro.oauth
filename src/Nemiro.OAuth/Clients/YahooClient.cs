@@ -79,11 +79,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -123,11 +125,10 @@ namespace Nemiro.OAuth.Clients
     {
       string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", this.AccessToken["xoauth_yahoo_guid"]);
       
-      var result = OAuthUtility.ExecuteRequest
+      var result = OAuthUtility.Get
       (
-        method:         "GET", 
         endpoint:       url,
-        authorization:  String.Format("Bearer {0}", this.AccessToken["access_token"])
+        authorization:  new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
       );
 
       var map = new ApiDataMapping();
@@ -140,14 +141,14 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "gender", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null) { return Sex.None; }
-          if (value.ToString().Equals("M", StringComparison.OrdinalIgnoreCase))
+          if (!value.HasValue) { return Sex.None; }
+          if (value.Equals("M", StringComparison.OrdinalIgnoreCase))
           {
             return Sex.Male;
           }
-          else if (value.ToString().Equals("F", StringComparison.OrdinalIgnoreCase))
+          else if (value.Equals("F", StringComparison.OrdinalIgnoreCase))
           {
             return Sex.Female;
           }
@@ -157,21 +158,21 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "image", "Userpic",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          return OAuthUtility.GetDictionaryValueOrNull(value, "imageUrl");
+          return Convert.ToString(value["imageUrl"]);
         }
       );
       map.Add
       (
         "phones", "Phone",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          return OAuthUtility.GetDictionaryValueOrNull(value, "number");
+          return Convert.ToString(value["number"]);
         }
       );
 
-      return new UserInfo(result["profile"] as Dictionary<string, object>, map);
+      return new UserInfo(result["profile"], map);
     }
 
     /// <summary>
@@ -198,12 +199,11 @@ namespace Nemiro.OAuth.Clients
       parameters.Add("code", this.AuthorizationCode);
       parameters.Add("grant_type", "authorization_code");
 
-      var result = OAuthUtility.ExecuteRequest
+      var result = OAuthUtility.Post
       (
-        method:         "POST",
         endpoint:       this.AccessTokenUrl,
         parameters:     parameters,
-        authorization:  String.Format("Basic {0}", OAuthUtility.ToBase64String("{0}:{1}", this.ApplicationId, this.ApplicationSecret))
+        authorization:  new HttpAuthorization(AuthorizationType.Basic, OAuthUtility.ToBase64String("{0}:{1}", this.ApplicationId, this.ApplicationSecret))
       );
 
       if (result.ContainsKey("error"))

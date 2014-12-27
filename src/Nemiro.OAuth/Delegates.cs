@@ -22,8 +22,15 @@ namespace Nemiro.OAuth
 {
 
   /// <summary>
-  /// Represents a method that is called for parsing item of the API data.
+  /// Represents a method that is called for parsing item of the <b>API</b> data.
   /// </summary>
-  public delegate object CustomParse(object value);
+  /// <param name="value">The <see cref="UniValue"/> instance to parse.</param>
+  public delegate object CustomParse(UniValue value);
+
+  /// <summary>
+  /// References a method to be called when a corresponding asynchronous web request completes.
+  /// </summary>
+  /// <param name="result">The result of the asynchronous web request.</param>
+  public delegate void ExecuteRequestAsyncCallback(RequestResult result);
 
 }

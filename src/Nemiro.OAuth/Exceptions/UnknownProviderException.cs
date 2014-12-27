@@ -24,6 +24,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception occurs when you try to access a provider by provider name. If the name is incorrect, or does not exist.
   /// </summary>
+	[Serializable]
   public class UnknownProviderException : Exception
   {
 

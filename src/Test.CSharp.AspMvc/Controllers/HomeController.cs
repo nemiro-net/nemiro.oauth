@@ -21,7 +21,14 @@ namespace Test.CSharp.AspMvc.Controllers
     public ActionResult Icon(string id)
     {
       // image from resource
-      return File((byte[])Test.Resources.Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), "image/png");
+      try
+      {
+        return File((byte[])Test.Resources.Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), "image/png");
+      }
+      catch
+      {
+        return File((byte[])Test.Resources.Images.ResourceManager.GetObject("error"), "image/png");
+      }
     }
 
     /// <summary>

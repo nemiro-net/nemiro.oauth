@@ -22,6 +22,10 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Web.Script.Serialization;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.IO;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace Nemiro.OAuth
 {
@@ -29,129 +33,158 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the base class for results of remote requests.
   /// </summary>
-  public class RequestResult
+  [Serializable]
+  public class RequestResult : UniValue
   {
 
     #region ..fields & properties..
 
     /// <summary>
+    /// Gets or sets the HTTP status code of the output returned to the client.
+    /// </summary>
+    public int StatusCode { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the current request result is successful or not.
+    /// </summary>
+    /// <remarks>
+    /// <para>Successful result - is a response code from <b>200</b> to <b>299</b>.</para>
+    /// </remarks>
+    public bool IsSuccessfully
+    {
+      get
+      {
+        return this.StatusCode >= 200 && this.StatusCode <= 299;
+      }
+    }
+
+    /// <summary>
     /// Gets or sets the content type of the response.
     /// </summary>
-    protected internal string ContentType { get; protected set; }
+    public string ContentType { get; protected set; }
+
+    /// <summary>
+    /// Gets or sets the http headers of the response.
+    /// </summary>
+    public NameValueCollection HttpHeaders { get; protected set; }
+
+    /// <summary>
+    /// Gets the <c>Content-Disposition</c> header of the response.
+    /// </summary>
+    public string ContentDisposition
+    {
+      get
+      {
+        return this.HttpHeaders["Content-Disposition"];
+      }
+    }
+
+    /// <summary>
+    /// Gets the file name, if <see cref="Result"/> is file.
+    /// </summary>
+    public string FileName
+    {
+      get
+      {
+        if (String.IsNullOrEmpty(this.ContentDisposition)) { return null; }
+        return Regex.Match(this.ContentDisposition, @"filename=(?<fn>[^\;]+)", RegexOptions.IgnoreCase | RegexOptions.Singleline).Groups["fn"].Value;
+      }
+    }
 
     /// <summary>
     /// Gets or sets the source of the response.
     /// </summary>
-    public string Source { get; protected set; }
+    public byte[] Source { get; protected set; }
 
     /// <summary>
-    /// Gets or sets the processed result of the response.
+    /// Gets a value indicating the <see cref="Result"/> is file or not.
     /// </summary>
-    public object Result { get; protected set; }
-
-    /// <summary>
-    /// Gets the value associated with the specified key of the <see cref="Result"/>.
-    /// </summary>
-    /// <param name="key">The key of the value to get.</param>
-    public object this[string key]
+    public bool IsFile
     {
       get
       {
-        if (this.IsNameValueCollection)
-        {
-          return ((NameValueCollection)this.Result)[key];
-        }
-        else if (this.IsDictionary)
-        {
-          return ((Dictionary<string, object>)this.Result)[key];
-        }
-        else if (this.IsArray)
-        {
-          return ((Array)this.Result).GetValue(Convert.ToInt32(key));
-        }
-        return this.Result.GetType().GetProperty(key).GetValue(this, null);
+        return base.IsBinary && !String.IsNullOrEmpty(this.ContentDisposition);
       }
     }
 
     /// <summary>
-    /// Gets the value associated with the specified index of the <see cref="Result"/>.
-    /// </summary>
-    /// <param name="index">The index of the value to get.</param>
-    public object this[int index]
-    {
-      get
-      {
-        if (this.IsNameValueCollection)
-        {
-          return ((NameValueCollection)this.Result)[index];
-        }
-        else if (this.IsDictionary)
-        {
-          return ((Dictionary<string, object>)this.Result)[index.ToString()];
-        }
-        else if (this.IsArray)
-        {
-          return ((Array)this.Result).GetValue(index);
-        }
-        return this.Result.GetType().GetProperties()[index].GetValue(this, null);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the <see cref="Result"/> is array or not.
-    /// </summary>
-    public bool IsArray
-    {
-      get
-      {
-        return this.Result.GetType().IsArray;
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the <see cref="Result"/> is <see cref="Dictionary&lt;TKey, TValue&gt;"/> or not.
-    /// </summary>
-    public bool IsDictionary
-    {
-      get
-      {
-        return this.Result.GetType() == typeof(Dictionary<string, object>);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the <see cref="Result"/> is <see cref="NameValueCollection"/> or not.
-    /// </summary>
-    public bool IsNameValueCollection
-    {
-      get
-      {
-        return this.Result.GetType() == typeof(NameValueCollection);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the <see cref="NameValueCollection"/> is XML or not.
-    /// </summary>
-    public bool IsXml
-    {
-      get
-      {
-        return this.Result.GetType() == typeof(XDocument);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the <see cref="NameValueCollection"/> is empty or not.
+    /// Gets a value indicating whether the <see cref="Result"/> is empty or not.
     /// </summary>
     public bool IsEmpty
     {
       get
       {
-        return this.Result == null;
+        return !base.HasValue;
       }
     }
-    
+
+    #region [obsolete]
+
+    /// <summary>
+    /// Gets or sets the processed result of the response.
+    /// </summary>
+    [Obsolete("No need. Use current class instance. // v1.5", false)]
+    public UniValue Result
+    {
+      get
+      {
+        return this;
+      }
+      protected set
+      {
+        this.Data = value;
+      }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the <see cref="Result"/> is <see cref="NameValueCollection"/> or not.
+    /// </summary>
+    [Obsolete("Please use IsCollection. // v1.5", false)]
+    public bool IsNameValueCollection
+    {
+      get
+      {
+        return base.IsCollection;
+      }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the <see cref="Result"/> is <see cref="Dictionary&lt;TKey, TValue&gt;"/> or not.
+    /// </summary>
+    [Obsolete("Please use IsCollection. // v1.5", false)]
+    public bool IsDictionary
+    {
+      get
+      {
+        return base.IsCollection;
+      }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the <see cref="Result"/> is XML or not.
+    /// </summary>
+    [Obsolete("Please use IsCollection. // v1.5", false)]
+    public bool IsXml
+    {
+      get
+      {
+        return base.IsCollection;
+      }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the <see cref="Result"/> is array or not.
+    /// </summary>
+    [Obsolete("Please use IsCollection. // v1.5", false)]
+    public bool IsArray
+    {
+      get
+      {
+        return base.IsCollection;
+      }
+    }
+
+    #endregion
     #endregion
     #region ..constructor..
 
@@ -165,22 +198,34 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("result");
       }
+
       this.Source = result.Source;
-      this.Result = result.Result;
+      this.Data = result.Data;
       this.ContentType = result.ContentType;
+      this.HttpHeaders = result.HttpHeaders;
+      this.StatusCode = result.StatusCode;
     }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RequestResult"/> class.
     /// </summary>
     /// <param name="contentType">The content type of the response.</param>
-    /// <param name="source">The source  of the response.</param>
-    public RequestResult(string contentType, string source)
+    /// <param name="source">The source of the response.</param>
+    [Obsolete("Please use an overloads. // v1.5", false)]
+    public RequestResult(string contentType, string source) : this(contentType, Encoding.UTF8.GetBytes(source), null, 0) { }
+    
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RequestResult"/> class.
+    /// </summary>
+    /// <param name="contentType">The content type of the response.</param>
+    /// <param name="source">The source of the response.</param>
+    /// <param name="httpHeaders">The HTTP headers of the response.</param>
+    /// <param name="statusCode">The HTTP status code of the response.</param>
+    public RequestResult(string contentType = null, byte[] source = null, NameValueCollection httpHeaders = null, int statusCode = 0)
     {
       if (String.IsNullOrEmpty(contentType))
       {
         contentType = "text/plain";
-        //throw new ArgumentNullException("contentType");
       }
 
       if (contentType.IndexOf(";") != -1)
@@ -188,13 +233,12 @@ namespace Nemiro.OAuth
         contentType = contentType.Substring(0, contentType.IndexOf(";"));
       }
 
+      this.StatusCode = statusCode;
+      this.HttpHeaders = httpHeaders;
       this.Source = source;
       this.ContentType = contentType;
-
-      if (!String.IsNullOrEmpty(source))
-      {
-        this.ParseSource(contentType, source);
-      }
+      
+      this.ParseSource();
     }
 
     #endregion
@@ -203,81 +247,94 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Parses the source to the <see cref="Result"/>.
     /// </summary>
-    /// <param name="contentType">The content type of the response.</param>
-    /// <param name="source">The source  of the response.</param>
-    private void ParseSource(string contentType, string source)
+    private void ParseSource()
     {
-      switch (contentType.ToLower())
+      if (this.Source == null || this.Source.Length <= 0) { return; }
+      switch (this.ContentType.ToLower())
       {
         case "text/json":
         case "text/javascript":
         case "application/json":
         case "application/javascript":
-          this.Result = new JavaScriptSerializer().DeserializeObject(source);
+          this.Data = UniValue.ParseJson(Encoding.UTF8.GetString(this.Source)).Data;
           break;
 
         case "text/xml":
         case "application/xml":
         case "application/atom+xml":
         case "application/atomsvc+xml":
-          this.Result = XDocument.Parse(source);
+          this.Data = UniValue.ParseXml(Encoding.UTF8.GetString(this.Source)).Data;
           break;
 
         case "text/html":
         case "text/plain":
         case "application/x-www-form-urlencoded": // for some cases
-          if (Regex.IsMatch(source, @"([^\x3D]+)=([^\x26]*)", RegexOptions.Multiline | RegexOptions.Singleline | RegexOptions.IgnoreCase))
+          UniValue r = UniValue.Empty;
+          if (UniValue.TryParseParameters(Encoding.UTF8.GetString(this.Source), out r))
           {
-            NameValueCollection items = new NameValueCollection();
-            foreach (string q in source.Split('&'))
-            {
-              string[] p = q.Split('=');
-              string key = p.First(), value = (p.Length > 1 ? p.Last() : "");
-              items.Add(key, value);
-            }
-            this.Result = items;
+            this.Data = r.Data;
           }
           else
           {
-            this.Result = source;
+            this.Data = UniValue.Create(Encoding.UTF8.GetString(this.Source)).Data;
           }
           break;
 
         default:
-          throw new NotSupportedException(String.Format("Content-Type \"{0}\" not suppored.", contentType));
+          this.Data = UniValue.Create(this.Source).Data;
+          break;
       }
+    }
+
+    #endregion
+    #region ..iserializable..
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RequestResult"/>.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+    /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    protected RequestResult(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+      this.StatusCode = info.GetInt32("StatusCode");
+      this.ContentType = info.GetString("ContentType");
+      this.HttpHeaders = (NameValueCollection)info.GetValue("HttpHeaders", typeof(NameValueCollection));
+      this.Source = (byte[])info.GetValue("Source", typeof(byte[]));
     }
 
     /// <summary>
-    /// Determines whether the <see cref="Result"/> contains the specified key.
+    /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
     /// </summary>
-    /// <param name="key">The key to locate in the <see cref="Result"/>.</param>
-    /// <returns><b>true</b> if the <see cref="Result"/> contains an element with the specified key; otherwise, <b>false</b>.</returns>
-    public bool ContainsKey(string key)
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+    /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
-      if (this.IsNameValueCollection)
+      if (info == null)
       {
-        return ((NameValueCollection)this.Result).AllKeys.Any(itm => itm.Equals(key, StringComparison.OrdinalIgnoreCase));
+        throw new ArgumentNullException("info");
       }
-      else if (this.IsDictionary)
-      {
-        return ((Dictionary<string, object>)this.Result).ContainsKey(key);
-      }
-      else if (this.IsArray)
-      {
-        return ((Array)this.Result).Length <= Convert.ToInt32(key);
-      }
-      return this.Result.GetType().GetProperty(key) != null;
+      info.AddValue("StatusCode", this.StatusCode);
+      info.AddValue("ContentType", this.ContentType);
+      info.AddValue("HttpHeaders", this.HttpHeaders);
+      info.AddValue("Source", this.Source);
+      base.GetObjectData(info, context);
     }
 
-    /// <summary>
-    /// Returs the <see cref="Source"/>.
-    /// </summary>
-    public override string ToString()
+    #endregion
+    #region ..operators..
+    /*
+    public static explicit operator byte[](RequestResult value)
     {
-      return this.Source;
+      return value.Source;
     }
 
+    public static explicit operator Stream(RequestResult value)
+    {
+      return new MemoryStream(value.Source);
+    }
+    */
     #endregion
 
   }

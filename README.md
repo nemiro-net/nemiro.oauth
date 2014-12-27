@@ -25,17 +25,20 @@ http://demo-oauth.nemiro.net/
   + Foursquare
   + GitHub 
   + Google 
+  + Instagram
   + LinkedIn 
   + Microsoft Live 
   + Mail.Ru 
   + Odnoklassniki (odnoklassniki.ru)
-  + SoundCloud 
+  + SoundCloud
+  + Tumblr
   + Twitter 
   + VK (vkontakte, vk.com) 
   + Yahoo! 
   + Yandex (yandex.ru) 
 * Base classes to create additional clients; 
-* Basic principles of operation with API of different providers. 
+* Basic principles of operation with API of different providers;
+* Unified mechanisms to facilitate integration with a variety of API.
 
 Less code, more functionality!
 
@@ -46,9 +49,9 @@ Less code, more functionality!
 
 ### How to use
 
-``1.`` Create an application at the **OAuth** provider site.
+1\. Create an application at the **OAuth** provider site.
 
-``2.`` Use these credentials for registration of an **OAuth** client in your project.
+2\. Use these credentials for registration of an **OAuth** client in your project.
 
 For example, **Facebook**:
 
@@ -72,7 +75,7 @@ OAuthManager.RegisterClient _
 )
 ```
 
-``3.`` Create a page to handle the callback. And add code to obtain user data with external server.
+3\. Create a page to handle the callback. And add code to obtain user data with external server.
 
 For example:
 
@@ -120,7 +123,7 @@ Public Class ExternalLoginResult
 End Class
 ```
 
-``4.`` Get the address for authentication and redirect the user to it.
+4\. Get the address for authentication and redirect the user to it.
 
 **C#**
 ```C#
@@ -134,7 +137,7 @@ Dim returnUrl As String = New Uri(Request.Url, "ExternalLoginResult.aspx").Absol
 OAuthWeb.RedirectToAuthorization("facebook", returnUrl)
 ```
 
-``5.`` Enjoy!
+5\. Enjoy!
 
 ### See Also
 

@@ -24,7 +24,7 @@ Public Class VkontakteFriends
       Nothing
     )
 
-    For Each itm As Dictionary(Of String, Object) In CType(result("response"), Array)
+    For Each itm As UniValue In result("response")
       Dim friendName As String = ""
       If itm.ContainsKey("first_name") AndAlso itm.ContainsKey("last_name") Then
         friendName = String.Format("{0} {1}", itm("first_name"), itm("last_name"))

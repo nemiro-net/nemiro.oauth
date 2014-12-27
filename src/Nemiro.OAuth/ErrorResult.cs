@@ -15,7 +15,9 @@
 // ----------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Nemiro.OAuth
@@ -24,14 +26,46 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the error results of the query.
   /// </summary>
+	[Serializable]
   public class ErrorResult : RequestResult
   {
+
+    /// <summary>
+    /// Gets a value indicating whether the current request result is successful or not.
+    /// </summary>
+    /// <remarks>Always has the value <b>false</b>.</remarks>
+    public new bool IsSuccessfully
+    {
+      get
+      {
+        return false;
+      }
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ErrorResult"/> class.
     /// </summary>
     /// <param name="result">The request results.</param>
     public ErrorResult(RequestResult result) : base(result) {  }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmptyResult"/>.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+    /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+		protected ErrorResult(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    
+    /// <summary>
+    /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+    /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+      base.GetObjectData(info, context);
+    }
 
   }
 

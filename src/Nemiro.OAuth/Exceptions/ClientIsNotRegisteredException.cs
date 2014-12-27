@@ -71,6 +71,7 @@ namespace Nemiro.OAuth
   /// ' ...
   /// </code>
   /// </example>
+	[Serializable]
   public class ClientIsNotRegisteredException : Exception
   {
 

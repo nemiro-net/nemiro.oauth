@@ -184,11 +184,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -240,13 +242,7 @@ namespace Nemiro.OAuth.Clients
         { "access_token" , this.AccessToken["access_token"].ToString() }
       };
 
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://apis.live.net/v5.0/me",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Get("https://apis.live.net/v5.0/me", parameters);
 
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));
@@ -259,9 +255,9 @@ namespace Nemiro.OAuth.Clients
       (
         "birth_day",
         "Birthday",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null) { return null; }
+          if (!value.HasValue) { return null; }
           return new DateTime
           (
             Convert.ToInt32(result["birth_year"]),
@@ -275,10 +271,9 @@ namespace Nemiro.OAuth.Clients
       (
         "emails",
         "Email",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>) || !((Dictionary<string, object>)value).ContainsKey("preferred")) { return null; }
-          return ((Dictionary<string, object>)value)["preferred"];
+          return Convert.ToString(value["preferred"]);
         }
       );
 
@@ -286,34 +281,33 @@ namespace Nemiro.OAuth.Clients
       (
         "phones",
         "Phone",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value == null || value.GetType() != typeof(Dictionary<string, object>) || !((Dictionary<string, object>)value).ContainsKey("mobile")) { return null; }
-          return ((Dictionary<string, object>)value)["mobile"];
+          return Convert.ToString(value["mobile"]);
         }
       );
 
       map.Add
       (
         "gender", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value != null)
+          if (value.Equals("male", StringComparison.OrdinalIgnoreCase))
           {
-            if (value.ToString().Equals("male", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Male;
-            }
-            else if (value.ToString().Equals("female", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Female;
-            }
+            return Sex.Male;
           }
-          return Sex.None;
+          else if (value.Equals("female", StringComparison.OrdinalIgnoreCase))
+          {
+            return Sex.Female;
+          }
+          else
+          {
+            return Sex.None;
+          }
         }
       );
 
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

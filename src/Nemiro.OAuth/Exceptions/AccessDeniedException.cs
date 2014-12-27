@@ -24,6 +24,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception that is thrown when a resource owner or authorization server denied the request.
   /// </summary>
+	[Serializable]
   public class AccessDeniedException : AuthorizationException
   {
 

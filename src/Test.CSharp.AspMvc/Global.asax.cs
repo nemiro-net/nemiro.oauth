@@ -46,6 +46,9 @@ namespace Test.CSharp.AspMvc
           "1435890426686808",
           "c6057dfae399beee9e8dc46a4182e8fd"
         )
+        {
+          Scope = "public_profile,email,user_groups,user_likes,user_interests"
+        }
       );
 
       OAuthManager.RegisterClient
@@ -93,7 +96,7 @@ namespace Test.CSharp.AspMvc
         )
       );
 
-      OAuthManager.RegisterClient
+      /*OAuthManager.RegisterClient
       (
         new OdnoklassnikiClient
         (
@@ -101,7 +104,7 @@ namespace Test.CSharp.AspMvc
           "CC85541E6B8A3EF53E8FCBD3",
           "CBAPHNCCEBABABABA"
         )
-      );
+      );*/
 
       OAuthManager.RegisterClient
       (
@@ -136,6 +139,24 @@ namespace Test.CSharp.AspMvc
         (
           "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
           "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+        )
+      );
+
+      OAuthManager.RegisterClient
+      (
+        new TumblrClient
+        (
+          "2EZbsj2oF8OAouPlDWSVnESetAchImzPLV4q0IcQH7DGKECuzJ",
+          "4WZ3HBDwNuz5ZDZY8qyK1qA5QFHEJY7gkPK6ooYFCN4yw6crKd"
+        )
+      );
+
+      OAuthManager.RegisterClient
+      (
+        new InstagramClient
+        (
+          "215a1941ebed4e4fa74e94dd84762836",
+          "ba53a710e1624870bc066e7a9ae38601"
         )
       );
     }

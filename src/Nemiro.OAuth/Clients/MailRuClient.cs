@@ -319,11 +319,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -398,16 +400,11 @@ namespace Nemiro.OAuth.Clients
 
       parameters["sig"] = OAuthUtility.GetMD5Hash(signatureBaseString + this.ApplicationSecret);
 
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "POST",
-        "http://www.appsmail.ru/platform/api",
-        parameters
-      );
+      var result = OAuthUtility.Post("http://www.appsmail.ru/platform/api", parameters);
 
-      if (!result.IsArray)
+      if (!result.IsCollection)
       {
-        throw new ApiException(result, "Expected one-dimensional array."); //Ожидается одномерный массив.
+        throw new ApiException(result, "Expected one-dimensional array."); // expected one-dimensional array.
       }
 
       var map = new ApiDataMapping();
@@ -423,7 +420,7 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "sex", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
           if (Convert.ToInt32(value) == 0)
           {
@@ -437,7 +434,7 @@ namespace Nemiro.OAuth.Clients
         }
       );
 
-      return new UserInfo(result[0] as Dictionary<string, object>, map);
+      return new UserInfo(result.First(), map);
     }
 
   }

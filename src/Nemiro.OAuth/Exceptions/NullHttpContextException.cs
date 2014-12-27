@@ -27,7 +27,8 @@ namespace Nemiro.OAuth
   /// <remarks>
   /// <para>The exception that is thrown when you try to access methods that are designed for web projects.</para>
   /// </remarks>
-  public class NullHttpContextException : Exception
+	[Serializable]
+	public class NullHttpContextException : Exception
   {
     
     /// <summary>

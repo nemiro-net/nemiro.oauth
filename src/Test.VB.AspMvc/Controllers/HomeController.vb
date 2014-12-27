@@ -16,7 +16,7 @@ Namespace Test.VB.AspMvc
       Try
         Return File(CType(Images.ResourceManager.GetObject(id.ToLower().Replace(".", "")), Byte()), "image/png")
       Catch ex As Exception
-        Return Nothing
+        Return File(CType(Images.ResourceManager.GetObject("error"), Byte()), "image/png")
       End Try
     End Function
 

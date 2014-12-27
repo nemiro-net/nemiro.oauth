@@ -194,11 +194,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -245,12 +247,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://api.amazon.com/user/profile",
-        parameters
-      );
+      var result = OAuthUtility.Get("https://api.amazon.com/user/profile", parameters);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -259,7 +256,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("email", "Email");
 
       // parse the server response and returns user info
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

@@ -16,6 +16,8 @@ End Code
     @:  </a>
     @:</li>
   Next
+  <li><img src="@Url.Action("Icon", New With {.id = "empty"})" alt="empty" title="" width="100" height="100" /></li>
+	<li><img src="@Url.Action("Icon", New With { .id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
 </ul>
 
 <div class="clear"></div>

@@ -281,11 +281,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -357,13 +359,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "GET",
-        "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json", parameters);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -378,25 +374,25 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "gender", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value != null)
+          if (value.Equals("male", StringComparison.OrdinalIgnoreCase))
           {
-            if (value.ToString().Equals("male", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Male;
-            }
-            else if (value.ToString().Equals("female", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Female;
-            }
+            return Sex.Male;
           }
-          return Sex.None;
+          else if (value.Equals("female", StringComparison.OrdinalIgnoreCase))
+          {
+            return Sex.Female;
+          }
+          else
+          {
+            return Sex.None;
+          }
         }
       );
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

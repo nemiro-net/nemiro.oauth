@@ -19,7 +19,7 @@ Public Class ExternalLoginResult
       preResult.InnerHtml += result.ErrorInfo.ToString()
       If result.ErrorInfo.InnerException IsNot Nothing Then
         If result.ErrorInfo.GetType() Is GetType(RequestException) Then
-          preResult.InnerHtml += CType(result.ErrorInfo, RequestException).RequestResult.Source & "<br /><br />"
+          preResult.InnerHtml += CType(result.ErrorInfo, RequestException).RequestResult.ToString() & "<br /><br />"
           preResult.InnerHtml += result.ErrorInfo.InnerException.ToString()
         Else
           preResult.InnerHtml += result.ErrorInfo.InnerException.ToString()

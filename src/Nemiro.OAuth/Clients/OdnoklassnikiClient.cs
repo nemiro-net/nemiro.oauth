@@ -100,14 +100,6 @@ namespace Nemiro.OAuth.Clients
   ///   )
   /// )
   /// </code>
-  /// <list type="table">
-  /// <item>
-  /// <term><img src="../img/warning.png" alt="(!)" title="" /></term>
-  /// <term>
-  /// <b>Odnoklassniki does not support the "state". For this to work, you must always specify a return URL.</b>
-  /// </term>
-  /// </item>
-  /// </list>
   /// <para>
   /// For more details, please visit to the <see href="http://apiok.ru/wiki/pages/viewpage.action?pageId=42476300">Odnoklassniki API Documentation</see>.
   /// </para>
@@ -513,11 +505,13 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -547,8 +541,7 @@ namespace Nemiro.OAuth.Clients
     /// <param name="clientId">The Client ID.</param>
     /// <param name="clientSecret">The Client Secret.</param>
     /// <param name="publickKey">The Public Key.</param>
-    public OdnoklassnikiClient(string clientId, string clientSecret, string publickKey)
-      : base
+    public OdnoklassnikiClient(string clientId, string clientSecret, string publickKey) : base
     (
       "https://www.odnoklassniki.ru/oauth/authorize",
       "http://api.odnoklassniki.ru/oauth/token.do", 
@@ -585,16 +578,10 @@ namespace Nemiro.OAuth.Clients
       parameters["access_token"] = ((OAuth2AccessToken)this.AccessToken).Value;
 
       // execute the request
-      var result = OAuthUtility.ExecuteRequest
-      (
-        "POST",
-        "http://api.odnoklassniki.ru/fb.do",
-        parameters,
-        null
-      );
+      var result = OAuthUtility.Post("http://api.odnoklassniki.ru/fb.do", parameters);
 
       // error result
-      if (result.ContainsKey("error_code"))
+      if (result["error_code"].HasValue)
       {
         throw new ApiException
         (
@@ -618,24 +605,21 @@ namespace Nemiro.OAuth.Clients
       map.Add
       (
         "gender", "Sex",
-        delegate(object value)
+        delegate(UniValue value)
         {
-          if (value != null)
+          if (value.Equals("male", StringComparison.OrdinalIgnoreCase))
           {
-            if (value.ToString().Equals("male", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Male;
-            }
-            else if (value.ToString().Equals("female", StringComparison.OrdinalIgnoreCase))
-            {
-              return Sex.Female;
-            }
+            return Sex.Male;
+          }
+          else if (value.Equals("female", StringComparison.OrdinalIgnoreCase))
+          {
+            return Sex.Female;
           }
           return Sex.None;
         }
       );
 
-      return new UserInfo(result.Result as Dictionary<string, object>, map);
+      return new UserInfo(result, map);
     }
 
   }

@@ -106,14 +106,12 @@ namespace Nemiro.OAuth
       if (String.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
 
       this.RequestTokenUrl = requestTokenUrl;
-
-      this.Authorization["oauth_consumer_key"] = consumerKey;
-      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
-      this.Authorization["oauth_signature"] = "";
-      this.Authorization["oauth_signature_method"] = signatureMethod;
-      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
-      this.Authorization["oauth_token"] = "";
-      this.Authorization["oauth_version"] = "1.0";
+       
+      this.Authorization.ConsumerSecret = consumerSecret;
+      this.Authorization.ConsumerKey = consumerKey;
+      this.Authorization.SignatureMethod = signatureMethod;
+      this.Authorization.Signature = "";
+      this.Authorization.Token = "";
     }
 
     #endregion
@@ -123,7 +121,7 @@ namespace Nemiro.OAuth
     /// Gets base string of the signature for current request.
     /// </summary>
     /// <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
-    [Obsolete("Use OAuthUtility.", false)]
+    [Obsolete("Use OAuthUtility. // v1.4", false)]
     private string GetSignatureBaseString(string httpMethod, Uri url, NameValueCollection parameters)
     {
       return OAuthUtility.GetSignatureBaseString(httpMethod, url, parameters, this.Authorization);
@@ -136,7 +134,7 @@ namespace Nemiro.OAuth
     /// <param name="url">The request URI.</param>
     /// <param name="tokenSecret">The token secret.</param>
     /// <param name="parameters">The query parameters.</param>
-    [Obsolete("Use OAuthUtility.", false)]
+    [Obsolete("Use OAuthUtility. // v1.4", false)]
     public OAuthSignature GetSignature(string httpMethod, Uri url, string tokenSecret, NameValueCollection parameters)
     {
       return OAuthUtility.GetSignature(httpMethod, url, this.ApplicationSecret, tokenSecret, parameters, this.Authorization);
@@ -145,13 +143,13 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets the request token from the remote server.
     /// </summary>
-    public void GetRequestToken()
+    public virtual void GetRequestToken()
     {
-      this.UpdateStamp();
+      this.Authorization.PrepareForRequestToken();
 
       if (!String.IsNullOrEmpty(this.ReturnUrl))
       {
-        this.Authorization["oauth_callback"] = String.Format
+        this.Authorization.Callback = String.Format
         (
           "{0}{1}state={2}", 
           this.ReturnUrl, 
@@ -159,13 +157,6 @@ namespace Nemiro.OAuth
           this.State
         );
       }
-      else
-      {
-        this.Authorization.Parameters.Remove("oauth_callback");
-      }
-
-      this.Authorization.SetSignature("POST", new Uri(this.RequestTokenUrl), this.ApplicationSecret, "", null);
-      //this.Authorization["oauth_signature"] = this.GetSignature("POST", new Uri(this.RequestTokenUrl), "", null);
 
       _RequestToken = new OAuthRequestToken
       (
@@ -173,8 +164,8 @@ namespace Nemiro.OAuth
         (
           "POST", 
           this.RequestTokenUrl, 
-          null, 
-          this.Authorization.ToString()
+          null,
+          this.Authorization
         ), 
         this.AuthorizeUrl,
         this.Parameters
@@ -187,21 +178,12 @@ namespace Nemiro.OAuth
     protected override void GetAccessToken()
     {
       base.GetAccessToken();
-      
-      this.Authorization.Parameters.Remove("oauth_signature");
 
-      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
-      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
-      this.Authorization["oauth_verifier"] =this.AuthorizationCode;
-      this.Authorization["oauth_token"] = this.RequestToken.OAuthToken;
-      this.Authorization.SetSignature
-      (
-        "POST",
-        new Uri(this.AccessTokenUrl),
-        this.ApplicationSecret,
-        this.Authorization["oauth_token"].ToString(),
-        null
-      );
+      this.Authorization.PrepareForAccessToken();
+
+      this.Authorization.Verifier = this.AuthorizationCode;
+      this.Authorization.Token = this.RequestToken.OAuthToken;
+      this.Authorization.TokenSecret = this.RequestToken.OAuthTokenSecret;
 
       base.AccessToken = new OAuthAccessToken
       (
@@ -210,20 +192,11 @@ namespace Nemiro.OAuth
           "POST", 
           this.AccessTokenUrl, 
           null, 
-          this.Authorization.ToString()
+          this.Authorization
         )
       );
 
-      this.Authorization.Parameters.Remove("oauth_verifier");
-    }
-
-    /// <summary>
-    /// Updates the nonce and timestamp.
-    /// </summary>
-    private void UpdateStamp()
-    {
-      this.Authorization["oauth_nonce"] = OAuthUtility.GetRandomKey();
-      this.Authorization["oauth_timestamp"] = OAuthUtility.GetTimeStamp();
+      this.Authorization.Remove("oauth_verifier");
     }
 
     #endregion

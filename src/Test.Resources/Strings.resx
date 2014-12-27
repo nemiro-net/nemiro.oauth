@@ -145,6 +145,9 @@
   <data name="DemoFeedback" xml:space="preserve">
     <value>&lt;p&gt;If something is not working or is not working properly, please &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;</value>
   </data>
+  <data name="DemoHow" xml:space="preserve">
+    <value />
+  </data>
   <data name="DemoIntro" xml:space="preserve">
     <value>&lt;p&gt;&lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; is a class library for authorization via &lt;strong&gt;OAuth&lt;/strong&gt; protocol in &lt;strong&gt;.NET Framework. (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The library is &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;open source&lt;/a&gt; and is licensed under the &lt;strong&gt;Apache License Version 2.0&lt;/strong&gt;.&lt;/p&gt;
@@ -167,8 +170,15 @@
   </data>
   <data name="DemoTechInfo" xml:space="preserve">
     <value>&lt;h2&gt;Technical information&lt;/h2&gt;
-&lt;p&gt;Nemiro.OAuth:&lt;br /&gt;v{0}&lt;/p&gt;
-&lt;p&gt;.NET Framework:&lt;br /&gt;v{1}&lt;/p&gt;</value>
+&lt;p&gt;Latest release of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;:&lt;/p&gt;
+&lt;h3&gt;v{1}&lt;/h3&gt;
+&lt;p&gt;Version of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; on the current server:&lt;/p&gt;
+&lt;h3&gt;v{0}&lt;/h3&gt;
+&lt;p&gt;NOTE: The version number of the library on the server may differ from the number of the latest release.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;em&gt;The first number - is the major version number. Now it is 1. In the near future the number change is not planned;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The second number - is the minor version number. Is incremented when only minor features or significant fixes have been added. While maintaining compatibility with previous versions.;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The third number - is the version of the &lt;strong&gt;.NET Framework&lt;/strong&gt;;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The fourth number - is the revision number in local revision control system.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</value>
   </data>
   <data name="DemoTitle" xml:space="preserve">
     <value>Nemiro.OAuth demo site</value>
@@ -186,7 +196,37 @@ Documentation:&lt;br /&gt;
 &lt;p&gt;
   Other projects:&lt;br /&gt;
   &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
+
+&lt;h3&gt;Registration and management of applications&lt;/h3&gt;
+	&lt;p&gt;Amazon:&lt;br /&gt;
+		&lt;a href="http://login.amazon.com/manageApps"&gt;http://login.amazon.com/manageApps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dropbox:&lt;br /&gt;&lt;a href="https://www.dropbox.com/developers/apps"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Facebook:&lt;br /&gt;
+		&lt;a href="https://developers.facebook.com/"&gt;https://developers.facebook.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Foursquare:&lt;br /&gt;&lt;a href="https://foursquare.com/oauth"&gt;https://foursquare.com/oauth&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;GitHub:&lt;br /&gt;
+		&lt;a href="https://github.com/settings/applications/"&gt;https://github.com/settings/applications/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Google:&lt;br /&gt;
+		&lt;a href="https://console.developers.google.com/"&gt;https://console.developers.google.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;LinkedIn:&lt;br /&gt;&lt;a href="https://developer.linkedin.com/"&gt;https://developer.linkedin.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Microsoft Live:&lt;br /&gt;
+		&lt;a href="https://account.live.com/developers/applications/index"&gt;https://account.live.com/developers/applications/index&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Mail.Ru:&lt;br /&gt;
+		&lt;a href="http://api.mail.ru/sites/my/"&gt;http://api.mail.ru/sites/my/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Odnoklassniki:&lt;br /&gt;
+		&lt;a href="http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev"&gt;http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SoundCloud:&lt;br /&gt;&lt;a href="https://developers.soundcloud.com/"&gt;https://developers.soundcloud.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Twitter:&lt;br /&gt;
+		&lt;a href="https://apps.twitter.com/"&gt;https://apps.twitter.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;VKontakte:&lt;br /&gt;
+		&lt;a href="http://vk.com/dev"&gt;http://vk.com/dev&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Yahoo!:&lt;br /&gt;&lt;a href="https://developer.yahoo.com/"&gt;https://developer.yahoo.com/&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;Yandex:&lt;br /&gt;
+		&lt;a href="https://oauth.yandex.ru/client/my"&gt;https://oauth.yandex.ru/client/my&lt;/a&gt;&lt;/p&gt;
 &lt;/p&gt;</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
   <data name="FriendsList" xml:space="preserve">
     <value>Get list of friends</value>
@@ -200,6 +240,9 @@ Documentation:&lt;br /&gt;
 &lt;p&gt;Code redirects to the login page can be found in the &lt;strong&gt;ExternalLogin&lt;/strong&gt; method  of the &lt;strong&gt;HomeController&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The result is handled in the &lt;strong&gt;ExternalLoginResult&lt;/strong&gt; method.&lt;/p&gt;
 &lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
+  </data>
+  <data name="InstallViaNuGet" xml:space="preserve">
+    <value>Install via &lt;a href="https://www.nuget.org/packages/Nemiro.OAuth/"&gt;NuGet&lt;/a&gt;</value>
   </data>
   <data name="InterestsList" xml:space="preserve">
     <value>Get list of interests</value>

@@ -24,6 +24,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception that is thrown when you attempt to register the already registered client.
   /// </summary>
+	[Serializable]
   public class DuplicateProviderException : Exception
   {
     

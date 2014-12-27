@@ -39,15 +39,6 @@ namespace Test.CSharp.WinForms
         }
       );
 
-      /*OAuthManager.RegisterClient
-      (
-        new TwitterClient
-        (
-          "cXzSHLUy57C4gTBgMGRDuqQtr",
-          "3SSldiSb5H4XeEMOIIF4osPWxOy19jrveDcPHaWtHDQqgDYP9P"
-        )
-      );*/
-
       OAuthManager.RegisterClient
       (
         new VkontakteClient
@@ -70,18 +61,6 @@ namespace Test.CSharp.WinForms
         )
       );
 
-      /*OAuthManager.RegisterClient
-      (
-        new GoogleClient
-        (
-          "1058655871432-fscjqht7ou30a75gjkde1eu1brsvbqkn.apps.googleusercontent.com",
-          "SI5bIZkrSB5rO03YF-CdsCJC"
-        )
-        {
-          ReturnUrl = "http://localhost/"
-        }
-      );*/
-
       OAuthManager.RegisterClient
       (
         new YandexClient
@@ -90,37 +69,6 @@ namespace Test.CSharp.WinForms
           "59d76f7c09b54ad38e6b15f792da7a9a"
         )
       );
-
-      OAuthManager.RegisterClient
-      (
-        new OdnoklassnikiClient
-        (
-          "1094959360",
-          "E45991423E8C5AE249B44E84",
-          "CBACMEECEBABABABA"
-        ) 
-        {
-          ReturnUrl = "http://localhost"  // return url - it's important
-        }
-      );
-
-      /*OAuthManager.RegisterClient
-      (
-        new LiveClient
-        (
-          "0000000040124265",
-          "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
-        )
-      );*/
-
-      /*OAuthManager.RegisterClient
-      (
-        new AmazonClient
-        (
-          "amzn1.application-oa2-client.f0ffe4edc256488dae00dcaf96d75d1b",
-          "764dcefe49b441c8c6244c93e5d5d04de54fda6dfdc83da9693bf346f4dc4515"
-        )
-      );*/
 
       // add buttons to the form
       foreach (string providerName in OAuthManager.RegisteredClients.Keys)

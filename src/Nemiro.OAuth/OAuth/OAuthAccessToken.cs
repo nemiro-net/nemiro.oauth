@@ -15,7 +15,9 @@
 // ----------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Nemiro.OAuth
@@ -24,6 +26,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The access token class for OAuth 1.0.
   /// </summary>
+	[Serializable]
   public class OAuthAccessToken : AccessToken
   {
 
@@ -41,6 +44,37 @@ namespace Nemiro.OAuth
       this.Value = result["oauth_token"].ToString();
       this.TokenSecret = result["oauth_token_secret"].ToString();
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuthAccessToken"/>.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+    /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+		protected OAuthAccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
+			this.TokenSecret = info.GetString("TokenSecret");
+    }
+
+    /// <summary>
+    /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+    /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+		public override void GetObjectData(SerializationInfo info, StreamingContext context)
+		{
+			if (info == null)
+			{
+				throw new ArgumentNullException("info");
+			}
+			info.AddValue("TokenSecret", this.TokenSecret);
+			base.GetObjectData(info, context);
+		}
 
   }
 

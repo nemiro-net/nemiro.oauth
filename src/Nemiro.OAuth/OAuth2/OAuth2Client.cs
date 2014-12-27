@@ -110,8 +110,7 @@ namespace Nemiro.OAuth
       (
         "POST",
         this.AccessTokenUrl,
-        parameters,
-        null
+        parameters
       );
 
       if (result.ContainsKey("error"))

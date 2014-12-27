@@ -22,6 +22,81 @@ namespace Nemiro.OAuth
 {
 
   /// <summary>
+  /// The list of the types a HTTP parameters.
+  /// </summary>
+  [Flags]
+  public enum HttpParameterType
+  {
+    /// <summary>
+    /// Unformed parameter.
+    /// </summary>
+    Unformed = 0,
+    /// <summary>
+    /// Parameter of the query string.
+    /// </summary>
+    Url = 1,
+    /// <summary>
+    /// Parameter of the form.
+    /// </summary>
+    Form = 2,
+    /// <summary>
+    /// File.
+    /// </summary>
+    File = 4,
+    /// <summary>
+    /// Body of the request.
+    /// </summary>
+    RequestBody = 8
+  }
+
+  /// <summary>
+  /// The list of url encding methods.
+  /// </summary>
+  public enum UrlEncodingType
+  {
+    /// <summary>
+    /// Without encoding.
+    /// </summary>
+    None,
+    /// <summary>
+    /// <see cref="UrlEncodingType.PercentEncoding"/> for POST requests when a conetent-type is x-www-form-urlencoded.
+    /// And <see cref="UrlEncodingType.Default"/> for other requests.
+    /// </summary>
+    Auto,
+    /// <summary>
+    /// x-www-form-urlencoded (spaces encoded as plus (+) signs).
+    /// </summary>
+    Default,
+    /// <summary>
+    /// RFC 3986 (spaces encoded as %20).
+    /// </summary>
+    PercentEncoding
+  }
+
+  /// <summary>
+  /// The list of authorization type.
+  /// </summary>
+  public enum AuthorizationType
+  {
+    /// <summary>
+    /// Basic
+    /// </summary>
+    Basic,
+    /// <summary>
+    /// Bearer
+    /// </summary>
+    Bearer,
+    /// <summary>
+    /// Digest
+    /// </summary>
+    Digest,
+    /// <summary>
+    /// OAuth
+    /// </summary>
+    OAuth
+  }
+
+  /// <summary>
   /// Very sexy list.
   /// </summary>
   public enum Sex
@@ -48,5 +123,5 @@ namespace Nemiro.OAuth
     /// </summary>
     DeepThought = 42
   }
-
+  
 }
