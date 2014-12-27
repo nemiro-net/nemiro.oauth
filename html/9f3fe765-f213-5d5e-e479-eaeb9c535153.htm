@@ -1,0 +1,388 @@
+﻿<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp"><head><link rel="SHORTCUT ICON" href="./../icons/favicon.ico" /><style type="text/css">.OH_CodeSnippetContainerTabLeftActive, .OH_CodeSnippetContainerTabLeft,.OH_CodeSnippetContainerTabLeftDisabled { }.OH_CodeSnippetContainerTabRightActive, .OH_CodeSnippetContainerTabRight,.OH_CodeSnippetContainerTabRightDisabled { }.OH_footer { }</style><link rel="stylesheet" type="text/css" href="./../styles/branding.css" /><link rel="stylesheet" type="text/css" href="./../styles/branding-en-US.css" /><style type="text/css">
+			body
+			{
+			border-left:5px solid #e6e6e6;
+			overflow-x:scroll;
+			overflow-y:scroll;
+			}
+		</style><script src="./../scripts/branding.js" type="text/javascript"><!----></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>HttpParameterCollection Class</title><meta name="Language" content="en-us" /><meta name="System.Keywords" content="HttpParameterCollection class" /><meta name="System.Keywords" content="Nemiro.OAuth.HttpParameterCollection class" /><meta name="System.Keywords" content="HttpParameterCollection class, about HttpParameterCollection class" /><meta name="Microsoft.Help.F1" content="Nemiro.OAuth.HttpParameterCollection" /><meta name="Microsoft.Help.Id" content="T:Nemiro.OAuth.HttpParameterCollection" /><meta name="Description" content="Collection of HTTP parameters." /><meta name="Microsoft.Help.ContentType" content="Reference" /><meta name="BrandingAware" content="'true'" /><meta name="container" content="Nemiro.OAuth" /><meta name="file" content="9f3fe765-f213-5d5e-e479-eaeb9c535153" /><meta name="guid" content="9f3fe765-f213-5d5e-e479-eaeb9c535153" /><meta name="SelfBranded" content="true" /></head><body onload="onLoad()" class="primary-mtps-offline-document"><div class="OH_outerDiv"><div class="OH_outerContent"><table class="TitleTable"><tr><td class="OH_tdTitleColumn">HttpParameterCollection Class</td><td class="OH_tdRunningTitleColumn">Nemiro.OAuth</td></tr></table><div id="mainSection"><div id="mainBody"><span class="introStyle"></span><div class="summary">
+            Collection of HTTP parameters.
+            </div><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Inheritance Hierarchy</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><span class="nolink">System<span id="ID0EBKRAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBKRAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>Object</span><br />  <span class="nolink">System.Collections.Generic<span id="ID0EBHRAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBHRAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>List</span><span id="ID0EGRAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EGRAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EERAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EERAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script><br />    <span class="selflink">Nemiro.OAuth<span id="ID0EBBRAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBBRAAAAA?vb=.|cpp=::|cs=.|fs=.|nu=.");
+				</script>HttpParameterCollection</span><br /><p></p><strong>Namespace:</strong> <a href="11bd63de-f88e-4cdd-722b-1e6acb52a9b0.htm" target="">Nemiro.OAuth</a><br /><strong>Assembly:</strong> <span sdata="assembly">Nemiro.OAuth</span> (in Nemiro.OAuth.dll) Version: 1.5.4.589 (1.5.4.589)<div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Syntax</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><div id="snippetGroup_Syntax" class="code"><div id="ID0EBAHAAAAA" class="OH_CodeSnippetContainer"><div class="OH_CodeSnippetContainerTabs" id="ID0EBAHAAAAA_tabs"><div class="OH_CodeSnippetContainerTabLeftActive" id="ID0EBAHAAAAA_tabimgleft"></div><div id="ID0EBAHAAAAA_tab1" class="OH_CodeSnippetContainerTabActive" EnableCopyCode="true"><a href="#" onclick="javascript:ChangeTab('ID0EBAHAAAAA','C#','1','4');return false;">C#</a></div><div id="ID0EBAHAAAAA_tab2" class="OH_CodeSnippetContainerTab" EnableCopyCode="true"><a href="#" onclick="javascript:ChangeTab('ID0EBAHAAAAA','Visual Basic','2','4');return false;">VB</a></div><div id="ID0EBAHAAAAA_tab3" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>C++</a></div><div id="ID0EBAHAAAAA_tab4" class="OH_CodeSnippetContainerTabDisabledNotFirst" EnableCopyCode="true" disabled="true"><a>F#</a></div><div class="OH_CodeSnippetContainerTabRight" id="ID0EBAHAAAAA_tabimgright"></div></div><div id="ID0EBAHAAAAA_codecollection" class="OH_CodeSnippetContainerCodeCollection"><div class="OH_CodeSnippetToolBar"><div class="OH_CodeSnippetToolBarText"><a id="ID0EBAHAAAAA_ViewColorized" href="#" onclick="javascript:ExchangeTitleContent('ID0EBAHAAAAA','4')" title="View Colorized" style="display: none">View Colorized</a><a id="ID0EBAHAAAAA_copycode" href="#" onclick="javascript:CopyToClipboard('ID0EBAHAAAAA','4')" title="Copy to Clipboard">Copy to Clipboard</a><a id="ID0EBAHAAAAA_PrintText" class="OH_PrintText" href="#" onclick="javascript:Print('ID0EBAHAAAAA','4')" title="Print">Print</a></div></div><div id="ID0EBAHAAAAA_code_Div1" class="OH_CodeSnippetContainerCode" style="display: block"><pre><span class="keyword">public</span> <span class="keyword">class</span> <span class="identifier">HttpParameterCollection</span> : <span class="identifier">List</span>&lt;<span class="identifier">HttpParameter</span>&gt;</pre></div><div id="ID0EBAHAAAAA_code_Plain_Div1" class="OH_CodeSnippetContainerCode" style="display: none"><pre>public class HttpParameterCollection : List&lt;HttpParameter&gt;</pre></div><div id="ID0EBAHAAAAA_code_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre><span class="keyword">Public</span> <span class="keyword">Class</span> <span class="identifier">HttpParameterCollection</span> 
+	<span class="keyword">Inherits</span> <span class="identifier">List</span>(<span class="keyword">Of</span> <span class="identifier">HttpParameter</span>)</pre></div><div id="ID0EBAHAAAAA_code_Plain_Div2" class="OH_CodeSnippetContainerCode" style="display: none"><pre>Public Class HttpParameterCollection 
+	Inherits List(Of HttpParameter)</pre></div><div id="ID0EBAHAAAAA_code_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EBAHAAAAA_code_Plain_Div3" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EBAHAAAAA_code_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div><div id="ID0EBAHAAAAA_code_Plain_Div4" class="OH_CodeSnippetContainerCode" style="display: none"><pre /></div></div></div><script>addSpecificTextLanguageTagSet('ID0EBAHAAAAA');</script></div><p>The <span class="selflink">HttpParameterCollection</span> type exposes the following members.</p><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Constructors</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><table id="memberList" class="members"><tr><th class="ps_iconColumn">
+							 
+						</th><th class="ps_nameColumn">Name</th><th class="ps_descriptionColumn">Description</th></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="d40dfa71-c748-9ba7-f749-0e59ee50f881.htm" target="">HttpParameterCollection<span id="ID0EAABEBFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EAABEBFAAAAA?vb=|cpp=()|cs=()|fs=()|nu=()");
+				</script></a></td><td><div class="summary">
+            Initializes a new instance of the <span class="selflink">HttpParameterCollection</span> class.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="18e2d3e5-0ecf-15ae-fdda-51c78d76c0f6.htm" target="">HttpParameterCollection(<span id="ID0EDABDBFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABDBFAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>Byte<span id="ID0EBABDBFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABDBFAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</a></td><td><div class="summary">
+            Initializes a new instance of the <span class="selflink">HttpParameterCollection</span> class.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="278b18fd-9fb5-f95d-da77-96a3846401ce.htm" target="">HttpParameterCollection(NameValueCollection)</a></td><td><div class="summary">
+            Initializes a new instance of the <span class="selflink">HttpParameterCollection</span> class.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="a9aaffcf-a2a5-1009-8734-ec74742666a6.htm" target="">HttpParameterCollection(Stream)</a></td><td><div class="summary">
+            Initializes a new instance of the <span class="selflink">HttpParameterCollection</span> class.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="c84f3890-a63e-4418-72ef-82b240ebf12f.htm" target="">HttpParameterCollection(<span id="ID0EDABABFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABABFAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>HttpParameter<span id="ID0EBABABFAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABABFAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</a></td><td><div class="summary">
+            Initializes a new instance of the <span class="selflink">HttpParameterCollection</span> class.
+            </div></td></tr></table><a href="#mainBody" target="">Top</a><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Methods</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><table id="memberList" class="members"><tr><th class="ps_iconColumn">
+							 
+						</th><th class="ps_nameColumn">Name</th><th class="ps_descriptionColumn">Description</th></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="262e875d-aaa6-b61f-a6a1-01f3b7a2a077.htm" target="">Add(<span id="ID0EDAB0MC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0MC0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>Byte<span id="ID0EBAB0MC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0MC0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</a></td><td><div class="summary">
+            Adds a <a href="2358839d-85d9-85ba-da27-a09ffc5cc736.htm" target="">HttpRequestBody</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="91eefc3b-5479-84e8-3ef4-bf68822d1a70.htm" target="">Add(Stream)</a></td><td><div class="summary">
+            Adds a <a href="2358839d-85d9-85ba-da27-a09ffc5cc736.htm" target="">HttpRequestBody</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="11f9fc9d-87b9-b17c-d8df-20b2260888fb.htm" target="">Add(Object)</a></td><td><div class="summary">
+            Adds a <a href="2358839d-85d9-85ba-da27-a09ffc5cc736.htm" target="">HttpRequestBody</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="a9a800fd-78e5-3386-469b-79c5c9af52b1.htm" target="">Add(HttpPostedFile)</a></td><td><div class="summary">
+            Adds a <a href="2358839d-85d9-85ba-da27-a09ffc5cc736.htm" target="">HttpRequestBody</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="d46c008f-24e2-2fe3-41f3-3c90a67cb02f.htm" target="">Add(HttpParameter)</a></td><td><div class="summary">
+            Adds a parameter to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="5e729570-b409-22ed-15fa-1c6fc11d91b5.htm" target="">Add(String, Object)</a></td><td><div class="summary">
+            Adds a parameter to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="b563d88f-f96a-1b94-9dc6-0fa8d9e583ad.htm" target="">Add(String, String)</a></td><td><div class="summary">
+            Adds a <a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="f44307c1-ef58-dc00-1482-d54458122157.htm" target="">Add(String, HttpPostedFile)</a></td><td><div class="summary">
+            Adds a <a href="8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" target="">HttpFile</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="e65ba77f-d0f9-90ad-8817-961035cf0fba.htm" target="">Add(String, String, <span id="ID0EDAB0EC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0EC0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>Byte<span id="ID0EBAB0EC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0EC0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</a></td><td><div class="summary">
+            Adds a <a href="8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" target="">HttpFile</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="caf65ed9-f532-925b-5720-ae2752296065.htm" target="">Add(String, String, Stream)</a></td><td><div class="summary">
+            Adds a <a href="8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" target="">HttpFile</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="4dc1f638-edfb-e343-661f-cf48ac3605b0.htm" target="">Add(HttpParameterType, String, String)</a></td><td><div class="summary">
+            Adds a <a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="4613e2b9-828b-e5e1-c967-bc6cd5b9f4b0.htm" target="">Add(String, String, String, <span id="ID0EDAB0BC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0BC0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>Byte<span id="ID0EBAB0BC0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0BC0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</a></td><td><div class="summary">
+            Adds a <a href="8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" target="">HttpFile</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="fb9f9c33-5dc7-9f6d-70f5-ee8533a1e59d.htm" target="">Add(String, String, String, Stream)</a></td><td><div class="summary">
+            Adds a <a href="8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" target="">HttpFile</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="7e4cbf1c-a960-d3e6-1993-f323500c994c.htm" target="">AddFormParameter</a></td><td><div class="summary">
+            Adds a <a href="70d610c0-7537-ffec-513c-aeedf10b0ae3.htm" target="">HttpFormParameter</a> to the end of the collection.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="53c5da7e-53d4-e4a0-105a-0e44a30c571f.htm" target="">AddRange</a></td><td><div class="summary">
+            Adds the items of the specified collection to the end of the current instance of the <span class="selflink">HttpParameterCollection</span>.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="d0e41580-6b65-336d-2b4a-c92147662454.htm" target="">AddUrlParameter</a></td><td><div class="summary">
+            Adds a <a href="a8bcc0d5-008d-97c7-9157-a12e3ec83a1a.htm" target="">HttpUrlParameter</a> to the end of the collection.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">AsReadOnly</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA03B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA03B0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA03B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA03B0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">BinarySearch(T)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA02B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA02B0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA02B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA02B0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">BinarySearch(T, IComparer<span id="ID0EDAB01B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB01B0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB01B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB01B0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA01B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA01B0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA01B0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA01B0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">BinarySearch(Int32, Int32, T, IComparer<span id="ID0EDAB0ZB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0ZB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0ZB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0ZB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0ZB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0ZB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0ZB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0ZB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="902af45f-fcc7-ae60-ea85-2c21e02510cb.htm" target="">Clear</a></td><td><div class="summary">
+            Removes all elements from the <span class="selflink">HttpParameterCollection</span>.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Contains</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0XB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0XB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0XB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0XB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">ConvertAll<span id="ID0ECAB0WB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0ECAB0WB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>TOutput<span id="ID0EAAB0WB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EAAB0WB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script></span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0WB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0WB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0WB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0WB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">CopyTo(<span id="ID0EDAB0VB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0VB0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>T<span id="ID0EBAB0VB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0VB0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0VB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0VB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0VB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0VB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">CopyTo(<span id="ID0EDAB0UB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0UB0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>T<span id="ID0EBAB0UB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0UB0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0UB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0UB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0UB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0UB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">CopyTo(Int32, <span id="ID0EDAB0TB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0TB0BEAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>T<span id="ID0EBAB0TB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0TB0BEAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script>, Int32, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0TB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0TB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0TB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0TB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Equals</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Exists</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0RB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0RB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0RB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0RB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="protected;inherited;notNetfw;"><td><img src="./../icons/protmethod.gif" alt="Protected method" title="Protected method" /></td><td><span class="nolink">Finalize</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Find</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0PB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0PB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0PB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0PB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindAll</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0OB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0OB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0OB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0OB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindIndex(Predicate<span id="ID0EDAB0NB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0NB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0NB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0NB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0NB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0NB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0NB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0NB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindIndex(Int32, Predicate<span id="ID0EDAB0MB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0MB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0MB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0MB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0MB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0MB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0MB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0MB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindIndex(Int32, Int32, Predicate<span id="ID0EDAB0LB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0LB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0LB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0LB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0LB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0LB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0LB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0LB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindLast</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0KB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0KB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0KB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0KB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindLastIndex(Predicate<span id="ID0EDAB0JB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0JB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0JB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0JB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0JB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0JB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0JB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0JB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindLastIndex(Int32, Predicate<span id="ID0EDAB0IB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0IB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0IB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0IB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0IB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0IB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0IB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0IB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">FindLastIndex(Int32, Int32, Predicate<span id="ID0EDAB0HB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAB0HB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBAB0HB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAB0HB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0HB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0HB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0HB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0HB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">ForEach</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0GB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0GB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0GB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0GB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">GetEnumerator</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0FB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0FB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0FB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0FB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">GetHashCode</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">GetRange</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0DB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0DB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0DB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0DB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">GetType</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">IndexOf(T)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0BB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0BB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0BB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0BB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">IndexOf(T, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA0AB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA0AB0BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA0AB0BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA0AB0BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">IndexOf(T, Int32, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA6BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA6BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA6BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA6BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="80508b92-7780-2a10-bda9-9e8da66957ff.htm" target="">Insert</a></td><td><div class="summary">
+            Inserts an element into the instance of the <span class="selflink">HttpParameterCollection</span> at the specified index.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="ace50bb2-e3cf-508d-beb9-fed0164395f5.htm" target="">InsertRange</a></td><td><div class="summary">
+            Inserts the elements of a collection into the instance of the <span class="selflink">HttpParameterCollection</span> at the specified index.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">LastIndexOf(T)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA3BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA3BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA3BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA3BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">LastIndexOf(T, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA2BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA2BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA2BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA2BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">LastIndexOf(T, Int32, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDA1BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDA1BEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBA1BEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBA1BEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="protected;inherited;notNetfw;"><td><img src="./../icons/protmethod.gif" alt="Protected method" title="Protected method" /></td><td><span class="nolink">MemberwiseClone</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="f042ebc0-5838-9433-fb6c-96d28a04163c.htm" target="">Remove</a></td><td><div class="summary">
+            Removes the first occurrence of a specific parameter from the <span class="selflink">HttpParameterCollection</span>.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="08fd6fef-2ed0-ddb4-460d-042aa8940bbb.htm" target="">RemoveAll</a></td><td><div class="summary">
+            Removes all the elements that match the conditions defined by the specified predicate.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="6ce41926-2a59-30e3-2e06-31869c715319.htm" target="">RemoveAt</a></td><td><div class="summary">
+            Removes the element at the specified index of the <span class="selflink">HttpParameterCollection</span>.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="b23c525a-93ac-88b1-3313-d408c0fb3864.htm" target="">RemoveRange</a></td><td><div class="summary">
+            Removes a range of elements from the <span class="selflink">HttpParameterCollection</span>.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Reverse<span id="ID0EAABUBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EAABUBEAAAAA?vb=|cpp=()|cs=()|fs=()|nu=()");
+				</script></span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAUBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAUBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAUBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAUBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Reverse(Int32, Int32)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDATBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDATBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBATBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBATBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Sort<span id="ID0EAABSBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EAABSBEAAAAA?vb=|cpp=()|cs=()|fs=()|nu=()");
+				</script></span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDASBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDASBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBASBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBASBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Sort(IComparer<span id="ID0EDABRBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABRBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBABRBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABRBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDARBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDARBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBARBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBARBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Sort(Comparison<span id="ID0EDABQBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABQBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBABQBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABQBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAQBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAQBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAQBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAQBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">Sort(Int32, Int32, IComparer<span id="ID0EDABPBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABPBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script>T<span id="ID0EBABPBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABPBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>)</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAPBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAPBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAPBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAPBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">ToArray</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAOBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAOBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAOBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAOBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="49a5e832-a202-5fea-2576-57c7bdf6bdfe.htm" target="">ToNameValueCollection</a></td><td><div class="summary">
+            Copies elements of the <span class="selflink">HttpParameterCollection</span> to a new <span class="nolink">NameValueCollection</span> instance.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="b48326d0-1575-cfb0-dffe-403718340b17.htm" target="">ToRequestBody</a></td><td><div class="summary">
+            Gets a body for the request.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">ToString</span></td><td> (Inherited from <span class="nolink">Object</span>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="665e5a17-06b3-e220-9b27-196b02d0be47.htm" target="">ToStringParameters<span id="ID0EAABKBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EAABKBEAAAAA?vb=|cpp=()|cs=()|fs=()|nu=()");
+				</script></a></td><td><div class="summary">
+            Returns a string query parameters encoded by default method (<span class="nolink">UrlEncode(String)</span>).
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="e5966083-fc03-bdc2-86b8-246785f97137.htm" target="">ToStringParameters(String)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified separator.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="cdb02f1b-78cc-173b-5f67-0007ddf80d37.htm" target="">ToStringParameters(HttpParameterType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified encoding parameters.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="e2cef9ff-9bc2-7914-4723-4376dcf09ff3.htm" target="">ToStringParameters(UrlEncodingType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified encoding parameters.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="d0decd4c-e4bd-6d1f-c75f-4caa77e546f1.htm" target="">ToStringParameters(String, HttpParameterType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified encoding parameters.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="b3c9be9e-c91b-fd5a-3e2d-02a00b51ea34.htm" target="">ToStringParameters(String, UrlEncodingType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified encoding parameters.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="1d5d7667-8e24-9577-b1d6-054358e19ab8.htm" target="">ToStringParameters(UrlEncodingType, HttpParameterType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified encoding parameters.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="74b3e468-89d8-d0de-cb26-0cffa858d00b.htm" target="">ToStringParameters(String, UrlEncodingType, HttpParameterType)</a></td><td><div class="summary">
+            Returns a string of query parameters with a specified separator and encoding parameters.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">TrimExcess</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDACBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDACBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBACBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBACBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><span class="nolink">TrueForAll</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDABBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABBEAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBABBEAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABBEAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubmethod.gif" alt="Public method" title="Public method" /></td><td><a href="afcbe225-1242-3700-3fcf-bd0e08fc8411.htm" target="">WriteToRequestStream</a></td><td><div class="summary">
+            Writes the parameters to the request.
+            </div></td></tr></table><a href="#mainBody" target="">Top</a><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Operators</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><table id="memberList" class="members"><tr><th class="ps_iconColumn">
+							 
+						</th><th class="ps_nameColumn">Name</th><th class="ps_descriptionColumn">Description</th></tr><tr data="public;static;declared;notNetfw;"><td><img src="./../icons/puboperator.gif" alt="Public operator" title="Public operator" /><img src="./../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="738e87ef-9910-f219-94c5-6d6cee489489.htm" target=""><span id="ID0EFABDBDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EFABDBDAAAAA?vb=Widening|cpp=Implicit|cs=Implicit|fs=Implicit|nu=Implicit");
+				</script>(<span id="ID0EDABDBDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABDBDAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>Byte<span id="ID0EBABDBDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABDBDAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script> to HttpParameterCollection)</a></td><td><div class="summary">
+            The assignment operator for the byte array.
+            </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="./../icons/puboperator.gif" alt="Public operator" title="Public operator" /><img src="./../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="4cc88f2c-1182-c0c0-f55f-f685339a2f9c.htm" target=""><span id="ID0EBABCBDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABCBDAAAAA?vb=Widening|cpp=Implicit|cs=Implicit|fs=Implicit|nu=Implicit");
+				</script>(NameValueCollection to HttpParameterCollection)</a></td><td><div class="summary">
+            The assignment operator for the <span class="nolink">NameValueCollection</span>.
+            </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="./../icons/puboperator.gif" alt="Public operator" title="Public operator" /><img src="./../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="4b0c7385-e98d-c0db-89cf-6543567d324a.htm" target=""><span id="ID0EBABBBDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABBBDAAAAA?vb=Widening|cpp=Implicit|cs=Implicit|fs=Implicit|nu=Implicit");
+				</script>(Stream to HttpParameterCollection)</a></td><td><div class="summary">
+            The assignment operator for the <span class="nolink">Stream</span>.
+            </div></td></tr><tr data="public;static;declared;notNetfw;"><td><img src="./../icons/puboperator.gif" alt="Public operator" title="Public operator" /><img src="./../icons/static.gif" alt="Static member" title="Static member" /></td><td><a href="2ace5d81-9045-c651-7875-630a0ee4a076.htm" target=""><span id="ID0EFABABDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EFABABDAAAAA?vb=Widening|cpp=Implicit|cs=Implicit|fs=Implicit|nu=Implicit");
+				</script>(<span id="ID0EDABABDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDABABDAAAAA?vb=|cpp=array&lt;|cs=|fs=|nu=");
+				</script>HttpParameter<span id="ID0EBABABDAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBABABDAAAAA?vb=()|cpp=&gt;|cs=[]|fs=[]|nu=[]");
+				</script> to HttpParameterCollection)</a></td><td><div class="summary">
+            The assignment operator for array of the <a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a>.
+            </div></td></tr></table><a href="#mainBody" target="">Top</a><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">Properties</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><table id="memberList" class="members"><tr><th class="ps_iconColumn">
+							 
+						</th><th class="ps_nameColumn">Name</th><th class="ps_descriptionColumn">Description</th></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><a href="50063622-b8f4-8ad5-891b-35f36a44919b.htm" target="">Boundary</a></td><td><div class="summary">
+            Gets a boundary for a request.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><span class="nolink">Capacity</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAFBCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAFBCAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAFBCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAFBCAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><span class="nolink">Count</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAEBCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAEBCAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAEBCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAEBCAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><a href="d8b8d2f9-2080-82f0-1a49-8dc5e7142fa8.htm" target="">Encoding</a></td><td><div class="summary">
+            Gets or sets code page for parameters encoding.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><a href="3b1afb03-8643-3a49-ba8e-f9de9568ce70.htm" target="">HasFiles</a></td><td><div class="summary">
+            Gets a value indicating whether the current collection has a files.
+            </div></td></tr><tr data="public;declared;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><a href="ad8379f7-6913-ca70-c9f1-a4068ecb7a6a.htm" target="">IsRequestBody</a></td><td><div class="summary">
+            Gets a value indicating whether the current collection has a <a href="2358839d-85d9-85ba-da27-a09ffc5cc736.htm" target="">HttpRequestBody</a>.
+            </div></td></tr><tr data="public;inherited;notNetfw;"><td><img src="./../icons/pubproperty.gif" alt="Public property" title="Public property" /></td><td><span class="nolink">Item</span></td><td> (Inherited from <span class="nolink">List</span><span id="ID0EDAABCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EDAABCAAAAA?vb=(Of |cpp=&lt;|cs=&lt;|fs=&lt;'|nu=(");
+				</script><a href="9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" target="">HttpParameter</a><span id="ID0EBAABCAAAAA"> </span><script type="text/javascript">
+					addToLanSpecTextIdSet("ID0EBAABCAAAAA?vb=)|cpp=&gt;|cs=&gt;|fs=&gt;|nu=)");
+				</script>.)</td></tr></table><a href="#mainBody" target="">Top</a><a name="seeAlsoSection"><!----></a><div class="OH_CollapsibleAreaRegion"><div class="OH_regiontitle">See Also</div><div class="OH_CollapsibleArea_HrDiv"><hr class="OH_CollapsibleArea_Hr" /></div></div><div class="OH_clear"></div><div class="seeAlsoStyle"><a href="11bd63de-f88e-4cdd-722b-1e6acb52a9b0.htm" target="">Nemiro.OAuth Namespace</a></div></div></div></div></div><div id="OH_footer" class="OH_footer"><p><a href="http://oauth.nemiro.net" target="_blank">Copyright © Aleksey Nemiro, 2014</a><img src="//mc.yandex.ru/watch/25622822" style="position:absolute; left:-9999px;" alt="" /> </p><div class="OH_feedbacklink"><a href="mailto:aleksey@kbyte.ru?subject=Nemiro.OAuth+HttpParameterCollection+Class+100+EN-US&amp;body=Your%20feedback%20is%20used%20to%20improve%20the%20documentation%20and%20the%20product.%20Your%20e-mail%20address%20will%20not%20be%20used%20for%20any%20other%20purpose%20and%20is%20disposed%20of%20after%20the%20issue%20you%20report%20is%20resolved.%20While%20working%20to%20resolve%20the%20issue%20that%20you%20report%2c%20you%20may%20be%20contacted%20via%20e-mail%20to%20get%20further%20details%20or%20clarification%20on%20the%20feedback%20you%20sent.%20After%20the%20issue%20you%20report%20has%20been%20addressed%2c%20you%20may%20receive%20an%20e-mail%20to%20let%20you%20know%20that%20your%20feedback%20has%20been%20addressed.">Send Feedback</a> on this topic to aleksey@kbyte.ru.</div></div></body></html>

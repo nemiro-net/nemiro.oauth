@@ -12,7 +12,7 @@
   <HelpKINode Title="AccessToken class">
     <HelpKINode Title="AccessToken Class" Url="html/76b44420-313a-d089-5c53-13b81b9dc942.htm" />
     <HelpKINode Title="about AccessToken class" Url="html/76b44420-313a-d089-5c53-13b81b9dc942.htm" />
-    <HelpKINode Title="constructor" Url="html/7ed32b78-0f2d-1a1e-2ad4-291a4fd17d6a.htm" />
+    <HelpKINode Title="constructor" Url="html/06a9bfb5-f4e8-3fb4-5c09-57c3a99c5e03.htm" />
     <HelpKINode Title="methods" Url="html/50f45e9c-1190-01ce-07ff-19695199f1ae.htm" />
     <HelpKINode Title="properties" Url="html/6987537c-b426-6b6f-f2bc-ee37d657aaab.htm" />
   </HelpKINode>
@@ -20,12 +20,21 @@
     <HelpKINode Title="AuthorizationResult.AccessToken Property " Url="html/f70f2f61-8398-2ade-1052-7e45ae9efc12.htm" />
     <HelpKINode Title="OAuthBase.AccessToken Property " Url="html/c0b4ce8c-d56e-6696-17d6-9154dd45fb84.htm" />
   </HelpKINode>
-  <HelpKINode Title="AccessToken.AccessToken constructor" Url="html/7ed32b78-0f2d-1a1e-2ad4-291a4fd17d6a.htm" />
-  <HelpKINode Title="AccessToken.ToString method" Url="html/c13cb2e8-c360-31a5-bf76-ff3edafca2ef.htm" />
+  <HelpKINode Title="AccessToken.AccessToken constructor" Url="html/06a9bfb5-f4e8-3fb4-5c09-57c3a99c5e03.htm" />
+  <HelpKINode Title="AccessToken.GetObjectData method" Url="html/b1f39a83-3f4a-e3ac-258a-769da90ab2e4.htm" />
+  <HelpKINode Title="AccessToken.ToString method" Url="html/c2ce8f78-0867-26d5-b574-b432194681ff.htm" />
   <HelpKINode Title="AccessToken.Value property" Url="html/601b7436-41c1-7bc2-a82c-fb209fc4779d.htm" />
   <HelpKINode Title="AccessTokenUrl property" Url="html/6645c8fe-8110-83a1-7eff-70964308414b.htm" />
   <HelpKINode Title="AccessTokenValue property" Url="html/faff80eb-ed28-9921-2900-d6cd2d6da43e.htm" />
-  <HelpKINode Title="Add method" Url="html/150e288d-04c1-9602-1fb6-53633fd50651.htm" />
+  <HelpKINode Title="Add method">
+    <HelpKINode Title="ApiDataMapping.Add Method " Url="html/150e288d-04c1-9602-1fb6-53633fd50651.htm" />
+    <HelpKINode Title="HttpParameterCollection.Add Method " Url="html/c733c745-69ca-05ac-b44c-d986ab278e7f.htm" />
+    <HelpKINode Title="UniValue.Add Method " Url="html/ff5a20c0-2719-4879-95a9-4fedc733f1a4.htm" />
+    <HelpKINode Title="UniValueCollection.Add Method " Url="html/08243c3f-8293-d57a-abe1-76a6d283eff8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddFormParameter method" Url="html/7e4cbf1c-a960-d3e6-1993-f323500c994c.htm" />
+  <HelpKINode Title="AddRange method" Url="html/53c5da7e-53d4-e4a0-105a-0e44a30c571f.htm" />
+  <HelpKINode Title="AddUrlParameter method" Url="html/d0e41580-6b65-336d-2b4a-c92147662454.htm" />
   <HelpKINode Title="AmazonClient class">
     <HelpKINode Title="AmazonClient Class" Url="html/f9402a43-ecb6-6810-a848-279294a1408c.htm" />
     <HelpKINode Title="about AmazonClient class" Url="html/f9402a43-ecb6-6810-a848-279294a1408c.htm" />
@@ -70,6 +79,8 @@
   <HelpKINode Title="ApplicationId property" Url="html/91cf25ec-6678-c72f-eade-6828bfe7df8a.htm" />
   <HelpKINode Title="ApplicationKey property" Url="html/b3117910-f615-f7fd-86f1-9fa7fa288d61.htm" />
   <HelpKINode Title="ApplicationSecret property" Url="html/7188f0e0-03a3-a84d-4915-e9c74cfec178.htm" />
+  <HelpKINode Title="Array to UniValue conversion" Url="html/dd3f5675-de8d-7dd1-af84-468ab96add43.htm" />
+  <HelpKINode Title="Attributes property" Url="html/8f757a7f-a2e4-4035-616a-c60c8f734af6.htm" />
   <HelpKINode Title="Authorization property" Url="html/a34d4b5d-5b34-21dc-c05a-dfc656690d39.htm" />
   <HelpKINode Title="AuthorizationCode property" Url="html/67c942e2-1bff-4ae2-a709-b34331684578.htm" />
   <HelpKINode Title="AuthorizationException class">
@@ -98,6 +109,8 @@
   <HelpKINode Title="AuthorizationResult.UserId property" Url="html/d4deae28-dc7b-5fd5-90f0-e85277895aae.htm" />
   <HelpKINode Title="AuthorizationResult.UserInfo property" Url="html/da9813b9-13c5-c8c8-0bac-ed8d263484a3.htm" />
   <HelpKINode Title="AuthorizationResult.UserName property" Url="html/0d15d8da-1ab0-562f-0eba-955714e30546.htm" />
+  <HelpKINode Title="AuthorizationType enumeration" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
+  <HelpKINode Title="AuthorizationType property" Url="html/98f98ccb-3735-feb0-a021-09eb89bf5d15.htm" />
   <HelpKINode Title="AuthorizationUrl property">
     <HelpKINode Title="OAuth2Client.AuthorizationUrl Property " Url="html/3341c5bd-1475-10bf-e74b-3c50eeb83eb8.htm" />
     <HelpKINode Title="OAuthBase.AuthorizationUrl Property " Url="html/19fb1c9f-eebf-a764-4f27-3c426ad621ba.htm" />
@@ -105,8 +118,27 @@
     <HelpKINode Title="OAuthRequestToken.AuthorizationUrl Property " Url="html/9234b4a2-44a8-1a0c-b27a-c7794002fccf.htm" />
   </HelpKINode>
   <HelpKINode Title="AuthorizeUrl property" Url="html/e07958d6-e4a3-5da1-03af-ef15534ecdf4.htm" />
+  <HelpKINode Title="Auto enumeration member" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
   <HelpKINode Title="BaseString property" Url="html/4c09e2f2-972e-b943-248d-acf2cdfbfa3c.htm" />
+  <HelpKINode Title="Basic enumeration member" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
+  <HelpKINode Title="Bearer enumeration member" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
   <HelpKINode Title="Birthday property" Url="html/06774c4d-aab3-01e6-949d-6d4d072dbcf7.htm" />
+  <HelpKINode Title="Boolean to UniValue conversion" Url="html/263b2932-53e9-1c96-cdb5-b8da47e9cd95.htm" />
+  <HelpKINode Title="Boundary property" Url="html/50063622-b8f4-8ad5-891b-35f36a44919b.htm" />
+  <HelpKINode Title="Byte to HttpParameterValue conversion" Url="html/b4e8ab3d-2940-16dd-fbac-639654072126.htm" />
+  <HelpKINode Title="Byte to UniValue conversion" Url="html/90b7c87b-2aa6-2030-f613-fb7910e58c0f.htm" />
+  <HelpKINode Title="Byte() to HttpParameterCollection conversion" Url="html/738e87ef-9910-f219-94c5-6d6cee489489.htm" />
+  <HelpKINode Title="Byte() to HttpParameterValue conversion" Url="html/c36988e8-7468-78ec-5238-b817a2615213.htm" />
+  <HelpKINode Title="Byte() to UniValue conversion" Url="html/404eea45-41de-44cc-ffa3-c6015245bfc2.htm" />
+  <HelpKINode Title="Byte[] to HttpParameterCollection conversion" Url="html/738e87ef-9910-f219-94c5-6d6cee489489.htm" />
+  <HelpKINode Title="Byte[] to HttpParameterValue conversion" Url="html/c36988e8-7468-78ec-5238-b817a2615213.htm" />
+  <HelpKINode Title="Byte[] to UniValue conversion" Url="html/404eea45-41de-44cc-ffa3-c6015245bfc2.htm" />
+  <HelpKINode Title="Callback property" Url="html/82a56df2-9ff9-e5fb-db19-8d788ff31feb.htm" />
+  <HelpKINode Title="Char to UniValue conversion" Url="html/a0bddefc-5f55-7e09-e034-e94135c8ac9f.htm" />
+  <HelpKINode Title="Clear method">
+    <HelpKINode Title="HttpParameterCollection.Clear Method " Url="html/902af45f-fcc7-ae60-ea85-2c21e02510cb.htm" />
+    <HelpKINode Title="UniValueCollection.Clear Method " Url="html/ff600200-6b07-785e-a6d5-499e4a7053b3.htm" />
+  </HelpKINode>
   <HelpKINode Title="ClientIsNotRegisteredException class">
     <HelpKINode Title="ClientIsNotRegisteredException Class" Url="html/cb3e0baa-1ab5-3d06-200c-93effb4b50c9.htm" />
     <HelpKINode Title="about ClientIsNotRegisteredException class" Url="html/cb3e0baa-1ab5-3d06-200c-93effb4b50c9.htm" />
@@ -116,13 +148,47 @@
     <HelpKINode Title="properties" Url="html/353802a7-8647-0851-32e2-1b9aa20d8b5b.htm" />
   </HelpKINode>
   <HelpKINode Title="ClientIsNotRegisteredException.ClientIsNotRegisteredException constructor" Url="html/5879c78d-4117-22f0-a197-723ea25fba11.htm" />
-  <HelpKINode Title="Clone method" Url="html/7d753c6c-4f17-8a3a-b25e-cb265229cbc8.htm" />
-  <HelpKINode Title="ContainsKey method" Url="html/fc49151d-2e52-032f-5334-3099248c7137.htm" />
-  <HelpKINode Title="ContentType property" Url="html/5f84bf6d-46b6-7484-5c09-9706b9c8bd18.htm" />
+  <HelpKINode Title="Clone method">
+    <HelpKINode Title="OAuthBase.Clone Method " Url="html/7d753c6c-4f17-8a3a-b25e-cb265229cbc8.htm" />
+    <HelpKINode Title="UniValue.Clone Method " Url="html/12f54abc-2e67-54b7-f25a-2b771b4d0bfc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CollectionItems property" Url="html/b2f61ed5-8065-e5a1-b938-27a22f0bd3fe.htm" />
+  <HelpKINode Title="ConsumerKey property" Url="html/a71e98f1-3570-6a18-63f2-ceeec0ea4dab.htm" />
+  <HelpKINode Title="ConsumerSecret property" Url="html/f29f5219-709d-3b2e-ac9c-a1475f55d215.htm" />
+  <HelpKINode Title="Contains method" Url="html/9cc5c2ff-c20e-b34f-bf89-54f966cbbc8e.htm" />
+  <HelpKINode Title="ContainsAttribute method" Url="html/46b0a8b2-ff4c-2381-3449-0684906e6171.htm" />
+  <HelpKINode Title="ContainsKey method">
+    <HelpKINode Title="UniValue.ContainsKey Method " Url="html/751240dd-d73a-cb10-7173-b32f9027d2b3.htm" />
+    <HelpKINode Title="UniValueCollection.ContainsKey Method " Url="html/1212baf1-5067-86b9-3784-10a8fcd17069.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ContentDisposition property" Url="html/5567ac6b-7238-1f9b-ad64-15f0d466fafe.htm" />
+  <HelpKINode Title="ContentType property">
+    <HelpKINode Title="HttpFile.ContentType Property " Url="html/16a7c36b-fcd4-944c-3b49-d66e73171757.htm" />
+    <HelpKINode Title="RequestException.ContentType Property " Url="html/77d7c778-8333-3660-a487-0dfb97b4beb0.htm" />
+    <HelpKINode Title="RequestResult.ContentType Property " Url="html/5f84bf6d-46b6-7484-5c09-9706b9c8bd18.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CopyTo method" Url="html/9d155e58-ee6e-43b3-7426-63ca01de0e17.htm" />
+  <HelpKINode Title="Count property">
+    <HelpKINode Title="UniValue.Count Property " Url="html/85588d07-02ec-a5b4-8c22-fab07909b944.htm" />
+    <HelpKINode Title="UniValueCollection.Count Property " Url="html/7ce451d9-ee87-2dcd-e658-4624c3657452.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Create method" Url="html/eb636ab2-41af-6eb4-6fda-0952ec7956a7.htm" />
   <HelpKINode Title="CustomParse delegate" Url="html/413cd72d-1fb5-875c-e6b7-e889ed656e66.htm" />
+  <HelpKINode Title="DateTime to HttpParameterValue conversion" Url="html/fc0029d0-221e-e339-0c3d-0467a7f968d5.htm" />
+  <HelpKINode Title="DateTime to UniValue conversion" Url="html/78ec1669-aefb-72fd-ee91-745f5466421d.htm" />
+  <HelpKINode Title="Decimal to HttpParameterValue conversion" Url="html/cb94c843-b753-87ce-ddc7-e6e43026ed55.htm" />
+  <HelpKINode Title="Decimal to UniValue conversion" Url="html/ae8f4a37-afbc-4ffe-2fed-5771b2acb047.htm" />
   <HelpKINode Title="DeepThought enumeration member" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
+  <HelpKINode Title="Default enumeration member" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
+  <HelpKINode Title="Delete method" Url="html/515efd7d-3071-a607-cb20-3343fd8ae6f3.htm" />
+  <HelpKINode Title="DeleteAsync method" Url="html/380ec674-c6cb-fea7-2985-5ff98245ac11.htm" />
   <HelpKINode Title="DestinationName property" Url="html/18774320-d94d-cd38-6681-db734de5ee8b.htm" />
+  <HelpKINode Title="Dictionary(Of String, Object) to UniValue conversion" Url="html/e745766a-9730-2dfd-6a3e-2dd2a07ffa09.htm" />
+  <HelpKINode Title="Dictionary&lt;String, Object&gt; to UniValue conversion" Url="html/e745766a-9730-2dfd-6a3e-2dd2a07ffa09.htm" />
+  <HelpKINode Title="Digest enumeration member" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
   <HelpKINode Title="DisplayName property" Url="html/c4c4d8c9-102c-bfb5-34eb-7bde0f5a3e66.htm" />
+  <HelpKINode Title="Double to HttpParameterValue conversion" Url="html/0fcea647-113a-bb87-4281-a4a024998e57.htm" />
+  <HelpKINode Title="Double to UniValue conversion" Url="html/7dade3a5-f7b9-af41-d615-4f5d0de3357a.htm" />
   <HelpKINode Title="DropboxClient class">
     <HelpKINode Title="DropboxClient Class" Url="html/6c120256-aea1-ba88-d8d8-2b99e02908af.htm" />
     <HelpKINode Title="about DropboxClient class" Url="html/6c120256-aea1-ba88-d8d8-2b99e02908af.htm" />
@@ -143,24 +209,37 @@
   </HelpKINode>
   <HelpKINode Title="DuplicateProviderException.DuplicateProviderException constructor" Url="html/a35e6fa5-2299-0afb-d62c-788d5eb511d6.htm" />
   <HelpKINode Title="Email property" Url="html/88fd191e-c7f7-5141-736b-de88f1b6de7a.htm" />
+  <HelpKINode Title="Empty property" Url="html/de77edf5-87d9-569e-ad81-027431c03f76.htm" />
   <HelpKINode Title="EmptyResult class">
     <HelpKINode Title="EmptyResult Class" Url="html/f9b4745d-95d5-eb95-a7fb-0643aa04ca3e.htm" />
     <HelpKINode Title="about EmptyResult class" Url="html/f9b4745d-95d5-eb95-a7fb-0643aa04ca3e.htm" />
-    <HelpKINode Title="constructor" Url="html/72113aaa-dfd7-ff8a-0f45-dbdbc5bf4436.htm" />
+    <HelpKINode Title="constructor" Url="html/573efe18-21d4-f035-e39f-c90538a766a6.htm" />
     <HelpKINode Title="methods" Url="html/ab96560a-5a6e-d401-0a4c-dc3c585e9e8b.htm" />
     <HelpKINode Title="properties" Url="html/8efe7d05-b997-585d-99d6-f0d14aa247af.htm" />
   </HelpKINode>
-  <HelpKINode Title="EmptyResult.EmptyResult constructor" Url="html/72113aaa-dfd7-ff8a-0f45-dbdbc5bf4436.htm" />
+  <HelpKINode Title="EmptyResult.EmptyResult constructor" Url="html/573efe18-21d4-f035-e39f-c90538a766a6.htm" />
+  <HelpKINode Title="EmptyResult.GetObjectData method" Url="html/22c25d62-fd52-babf-204b-a6367ed39867.htm" />
+  <HelpKINode Title="EmptyResult.IsSuccessfully property" Url="html/a1015511-ba99-a66e-fbd7-75bcfeb55236.htm" />
+  <HelpKINode Title="Encoding property" Url="html/d8b8d2f9-2080-82f0-1a49-8dc5e7142fa8.htm" />
+  <HelpKINode Title="Equality operator" Url="html/94c0569e-748d-f097-d322-ab51d14b1abd.htm" />
+  <HelpKINode Title="Equals method">
+    <HelpKINode Title="UniValue.Equals Method " Url="html/e30279e4-c697-6650-a791-1310505af58e.htm" />
+    <HelpKINode Title="UniValueCollection.Equals Method " Url="html/c8c5450f-6494-9558-0ebf-2501f0494b92.htm" />
+  </HelpKINode>
   <HelpKINode Title="ErrorInfo property" Url="html/ca64d8c3-eabd-d1af-4aa8-4c5e4f1a8966.htm" />
   <HelpKINode Title="ErrorResult class">
     <HelpKINode Title="ErrorResult Class" Url="html/009be6e4-82ce-6479-8440-05a75feedda9.htm" />
     <HelpKINode Title="about ErrorResult class" Url="html/009be6e4-82ce-6479-8440-05a75feedda9.htm" />
-    <HelpKINode Title="constructor" Url="html/053b5b9a-728e-ac4e-62fc-6a7e51973780.htm" />
+    <HelpKINode Title="constructor" Url="html/d6e8c41b-4372-7df8-9016-b368d9ffefa2.htm" />
     <HelpKINode Title="methods" Url="html/dbda7fa4-7209-2860-ef5d-0002c4eb19e7.htm" />
     <HelpKINode Title="properties" Url="html/7ef3a429-dd9c-c609-a55f-4d27dc9425e4.htm" />
   </HelpKINode>
-  <HelpKINode Title="ErrorResult.ErrorResult constructor" Url="html/053b5b9a-728e-ac4e-62fc-6a7e51973780.htm" />
-  <HelpKINode Title="ExecuteRequest method" Url="html/4ad4b8d2-e383-69f2-f274-a5aafdbe0eff.htm" />
+  <HelpKINode Title="ErrorResult.ErrorResult constructor" Url="html/d6e8c41b-4372-7df8-9016-b368d9ffefa2.htm" />
+  <HelpKINode Title="ErrorResult.GetObjectData method" Url="html/7acb2fac-803d-b3e5-acbe-61d6e4b4a857.htm" />
+  <HelpKINode Title="ErrorResult.IsSuccessfully property" Url="html/f64cecde-3e50-b84f-3090-d5be36662f01.htm" />
+  <HelpKINode Title="ExecuteRequest method" Url="html/833a8736-b2aa-1fab-9eeb-d951fe179f03.htm" />
+  <HelpKINode Title="ExecuteRequestAsync method" Url="html/f7d98aac-8a8a-a29e-6723-939698722063.htm" />
+  <HelpKINode Title="ExecuteRequestAsyncCallback delegate" Url="html/2578d64d-d179-25fd-be18-7ce0a7bfd978.htm" />
   <HelpKINode Title="ExpiresIn property" Url="html/85fb5b58-8040-06b2-a120-c21dc7656678.htm" />
   <HelpKINode Title="FacebookClient class">
     <HelpKINode Title="FacebookClient Class" Url="html/cef7d32b-f6c5-e237-037d-e1800350b71b.htm" />
@@ -174,7 +253,13 @@
   <HelpKINode Title="FacebookClient.ProviderName property" Url="html/a50b455f-2b1b-dd7c-8391-924b932c8141.htm" />
   <HelpKINode Title="FacebookClient.ReturnUrl property" Url="html/cb1e73fe-4eb7-d52f-350a-b23efa004d6f.htm" />
   <HelpKINode Title="Female enumeration member" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
+  <HelpKINode Title="File enumeration member" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
+  <HelpKINode Title="FileName property">
+    <HelpKINode Title="HttpFile.FileName Property " Url="html/c7426450-4a61-11ad-fbff-123080a32372.htm" />
+    <HelpKINode Title="RequestResult.FileName Property " Url="html/8a7b48c7-997d-5bc2-787e-e50f63c58795.htm" />
+  </HelpKINode>
   <HelpKINode Title="FirstName property" Url="html/00d53e41-5ff6-da51-0f00-4f24487bfe2c.htm" />
+  <HelpKINode Title="Form enumeration member" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
   <HelpKINode Title="Format property" Url="html/a7543544-06c8-4bd0-e577-c6dc63aeb15d.htm" />
   <HelpKINode Title="FoursquareClient class">
     <HelpKINode Title="FoursquareClient Class" Url="html/1a0a6b31-866a-c85e-f313-599e41e5999e.htm" />
@@ -187,23 +272,46 @@
   <HelpKINode Title="FoursquareClient.GetUserInfo method" Url="html/7d930e91-4fc5-5920-3971-605127a116fd.htm" />
   <HelpKINode Title="FoursquareClient.ProviderName property" Url="html/22af4dd2-370f-d16f-dbff-994de3d8e11e.htm" />
   <HelpKINode Title="FullName property" Url="html/4ce1bec1-2c03-6a78-49dd-2272c977e3aa.htm" />
+  <HelpKINode Title="Get method" Url="html/7a84bdaf-41f1-967f-78af-07545816bf17.htm" />
   <HelpKINode Title="GetAccessToken method">
     <HelpKINode Title="OAuth2Client.GetAccessToken Method " Url="html/c924731a-ce5b-8f55-f7a9-09f28d6926da.htm" />
     <HelpKINode Title="OAuthBase.GetAccessToken Method " Url="html/6e096372-eede-8161-7973-b161faaa533b.htm" />
     <HelpKINode Title="OAuthClient.GetAccessToken Method " Url="html/2506d20d-7432-cc0f-fe6a-f5570400ca9a.htm" />
     <HelpKINode Title="YahooClient.GetAccessToken Method " Url="html/202f9f44-cc46-f796-64cc-3ec329a999e2.htm" />
   </HelpKINode>
+  <HelpKINode Title="GetAsync method" Url="html/d2cdef46-2c67-8383-50bc-d24d11517bf2.htm" />
   <HelpKINode Title="GetAuthorizationUrl method" Url="html/8a78a32c-add4-fcab-3e67-9ff29ce14292.htm" />
   <HelpKINode Title="GetDictionaryValueOrNull method" Url="html/a2ac73f7-b784-5247-c0c1-69aba41ddb93.htm" />
+  <HelpKINode Title="GetEnumerator method">
+    <HelpKINode Title="UniValue.GetEnumerator Method " Url="html/3c3a4563-9b6b-050b-916a-4909bcd01c27.htm" />
+    <HelpKINode Title="UniValueCollection.GetEnumerator Method " Url="html/bec36912-8b11-d83f-606d-fd3892cef77a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetHashCode method" Url="html/62bf099e-77f1-e5fb-42b1-a61db95099be.htm" />
   <HelpKINode Title="GetMD5Hash method" Url="html/72413fdc-32ce-5eaf-6422-7b91bfcaa247.htm" />
+  <HelpKINode Title="GetObjectData method">
+    <HelpKINode Title="AccessToken.GetObjectData Method " Url="html/b1f39a83-3f4a-e3ac-258a-769da90ab2e4.htm" />
+    <HelpKINode Title="EmptyResult.GetObjectData Method " Url="html/22c25d62-fd52-babf-204b-a6367ed39867.htm" />
+    <HelpKINode Title="ErrorResult.GetObjectData Method " Url="html/7acb2fac-803d-b3e5-acbe-61d6e4b4a857.htm" />
+    <HelpKINode Title="OAuth2AccessToken.GetObjectData Method " Url="html/de02e5dc-3546-da02-9311-679e4fbb5b3a.htm" />
+    <HelpKINode Title="OAuthAccessToken.GetObjectData Method " Url="html/ad8a6b12-8d35-f5e0-c7a6-5aed4c02e1cb.htm" />
+    <HelpKINode Title="OAuthRequestToken.GetObjectData Method " Url="html/21c28786-aa6d-5cf3-0034-ac1a5c6d5508.htm" />
+    <HelpKINode Title="RequestException.GetObjectData Method " Url="html/0e3c663e-720a-5c24-2ea7-5bc72e138aeb.htm" />
+    <HelpKINode Title="RequestResult.GetObjectData Method " Url="html/63639245-2048-ebea-683e-b9f901dd1167.htm" />
+    <HelpKINode Title="UniValue.GetObjectData Method " Url="html/35b65aeb-3989-edfc-d01a-88acb41d4492.htm" />
+    <HelpKINode Title="UniValueCollection.GetObjectData Method " Url="html/50685082-9a07-7e42-9e95-e13d83ba8dba.htm" />
+  </HelpKINode>
   <HelpKINode Title="GetRandomKey method" Url="html/43958c3d-bd41-640f-c7fe-959092903255.htm" />
   <HelpKINode Title="GetRequestToken method" Url="html/e3249fd5-daca-77bc-2b47-c61c16488fcc.htm" />
   <HelpKINode Title="GetSignature method">
     <HelpKINode Title="OAuthClient.GetSignature Method " Url="html/252b5374-e79c-9c8a-009e-cbce45a173f1.htm" />
     <HelpKINode Title="OAuthUtility.GetSignature Method " Url="html/e438be27-9713-26f9-0725-a4301c4e98cd.htm" />
   </HelpKINode>
-  <HelpKINode Title="GetSignatureBaseString method" Url="html/ddd653e6-d833-d0dd-7548-1e9d71187d6a.htm" />
+  <HelpKINode Title="GetSignatureBaseString method">
+    <HelpKINode Title="OAuthAuthorization.GetSignatureBaseString Method " Url="html/0ab6bfc2-6346-7794-34dc-3a470a63eda5.htm" />
+    <HelpKINode Title="OAuthUtility.GetSignatureBaseString Method " Url="html/ddd653e6-d833-d0dd-7548-1e9d71187d6a.htm" />
+  </HelpKINode>
   <HelpKINode Title="GetTimeStamp method" Url="html/de57f78d-38c1-18a3-7a0a-4185d1cb394f.htm" />
+  <HelpKINode Title="GetTypeCode method" Url="html/b30f82d3-a7ca-8cc9-adac-61935baa788d.htm" />
   <HelpKINode Title="GetUserInfo method">
     <HelpKINode Title="AmazonClient.GetUserInfo Method " Url="html/78a8d61c-7b3a-abe4-37ec-fc4e2806c533.htm" />
     <HelpKINode Title="DropboxClient.GetUserInfo Method " Url="html/af4e5dfd-224b-ec61-d6a6-0b878f60c7d3.htm" />
@@ -211,12 +319,14 @@
     <HelpKINode Title="FoursquareClient.GetUserInfo Method " Url="html/7d930e91-4fc5-5920-3971-605127a116fd.htm" />
     <HelpKINode Title="GitHubClient.GetUserInfo Method " Url="html/f8605e85-d8d6-39d8-c7c2-d5a0d1686185.htm" />
     <HelpKINode Title="GoogleClient.GetUserInfo Method " Url="html/477ffce0-a142-1d1e-af9a-7c57ba430446.htm" />
+    <HelpKINode Title="InstagramClient.GetUserInfo Method " Url="html/b296ee64-a95b-5baa-327b-a7d8df8c3ece.htm" />
     <HelpKINode Title="LinkedInClient.GetUserInfo Method " Url="html/a88aff06-d1e2-d623-6c9d-7cb467576d3e.htm" />
     <HelpKINode Title="LiveClient.GetUserInfo Method " Url="html/f4f44b39-c1b7-3b8e-22ea-67df07131999.htm" />
     <HelpKINode Title="MailRuClient.GetUserInfo Method " Url="html/8832c7e6-1e83-31ad-73e5-7c703eadb411.htm" />
     <HelpKINode Title="OAuthBase.GetUserInfo Method " Url="html/0562d4dc-ca6a-4116-42f5-ed25ceb336dc.htm" />
     <HelpKINode Title="OdnoklassnikiClient.GetUserInfo Method " Url="html/b6e8c057-6920-4883-972d-1614415c9562.htm" />
     <HelpKINode Title="SoundCloudClient.GetUserInfo Method " Url="html/fe3c9ec6-7aba-9d7c-2a53-c9a346081e71.htm" />
+    <HelpKINode Title="TumblrClient.GetUserInfo Method " Url="html/e0aab987-973a-27f4-fa1b-ce50cc3d2f48.htm" />
     <HelpKINode Title="TwitterClient.GetUserInfo Method " Url="html/db52e891-ddcb-7ec5-0d4d-bd32a567a335.htm" />
     <HelpKINode Title="VkontakteClient.GetUserInfo Method " Url="html/d81f72da-f7f3-8ec1-2dc9-4fa2ea3dbf1c.htm" />
     <HelpKINode Title="YahooClient.GetUserInfo Method " Url="html/edf83de1-56c0-39e0-91d1-b935bc796958.htm" />
@@ -243,6 +353,9 @@
   <HelpKINode Title="GoogleClient.GoogleClient constructor" Url="html/81c1cbb1-34be-fe0e-cfe1-be50affa720d.htm" />
   <HelpKINode Title="GoogleClient.ProviderName property" Url="html/db8041e4-8b7c-7a5b-2709-ec9232098fee.htm" />
   <HelpKINode Title="GoogleClient.ReturnUrl property" Url="html/4d6d6e3d-3df4-3fdf-cdc0-27cb66cad6ef.htm" />
+  <HelpKINode Title="HasAttributes property" Url="html/673e8617-f164-4568-17a1-f6c946de6e0a.htm" />
+  <HelpKINode Title="HasFiles property" Url="html/3b1afb03-8643-3a49-ba8e-f9de9568ce70.htm" />
+  <HelpKINode Title="HasValue property" Url="html/44340208-4b22-de89-72ae-febf93380226.htm" />
   <HelpKINode Title="Helpers class">
     <HelpKINode Title="Helpers Class" Url="html/a0f32799-11f9-0946-3510-5b2b44624aad.htm" />
     <HelpKINode Title="about Helpers class" Url="html/a0f32799-11f9-0946-3510-5b2b44624aad.htm" />
@@ -251,18 +364,180 @@
   </HelpKINode>
   <HelpKINode Title="Helpers.Helpers constructor" Url="html/25bd08f1-e806-a704-806a-5174a0da7349.htm" />
   <HelpKINode Title="HMACSHA1 field" Url="html/b6fc0854-4174-4960-78f4-74184b560247.htm" />
+  <HelpKINode Title="HttpAuthorization class">
+    <HelpKINode Title="HttpAuthorization Class" Url="html/3e6b7908-ced5-6a79-e058-26b7e8f8a9d1.htm" />
+    <HelpKINode Title="about HttpAuthorization class" Url="html/3e6b7908-ced5-6a79-e058-26b7e8f8a9d1.htm" />
+    <HelpKINode Title="constructor" Url="html/2c730113-54a5-9012-1423-32dbd8f171ed.htm" />
+    <HelpKINode Title="methods" Url="html/e0896b84-b3e8-b2f9-1d0f-9b8ebb9f95c3.htm" />
+    <HelpKINode Title="properties" Url="html/449978e7-7cc3-478e-169f-796fac277657.htm" />
+    <HelpKINode Title="type conversions" Url="html/5f32d9bf-6a73-a8c2-3bfe-3c8f2dc3e4a7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpAuthorization.AuthorizationType property" Url="html/98f98ccb-3735-feb0-a021-09eb89bf5d15.htm" />
+  <HelpKINode Title="HttpAuthorization.HttpAuthorization constructor" Url="html/2c730113-54a5-9012-1423-32dbd8f171ed.htm" />
+  <HelpKINode Title="HttpAuthorization.Item property" Url="html/7a173a30-a580-a1eb-f28b-cdfa3f67d785.htm" />
+  <HelpKINode Title="HttpAuthorization.Parameters property" Url="html/204f0aa1-d76c-89ef-fccc-2a69db4eb6b5.htm" />
+  <HelpKINode Title="HttpAuthorization.ParametersSorted property" Url="html/1ee700b7-4314-d3bc-48d4-cba76122d143.htm" />
+  <HelpKINode Title="HttpAuthorization.Remove method" Url="html/f710a35f-ecee-b62a-527d-0f52ae821412.htm" />
+  <HelpKINode Title="HttpAuthorization.ToString method" Url="html/48f2a582-9181-8e5d-c78d-85c4ab4edacf.htm" />
+  <HelpKINode Title="HttpAuthorization.Value property" Url="html/1600dd0d-c111-a70d-df0a-18d52d68afd7.htm" />
+  <HelpKINode Title="HttpFile class">
+    <HelpKINode Title="HttpFile Class" Url="html/8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" />
+    <HelpKINode Title="about HttpFile class" Url="html/8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" />
+    <HelpKINode Title="constructor" Url="html/16328710-72c0-7141-4fc6-b831b5611ba1.htm" />
+    <HelpKINode Title="methods" Url="html/28894fb4-4f93-894b-111b-02b09bb5a40b.htm" />
+    <HelpKINode Title="properties" Url="html/202e898b-ae0d-9d43-01fa-bb28c98fc34f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpFile.ContentType property" Url="html/16a7c36b-fcd4-944c-3b49-d66e73171757.htm" />
+  <HelpKINode Title="HttpFile.FileName property" Url="html/c7426450-4a61-11ad-fbff-123080a32372.htm" />
+  <HelpKINode Title="HttpFile.HttpFile constructor" Url="html/16328710-72c0-7141-4fc6-b831b5611ba1.htm" />
+  <HelpKINode Title="HttpFormParameter class">
+    <HelpKINode Title="HttpFormParameter Class" Url="html/70d610c0-7537-ffec-513c-aeedf10b0ae3.htm" />
+    <HelpKINode Title="about HttpFormParameter class" Url="html/70d610c0-7537-ffec-513c-aeedf10b0ae3.htm" />
+    <HelpKINode Title="constructor" Url="html/920bc0c4-1191-ec99-77ee-884e7782020b.htm" />
+    <HelpKINode Title="methods" Url="html/cdb5df96-4d13-691c-945c-b0efd217d975.htm" />
+    <HelpKINode Title="properties" Url="html/1fc971b2-bc42-7c80-c170-ef237708003a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpFormParameter.HttpFormParameter constructor" Url="html/920bc0c4-1191-ec99-77ee-884e7782020b.htm" />
+  <HelpKINode Title="HttpHeaders property">
+    <HelpKINode Title="RequestException.HttpHeaders Property " Url="html/2f0315ce-dd15-c34d-2b72-46b7dd2adf29.htm" />
+    <HelpKINode Title="RequestResult.HttpHeaders Property " Url="html/99e2e626-4c76-3c94-349f-9dfd6b366e36.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpParameter class">
+    <HelpKINode Title="HttpParameter Class" Url="html/9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" />
+    <HelpKINode Title="about HttpParameter class" Url="html/9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" />
+    <HelpKINode Title="constructor" Url="html/775e3641-e7db-0328-94ab-4549faabe37e.htm" />
+    <HelpKINode Title="methods" Url="html/706ecad5-bbc9-e24e-69b0-145ecf509ac0.htm" />
+    <HelpKINode Title="properties" Url="html/8c935931-c2d4-d633-9153-d5026c79166a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpParameter() to HttpParameterCollection conversion" Url="html/2ace5d81-9045-c651-7875-630a0ee4a076.htm" />
+  <HelpKINode Title="HttpParameter.HttpParameter constructor" Url="html/775e3641-e7db-0328-94ab-4549faabe37e.htm" />
+  <HelpKINode Title="HttpParameter.Name property" Url="html/47d06c36-742c-3374-06e6-b7722b5b4e77.htm" />
+  <HelpKINode Title="HttpParameter.ParameterType property" Url="html/b1a80c5b-d5c9-5451-bd20-906e69e5b6ff.htm" />
+  <HelpKINode Title="HttpParameter.ToString method" Url="html/a2674fc8-ab5e-8bd9-162e-6f5b74a65adc.htm" />
+  <HelpKINode Title="HttpParameter.Value property" Url="html/6291d1d3-e8e9-6a67-82c1-1f154a929ce2.htm" />
+  <HelpKINode Title="HttpParameterCollection class">
+    <HelpKINode Title="HttpParameterCollection Class" Url="html/9f3fe765-f213-5d5e-e479-eaeb9c535153.htm" />
+    <HelpKINode Title="about HttpParameterCollection class" Url="html/9f3fe765-f213-5d5e-e479-eaeb9c535153.htm" />
+    <HelpKINode Title="constructor" Url="html/6d06b7d7-c2ad-f8bb-e73a-09a509588668.htm" />
+    <HelpKINode Title="methods" Url="html/2edd7de3-b11e-1746-525d-7a1834256f0b.htm" />
+    <HelpKINode Title="properties" Url="html/5b6fbde6-859a-a109-44ab-d069d493c985.htm" />
+    <HelpKINode Title="type conversions" Url="html/82e29ed7-1739-500e-fb51-5d01abafc7ec.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpParameterCollection.Add method" Url="html/c733c745-69ca-05ac-b44c-d986ab278e7f.htm" />
+  <HelpKINode Title="HttpParameterCollection.AddFormParameter method" Url="html/7e4cbf1c-a960-d3e6-1993-f323500c994c.htm" />
+  <HelpKINode Title="HttpParameterCollection.AddRange method" Url="html/53c5da7e-53d4-e4a0-105a-0e44a30c571f.htm" />
+  <HelpKINode Title="HttpParameterCollection.AddUrlParameter method" Url="html/d0e41580-6b65-336d-2b4a-c92147662454.htm" />
+  <HelpKINode Title="HttpParameterCollection.Boundary property" Url="html/50063622-b8f4-8ad5-891b-35f36a44919b.htm" />
+  <HelpKINode Title="HttpParameterCollection.Clear method" Url="html/902af45f-fcc7-ae60-ea85-2c21e02510cb.htm" />
+  <HelpKINode Title="HttpParameterCollection.Encoding property" Url="html/d8b8d2f9-2080-82f0-1a49-8dc5e7142fa8.htm" />
+  <HelpKINode Title="HttpParameterCollection.HasFiles property" Url="html/3b1afb03-8643-3a49-ba8e-f9de9568ce70.htm" />
+  <HelpKINode Title="HttpParameterCollection.HttpParameterCollection constructor" Url="html/6d06b7d7-c2ad-f8bb-e73a-09a509588668.htm" />
+  <HelpKINode Title="HttpParameterCollection.Insert method" Url="html/80508b92-7780-2a10-bda9-9e8da66957ff.htm" />
+  <HelpKINode Title="HttpParameterCollection.InsertRange method" Url="html/ace50bb2-e3cf-508d-beb9-fed0164395f5.htm" />
+  <HelpKINode Title="HttpParameterCollection.IsRequestBody property" Url="html/ad8379f7-6913-ca70-c9f1-a4068ecb7a6a.htm" />
+  <HelpKINode Title="HttpParameterCollection.Remove method" Url="html/f042ebc0-5838-9433-fb6c-96d28a04163c.htm" />
+  <HelpKINode Title="HttpParameterCollection.RemoveAll method" Url="html/08fd6fef-2ed0-ddb4-460d-042aa8940bbb.htm" />
+  <HelpKINode Title="HttpParameterCollection.RemoveAt method" Url="html/6ce41926-2a59-30e3-2e06-31869c715319.htm" />
+  <HelpKINode Title="HttpParameterCollection.RemoveRange method" Url="html/b23c525a-93ac-88b1-3313-d408c0fb3864.htm" />
+  <HelpKINode Title="HttpParameterCollection.ToNameValueCollection method" Url="html/49a5e832-a202-5fea-2576-57c7bdf6bdfe.htm" />
+  <HelpKINode Title="HttpParameterCollection.ToRequestBody method" Url="html/b48326d0-1575-cfb0-dffe-403718340b17.htm" />
+  <HelpKINode Title="HttpParameterCollection.ToStringParameters method" Url="html/b7d76592-33e5-2afd-f24f-98d0e80d666a.htm" />
+  <HelpKINode Title="HttpParameterCollection.WriteToRequestStream method" Url="html/afcbe225-1242-3700-3fcf-bd0e08fc8411.htm" />
+  <HelpKINode Title="HttpParameterType enumeration" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
+  <HelpKINode Title="HttpParameterValue class">
+    <HelpKINode Title="HttpParameterValue Class" Url="html/9d99271a-1d58-290e-8235-06cc602c07b2.htm" />
+    <HelpKINode Title="about HttpParameterValue class" Url="html/9d99271a-1d58-290e-8235-06cc602c07b2.htm" />
+    <HelpKINode Title="constructor" Url="html/0fa94204-df21-723c-7882-d4269752f30a.htm" />
+    <HelpKINode Title="methods" Url="html/efaa0ced-ae8a-2465-e58f-939dfbea6874.htm" />
+    <HelpKINode Title="properties" Url="html/f8a28699-c854-29bf-14e0-d09b6622fe46.htm" />
+    <HelpKINode Title="type conversions" Url="html/18e9cac6-cac4-552d-f6c3-b4b8be20b7ce.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpParameterValue.HttpParameterValue constructor" Url="html/0fa94204-df21-723c-7882-d4269752f30a.htm" />
+  <HelpKINode Title="HttpParameterValue.ToByteArray method" Url="html/2836346a-7439-d94f-115d-5ef128f5ddc6.htm" />
+  <HelpKINode Title="HttpParameterValue.ToEncodedString method" Url="html/2f3ba89e-1c00-de48-bbfc-a7ac3fb31fc3.htm" />
+  <HelpKINode Title="HttpParameterValue.ToString method" Url="html/4868a5b5-0ff3-8120-0566-bf1611762817.htm" />
+  <HelpKINode Title="HttpParameterValue.Value property" Url="html/089bc4b2-9a90-28dc-459a-74e9712da2ae.htm" />
+  <HelpKINode Title="HttpParameter[] to HttpParameterCollection conversion" Url="html/2ace5d81-9045-c651-7875-630a0ee4a076.htm" />
+  <HelpKINode Title="HttpRequestBody class">
+    <HelpKINode Title="HttpRequestBody Class" Url="html/2358839d-85d9-85ba-da27-a09ffc5cc736.htm" />
+    <HelpKINode Title="about HttpRequestBody class" Url="html/2358839d-85d9-85ba-da27-a09ffc5cc736.htm" />
+    <HelpKINode Title="constructor" Url="html/e2afe004-b344-8854-7860-9f587fbb94e7.htm" />
+    <HelpKINode Title="methods" Url="html/492b53b6-a2e0-2d2c-02df-0e9d464490f3.htm" />
+    <HelpKINode Title="properties" Url="html/ac7304ee-d5c2-6e12-7215-80819ba94efe.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpRequestBody.HttpRequestBody constructor" Url="html/e2afe004-b344-8854-7860-9f587fbb94e7.htm" />
+  <HelpKINode Title="HttpUrlParameter class">
+    <HelpKINode Title="HttpUrlParameter Class" Url="html/a8bcc0d5-008d-97c7-9157-a12e3ec83a1a.htm" />
+    <HelpKINode Title="about HttpUrlParameter class" Url="html/a8bcc0d5-008d-97c7-9157-a12e3ec83a1a.htm" />
+    <HelpKINode Title="constructor" Url="html/2fb4f6d4-d382-57d9-3d4a-bc20ec3e5a5e.htm" />
+    <HelpKINode Title="methods" Url="html/8f83b8c7-d634-e470-7617-507222231776.htm" />
+    <HelpKINode Title="properties" Url="html/e7d3a906-b152-58bb-05cd-51d9d350c65f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HttpUrlParameter.HttpUrlParameter constructor" Url="html/2fb4f6d4-d382-57d9-3d4a-bc20ec3e5a5e.htm" />
+  <HelpKINode Title="IncompatibleHttpParametersException class">
+    <HelpKINode Title="IncompatibleHttpParametersException Class" Url="html/fe73117e-44c0-0c3f-4644-c0e31bcf82bd.htm" />
+    <HelpKINode Title="about IncompatibleHttpParametersException class" Url="html/fe73117e-44c0-0c3f-4644-c0e31bcf82bd.htm" />
+    <HelpKINode Title="constructor" Url="html/237de075-6052-14bf-1251-15d8129edb13.htm" />
+    <HelpKINode Title="events" Url="html/94628a16-4a5b-9ad8-9dfa-c57da6e905b6.htm" />
+    <HelpKINode Title="methods" Url="html/bda69996-0c27-84ef-21de-f85ce3e16618.htm" />
+    <HelpKINode Title="properties" Url="html/e19f98ac-0d7c-25bb-a5a6-7f02bb4f439a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IncompatibleHttpParametersException.IncompatibleHttpParametersException constructor" Url="html/237de075-6052-14bf-1251-15d8129edb13.htm" />
+  <HelpKINode Title="Inequality operator" Url="html/bde3cba0-1f11-8c89-3f63-a4e8c713efc2.htm" />
+  <HelpKINode Title="Insert method" Url="html/80508b92-7780-2a10-bda9-9e8da66957ff.htm" />
+  <HelpKINode Title="InsertRange method" Url="html/ace50bb2-e3cf-508d-beb9-fed0164395f5.htm" />
+  <HelpKINode Title="InstagramClient class">
+    <HelpKINode Title="InstagramClient Class" Url="html/b3ecb8c1-1266-bb7d-fb98-31b0966b2e5b.htm" />
+    <HelpKINode Title="about InstagramClient class" Url="html/b3ecb8c1-1266-bb7d-fb98-31b0966b2e5b.htm" />
+    <HelpKINode Title="constructor" Url="html/b5dddbe7-b858-bf9b-7ee0-9bbeaa5a5314.htm" />
+    <HelpKINode Title="methods" Url="html/f1e274cf-bb83-fa61-7755-359462bac13d.htm" />
+    <HelpKINode Title="properties" Url="html/d3612159-d61d-1182-5154-7d79264391fb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InstagramClient.GetUserInfo method" Url="html/b296ee64-a95b-5baa-327b-a7d8df8c3ece.htm" />
+  <HelpKINode Title="InstagramClient.InstagramClient constructor" Url="html/b5dddbe7-b858-bf9b-7ee0-9bbeaa5a5314.htm" />
+  <HelpKINode Title="InstagramClient.ProviderName property" Url="html/81701072-1c56-211e-e359-4c02e8944212.htm" />
+  <HelpKINode Title="Int16 to HttpParameterValue conversion" Url="html/ddc5e37c-22ff-a996-7bc0-8734deff119c.htm" />
+  <HelpKINode Title="Int16 to UniValue conversion" Url="html/08863dd3-5204-8d73-a909-82243cec462b.htm" />
+  <HelpKINode Title="Int32 to HttpParameterValue conversion" Url="html/da8c34e7-6a73-658d-5bbd-5111caf41ac2.htm" />
+  <HelpKINode Title="Int32 to UniValue conversion" Url="html/9f909a95-9288-5f66-801c-496252a82dbb.htm" />
+  <HelpKINode Title="Int64 to HttpParameterValue conversion" Url="html/f343753a-7b76-ad36-f25d-00eea75c09ad.htm" />
+  <HelpKINode Title="Int64 to UniValue conversion" Url="html/b988572e-ab33-de46-638f-40855869c26b.htm" />
   <HelpKINode Title="IsArray property" Url="html/551eb20c-83ed-0e50-6e73-84cc372765f6.htm" />
+  <HelpKINode Title="IsBinary property" Url="html/1d48adfa-e04a-3b2f-88dd-690683386df1.htm" />
+  <HelpKINode Title="IsBoolean property" Url="html/4a9e5529-2ed3-b97a-a4cd-00211c1cdf8a.htm" />
+  <HelpKINode Title="IsCollection property" Url="html/2c6ef6d1-631f-518a-848e-824eac6b6b7c.htm" />
+  <HelpKINode Title="IsDateTime property" Url="html/83a7a6cb-7c35-e5ab-eb7f-103db7746c20.htm" />
   <HelpKINode Title="IsDictionary property" Url="html/9969fb0a-e1d1-3081-2a29-0a23c949fc89.htm" />
   <HelpKINode Title="IsEmpty property" Url="html/165e9042-a895-f5f9-201a-7dc65f8baa9b.htm" />
+  <HelpKINode Title="IsFile property" Url="html/4247f403-e723-63cc-8873-18968820bde6.htm" />
   <HelpKINode Title="IsNameValueCollection property" Url="html/77abfdf4-88d4-f6ac-c721-31c98841b7af.htm" />
-  <HelpKINode Title="IsSuccessfully property" Url="html/74330e0b-851e-7728-57d3-c2557a0fa55f.htm" />
+  <HelpKINode Title="IsNullOrEmpty method" Url="html/a1900b13-4f3d-0ede-0106-95a79e958fb2.htm" />
+  <HelpKINode Title="IsNumeric property" Url="html/e4889252-1a60-9407-90a1-6d53f0083d77.htm" />
+  <HelpKINode Title="IsReadOnly property" Url="html/6ea17253-fd35-74bf-05ef-10aee5baf4c0.htm" />
+  <HelpKINode Title="IsRequestBody property" Url="html/ad8379f7-6913-ca70-c9f1-a4068ecb7a6a.htm" />
+  <HelpKINode Title="IsString property" Url="html/4cb14b64-a619-3452-3dc6-95767741e4b7.htm" />
+  <HelpKINode Title="IsSuccessfully property">
+    <HelpKINode Title="AuthorizationResult.IsSuccessfully Property " Url="html/74330e0b-851e-7728-57d3-c2557a0fa55f.htm" />
+    <HelpKINode Title="EmptyResult.IsSuccessfully Property " Url="html/a1015511-ba99-a66e-fbd7-75bcfeb55236.htm" />
+    <HelpKINode Title="ErrorResult.IsSuccessfully Property " Url="html/f64cecde-3e50-b84f-3090-d5be36662f01.htm" />
+    <HelpKINode Title="RequestResult.IsSuccessfully Property " Url="html/4ed3c562-496a-0ae6-c9d7-c546441a09b5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsValue property" Url="html/2adf1648-70b4-e53c-3afa-db31d07ae329.htm" />
   <HelpKINode Title="IsXml property" Url="html/61362978-6667-6559-b37a-208ab4f0e265.htm" />
   <HelpKINode Title="Item property">
-    <HelpKINode Title="OAuthAuthorization.Item Property " Url="html/b6ae7ada-39ad-ab1e-844e-33ff1114d49b.htm" />
-    <HelpKINode Title="RequestResult.Item Property " Url="html/6e2ecb22-53dd-d4f7-e834-d7477159ec73.htm" />
+    <HelpKINode Title="HttpAuthorization.Item Property " Url="html/7a173a30-a580-a1eb-f28b-cdfa3f67d785.htm" />
+    <HelpKINode Title="UniValue.Item Property " Url="html/34e807fa-0027-8d51-a74e-baa63f4ae2ac.htm" />
+    <HelpKINode Title="UniValueCollection.Item Property " Url="html/b302c6ac-fcd0-0651-85e0-19db98c3b24f.htm" />
   </HelpKINode>
-  <HelpKINode Title="Items property" Url="html/0d6c2bf0-363a-94fe-73dc-e02475f3b312.htm" />
-  <HelpKINode Title="Key property" Url="html/12b2b077-aed6-cc5f-7ea2-d6b32caf622e.htm" />
+  <HelpKINode Title="Items property">
+    <HelpKINode Title="UniValueCollection.Items Property " Url="html/b22a8706-c2e2-d5fc-200a-15fa99b24bae.htm" />
+    <HelpKINode Title="UserInfo.Items Property " Url="html/0d6c2bf0-363a-94fe-73dc-e02475f3b312.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Key property">
+    <HelpKINode Title="OAuthSignature.Key Property " Url="html/12b2b077-aed6-cc5f-7ea2-d6b32caf622e.htm" />
+    <HelpKINode Title="UniValue.Key Property " Url="html/fc2df39e-10c3-3072-6029-474eb052e91c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Keys property" Url="html/518e02cf-bc31-58e5-ae5e-9c7488b0844c.htm" />
   <HelpKINode Title="LastName property" Url="html/31cce284-a33e-7d01-6914-9ea9739c7c84.htm" />
   <HelpKINode Title="LinkedInClient class">
     <HelpKINode Title="LinkedInClient Class" Url="html/e117de75-ef13-d188-1d14-428fe236eb91.htm" />
@@ -296,6 +571,18 @@
   <HelpKINode Title="MailRuClient.ProviderName property" Url="html/f5cc1fa1-0274-acd7-4bc1-3b2cdd187e7a.htm" />
   <HelpKINode Title="MailRuClient.ReturnUrl property" Url="html/834a22c4-5fb3-c1c0-9415-32a3b42ecc75.htm" />
   <HelpKINode Title="Male enumeration member" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
+  <HelpKINode Title="MultipleRequestBodyException class">
+    <HelpKINode Title="MultipleRequestBodyException Class" Url="html/9dd4d170-9bdf-ff81-679b-652fe91b1249.htm" />
+    <HelpKINode Title="about MultipleRequestBodyException class" Url="html/9dd4d170-9bdf-ff81-679b-652fe91b1249.htm" />
+    <HelpKINode Title="constructor" Url="html/bf66484c-4e32-ad35-e432-00aa8a196c70.htm" />
+    <HelpKINode Title="events" Url="html/aab899fc-8029-5cd2-35c4-e2ec9f5fd3a3.htm" />
+    <HelpKINode Title="methods" Url="html/678e8764-edc1-f53e-6e2b-871c9b6ffbe0.htm" />
+    <HelpKINode Title="properties" Url="html/5953104f-0fc0-7899-db92-894472f82ddd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MultipleRequestBodyException.MultipleRequestBodyException constructor" Url="html/bf66484c-4e32-ad35-e432-00aa8a196c70.htm" />
+  <HelpKINode Title="Name property" Url="html/47d06c36-742c-3374-06e6-b7722b5b4e77.htm" />
+  <HelpKINode Title="NameValueCollection to HttpParameterCollection conversion" Url="html/4cc88f2c-1182-c0c0-f55f-f685339a2f9c.htm" />
+  <HelpKINode Title="NameValueCollection to UniValue conversion" Url="html/6c672801-9b96-bd6b-e300-fbeb766bc0db.htm" />
   <HelpKINode Title="NameValueCollectionExtension class">
     <HelpKINode Title="NameValueCollectionExtension Class" Url="html/64216bf3-e55c-b80d-a94b-f11cc581e9eb.htm" />
     <HelpKINode Title="about NameValueCollectionExtension class" Url="html/64216bf3-e55c-b80d-a94b-f11cc581e9eb.htm" />
@@ -313,6 +600,7 @@
   <HelpKINode Title="Nemiro.OAuth.ApiException class" Url="html/8c76babc-8039-f274-a338-dab116fa75d6.htm" />
   <HelpKINode Title="Nemiro.OAuth.AuthorizationException class" Url="html/2e0c2cba-d7f8-fe0d-cc41-ccfb5cc2c9ee.htm" />
   <HelpKINode Title="Nemiro.OAuth.AuthorizationResult class" Url="html/42e9e675-bc5b-f3f2-f94c-169d8e0b10c9.htm" />
+  <HelpKINode Title="Nemiro.OAuth.AuthorizationType enumeration" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
   <HelpKINode Title="Nemiro.OAuth.ClientIsNotRegisteredException class" Url="html/cb3e0baa-1ab5-3d06-200c-93effb4b50c9.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients namespace" Url="html/14bd3339-3cd7-d5b6-6e87-95f00d5078f0.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.AmazonClient class" Url="html/f9402a43-ecb6-6810-a848-279294a1408c.htm" />
@@ -321,11 +609,13 @@
   <HelpKINode Title="Nemiro.OAuth.Clients.FoursquareClient class" Url="html/1a0a6b31-866a-c85e-f313-599e41e5999e.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.GitHubClient class" Url="html/4e42b626-21c7-d3e3-f58e-4629c58c11eb.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.GoogleClient class" Url="html/aff36495-124c-a749-20ed-ce08ec915999.htm" />
+  <HelpKINode Title="Nemiro.OAuth.Clients.InstagramClient class" Url="html/b3ecb8c1-1266-bb7d-fb98-31b0966b2e5b.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.LinkedInClient class" Url="html/e117de75-ef13-d188-1d14-428fe236eb91.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.LiveClient class" Url="html/fd5c23ee-28e4-1519-e88d-7d9a4382e2c0.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.MailRuClient class" Url="html/7f3f77ce-f792-8f18-c9ec-6ec9a5f35e0f.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.OdnoklassnikiClient class" Url="html/5943b5b8-aac7-cb40-c6e9-e98bbd62dd17.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.SoundCloudClient class" Url="html/74c22fd2-ee98-d3e2-ced3-b74de3c2caed.htm" />
+  <HelpKINode Title="Nemiro.OAuth.Clients.TumblrClient class" Url="html/1d1d42f8-b0c7-8e20-9a33-147c33c8df53.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.TwitterClient class" Url="html/9310ba11-b1ab-a717-3269-e5b8c0ab35bd.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.VkontakteClient class" Url="html/9f08d261-5278-4a0d-35c6-4b62319d15cb.htm" />
   <HelpKINode Title="Nemiro.OAuth.Clients.YahooClient class" Url="html/1370537f-44a0-cacb-f1d4-90bd08f6e5cd.htm" />
@@ -334,9 +624,21 @@
   <HelpKINode Title="Nemiro.OAuth.DuplicateProviderException class" Url="html/38847324-e26c-fe90-572e-2494d9b5533c.htm" />
   <HelpKINode Title="Nemiro.OAuth.EmptyResult class" Url="html/f9b4745d-95d5-eb95-a7fb-0643aa04ca3e.htm" />
   <HelpKINode Title="Nemiro.OAuth.ErrorResult class" Url="html/009be6e4-82ce-6479-8440-05a75feedda9.htm" />
+  <HelpKINode Title="Nemiro.OAuth.ExecuteRequestAsyncCallback delegate" Url="html/2578d64d-d179-25fd-be18-7ce0a7bfd978.htm" />
   <HelpKINode Title="Nemiro.OAuth.Extensions namespace" Url="html/a56ba2a0-62b5-f0d2-594b-ddc89a505a1e.htm" />
   <HelpKINode Title="Nemiro.OAuth.Extensions.NameValueCollectionExtension class" Url="html/64216bf3-e55c-b80d-a94b-f11cc581e9eb.htm" />
   <HelpKINode Title="Nemiro.OAuth.Helpers class" Url="html/a0f32799-11f9-0946-3510-5b2b44624aad.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpAuthorization class" Url="html/3e6b7908-ced5-6a79-e058-26b7e8f8a9d1.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpFile class" Url="html/8dd5567d-b774-89b0-ad6f-a557eac949f4.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpFormParameter class" Url="html/70d610c0-7537-ffec-513c-aeedf10b0ae3.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpParameter class" Url="html/9bcc976f-992f-e0e2-45e5-7adeeada583c.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpParameterCollection class" Url="html/9f3fe765-f213-5d5e-e479-eaeb9c535153.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpParameterType enumeration" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpParameterValue class" Url="html/9d99271a-1d58-290e-8235-06cc602c07b2.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpRequestBody class" Url="html/2358839d-85d9-85ba-da27-a09ffc5cc736.htm" />
+  <HelpKINode Title="Nemiro.OAuth.HttpUrlParameter class" Url="html/a8bcc0d5-008d-97c7-9157-a12e3ec83a1a.htm" />
+  <HelpKINode Title="Nemiro.OAuth.IncompatibleHttpParametersException class" Url="html/fe73117e-44c0-0c3f-4644-c0e31bcf82bd.htm" />
+  <HelpKINode Title="Nemiro.OAuth.MultipleRequestBodyException class" Url="html/9dd4d170-9bdf-ff81-679b-652fe91b1249.htm" />
   <HelpKINode Title="Nemiro.OAuth.NullHttpContextException class" Url="html/c89e9c46-bc36-0ffd-6245-dfa883b035cf.htm" />
   <HelpKINode Title="Nemiro.OAuth.OAuth2AccessToken class" Url="html/fce6ab6d-7a7e-2c45-0082-de58becaf90f.htm" />
   <HelpKINode Title="Nemiro.OAuth.OAuth2Client class" Url="html/f7022909-671e-c74a-5cdf-d5d5c861f2ed.htm" />
@@ -353,9 +655,16 @@
   <HelpKINode Title="Nemiro.OAuth.RequestResult class" Url="html/5d6aec60-d24b-70aa-123f-36b869ace3ff.htm" />
   <HelpKINode Title="Nemiro.OAuth.Sex enumeration" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
   <HelpKINode Title="Nemiro.OAuth.SignatureMethods class" Url="html/02e53054-4b83-4898-5fcd-a64265fefcba.htm" />
+  <HelpKINode Title="Nemiro.OAuth.UniValue class" Url="html/e08e5012-b0e4-2ccd-6d85-7f0ec2353b05.htm" />
+  <HelpKINode Title="Nemiro.OAuth.UniValueCollection class" Url="html/da64e0ba-c20b-3c7e-dc76-4d6c6e4791f6.htm" />
   <HelpKINode Title="Nemiro.OAuth.UnknownProviderException class" Url="html/f310fe4a-f6c1-3598-c6f7-dc9f66adb6b9.htm" />
+  <HelpKINode Title="Nemiro.OAuth.UrlEncodingType enumeration" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
   <HelpKINode Title="Nemiro.OAuth.UserInfo class" Url="html/840242a3-9a75-174d-4e46-f92de08c35ba.htm" />
-  <HelpKINode Title="None enumeration member" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
+  <HelpKINode Title="Nonce property" Url="html/09a0a881-b4e6-d05c-a4a7-30001adbec15.htm" />
+  <HelpKINode Title="None enumeration member">
+    <HelpKINode Title="Sex Enumeration" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
+    <HelpKINode Title="UrlEncodingType Enumeration" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
+  </HelpKINode>
   <HelpKINode Title="NullHttpContextException class">
     <HelpKINode Title="NullHttpContextException Class" Url="html/c89e9c46-bc36-0ffd-6245-dfa883b035cf.htm" />
     <HelpKINode Title="about NullHttpContextException class" Url="html/c89e9c46-bc36-0ffd-6245-dfa883b035cf.htm" />
@@ -365,15 +674,17 @@
     <HelpKINode Title="properties" Url="html/3d24b3f1-7569-0e59-2891-3be6501f5398.htm" />
   </HelpKINode>
   <HelpKINode Title="NullHttpContextException.NullHttpContextException constructor" Url="html/ebd2ce12-3b3a-54c2-0755-351aff533451.htm" />
+  <HelpKINode Title="OAuth enumeration member" Url="html/9cffdde9-7225-cbb1-1e74-4e451afbc418.htm" />
   <HelpKINode Title="OAuth2AccessToken class">
     <HelpKINode Title="OAuth2AccessToken Class" Url="html/fce6ab6d-7a7e-2c45-0082-de58becaf90f.htm" />
     <HelpKINode Title="about OAuth2AccessToken class" Url="html/fce6ab6d-7a7e-2c45-0082-de58becaf90f.htm" />
-    <HelpKINode Title="constructor" Url="html/4f219827-48bb-5b38-7f14-02e5bba03856.htm" />
+    <HelpKINode Title="constructor" Url="html/58c5e030-68aa-008d-b459-92b3d936972e.htm" />
     <HelpKINode Title="methods" Url="html/0e5d041c-4d22-6893-c796-d4fdb63586c7.htm" />
     <HelpKINode Title="properties" Url="html/b6507562-5774-9051-d260-00e3aa3fb70c.htm" />
   </HelpKINode>
   <HelpKINode Title="OAuth2AccessToken.ExpiresIn property" Url="html/85fb5b58-8040-06b2-a120-c21dc7656678.htm" />
-  <HelpKINode Title="OAuth2AccessToken.OAuth2AccessToken constructor" Url="html/4f219827-48bb-5b38-7f14-02e5bba03856.htm" />
+  <HelpKINode Title="OAuth2AccessToken.GetObjectData method" Url="html/de02e5dc-3546-da02-9311-679e4fbb5b3a.htm" />
+  <HelpKINode Title="OAuth2AccessToken.OAuth2AccessToken constructor" Url="html/58c5e030-68aa-008d-b459-92b3d936972e.htm" />
   <HelpKINode Title="OAuth2AccessToken.RefreshToken property" Url="html/1b19e08d-387f-b2b0-7449-946c080b4af1.htm" />
   <HelpKINode Title="OAuth2AccessToken.Scope property" Url="html/818d2b37-0555-915c-2374-2968508b8b2a.htm" />
   <HelpKINode Title="OAuth2AccessToken.TokenType property" Url="html/feaf0d77-93d0-8e4a-ee0b-c6b2f94177cc.htm" />
@@ -391,25 +702,35 @@
   <HelpKINode Title="OAuthAccessToken class">
     <HelpKINode Title="OAuthAccessToken Class" Url="html/fdd63c57-c98d-da9a-4c9f-21095aad191e.htm" />
     <HelpKINode Title="about OAuthAccessToken class" Url="html/fdd63c57-c98d-da9a-4c9f-21095aad191e.htm" />
-    <HelpKINode Title="constructor" Url="html/d64aa2e0-3c1b-27b8-d8d4-15fa78bd382b.htm" />
+    <HelpKINode Title="constructor" Url="html/f228df9f-de04-1f89-96a9-9e1812869502.htm" />
     <HelpKINode Title="methods" Url="html/cf2d9a53-9716-c42b-7d72-33881be32507.htm" />
     <HelpKINode Title="properties" Url="html/14559346-dc8e-4c88-7eff-7e128449675a.htm" />
   </HelpKINode>
-  <HelpKINode Title="OAuthAccessToken.OAuthAccessToken constructor" Url="html/d64aa2e0-3c1b-27b8-d8d4-15fa78bd382b.htm" />
+  <HelpKINode Title="OAuthAccessToken.GetObjectData method" Url="html/ad8a6b12-8d35-f5e0-c7a6-5aed4c02e1cb.htm" />
+  <HelpKINode Title="OAuthAccessToken.OAuthAccessToken constructor" Url="html/f228df9f-de04-1f89-96a9-9e1812869502.htm" />
   <HelpKINode Title="OAuthAccessToken.TokenSecret property" Url="html/9bdaac58-051b-cace-643a-b2330d35b85c.htm" />
   <HelpKINode Title="OAuthAuthorization class">
     <HelpKINode Title="OAuthAuthorization Class" Url="html/e955bb1c-b90b-720c-37a7-bf1e821fd3dc.htm" />
     <HelpKINode Title="about OAuthAuthorization class" Url="html/e955bb1c-b90b-720c-37a7-bf1e821fd3dc.htm" />
-    <HelpKINode Title="constructor" Url="html/f30fdf03-2443-8a30-45c2-6a8b18f8663f.htm" />
+    <HelpKINode Title="constructor" Url="html/e9737510-6b34-29a0-1db1-c1066c33646f.htm" />
     <HelpKINode Title="methods" Url="html/54016f19-7ac7-72a6-2ae1-64177b036c68.htm" />
     <HelpKINode Title="properties" Url="html/84012914-d776-bf46-ea6a-5f048af12a7b.htm" />
+    <HelpKINode Title="type conversions" Url="html/d6e22951-1441-a947-05ec-f2c61202f989.htm" />
   </HelpKINode>
-  <HelpKINode Title="OAuthAuthorization.Item property" Url="html/b6ae7ada-39ad-ab1e-844e-33ff1114d49b.htm" />
-  <HelpKINode Title="OAuthAuthorization.OAuthAuthorization constructor" Url="html/f30fdf03-2443-8a30-45c2-6a8b18f8663f.htm" />
-  <HelpKINode Title="OAuthAuthorization.Parameters property" Url="html/8652837b-308d-4f47-dc10-c8068730115e.htm" />
-  <HelpKINode Title="OAuthAuthorization.ParametersSorted property" Url="html/f9bbfd47-0e3f-206a-bd03-732ab2ec57d8.htm" />
+  <HelpKINode Title="OAuthAuthorization.Callback property" Url="html/82a56df2-9ff9-e5fb-db19-8d788ff31feb.htm" />
+  <HelpKINode Title="OAuthAuthorization.ConsumerKey property" Url="html/a71e98f1-3570-6a18-63f2-ceeec0ea4dab.htm" />
+  <HelpKINode Title="OAuthAuthorization.ConsumerSecret property" Url="html/f29f5219-709d-3b2e-ac9c-a1475f55d215.htm" />
+  <HelpKINode Title="OAuthAuthorization.GetSignatureBaseString method" Url="html/0ab6bfc2-6346-7794-34dc-3a470a63eda5.htm" />
+  <HelpKINode Title="OAuthAuthorization.Nonce property" Url="html/09a0a881-b4e6-d05c-a4a7-30001adbec15.htm" />
+  <HelpKINode Title="OAuthAuthorization.OAuthAuthorization constructor" Url="html/e9737510-6b34-29a0-1db1-c1066c33646f.htm" />
   <HelpKINode Title="OAuthAuthorization.SetSignature method" Url="html/887efe32-e8a0-df56-8ede-3c48a9842852.htm" />
-  <HelpKINode Title="OAuthAuthorization.ToString method" Url="html/16058ae5-6c4e-111d-1731-59b0ec707757.htm" />
+  <HelpKINode Title="OAuthAuthorization.Signature property" Url="html/664c5add-e750-c9ee-99a2-2d3f3cc605b1.htm" />
+  <HelpKINode Title="OAuthAuthorization.SignatureMethod property" Url="html/f36c6d08-07ea-7b11-27f0-d7c0f667c328.htm" />
+  <HelpKINode Title="OAuthAuthorization.Timestamp property" Url="html/1ed88f3c-0061-b3b9-1a1f-04ee305de0b5.htm" />
+  <HelpKINode Title="OAuthAuthorization.Token property" Url="html/d3e67179-5390-4f94-f468-2963e91e8fbf.htm" />
+  <HelpKINode Title="OAuthAuthorization.TokenSecret property" Url="html/8d3876f1-d9c9-c439-64e8-a538c10be196.htm" />
+  <HelpKINode Title="OAuthAuthorization.Verifier property" Url="html/81e397a9-9adb-0434-eff2-a0b5c6b9fe0e.htm" />
+  <HelpKINode Title="OAuthAuthorization.Version property" Url="html/c3d6163e-fa12-f764-db60-662ab4411b76.htm" />
   <HelpKINode Title="OAuthBase class">
     <HelpKINode Title="OAuthBase Class" Url="html/82e585c4-8807-cd89-1b2c-4d3adbe39676.htm" />
     <HelpKINode Title="about OAuthBase class" Url="html/82e585c4-8807-cd89-1b2c-4d3adbe39676.htm" />
@@ -461,16 +782,17 @@
   <HelpKINode Title="OAuthRequestToken class">
     <HelpKINode Title="OAuthRequestToken Class" Url="html/71d69076-659d-3d36-6e31-39523934b987.htm" />
     <HelpKINode Title="about OAuthRequestToken class" Url="html/71d69076-659d-3d36-6e31-39523934b987.htm" />
-    <HelpKINode Title="constructor" Url="html/cabba897-9d53-3e1f-88d6-1f0036399ba4.htm" />
+    <HelpKINode Title="constructor" Url="html/69448431-f094-03a2-5c89-768d5ca72578.htm" />
     <HelpKINode Title="methods" Url="html/8d912d7b-3798-7215-8de5-190a180323c4.htm" />
     <HelpKINode Title="properties" Url="html/b28abe91-ed8f-a305-4894-7996fb9e3061.htm" />
   </HelpKINode>
   <HelpKINode Title="OAuthRequestToken.AuthorizationUrl property" Url="html/9234b4a2-44a8-1a0c-b27a-c7794002fccf.htm" />
+  <HelpKINode Title="OAuthRequestToken.GetObjectData method" Url="html/21c28786-aa6d-5cf3-0034-ac1a5c6d5508.htm" />
   <HelpKINode Title="OAuthRequestToken.OAuthCallbackConfirmed property" Url="html/f25fa444-d9d8-1e81-ad66-bfec11ad6126.htm" />
-  <HelpKINode Title="OAuthRequestToken.OAuthRequestToken constructor" Url="html/cabba897-9d53-3e1f-88d6-1f0036399ba4.htm" />
+  <HelpKINode Title="OAuthRequestToken.OAuthRequestToken constructor" Url="html/69448431-f094-03a2-5c89-768d5ca72578.htm" />
   <HelpKINode Title="OAuthRequestToken.OAuthToken property" Url="html/2dfd10f3-addc-fc7c-b9c4-9595264191ee.htm" />
   <HelpKINode Title="OAuthRequestToken.OAuthTokenSecret property" Url="html/497e5bea-77f8-dada-3129-51e02625c200.htm" />
-  <HelpKINode Title="OAuthRequestToken.ToString method" Url="html/371e28b0-b6e5-9e2b-bf32-ee069f6a2d32.htm" />
+  <HelpKINode Title="OAuthRequestToken.ToString method" Url="html/e58b56aa-39eb-4c99-f273-f72822190752.htm" />
   <HelpKINode Title="OAuthSignature class">
     <HelpKINode Title="OAuthSignature Class" Url="html/28964dae-05ad-a777-8b55-abeece7996a8.htm" />
     <HelpKINode Title="about OAuthSignature class" Url="html/28964dae-05ad-a777-8b55-abeece7996a8.htm" />
@@ -490,10 +812,14 @@
     <HelpKINode Title="OAuthUtility Class" Url="html/5326a01b-94c4-9a3a-11b3-a1818a0683fc.htm" />
     <HelpKINode Title="about OAuthUtility class" Url="html/5326a01b-94c4-9a3a-11b3-a1818a0683fc.htm" />
     <HelpKINode Title="constructor" Url="html/254f8c31-e288-0514-9f0b-677ecf95f60e.htm" />
-    <HelpKINode Title="fields" Url="html/aedf90d5-5809-9170-c64f-519b0d796380.htm" />
     <HelpKINode Title="methods" Url="html/f8f0f855-e5a5-bd57-51e0-9325d2993237.htm" />
   </HelpKINode>
-  <HelpKINode Title="OAuthUtility.ExecuteRequest method" Url="html/4ad4b8d2-e383-69f2-f274-a5aafdbe0eff.htm" />
+  <HelpKINode Title="OAuthUtility.Delete method" Url="html/515efd7d-3071-a607-cb20-3343fd8ae6f3.htm" />
+  <HelpKINode Title="OAuthUtility.DeleteAsync method" Url="html/380ec674-c6cb-fea7-2985-5ff98245ac11.htm" />
+  <HelpKINode Title="OAuthUtility.ExecuteRequest method" Url="html/833a8736-b2aa-1fab-9eeb-d951fe179f03.htm" />
+  <HelpKINode Title="OAuthUtility.ExecuteRequestAsync method" Url="html/f7d98aac-8a8a-a29e-6723-939698722063.htm" />
+  <HelpKINode Title="OAuthUtility.Get method" Url="html/7a84bdaf-41f1-967f-78af-07545816bf17.htm" />
+  <HelpKINode Title="OAuthUtility.GetAsync method" Url="html/d2cdef46-2c67-8383-50bc-d24d11517bf2.htm" />
   <HelpKINode Title="OAuthUtility.GetDictionaryValueOrNull method" Url="html/a2ac73f7-b784-5247-c0c1-69aba41ddb93.htm" />
   <HelpKINode Title="OAuthUtility.GetMD5Hash method" Url="html/72413fdc-32ce-5eaf-6422-7b91bfcaa247.htm" />
   <HelpKINode Title="OAuthUtility.GetRandomKey method" Url="html/43958c3d-bd41-640f-c7fe-959092903255.htm" />
@@ -501,9 +827,13 @@
   <HelpKINode Title="OAuthUtility.GetSignatureBaseString method" Url="html/ddd653e6-d833-d0dd-7548-1e9d71187d6a.htm" />
   <HelpKINode Title="OAuthUtility.GetTimeStamp method" Url="html/de57f78d-38c1-18a3-7a0a-4185d1cb394f.htm" />
   <HelpKINode Title="OAuthUtility.OAuthUtility constructor" Url="html/254f8c31-e288-0514-9f0b-677ecf95f60e.htm" />
+  <HelpKINode Title="OAuthUtility.PercentEncode method" Url="html/f1e2103d-2a6c-1c7d-75cb-fb3f358c43d5.htm" />
+  <HelpKINode Title="OAuthUtility.Post method" Url="html/a84113a0-8531-a482-f278-c17e0b46592b.htm" />
+  <HelpKINode Title="OAuthUtility.PostAsync method" Url="html/2636b31c-0bc8-b6d6-dadb-c681b622b2fa.htm" />
+  <HelpKINode Title="OAuthUtility.Put method" Url="html/062bd480-69b2-f92c-3805-3ff2ea1e345e.htm" />
+  <HelpKINode Title="OAuthUtility.PutAsync method" Url="html/888394cd-b328-3ca1-1b58-51124404ef8e.htm" />
   <HelpKINode Title="OAuthUtility.ToBase64String method" Url="html/bf38b583-9c86-c524-cf60-a9cfd1ac3553.htm" />
-  <HelpKINode Title="OAuthUtility.UnreservedCharacters field" Url="html/be774902-e9a2-2761-9c26-1145ee8e221c.htm" />
-  <HelpKINode Title="OAuthUtility.UrlEncode method" Url="html/eb59326e-e635-00df-69eb-839af8a90423.htm" />
+  <HelpKINode Title="OAuthUtility.UrlEncode method" Url="html/fe982379-2623-8ea3-4389-bfd05920b1be.htm" />
   <HelpKINode Title="OAuthWeb class">
     <HelpKINode Title="OAuthWeb Class" Url="html/6def3eae-afab-bc22-3de5-a57a6557ad2c.htm" />
     <HelpKINode Title="about OAuthWeb class" Url="html/6def3eae-afab-bc22-3de5-a57a6557ad2c.htm" />
@@ -524,13 +854,25 @@
   <HelpKINode Title="OdnoklassnikiClient.OdnoklassnikiClient constructor" Url="html/2e12b88e-a356-0245-6efb-328124a02a40.htm" />
   <HelpKINode Title="OdnoklassnikiClient.ProviderName property" Url="html/d990fc8d-93a7-7b77-4f77-a2385f509bdb.htm" />
   <HelpKINode Title="Parameters property">
-    <HelpKINode Title="OAuthAuthorization.Parameters Property " Url="html/8652837b-308d-4f47-dc10-c8068730115e.htm" />
+    <HelpKINode Title="HttpAuthorization.Parameters Property " Url="html/204f0aa1-d76c-89ef-fccc-2a69db4eb6b5.htm" />
     <HelpKINode Title="OAuthBase.Parameters Property " Url="html/41deaa2b-a702-bbcd-3fbc-dc443e9a7939.htm" />
   </HelpKINode>
-  <HelpKINode Title="ParametersSorted property" Url="html/f9bbfd47-0e3f-206a-bd03-732ab2ec57d8.htm" />
+  <HelpKINode Title="ParametersSorted property" Url="html/1ee700b7-4314-d3bc-48d4-cba76122d143.htm" />
+  <HelpKINode Title="ParameterType property" Url="html/b1a80c5b-d5c9-5451-bd20-906e69e5b6ff.htm" />
+  <HelpKINode Title="Parent property">
+    <HelpKINode Title="UniValue.Parent Property " Url="html/5d8fe720-abe3-73f9-e613-27f5932e0f82.htm" />
+    <HelpKINode Title="UniValueCollection.Parent Property " Url="html/ac2edadf-5062-b558-13ae-32c3cf5492f3.htm" />
+  </HelpKINode>
   <HelpKINode Title="Parse property" Url="html/6198ab30-8692-090e-dd60-f8f2300d2755.htm" />
+  <HelpKINode Title="ParseJson method" Url="html/17bde18e-67fd-4e41-63e5-3ecfa4a863f0.htm" />
+  <HelpKINode Title="ParseParameters method" Url="html/23619a23-d5d1-1968-5826-46542f420a5d.htm" />
+  <HelpKINode Title="ParseXml method" Url="html/bce74bb6-4be8-4ef6-dd5f-1656c0a65171.htm" />
+  <HelpKINode Title="PercentEncode method" Url="html/f1e2103d-2a6c-1c7d-75cb-fb3f358c43d5.htm" />
+  <HelpKINode Title="PercentEncoding enumeration member" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
   <HelpKINode Title="Phone property" Url="html/ccbaf50e-a3b3-897a-e4de-26b59e491426.htm" />
   <HelpKINode Title="PLAINTEXT field" Url="html/a336b9e5-9947-a07b-6e2e-b8c779c3e509.htm" />
+  <HelpKINode Title="Post method" Url="html/a84113a0-8531-a482-f278-c17e0b46592b.htm" />
+  <HelpKINode Title="PostAsync method" Url="html/2636b31c-0bc8-b6d6-dadb-c681b622b2fa.htm" />
   <HelpKINode Title="Programmer enumeration member" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
   <HelpKINode Title="ProtocolVersion property" Url="html/78b8267d-fefa-373b-6b81-6e6b637ba3ca.htm" />
   <HelpKINode Title="ProviderName property">
@@ -541,17 +883,21 @@
     <HelpKINode Title="FoursquareClient.ProviderName Property " Url="html/22af4dd2-370f-d16f-dbff-994de3d8e11e.htm" />
     <HelpKINode Title="GitHubClient.ProviderName Property " Url="html/8138e069-ee1e-adeb-c27b-bf60ea18076d.htm" />
     <HelpKINode Title="GoogleClient.ProviderName Property " Url="html/db8041e4-8b7c-7a5b-2709-ec9232098fee.htm" />
+    <HelpKINode Title="InstagramClient.ProviderName Property " Url="html/81701072-1c56-211e-e359-4c02e8944212.htm" />
     <HelpKINode Title="LinkedInClient.ProviderName Property " Url="html/c655a27f-2e0f-b498-d6b5-2edfaba55853.htm" />
     <HelpKINode Title="LiveClient.ProviderName Property " Url="html/4bab0e5a-1c12-5b90-f971-45e90f54b098.htm" />
     <HelpKINode Title="MailRuClient.ProviderName Property " Url="html/f5cc1fa1-0274-acd7-4bc1-3b2cdd187e7a.htm" />
     <HelpKINode Title="OAuthBase.ProviderName Property " Url="html/66ede5c6-64a2-0637-8443-be67e5cd6215.htm" />
     <HelpKINode Title="OdnoklassnikiClient.ProviderName Property " Url="html/d990fc8d-93a7-7b77-4f77-a2385f509bdb.htm" />
     <HelpKINode Title="SoundCloudClient.ProviderName Property " Url="html/3ec7d784-d2d4-e23f-0fdd-f7b3e98604ad.htm" />
+    <HelpKINode Title="TumblrClient.ProviderName Property " Url="html/8181524f-8cf0-5b45-e56a-e5c9b7403a94.htm" />
     <HelpKINode Title="TwitterClient.ProviderName Property " Url="html/58bbb099-bf97-b5df-24ff-64638e2bcd02.htm" />
     <HelpKINode Title="VkontakteClient.ProviderName Property " Url="html/b70401c5-2426-9310-2f57-208108d40acc.htm" />
     <HelpKINode Title="YahooClient.ProviderName Property " Url="html/372b8b68-8e39-1125-60d9-68ebfa94b8d5.htm" />
     <HelpKINode Title="YandexClient.ProviderName Property " Url="html/c5b418a4-b2c8-eae2-2584-a35e2b55f490.htm" />
   </HelpKINode>
+  <HelpKINode Title="Put method" Url="html/062bd480-69b2-f92c-3805-3ff2ea1e345e.htm" />
+  <HelpKINode Title="PutAsync method" Url="html/888394cd-b328-3ca1-1b58-51124404ef8e.htm" />
   <HelpKINode Title="RedirectToAuthorization method">
     <HelpKINode Title="OAuthBase.RedirectToAuthorization Method " Url="html/47978799-1bb3-0841-69e1-f0abf0f181fe.htm" />
     <HelpKINode Title="OAuthWeb.RedirectToAuthorization Method " Url="html/d958625e-bb97-bd36-1813-e952568545dc.htm" />
@@ -559,17 +905,31 @@
   <HelpKINode Title="RefreshToken property" Url="html/1b19e08d-387f-b2b0-7449-946c080b4af1.htm" />
   <HelpKINode Title="RegisterClient method" Url="html/8851275b-2edb-2bf7-080f-4c99d83a9d18.htm" />
   <HelpKINode Title="RegisteredClients property" Url="html/6d99eae9-941c-ae11-4d7b-ba4013800d12.htm" />
+  <HelpKINode Title="Remove method">
+    <HelpKINode Title="HttpAuthorization.Remove Method " Url="html/f710a35f-ecee-b62a-527d-0f52ae821412.htm" />
+    <HelpKINode Title="HttpParameterCollection.Remove Method " Url="html/f042ebc0-5838-9433-fb6c-96d28a04163c.htm" />
+    <HelpKINode Title="UniValue.Remove Method " Url="html/c0665d30-c97b-beb5-8bf6-c0426b3b49dd.htm" />
+    <HelpKINode Title="UniValueCollection.Remove Method " Url="html/34cf0b6d-4e01-e734-5a7d-7c40e242148a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoveAll method" Url="html/08fd6fef-2ed0-ddb4-460d-042aa8940bbb.htm" />
+  <HelpKINode Title="RemoveAt method" Url="html/6ce41926-2a59-30e3-2e06-31869c715319.htm" />
   <HelpKINode Title="RemoveKey method" Url="html/b6fe0207-4006-4153-f588-5f735eda1045.htm" />
+  <HelpKINode Title="RemoveRange method" Url="html/b23c525a-93ac-88b1-3313-d408c0fb3864.htm" />
+  <HelpKINode Title="RequestBody enumeration member" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
   <HelpKINode Title="RequestException class">
     <HelpKINode Title="RequestException Class" Url="html/fed3f7aa-dc1b-ffa5-be61-24829788dcf0.htm" />
     <HelpKINode Title="about RequestException class" Url="html/fed3f7aa-dc1b-ffa5-be61-24829788dcf0.htm" />
-    <HelpKINode Title="constructor" Url="html/7730ad8e-d457-7ca1-9815-67e478cffdb7.htm" />
+    <HelpKINode Title="constructor" Url="html/0f57d09f-fcab-a6b0-d5d1-91326032f439.htm" />
     <HelpKINode Title="events" Url="html/65882186-1441-c9a6-40ab-7d6f035ee542.htm" />
     <HelpKINode Title="methods" Url="html/a23cc679-fe27-bb97-ca78-479741a85a33.htm" />
     <HelpKINode Title="properties" Url="html/64cf1121-2d6c-6207-2e8d-20f1dd24e8cd.htm" />
   </HelpKINode>
-  <HelpKINode Title="RequestException.RequestException constructor" Url="html/7730ad8e-d457-7ca1-9815-67e478cffdb7.htm" />
+  <HelpKINode Title="RequestException.ContentType property" Url="html/77d7c778-8333-3660-a487-0dfb97b4beb0.htm" />
+  <HelpKINode Title="RequestException.GetObjectData method" Url="html/0e3c663e-720a-5c24-2ea7-5bc72e138aeb.htm" />
+  <HelpKINode Title="RequestException.HttpHeaders property" Url="html/2f0315ce-dd15-c34d-2b72-46b7dd2adf29.htm" />
+  <HelpKINode Title="RequestException.RequestException constructor" Url="html/0f57d09f-fcab-a6b0-d5d1-91326032f439.htm" />
   <HelpKINode Title="RequestException.RequestResult property" Url="html/d8fad801-c3c9-bd6b-038d-85edf7b0bbf2.htm" />
+  <HelpKINode Title="RequestException.StatusCode property" Url="html/bb9cb566-258e-8e5b-fb3c-afefa7b156ef.htm" />
   <HelpKINode Title="RequestResult class">
     <HelpKINode Title="RequestResult Class" Url="html/5d6aec60-d24b-70aa-123f-36b869ace3ff.htm" />
     <HelpKINode Title="about RequestResult class" Url="html/5d6aec60-d24b-70aa-123f-36b869ace3ff.htm" />
@@ -578,18 +938,22 @@
     <HelpKINode Title="properties" Url="html/f3bc14f6-36c7-6e0d-7e2e-ab4a36a49fec.htm" />
   </HelpKINode>
   <HelpKINode Title="RequestResult property" Url="html/d8fad801-c3c9-bd6b-038d-85edf7b0bbf2.htm" />
-  <HelpKINode Title="RequestResult.ContainsKey method" Url="html/fc49151d-2e52-032f-5334-3099248c7137.htm" />
+  <HelpKINode Title="RequestResult.ContentDisposition property" Url="html/5567ac6b-7238-1f9b-ad64-15f0d466fafe.htm" />
   <HelpKINode Title="RequestResult.ContentType property" Url="html/5f84bf6d-46b6-7484-5c09-9706b9c8bd18.htm" />
+  <HelpKINode Title="RequestResult.FileName property" Url="html/8a7b48c7-997d-5bc2-787e-e50f63c58795.htm" />
+  <HelpKINode Title="RequestResult.GetObjectData method" Url="html/63639245-2048-ebea-683e-b9f901dd1167.htm" />
+  <HelpKINode Title="RequestResult.HttpHeaders property" Url="html/99e2e626-4c76-3c94-349f-9dfd6b366e36.htm" />
   <HelpKINode Title="RequestResult.IsArray property" Url="html/551eb20c-83ed-0e50-6e73-84cc372765f6.htm" />
   <HelpKINode Title="RequestResult.IsDictionary property" Url="html/9969fb0a-e1d1-3081-2a29-0a23c949fc89.htm" />
   <HelpKINode Title="RequestResult.IsEmpty property" Url="html/165e9042-a895-f5f9-201a-7dc65f8baa9b.htm" />
+  <HelpKINode Title="RequestResult.IsFile property" Url="html/4247f403-e723-63cc-8873-18968820bde6.htm" />
   <HelpKINode Title="RequestResult.IsNameValueCollection property" Url="html/77abfdf4-88d4-f6ac-c721-31c98841b7af.htm" />
+  <HelpKINode Title="RequestResult.IsSuccessfully property" Url="html/4ed3c562-496a-0ae6-c9d7-c546441a09b5.htm" />
   <HelpKINode Title="RequestResult.IsXml property" Url="html/61362978-6667-6559-b37a-208ab4f0e265.htm" />
-  <HelpKINode Title="RequestResult.Item property" Url="html/6e2ecb22-53dd-d4f7-e834-d7477159ec73.htm" />
   <HelpKINode Title="RequestResult.RequestResult constructor" Url="html/9057867f-98ec-9b83-7942-e206e2a150e0.htm" />
   <HelpKINode Title="RequestResult.Result property" Url="html/c11cba4d-564b-c0a8-2395-d1d8413e921e.htm" />
   <HelpKINode Title="RequestResult.Source property" Url="html/2b1d9f03-0d18-c981-d5c7-7c29990e7ac3.htm" />
-  <HelpKINode Title="RequestResult.ToString method" Url="html/febe8202-b3e0-2ba6-04ae-d8bc98b6eb82.htm" />
+  <HelpKINode Title="RequestResult.StatusCode property" Url="html/b9f12ecb-4ebd-317b-933d-918decb9dbf6.htm" />
   <HelpKINode Title="RequestToken property" Url="html/95dcc872-4c99-b010-3f34-a215e1444270.htm" />
   <HelpKINode Title="RequestTokenUrl property" Url="html/9d495c8f-a959-feb2-43b4-8fd82300c6ab.htm" />
   <HelpKINode Title="Result property" Url="html/c11cba4d-564b-c0a8-2395-d1d8413e921e.htm" />
@@ -602,6 +966,7 @@
     <HelpKINode Title="YandexClient.ReturnUrl Property " Url="html/2732cabe-6a37-a6ca-840a-92d4ab7448ce.htm" />
   </HelpKINode>
   <HelpKINode Title="RSASHA1 field" Url="html/b402e4e9-bb5e-a5e6-3945-e08fd4590142.htm" />
+  <HelpKINode Title="SByte to UniValue conversion" Url="html/d276cbcc-80ba-c39c-fcc1-6c221df48cc6.htm" />
   <HelpKINode Title="Scope property">
     <HelpKINode Title="OAuth2AccessToken.Scope Property " Url="html/818d2b37-0555-915c-2374-2968508b8b2a.htm" />
     <HelpKINode Title="OAuth2Client.Scope Property " Url="html/188ef767-bbc9-c856-ea86-88ab85d3c237.htm" />
@@ -609,7 +974,11 @@
   <HelpKINode Title="SetSignature method" Url="html/887efe32-e8a0-df56-8ede-3c48a9842852.htm" />
   <HelpKINode Title="Sex enumeration" Url="html/b56b945e-bb01-55dc-55ce-879ff1d360a5.htm" />
   <HelpKINode Title="Sex property" Url="html/ce04ea26-f2f3-91df-e43b-ed0a1cdf13c2.htm" />
-  <HelpKINode Title="SignatureMethod property" Url="html/aa9c9633-6545-c3bb-d161-28addd6a8370.htm" />
+  <HelpKINode Title="Signature property" Url="html/664c5add-e750-c9ee-99a2-2d3f3cc605b1.htm" />
+  <HelpKINode Title="SignatureMethod property">
+    <HelpKINode Title="OAuthAuthorization.SignatureMethod Property " Url="html/f36c6d08-07ea-7b11-27f0-d7c0f667c328.htm" />
+    <HelpKINode Title="OAuthSignature.SignatureMethod Property " Url="html/aa9c9633-6545-c3bb-d161-28addd6a8370.htm" />
+  </HelpKINode>
   <HelpKINode Title="SignatureMethods class">
     <HelpKINode Title="SignatureMethods Class" Url="html/02e53054-4b83-4898-5fcd-a64265fefcba.htm" />
     <HelpKINode Title="about SignatureMethods class" Url="html/02e53054-4b83-4898-5fcd-a64265fefcba.htm" />
@@ -618,6 +987,8 @@
   <HelpKINode Title="SignatureMethods.HMACSHA1 field" Url="html/b6fc0854-4174-4960-78f4-74184b560247.htm" />
   <HelpKINode Title="SignatureMethods.PLAINTEXT field" Url="html/a336b9e5-9947-a07b-6e2e-b8c779c3e509.htm" />
   <HelpKINode Title="SignatureMethods.RSASHA1 field" Url="html/b402e4e9-bb5e-a5e6-3945-e08fd4590142.htm" />
+  <HelpKINode Title="Single to HttpParameterValue conversion" Url="html/2dfa7b51-7963-e359-ee2b-caafd980f6df.htm" />
+  <HelpKINode Title="Single to UniValue conversion" Url="html/a04e88fc-917b-6e53-d957-457149d59f60.htm" />
   <HelpKINode Title="Sort method" Url="html/93b9ac3f-e688-1931-f7ea-74e3fb370758.htm" />
   <HelpKINode Title="SoundCloudClient class">
     <HelpKINode Title="SoundCloudClient Class" Url="html/74c22fd2-ee98-d3e2-ced3-b74de3c2caed.htm" />
@@ -632,19 +1003,77 @@
   <HelpKINode Title="Source property" Url="html/2b1d9f03-0d18-c981-d5c7-7c29990e7ac3.htm" />
   <HelpKINode Title="SourceName property" Url="html/de21181c-b632-56a1-6596-317d764ed9e8.htm" />
   <HelpKINode Title="State property" Url="html/9a18f35c-bc9d-a1fb-9e9b-f9827c4c3396.htm" />
+  <HelpKINode Title="StatusCode property">
+    <HelpKINode Title="RequestException.StatusCode Property " Url="html/bb9cb566-258e-8e5b-fb3c-afefa7b156ef.htm" />
+    <HelpKINode Title="RequestResult.StatusCode Property " Url="html/b9f12ecb-4ebd-317b-933d-918decb9dbf6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Stream to HttpParameterCollection conversion" Url="html/4b0c7385-e98d-c0db-89cf-6543567d324a.htm" />
+  <HelpKINode Title="Stream to HttpParameterValue conversion" Url="html/8ac62829-3c3d-3cc3-0768-3a4c002067d6.htm" />
+  <HelpKINode Title="String to HttpAuthorization conversion" Url="html/4b1d5aaf-9765-6763-384e-56e68be5243d.htm" />
+  <HelpKINode Title="String to HttpParameterValue conversion" Url="html/2f87ad95-2ee1-9499-f3c5-e5b0879e1eb9.htm" />
+  <HelpKINode Title="String to OAuthAuthorization conversion" Url="html/2d7ab5c6-b1ec-2279-afab-8d1cf6e63904.htm" />
+  <HelpKINode Title="String to UniValue conversion" Url="html/b06f0094-7c1d-bf95-a011-65448a813394.htm" />
+  <HelpKINode Title="StringBuilder to UniValue conversion" Url="html/746598d8-7bb0-5d3a-8ad2-582cad6af2b8.htm" />
+  <HelpKINode Title="Timestamp property" Url="html/1ed88f3c-0061-b3b9-1a1f-04ee305de0b5.htm" />
   <HelpKINode Title="ToBase64String method" Url="html/bf38b583-9c86-c524-cf60-a9cfd1ac3553.htm" />
-  <HelpKINode Title="TokenSecret property" Url="html/9bdaac58-051b-cace-643a-b2330d35b85c.htm" />
+  <HelpKINode Title="ToBinary method" Url="html/667fee01-00df-4dba-23c5-e2645e9282c7.htm" />
+  <HelpKINode Title="ToBoolean method" Url="html/3902f556-70e6-214f-e253-593d29986b46.htm" />
+  <HelpKINode Title="ToByte method" Url="html/ce0a7839-06ba-9d67-a2f3-d435131dd1ae.htm" />
+  <HelpKINode Title="ToByteArray method" Url="html/2836346a-7439-d94f-115d-5ef128f5ddc6.htm" />
+  <HelpKINode Title="ToChar method" Url="html/75a6b8f1-9b8e-7051-287b-3db3f474d19a.htm" />
+  <HelpKINode Title="ToDateTime method" Url="html/3f2b9e61-a1c0-4708-7f2b-6a1463e5f50b.htm" />
+  <HelpKINode Title="ToDecimal method" Url="html/2e483344-f675-a052-2f89-d804aa6aa250.htm" />
+  <HelpKINode Title="ToDictionary method" Url="html/0195c6fc-4a17-28b6-6c12-cd6d9d1c8e2e.htm" />
+  <HelpKINode Title="ToDouble method" Url="html/1818c211-e76a-b61a-f296-94888d17b81c.htm" />
+  <HelpKINode Title="ToEncodedString method" Url="html/2f3ba89e-1c00-de48-bbfc-a7ac3fb31fc3.htm" />
+  <HelpKINode Title="ToInt16 method" Url="html/1a210030-9e0b-db02-c4f6-eb0b2a59b667.htm" />
+  <HelpKINode Title="ToInt32 method" Url="html/fd80be06-e907-07e6-b4a1-d4289e77ee96.htm" />
+  <HelpKINode Title="ToInt64 method" Url="html/bb771c49-dc69-da71-d3b0-9d612ac925f9.htm" />
+  <HelpKINode Title="Token property" Url="html/d3e67179-5390-4f94-f468-2963e91e8fbf.htm" />
+  <HelpKINode Title="TokenSecret property">
+    <HelpKINode Title="OAuthAccessToken.TokenSecret Property " Url="html/9bdaac58-051b-cace-643a-b2330d35b85c.htm" />
+    <HelpKINode Title="OAuthAuthorization.TokenSecret Property " Url="html/8d3876f1-d9c9-c439-64e8-a538c10be196.htm" />
+  </HelpKINode>
   <HelpKINode Title="TokenType property" Url="html/feaf0d77-93d0-8e4a-ee0b-c6b2f94177cc.htm" />
   <HelpKINode Title="ToKeyValuePairCollection method" Url="html/5d9393b2-922f-bcdb-01e4-e4edd69aaeab.htm" />
+  <HelpKINode Title="ToNameValueCollection method">
+    <HelpKINode Title="HttpParameterCollection.ToNameValueCollection Method " Url="html/49a5e832-a202-5fea-2576-57c7bdf6bdfe.htm" />
+    <HelpKINode Title="UniValue.ToNameValueCollection Method " Url="html/7de493ca-6cac-9e65-f98e-07cf5986c2aa.htm" />
+  </HelpKINode>
   <HelpKINode Title="ToParametersString method" Url="html/4ad28ff0-deef-b798-a76d-2537fc4338dc.htm" />
+  <HelpKINode Title="ToRequestBody method" Url="html/b48326d0-1575-cfb0-dffe-403718340b17.htm" />
+  <HelpKINode Title="ToSByte method" Url="html/2c6170a8-5715-83b9-d89c-188a99051c54.htm" />
+  <HelpKINode Title="ToSingle method" Url="html/3fe83afc-14ad-237e-0f4e-87e1128fe44e.htm" />
   <HelpKINode Title="ToString method">
-    <HelpKINode Title="AccessToken.ToString Method " Url="html/c13cb2e8-c360-31a5-bf76-ff3edafca2ef.htm" />
-    <HelpKINode Title="OAuthAuthorization.ToString Method " Url="html/16058ae5-6c4e-111d-1731-59b0ec707757.htm" />
-    <HelpKINode Title="OAuthRequestToken.ToString Method " Url="html/371e28b0-b6e5-9e2b-bf32-ee069f6a2d32.htm" />
+    <HelpKINode Title="AccessToken.ToString Method " Url="html/c2ce8f78-0867-26d5-b574-b432194681ff.htm" />
+    <HelpKINode Title="HttpAuthorization.ToString Method " Url="html/48f2a582-9181-8e5d-c78d-85c4ab4edacf.htm" />
+    <HelpKINode Title="HttpParameter.ToString Method " Url="html/a2674fc8-ab5e-8bd9-162e-6f5b74a65adc.htm" />
+    <HelpKINode Title="HttpParameterValue.ToString Method " Url="html/4868a5b5-0ff3-8120-0566-bf1611762817.htm" />
+    <HelpKINode Title="OAuthRequestToken.ToString Method " Url="html/e58b56aa-39eb-4c99-f273-f72822190752.htm" />
     <HelpKINode Title="OAuthSignature.ToString Method " Url="html/7f279b7b-52cc-c585-dbb6-66d6b75b4613.htm" />
-    <HelpKINode Title="RequestResult.ToString Method " Url="html/febe8202-b3e0-2ba6-04ae-d8bc98b6eb82.htm" />
+    <HelpKINode Title="UniValue.ToString Method " Url="html/a0798478-728b-454a-8471-8125e0620f40.htm" />
+    <HelpKINode Title="UniValueCollection.ToString Method " Url="html/ddf05482-5784-7ac8-81d5-fda4d894236d.htm" />
     <HelpKINode Title="UserInfo.ToString Method " Url="html/4a4df6ac-05ec-2aa8-280d-bb3e8bce7abc.htm" />
   </HelpKINode>
+  <HelpKINode Title="ToStringParameters method" Url="html/b7d76592-33e5-2afd-f24f-98d0e80d666a.htm" />
+  <HelpKINode Title="ToType method" Url="html/4aa94067-8294-4514-ae98-3518a1517004.htm" />
+  <HelpKINode Title="ToUInt16 method" Url="html/2c068e2a-4126-1632-5379-8c98cc829de6.htm" />
+  <HelpKINode Title="ToUInt32 method" Url="html/b5c7f83a-dbba-79e2-98ee-70750f468eb2.htm" />
+  <HelpKINode Title="ToUInt64 method" Url="html/6a480bb0-7e31-8f04-4d9d-967503e27fa9.htm" />
+  <HelpKINode Title="TryGetValue method" Url="html/642a70ee-d489-e4d8-4eb2-d1d133402741.htm" />
+  <HelpKINode Title="TryParseJson method" Url="html/004ac879-709e-fc5a-a3a3-06c3c48e3e57.htm" />
+  <HelpKINode Title="TryParseParameters method" Url="html/ff3078c5-cefd-3b14-7e98-671c2655dcb2.htm" />
+  <HelpKINode Title="TryParseXml method" Url="html/2be7cdca-01b7-a279-0056-65fd1fc69fc7.htm" />
+  <HelpKINode Title="TumblrClient class">
+    <HelpKINode Title="TumblrClient Class" Url="html/1d1d42f8-b0c7-8e20-9a33-147c33c8df53.htm" />
+    <HelpKINode Title="about TumblrClient class" Url="html/1d1d42f8-b0c7-8e20-9a33-147c33c8df53.htm" />
+    <HelpKINode Title="constructor" Url="html/5a259fc2-bd3f-22a8-b500-f1435d53db03.htm" />
+    <HelpKINode Title="methods" Url="html/62e1ca95-2b40-8c53-abff-c1c77936828c.htm" />
+    <HelpKINode Title="properties" Url="html/660d56b7-4c1a-b827-27eb-11e2cf86cc7f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TumblrClient.GetUserInfo method" Url="html/e0aab987-973a-27f4-fa1b-ce50cc3d2f48.htm" />
+  <HelpKINode Title="TumblrClient.ProviderName property" Url="html/8181524f-8cf0-5b45-e56a-e5c9b7403a94.htm" />
+  <HelpKINode Title="TumblrClient.TumblrClient constructor" Url="html/5a259fc2-bd3f-22a8-b500-f1435d53db03.htm" />
   <HelpKINode Title="TwitterClient class">
     <HelpKINode Title="TwitterClient Class" Url="html/9310ba11-b1ab-a717-3269-e5b8c0ab35bd.htm" />
     <HelpKINode Title="about TwitterClient class" Url="html/9310ba11-b1ab-a717-3269-e5b8c0ab35bd.htm" />
@@ -656,6 +1085,130 @@
   <HelpKINode Title="TwitterClient.ProviderName property" Url="html/58bbb099-bf97-b5df-24ff-64638e2bcd02.htm" />
   <HelpKINode Title="TwitterClient.TwitterClient constructor" Url="html/64b0156f-d29f-710c-a827-b56610d41c96.htm" />
   <HelpKINode Title="Type property" Url="html/0a2210a4-2014-fe7d-0553-2792ec536e23.htm" />
+  <HelpKINode Title="UInt16 to HttpParameterValue conversion" Url="html/ad5537ff-46c8-100f-f501-b1f3369a3115.htm" />
+  <HelpKINode Title="UInt16 to UniValue conversion" Url="html/1efcf2d5-a76e-73f7-b637-94e497807f09.htm" />
+  <HelpKINode Title="UInt32 to HttpParameterValue conversion" Url="html/17f1e35e-300b-8a0b-e084-5c3c617380d6.htm" />
+  <HelpKINode Title="UInt32 to UniValue conversion" Url="html/674e8eda-6615-f248-c4a8-188a6df42522.htm" />
+  <HelpKINode Title="UInt64 to HttpParameterValue conversion" Url="html/d60178dd-5ca5-d1ec-bd25-7e4daf53af3e.htm" />
+  <HelpKINode Title="UInt64 to UniValue conversion" Url="html/dd7f7164-cad8-6aac-7d73-0fc7ee52e766.htm" />
+  <HelpKINode Title="Unformed enumeration member" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
+  <HelpKINode Title="UniValue class">
+    <HelpKINode Title="UniValue Class" Url="html/e08e5012-b0e4-2ccd-6d85-7f0ec2353b05.htm" />
+    <HelpKINode Title="about UniValue class" Url="html/e08e5012-b0e4-2ccd-6d85-7f0ec2353b05.htm" />
+    <HelpKINode Title="constructor" Url="html/e954d706-7608-ccf8-0b88-d7e2d86d6eab.htm" />
+    <HelpKINode Title="methods" Url="html/d7ca1081-1200-e899-cbaa-9c9b80c35e6c.htm" />
+    <HelpKINode Title="operators and type conversions" Url="html/1050ab62-d79b-3b11-c91a-d8c657e45d86.htm" />
+    <HelpKINode Title="properties" Url="html/ae2c1457-5cd0-76c8-5e56-39af6b5da787.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UniValue to Array conversion" Url="html/2299cf90-bc74-d6f0-b5d2-972f00715a34.htm" />
+  <HelpKINode Title="UniValue to Boolean conversion" Url="html/1cf3ccc6-0cad-0337-734e-59296c611b56.htm" />
+  <HelpKINode Title="UniValue to Byte conversion" Url="html/ee7c65e5-7586-ba80-acc3-71b71295ec41.htm" />
+  <HelpKINode Title="UniValue to Byte() conversion" Url="html/6e61b792-51d3-8eeb-58e7-57c92159f5d2.htm" />
+  <HelpKINode Title="UniValue to Byte[] conversion" Url="html/6e61b792-51d3-8eeb-58e7-57c92159f5d2.htm" />
+  <HelpKINode Title="UniValue to Char conversion" Url="html/2b1ec00c-be7b-96ed-252e-17a99daf22db.htm" />
+  <HelpKINode Title="UniValue to DateTime conversion" Url="html/d98f47e8-967c-6659-ab1f-3c6198cf0294.htm" />
+  <HelpKINode Title="UniValue to Decimal conversion" Url="html/1b20327b-72f8-5460-3868-fba3d99bc77c.htm" />
+  <HelpKINode Title="UniValue to Dictionary(Of String, ) conversion" Url="html/661ac2de-b0f8-c88e-4daf-8c66dbe91ca1.htm" />
+  <HelpKINode Title="UniValue to Dictionary&lt;String, &gt; conversion" Url="html/661ac2de-b0f8-c88e-4daf-8c66dbe91ca1.htm" />
+  <HelpKINode Title="UniValue to Double conversion" Url="html/945be14b-7f08-0964-4266-7f0373645a38.htm" />
+  <HelpKINode Title="UniValue to Int16 conversion" Url="html/99b2f174-bf91-be2f-ff28-4f0332727059.htm" />
+  <HelpKINode Title="UniValue to Int32 conversion" Url="html/0fb44d5e-42de-bb92-c041-baf7e07b396a.htm" />
+  <HelpKINode Title="UniValue to Int64 conversion" Url="html/acf01825-c923-6058-07e4-b66aba3e8d13.htm" />
+  <HelpKINode Title="UniValue to NameValueCollection conversion" Url="html/bed1f32d-090e-fd82-e6f2-a7925cdcd6ee.htm" />
+  <HelpKINode Title="UniValue to SByte conversion" Url="html/37a8b852-a3ea-4152-750e-3fe86559856e.htm" />
+  <HelpKINode Title="UniValue to Single conversion" Url="html/ee50992f-9bac-5457-23ac-db4e9e2a47a3.htm" />
+  <HelpKINode Title="UniValue to Stream conversion" Url="html/5575eb93-c63d-a51d-5284-edc7c573f25e.htm" />
+  <HelpKINode Title="UniValue to String conversion" Url="html/a859934d-8c4f-dd8c-643c-97c7b27817d6.htm" />
+  <HelpKINode Title="UniValue to UInt16 conversion" Url="html/7f2bbc5b-b790-1249-c09c-8a5dd15a63f8.htm" />
+  <HelpKINode Title="UniValue to UInt32 conversion" Url="html/673c2263-9f2b-032c-1a3b-76286cd3b487.htm" />
+  <HelpKINode Title="UniValue to UInt64 conversion" Url="html/f3556908-28ca-1799-5e5e-627bef225eba.htm" />
+  <HelpKINode Title="UniValue to UniValue() conversion" Url="html/a0cca177-b394-7cdb-b394-09da90d4b91a.htm" />
+  <HelpKINode Title="UniValue to UniValueCollection conversion" Url="html/f66a84a5-3865-4b9d-86b4-4a987403b2bb.htm" />
+  <HelpKINode Title="UniValue to UniValue[] conversion" Url="html/a0cca177-b394-7cdb-b394-09da90d4b91a.htm" />
+  <HelpKINode Title="UniValue.Add method" Url="html/ff5a20c0-2719-4879-95a9-4fedc733f1a4.htm" />
+  <HelpKINode Title="UniValue.Attributes property" Url="html/8f757a7f-a2e4-4035-616a-c60c8f734af6.htm" />
+  <HelpKINode Title="UniValue.Clone method" Url="html/12f54abc-2e67-54b7-f25a-2b771b4d0bfc.htm" />
+  <HelpKINode Title="UniValue.CollectionItems property" Url="html/b2f61ed5-8065-e5a1-b938-27a22f0bd3fe.htm" />
+  <HelpKINode Title="UniValue.ContainsAttribute method" Url="html/46b0a8b2-ff4c-2381-3449-0684906e6171.htm" />
+  <HelpKINode Title="UniValue.ContainsKey method" Url="html/751240dd-d73a-cb10-7173-b32f9027d2b3.htm" />
+  <HelpKINode Title="UniValue.Count property" Url="html/85588d07-02ec-a5b4-8c22-fab07909b944.htm" />
+  <HelpKINode Title="UniValue.Create method" Url="html/eb636ab2-41af-6eb4-6fda-0952ec7956a7.htm" />
+  <HelpKINode Title="UniValue.Empty property" Url="html/de77edf5-87d9-569e-ad81-027431c03f76.htm" />
+  <HelpKINode Title="UniValue.Equality operator" Url="html/94c0569e-748d-f097-d322-ab51d14b1abd.htm" />
+  <HelpKINode Title="UniValue.Equals method" Url="html/e30279e4-c697-6650-a791-1310505af58e.htm" />
+  <HelpKINode Title="UniValue.GetEnumerator method" Url="html/3c3a4563-9b6b-050b-916a-4909bcd01c27.htm" />
+  <HelpKINode Title="UniValue.GetHashCode method" Url="html/62bf099e-77f1-e5fb-42b1-a61db95099be.htm" />
+  <HelpKINode Title="UniValue.GetObjectData method" Url="html/35b65aeb-3989-edfc-d01a-88acb41d4492.htm" />
+  <HelpKINode Title="UniValue.GetTypeCode method" Url="html/b30f82d3-a7ca-8cc9-adac-61935baa788d.htm" />
+  <HelpKINode Title="UniValue.HasAttributes property" Url="html/673e8617-f164-4568-17a1-f6c946de6e0a.htm" />
+  <HelpKINode Title="UniValue.HasValue property" Url="html/44340208-4b22-de89-72ae-febf93380226.htm" />
+  <HelpKINode Title="UniValue.Inequality operator" Url="html/bde3cba0-1f11-8c89-3f63-a4e8c713efc2.htm" />
+  <HelpKINode Title="UniValue.IsBinary property" Url="html/1d48adfa-e04a-3b2f-88dd-690683386df1.htm" />
+  <HelpKINode Title="UniValue.IsBoolean property" Url="html/4a9e5529-2ed3-b97a-a4cd-00211c1cdf8a.htm" />
+  <HelpKINode Title="UniValue.IsCollection property" Url="html/2c6ef6d1-631f-518a-848e-824eac6b6b7c.htm" />
+  <HelpKINode Title="UniValue.IsDateTime property" Url="html/83a7a6cb-7c35-e5ab-eb7f-103db7746c20.htm" />
+  <HelpKINode Title="UniValue.IsNullOrEmpty method" Url="html/a1900b13-4f3d-0ede-0106-95a79e958fb2.htm" />
+  <HelpKINode Title="UniValue.IsNumeric property" Url="html/e4889252-1a60-9407-90a1-6d53f0083d77.htm" />
+  <HelpKINode Title="UniValue.IsString property" Url="html/4cb14b64-a619-3452-3dc6-95767741e4b7.htm" />
+  <HelpKINode Title="UniValue.IsValue property" Url="html/2adf1648-70b4-e53c-3afa-db31d07ae329.htm" />
+  <HelpKINode Title="UniValue.Item property" Url="html/34e807fa-0027-8d51-a74e-baa63f4ae2ac.htm" />
+  <HelpKINode Title="UniValue.Key property" Url="html/fc2df39e-10c3-3072-6029-474eb052e91c.htm" />
+  <HelpKINode Title="UniValue.Parent property" Url="html/5d8fe720-abe3-73f9-e613-27f5932e0f82.htm" />
+  <HelpKINode Title="UniValue.ParseJson method" Url="html/17bde18e-67fd-4e41-63e5-3ecfa4a863f0.htm" />
+  <HelpKINode Title="UniValue.ParseParameters method" Url="html/23619a23-d5d1-1968-5826-46542f420a5d.htm" />
+  <HelpKINode Title="UniValue.ParseXml method" Url="html/bce74bb6-4be8-4ef6-dd5f-1656c0a65171.htm" />
+  <HelpKINode Title="UniValue.Remove method" Url="html/c0665d30-c97b-beb5-8bf6-c0426b3b49dd.htm" />
+  <HelpKINode Title="UniValue.ToBinary method" Url="html/667fee01-00df-4dba-23c5-e2645e9282c7.htm" />
+  <HelpKINode Title="UniValue.ToBoolean method" Url="html/3902f556-70e6-214f-e253-593d29986b46.htm" />
+  <HelpKINode Title="UniValue.ToByte method" Url="html/ce0a7839-06ba-9d67-a2f3-d435131dd1ae.htm" />
+  <HelpKINode Title="UniValue.ToChar method" Url="html/75a6b8f1-9b8e-7051-287b-3db3f474d19a.htm" />
+  <HelpKINode Title="UniValue.ToDateTime method" Url="html/3f2b9e61-a1c0-4708-7f2b-6a1463e5f50b.htm" />
+  <HelpKINode Title="UniValue.ToDecimal method" Url="html/2e483344-f675-a052-2f89-d804aa6aa250.htm" />
+  <HelpKINode Title="UniValue.ToDictionary method" Url="html/0195c6fc-4a17-28b6-6c12-cd6d9d1c8e2e.htm" />
+  <HelpKINode Title="UniValue.ToDouble method" Url="html/1818c211-e76a-b61a-f296-94888d17b81c.htm" />
+  <HelpKINode Title="UniValue.ToInt16 method" Url="html/1a210030-9e0b-db02-c4f6-eb0b2a59b667.htm" />
+  <HelpKINode Title="UniValue.ToInt32 method" Url="html/fd80be06-e907-07e6-b4a1-d4289e77ee96.htm" />
+  <HelpKINode Title="UniValue.ToInt64 method" Url="html/bb771c49-dc69-da71-d3b0-9d612ac925f9.htm" />
+  <HelpKINode Title="UniValue.ToNameValueCollection method" Url="html/7de493ca-6cac-9e65-f98e-07cf5986c2aa.htm" />
+  <HelpKINode Title="UniValue.ToSByte method" Url="html/2c6170a8-5715-83b9-d89c-188a99051c54.htm" />
+  <HelpKINode Title="UniValue.ToSingle method" Url="html/3fe83afc-14ad-237e-0f4e-87e1128fe44e.htm" />
+  <HelpKINode Title="UniValue.ToString method" Url="html/a0798478-728b-454a-8471-8125e0620f40.htm" />
+  <HelpKINode Title="UniValue.ToType method" Url="html/4aa94067-8294-4514-ae98-3518a1517004.htm" />
+  <HelpKINode Title="UniValue.ToUInt16 method" Url="html/2c068e2a-4126-1632-5379-8c98cc829de6.htm" />
+  <HelpKINode Title="UniValue.ToUInt32 method" Url="html/b5c7f83a-dbba-79e2-98ee-70750f468eb2.htm" />
+  <HelpKINode Title="UniValue.ToUInt64 method" Url="html/6a480bb0-7e31-8f04-4d9d-967503e27fa9.htm" />
+  <HelpKINode Title="UniValue.TryParseJson method" Url="html/004ac879-709e-fc5a-a3a3-06c3c48e3e57.htm" />
+  <HelpKINode Title="UniValue.TryParseParameters method" Url="html/ff3078c5-cefd-3b14-7e98-671c2655dcb2.htm" />
+  <HelpKINode Title="UniValue.TryParseXml method" Url="html/2be7cdca-01b7-a279-0056-65fd1fc69fc7.htm" />
+  <HelpKINode Title="UniValue.UniValue constructor" Url="html/e954d706-7608-ccf8-0b88-d7e2d86d6eab.htm" />
+  <HelpKINode Title="UniValueCollection class">
+    <HelpKINode Title="UniValueCollection Class" Url="html/da64e0ba-c20b-3c7e-dc76-4d6c6e4791f6.htm" />
+    <HelpKINode Title="about UniValueCollection class" Url="html/da64e0ba-c20b-3c7e-dc76-4d6c6e4791f6.htm" />
+    <HelpKINode Title="constructor" Url="html/9e2c1d51-39d1-da93-6a15-ba11883a1382.htm" />
+    <HelpKINode Title="methods" Url="html/ef8349c0-c8bf-035d-bc85-a8cf0c0d683b.htm" />
+    <HelpKINode Title="properties" Url="html/3ad1fbaf-63b9-0bd5-16a1-41232e785702.htm" />
+    <HelpKINode Title="type conversions" Url="html/2c19acbd-9669-2934-6fff-d8a90814bad0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UniValueCollection to UniValue conversion" Url="html/660651e0-6572-2ff2-bc1e-876085fedc24.htm" />
+  <HelpKINode Title="UniValueCollection.Add method" Url="html/08243c3f-8293-d57a-abe1-76a6d283eff8.htm" />
+  <HelpKINode Title="UniValueCollection.Clear method" Url="html/ff600200-6b07-785e-a6d5-499e4a7053b3.htm" />
+  <HelpKINode Title="UniValueCollection.Contains method" Url="html/9cc5c2ff-c20e-b34f-bf89-54f966cbbc8e.htm" />
+  <HelpKINode Title="UniValueCollection.ContainsKey method" Url="html/1212baf1-5067-86b9-3784-10a8fcd17069.htm" />
+  <HelpKINode Title="UniValueCollection.CopyTo method" Url="html/9d155e58-ee6e-43b3-7426-63ca01de0e17.htm" />
+  <HelpKINode Title="UniValueCollection.Count property" Url="html/7ce451d9-ee87-2dcd-e658-4624c3657452.htm" />
+  <HelpKINode Title="UniValueCollection.Equals method" Url="html/c8c5450f-6494-9558-0ebf-2501f0494b92.htm" />
+  <HelpKINode Title="UniValueCollection.GetEnumerator method" Url="html/bec36912-8b11-d83f-606d-fd3892cef77a.htm" />
+  <HelpKINode Title="UniValueCollection.GetObjectData method" Url="html/50685082-9a07-7e42-9e95-e13d83ba8dba.htm" />
+  <HelpKINode Title="UniValueCollection.IsReadOnly property" Url="html/6ea17253-fd35-74bf-05ef-10aee5baf4c0.htm" />
+  <HelpKINode Title="UniValueCollection.Item property" Url="html/b302c6ac-fcd0-0651-85e0-19db98c3b24f.htm" />
+  <HelpKINode Title="UniValueCollection.Items property" Url="html/b22a8706-c2e2-d5fc-200a-15fa99b24bae.htm" />
+  <HelpKINode Title="UniValueCollection.Keys property" Url="html/518e02cf-bc31-58e5-ae5e-9c7488b0844c.htm" />
+  <HelpKINode Title="UniValueCollection.Parent property" Url="html/ac2edadf-5062-b558-13ae-32c3cf5492f3.htm" />
+  <HelpKINode Title="UniValueCollection.Remove method" Url="html/34cf0b6d-4e01-e734-5a7d-7c40e242148a.htm" />
+  <HelpKINode Title="UniValueCollection.ToString method" Url="html/ddf05482-5784-7ac8-81d5-fda4d894236d.htm" />
+  <HelpKINode Title="UniValueCollection.TryGetValue method" Url="html/642a70ee-d489-e4d8-4eb2-d1d133402741.htm" />
+  <HelpKINode Title="UniValueCollection.UniValueCollection constructor" Url="html/9e2c1d51-39d1-da93-6a15-ba11883a1382.htm" />
+  <HelpKINode Title="UniValueCollection.Values property" Url="html/cd05738d-dd88-b5ab-22a6-73074a1ed197.htm" />
   <HelpKINode Title="UnknownProviderException class">
     <HelpKINode Title="UnknownProviderException Class" Url="html/f310fe4a-f6c1-3598-c6f7-dc9f66adb6b9.htm" />
     <HelpKINode Title="about UnknownProviderException class" Url="html/f310fe4a-f6c1-3598-c6f7-dc9f66adb6b9.htm" />
@@ -665,9 +1218,10 @@
     <HelpKINode Title="properties" Url="html/64244952-bdcd-294b-71a7-7e498ff03005.htm" />
   </HelpKINode>
   <HelpKINode Title="UnknownProviderException.UnknownProviderException constructor" Url="html/53fc4446-5413-3367-15e9-8fb08dd58c4e.htm" />
-  <HelpKINode Title="UnreservedCharacters field" Url="html/be774902-e9a2-2761-9c26-1145ee8e221c.htm" />
+  <HelpKINode Title="Url enumeration member" Url="html/dde9a178-0f40-6221-9478-c853eeb60eef.htm" />
   <HelpKINode Title="Url property" Url="html/79116671-2384-c1f6-77cc-d7a83c4829ea.htm" />
-  <HelpKINode Title="UrlEncode method" Url="html/eb59326e-e635-00df-69eb-839af8a90423.htm" />
+  <HelpKINode Title="UrlEncode method" Url="html/fe982379-2623-8ea3-4389-bfd05920b1be.htm" />
+  <HelpKINode Title="UrlEncodingType enumeration" Url="html/f00fc025-32da-91c2-ad02-096f4198c3fa.htm" />
   <HelpKINode Title="UserId property">
     <HelpKINode Title="AuthorizationResult.UserId Property " Url="html/d4deae28-dc7b-5fd5-90f0-e85277895aae.htm" />
     <HelpKINode Title="UserInfo.UserId Property " Url="html/be54e388-b01f-0ef7-937d-a1bafc8555f5.htm" />
@@ -675,7 +1229,7 @@
   <HelpKINode Title="UserInfo class">
     <HelpKINode Title="UserInfo Class" Url="html/840242a3-9a75-174d-4e46-f92de08c35ba.htm" />
     <HelpKINode Title="about UserInfo class" Url="html/840242a3-9a75-174d-4e46-f92de08c35ba.htm" />
-    <HelpKINode Title="constructor" Url="html/0637593f-f4ce-f0f3-e3f1-ac3c5bd156d5.htm" />
+    <HelpKINode Title="constructor" Url="html/da821ae7-b710-3d17-b18e-f3a61f0dd4ab.htm" />
     <HelpKINode Title="methods" Url="html/1b584651-76ee-3e91-ae75-9906f3f108ed.htm" />
     <HelpKINode Title="properties" Url="html/ee23e3d8-6e3a-0a2e-632f-a180f6394f6d.htm" />
   </HelpKINode>
@@ -692,7 +1246,7 @@
   <HelpKINode Title="UserInfo.ToString method" Url="html/4a4df6ac-05ec-2aa8-280d-bb3e8bce7abc.htm" />
   <HelpKINode Title="UserInfo.Url property" Url="html/79116671-2384-c1f6-77cc-d7a83c4829ea.htm" />
   <HelpKINode Title="UserInfo.UserId property" Url="html/be54e388-b01f-0ef7-937d-a1bafc8555f5.htm" />
-  <HelpKINode Title="UserInfo.UserInfo constructor" Url="html/0637593f-f4ce-f0f3-e3f1-ac3c5bd156d5.htm" />
+  <HelpKINode Title="UserInfo.UserInfo constructor" Url="html/da821ae7-b710-3d17-b18e-f3a61f0dd4ab.htm" />
   <HelpKINode Title="UserInfo.UserName property" Url="html/f4d884f7-d2fd-08fa-1980-7a9c1e5cff1c.htm" />
   <HelpKINode Title="UserInfo.Userpic property" Url="html/c7806fc9-83d1-ff9f-dd5b-e674d02890e0.htm" />
   <HelpKINode Title="UserName property">
@@ -702,10 +1256,18 @@
   <HelpKINode Title="Userpic property" Url="html/c7806fc9-83d1-ff9f-dd5b-e674d02890e0.htm" />
   <HelpKINode Title="Value property">
     <HelpKINode Title="AccessToken.Value Property " Url="html/601b7436-41c1-7bc2-a82c-fb209fc4779d.htm" />
+    <HelpKINode Title="HttpAuthorization.Value Property " Url="html/1600dd0d-c111-a70d-df0a-18d52d68afd7.htm" />
+    <HelpKINode Title="HttpParameter.Value Property " Url="html/6291d1d3-e8e9-6a67-82c1-1f154a929ce2.htm" />
+    <HelpKINode Title="HttpParameterValue.Value Property " Url="html/089bc4b2-9a90-28dc-459a-74e9712da2ae.htm" />
     <HelpKINode Title="OAuthSignature.Value Property " Url="html/971123f8-c631-a635-5a56-98580a807cd3.htm" />
   </HelpKINode>
+  <HelpKINode Title="Values property" Url="html/cd05738d-dd88-b5ab-22a6-73074a1ed197.htm" />
+  <HelpKINode Title="Verifier property" Url="html/81e397a9-9adb-0434-eff2-a0b5c6b9fe0e.htm" />
   <HelpKINode Title="VerifyAuthorization method" Url="html/cb87f4d9-ace0-7495-5583-e715615625cc.htm" />
-  <HelpKINode Title="Version property" Url="html/e52bbf74-c912-9329-845f-3077a74f98d3.htm" />
+  <HelpKINode Title="Version property">
+    <HelpKINode Title="OAuthAuthorization.Version Property " Url="html/c3d6163e-fa12-f764-db60-662ab4411b76.htm" />
+    <HelpKINode Title="OAuthBase.Version Property " Url="html/e52bbf74-c912-9329-845f-3077a74f98d3.htm" />
+  </HelpKINode>
   <HelpKINode Title="VkontakteClient class">
     <HelpKINode Title="VkontakteClient Class" Url="html/9f08d261-5278-4a0d-35c6-4b62319d15cb.htm" />
     <HelpKINode Title="about VkontakteClient class" Url="html/9f08d261-5278-4a0d-35c6-4b62319d15cb.htm" />
@@ -717,6 +1279,7 @@
   <HelpKINode Title="VkontakteClient.ProviderName property" Url="html/b70401c5-2426-9310-2f57-208108d40acc.htm" />
   <HelpKINode Title="VkontakteClient.ReturnUrl property" Url="html/6196ce89-bbd0-ab29-5c87-dd57d4777d13.htm" />
   <HelpKINode Title="VkontakteClient.VkontakteClient constructor" Url="html/7a3165f1-5eb5-ae72-e21a-d4c224f61ee0.htm" />
+  <HelpKINode Title="WriteToRequestStream method" Url="html/afcbe225-1242-3700-3fcf-bd0e08fc8411.htm" />
   <HelpKINode Title="YahooClient class">
     <HelpKINode Title="YahooClient Class" Url="html/1370537f-44a0-cacb-f1d4-90bd08f6e5cd.htm" />
     <HelpKINode Title="about YahooClient class" Url="html/1370537f-44a0-cacb-f1d4-90bd08f6e5cd.htm" />
