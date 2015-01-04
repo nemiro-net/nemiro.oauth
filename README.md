@@ -10,11 +10,11 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
 
 `PM> Install-Package Nemiro.OAuth`
 
-### Demo
+#### Demo
 
 http://demo-oauth.nemiro.net/
 
-### Login forms for Windows Forms projects
+#### Login forms for Windows Forms projects
 
 https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms
 
