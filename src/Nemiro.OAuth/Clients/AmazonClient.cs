@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -227,14 +227,14 @@ namespace Nemiro.OAuth.Clients
     public AmazonClient(string clientId, string clientSecret) : base
     (
       "https://www.amazon.com/ap/oa",
-      "https://api.amazon.com/auth/o2/token", 
+      "https://api.amazon.com/auth/o2/token",
       clientId,
       clientSecret
-    ) 
+    )
     {
-      this.Scope = "profile";
+      this.DefaultScope = "profile";
     }
-        
+
     /// <summary>
     /// Gets the user details.
     /// </summary>

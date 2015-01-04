@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -377,14 +377,13 @@ namespace Nemiro.OAuth.Clients
     /// <param name="consumerSecret">The API Secret obtained from the <see href="https://apps.twitter.com">Twitter Application Management</see>.</param>
     public TwitterClient(string consumerKey, string consumerSecret) : base
     (
-      "https://api.twitter.com/oauth/request_token", 
-      "https://api.twitter.com/oauth/authorize", 
+      "https://api.twitter.com/oauth/request_token",
+      "https://api.twitter.com/oauth/authorize",
       "https://api.twitter.com/oauth/access_token",
-      consumerKey, 
+      consumerKey,
       consumerSecret,
       SignatureMethods.HMACSHA1 // only HMAC-SHA1
     ) { }
-
 
     /// <summary>
     /// Gets the user details.

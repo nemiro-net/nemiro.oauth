@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The access token class for OAuth 1.0.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class OAuthAccessToken : AccessToken
   {
 
@@ -39,7 +39,7 @@ namespace Nemiro.OAuth
     /// Initializes a new instance of the <see cref="OAuthAccessToken"/> class.
     /// </summary>
     /// <param name="result">Result of request to the OAuth server.</param>
-    public OAuthAccessToken(RequestResult result) : base(result) 
+    public OAuthAccessToken(RequestResult result) : base(result)
     {
       this.Value = result["oauth_token"].ToString();
       this.TokenSecret = result["oauth_token_secret"].ToString();
@@ -51,13 +51,13 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		protected OAuthAccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    protected OAuthAccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
     {
       if (info == null)
       {
         throw new ArgumentNullException("info");
       }
-			this.TokenSecret = info.GetString("TokenSecret");
+      this.TokenSecret = info.GetString("TokenSecret");
     }
 
     /// <summary>
@@ -66,15 +66,15 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		public override void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			if (info == null)
-			{
-				throw new ArgumentNullException("info");
-			}
-			info.AddValue("TokenSecret", this.TokenSecret);
-			base.GetObjectData(info, context);
-		}
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
+      info.AddValue("TokenSecret", this.TokenSecret);
+      base.GetObjectData(info, context);
+    }
 
   }
 

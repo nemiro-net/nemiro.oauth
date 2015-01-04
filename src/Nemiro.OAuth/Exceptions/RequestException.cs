@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception that is thrown when an error occurs while accessing the network.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class RequestException : Exception
   {
 
@@ -97,10 +97,10 @@ namespace Nemiro.OAuth
     /// <param name="statusCode">The HTTP status code of the output.</param>
     public RequestException
     (
-      string contentType = null, 
-      byte[] result = null, 
+      string contentType = null,
+      byte[] result = null,
       Exception innerException = null,
-      NameValueCollection headers = null, 
+      NameValueCollection headers = null,
       int statusCode = 0
     ) : base(innerException != null ? innerException.Message : "Request exception.", innerException)
     {
@@ -132,14 +132,14 @@ namespace Nemiro.OAuth
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			if (info == null)
-			{
-				throw new ArgumentNullException("info");
-			}
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
       info.AddValue("RequestResult", this.RequestResult);
-			base.GetObjectData(info, context);
-		}
+      base.GetObjectData(info, context);
+    }
 
     #endregion
 

@@ -157,9 +157,7 @@
     <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Nemiro.OAuth\Nemiro.OAuth.csproj">
       <Project>{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}</Project>

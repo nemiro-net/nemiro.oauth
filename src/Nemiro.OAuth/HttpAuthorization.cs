@@ -69,14 +69,14 @@ namespace Nemiro.OAuth
         this.Value[key] = value;
       }
     }
-    
+
     #endregion
     #region ..constructor..
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthAuthorization"/> class.
     /// </summary>
-    public HttpAuthorization() 
+    public HttpAuthorization()
     {
       this.Value = new UniValue();
       this.AuthorizationType = OAuth.AuthorizationType.OAuth;

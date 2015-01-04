@@ -15,6 +15,7 @@
 ' ----------------------------------------------------------------------------
 Imports Nemiro.OAuth
 Imports System.Collections.Specialized
+Imports Nemiro.OAuth.LoginForms
 
 Public Class MainForm
 
@@ -105,9 +106,16 @@ Public Class MainForm
       Return
     End If
 
-    Call New Login() With {.Owner = Me}.ShowDialog()
+    Dim login As New TwitterLogin(My.Settings.ConsumerKey, My.Settings.ConsumerSecret) With {.Owner = Me}
+    login.ShowDialog()
 
-    If Not String.IsNullOrEmpty(My.Settings.AccessToken) OrElse String.IsNullOrEmpty(My.Settings.TokenSecret) Then
+    If login.IsSuccessfully Then
+      ' save access token to application settings
+      My.Settings.AccessToken = CType(login.AccessToken, OAuthAccessToken).Value
+      My.Settings.TokenSecret = CType(login.AccessToken, OAuthAccessToken).TokenSecret
+      My.Settings.UserId = login.AccessToken("user_id").ToString()
+      My.Settings.Save()
+      ' get tweets
       Me.GetTweets()
     Else
       If MessageBox.Show("Please Click OK to login on Twitter or CANCEL for exit from the program.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = System.Windows.Forms.DialogResult.Cancel Then

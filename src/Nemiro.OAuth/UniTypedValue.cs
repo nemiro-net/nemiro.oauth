@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ using System.Xml.Serialization;
 
 namespace Nemiro.OAuth
 {
-  
+
   /// <summary>
   /// Additional type for references.
   /// </summary>
@@ -46,7 +46,7 @@ namespace Nemiro.OAuth
     {
       base.GetObjectData(info, context);
     }
-    
+
   }
 
 }

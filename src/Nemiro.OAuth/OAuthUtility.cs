@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ namespace Nemiro.OAuth
         "",
         value.Select
         (
-          ch => 
+          ch =>
           {
             if (UnreservedCharacters.IndexOf(ch) != -1) { return ch.ToString(); }
             if (codePage.IsSingleByte)
@@ -92,7 +92,7 @@ namespace Nemiro.OAuth
             {
               return String.Join
               (
-                "", 
+                "",
                 codePage.GetBytes(new char[] { ch }).Select(b => String.Format("%{0:X2}", b)).ToArray()
               );
             }
@@ -119,7 +119,7 @@ namespace Nemiro.OAuth
     {
       return OAuthUtility.UrlEncode(value, encodingType, Encoding.UTF8);
     }
-    
+
     /// <summary>
     /// Encodes a <b>URL</b> string using the specified encoding object.
     /// </summary>
@@ -166,7 +166,7 @@ namespace Nemiro.OAuth
     {
       return Guid.NewGuid().ToString().Replace("-", "");
     }
-    
+
     /// <summary>
     /// Compute MD5 hash.
     /// </summary>
@@ -278,7 +278,7 @@ namespace Nemiro.OAuth
       if (String.IsNullOrEmpty(endpoint)) { throw new ArgumentNullException("endpoint"); }
       if (!String.IsNullOrEmpty(method)) { method = method.ToUpper(); }
       string[] post = { "POST", "PUT" };
-      if (String.IsNullOrEmpty(method) || (parameters != null &&  (parameters.HasFiles || parameters.IsRequestBody) && Array.IndexOf(post, method) == -1))
+      if (String.IsNullOrEmpty(method) || (parameters != null && (parameters.HasFiles || parameters.IsRequestBody) && Array.IndexOf(post, method) == -1))
       {
         method = "POST";
       }
@@ -325,10 +325,10 @@ namespace Nemiro.OAuth
 
       // create request
       var req = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
-      
+
       // http method
       req.Method = method;
-      
+
       // req.ProtocolVersion = HttpVersion.Version10;
 
       // user-agent (required for some providers)
@@ -336,7 +336,7 @@ namespace Nemiro.OAuth
 
       // json format acceptable for the response
       req.Accept = "application/json";
-      
+
       // set parameters to the body if the request is executed using the POST method
       if (isPost)
       {
@@ -380,7 +380,7 @@ namespace Nemiro.OAuth
       string ct = "";
       int status = 0;
       byte[] result;
-      
+
       try
       {
         // executes the request
@@ -421,7 +421,7 @@ namespace Nemiro.OAuth
       {
         throw new RequestException(ct, result, exception, rh, status);
       }
-       
+
       // result
       return new RequestResult(ct, result, rh, status);
     }
@@ -448,7 +448,7 @@ namespace Nemiro.OAuth
         }
       }
     }
-    
+
     #endregion
     #region async web methods
 
@@ -582,7 +582,7 @@ namespace Nemiro.OAuth
       if (OAuthUtility.IsEmpty(value)) { return 0; }
       if (value.GetType() == typeof(UniValue) || value.GetType().IsSubclassOf(typeof(UniValue)))
       {
-        if(((UniValue)value).IsBoolean)
+        if (((UniValue)value).IsBoolean)
         {
           return Convert.ToBoolean(value);
         }

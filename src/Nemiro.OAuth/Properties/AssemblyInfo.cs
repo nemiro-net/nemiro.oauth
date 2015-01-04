@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Aleksey Nemiro")]
 [assembly: AssemblyProduct("Nemiro.OAuth")]
-[assembly: AssemblyCopyright("Copyright © Aleksey Nemiro, 2014")]
+[assembly: AssemblyCopyright("Copyright © Aleksey Nemiro, 2014-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номер построения и номер редакции по умолчанию, 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.5.4.589")]
-[assembly: AssemblyFileVersion("1.5.4.589")]
+[assembly: AssemblyVersion("1.6.4.610")]
+[assembly: AssemblyFileVersion("1.6.4.610")]

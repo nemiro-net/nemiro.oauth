@@ -96,15 +96,15 @@ namespace Test.CSharp.AspMvc
         )
       );
 
-      /*OAuthManager.RegisterClient
+      OAuthManager.RegisterClient
       (
         new OdnoklassnikiClient
         (
-          "1093434880",
-          "CC85541E6B8A3EF53E8FCBD3",
-          "CBAPHNCCEBABABABA"
+          "1094959360",
+          "E45991423E8C5AE249B44E84",
+          "CBACMEECEBABABABA"
         )
-      );*/
+      );
 
       OAuthManager.RegisterClient
       (

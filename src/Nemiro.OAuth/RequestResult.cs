@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -213,7 +213,7 @@ namespace Nemiro.OAuth
     /// <param name="source">The source of the response.</param>
     [Obsolete("Please use an overloads. // v1.5", false)]
     public RequestResult(string contentType, string source) : this(contentType, Encoding.UTF8.GetBytes(source), null, 0) { }
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="RequestResult"/> class.
     /// </summary>
@@ -237,7 +237,7 @@ namespace Nemiro.OAuth
       this.HttpHeaders = httpHeaders;
       this.Source = source;
       this.ContentType = contentType;
-      
+
       this.ParseSource();
     }
 
@@ -295,7 +295,8 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    protected RequestResult(SerializationInfo info, StreamingContext context) : base(info, context)
+    protected RequestResult(SerializationInfo info, StreamingContext context)
+      : base(info, context)
     {
       this.StatusCode = info.GetInt32("StatusCode");
       this.ContentType = info.GetString("ContentType");

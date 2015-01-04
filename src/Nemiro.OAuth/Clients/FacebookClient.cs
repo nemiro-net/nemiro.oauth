@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -312,15 +312,16 @@ namespace Nemiro.OAuth.Clients
     public FacebookClient(string clientId, string clientSecret) : base
     (
       "https://www.facebook.com/dialog/oauth",
-      "https://graph.facebook.com/oauth/access_token", 
+      "https://graph.facebook.com/oauth/access_token",
       clientId,
       clientSecret
-    ) 
+    )
     {
       // scope list
-      this.Scope = "public_profile,email"; //,user_website,user_birthday
+      base.ScopeSeparator = ",";
+      base.DefaultScope = "public_profile,email"; //,user_website,user_birthday
     }
-    
+
     /// <summary>
     /// Gets the user details.
     /// </summary>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,16 @@ namespace Nemiro.OAuth
     public string Scope { get; set; }
 
     /// <summary>
+    /// The deault scope.
+    /// </summary>
+    internal string DefaultScope { get; set; }
+
+    /// <summary>
+    /// The separator in the scope list.
+    /// </summary>
+    internal string ScopeSeparator { get; set; }
+
+    /// <summary>
     /// Gets the endpoint of the authorization.
     /// </summary>
     public override string AuthorizationUrl
@@ -53,18 +63,48 @@ namespace Nemiro.OAuth
         result += result.Contains("?") ? "&" : "?";
         result += String.Format("client_id={0}&response_type=code", OAuthUtility.UrlEncode(this.ApplicationId));
         result += String.Format("&state={0}", OAuthUtility.UrlEncode(this.State.ToString()));
+
+        // add default scope
+        string scope = this.DefaultScope;
+
+        // add custom scope
         if (!String.IsNullOrEmpty(this.Scope))
         {
-          result += String.Format("&scope={0}", OAuthUtility.UrlEncode(this.Scope));
+          var scopeToAdd = new List<string>();
+          if (!String.IsNullOrEmpty(scope))
+          {
+            var scope1 = scope.Split(this.ScopeSeparator.ToCharArray());
+            var scope2 = this.Scope.Split(this.ScopeSeparator.ToCharArray());
+            foreach (var s in scope2)
+            {
+              if (!scope1.Any(itm => itm.Equals(s, StringComparison.OrdinalIgnoreCase)))
+              {
+                scopeToAdd.Add(s);
+              }
+            }
+            if (scopeToAdd.Count > 0) { scope += this.ScopeSeparator; }
+          }
+          scope += String.Join(this.ScopeSeparator, scopeToAdd.ToArray());
         }
+
+        // add scope to url
+        if (!String.IsNullOrEmpty(scope))
+        {
+          result += String.Format("&scope={0}", OAuthUtility.UrlEncode(scope));
+        }
+
+        // add return url to url
         if (!String.IsNullOrEmpty(this.ReturnUrl))
         {
           result += String.Format("&redirect_uri={0}", OAuthUtility.UrlEncode(this.ReturnUrl));
         }
+
+        // other parameters
         if (this.Parameters != null && this.Parameters.Count > 0)
         {
           result += "&" + this.Parameters.ToParametersString("&");
         }
+
         return result;
       }
     }
@@ -79,9 +119,7 @@ namespace Nemiro.OAuth
     /// <param name="accessTokenUrl">The address for the access token.</param>
     /// <param name="clientId">The application identifier.</param>
     /// <param name="clientSecret">The application secret key.</param>
-    public OAuth2Client(string authorizeUrl, string accessTokenUrl, string clientId, string clientSecret) : base(authorizeUrl, accessTokenUrl, clientId, clientSecret)
-    {
-    }
+    public OAuth2Client(string authorizeUrl, string accessTokenUrl, string clientId, string clientSecret) : base(authorizeUrl, accessTokenUrl, clientId, clientSecret) { }
 
     #endregion
     #region ..methods..

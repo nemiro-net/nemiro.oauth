@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,30 +26,30 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents base properties and method for access token results.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public abstract class AccessToken : RequestResult
-	{
+  {
 
-		#region ..fields & properties..
+    #region ..fields & properties..
 
-		/// <summary>
+    /// <summary>
     /// The access token issued by the authorization server.
     /// </summary>
     public string Value { get; protected set; }
 
-		#endregion
-		#region ..constructor..
+    #endregion
+    #region ..constructor..
 
-		/// <summary>
+    /// <summary>
     /// Initializes a new instance of the <see cref="AccessToken"/> class.
     /// </summary>
     /// <param name="result">Result of request to the OAuth server.</param>
     public AccessToken(RequestResult result) : base(result) { }
 
-		#endregion
-		#region ..methods..
+    #endregion
+    #region ..methods..
 
-		/// <summary>
+    /// <summary>
     /// Returns the <see cref="AccessToken.Value"/>.
     /// </summary>
     public override string ToString()
@@ -57,8 +57,8 @@ namespace Nemiro.OAuth
       return this.Value;
     }
 
-		#endregion
-		#region ..iserializable..
+    #endregion
+    #region ..iserializable..
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AccessToken"/>.
@@ -66,9 +66,9 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		protected AccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    protected AccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
     {
-			this.Value = info.GetString("Value");
+      this.Value = info.GetString("Value");
     }
 
     /// <summary>
@@ -83,12 +83,12 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
-			info.AddValue("Value", this.Value);
+      info.AddValue("Value", this.Value);
       base.GetObjectData(info, context);
     }
 
     #endregion
 
   }
-  
+
 }

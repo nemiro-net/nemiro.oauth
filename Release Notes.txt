@@ -2,6 +2,13 @@ Nemiro.OAuth Release Notes
 
 This document summarizes the major changes in recent releases.
 
+v1.6 (January 04, 2015)
+
+The version includes minor improvements.
+
+* Added OAuthManager.GetClientTypeByName method to obtain the type of client;
+* Added default scope.
+
 v1.5 (December 27, 2014)
 
 In this version were made significant changes and improvements, 

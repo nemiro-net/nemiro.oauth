@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Nemiro.OAuth
   /// <remarks>
   /// <para>The exception that is thrown when you try to access methods that are designed for web projects.</para>
   /// </remarks>
-	[Serializable]
-	public class NullHttpContextException : Exception
+  [Serializable]
+  public class NullHttpContextException : Exception
   {
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="NullHttpContextException"/> class.
     /// </summary>

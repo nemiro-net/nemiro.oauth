@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -185,7 +185,7 @@ namespace Nemiro.OAuth
         _ReturnUrl = value;
       }
     }
-    
+
     private NameValueCollection _Parameters = new NameValueCollection();
 
     /// <summary>
@@ -242,7 +242,7 @@ namespace Nemiro.OAuth
       // add the instance to the clients collection
       OAuthManager.AddRequet(this.State, this);
     }
-   
+
     #endregion
     #region ..methods..
 
@@ -322,7 +322,7 @@ namespace Nemiro.OAuth
     public object Clone()
     {
       OAuthBase result = this.MemberwiseClone() as OAuthBase;
-      
+
       result.State = OAuthUtility.GetRandomKey();
       result.AccessToken = null;
       result.AuthorizationCode = null;

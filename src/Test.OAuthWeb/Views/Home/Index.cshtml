@@ -23,9 +23,13 @@
       </a>
     </li>
   }
-  <li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
-	<li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
-	<li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
+	@if ((Nemiro.OAuth.OAuthManager.RegisteredClients.Count % 5) != 0)
+	{
+		for (int i = 0; i <= (Nemiro.OAuth.OAuthManager.RegisteredClients.Count % 5); i++)
+		{
+			<li><img src="@Url.Action("Icon", new { id = "empty" })" alt="empty" title="" width="100" height="100" /></li>
+		}
+	}
 </ul>
 
 <div class="clear"></div>
@@ -40,6 +44,7 @@
 <code>PM&gt; Install-Package Nemiro.OAuth</code>
 
 <h2>@Test.Resources.Strings.Download</h2>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.5.zip">v1.5</a> <span class="date-release">@(new DateTime(2014, 12, 27).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.4.zip">v1.4</a> <span class="date-release">@(new DateTime(2014, 11, 2).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.3.zip">v1.3</a> <span class="date-release">@(new DateTime(2014, 10, 23).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.2.zip">v1.2</a> <span class="date-release">@(new DateTime(2014, 10, 8).ToString("dd MMMM yyyy"))</span></p>

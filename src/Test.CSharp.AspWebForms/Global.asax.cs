@@ -69,16 +69,6 @@ namespace Test.CSharp.AspWebForms
         )
       );
 
-      /*OAuthManager.RegisterClient
-      (
-        new OdnoklassnikiClient
-        (
-          "1093434880",
-          "CC85541E6B8A3EF53E8FCBD3",
-          "CBAPHNCCEBABABABA"
-        )
-      );*/
-
       OAuthManager.RegisterClient
       (
         new GitHubClient

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Nemiro.OAuth
   /// <remarks>
   /// <para>The class is used to determine sends a request to the remote server or not.</para>
   /// </remarks>
-	[Serializable]
+  [Serializable]
   public class EmptyResult : RequestResult
   {
 
@@ -56,7 +56,7 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		protected EmptyResult(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    protected EmptyResult(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
     /// <summary>
     /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.

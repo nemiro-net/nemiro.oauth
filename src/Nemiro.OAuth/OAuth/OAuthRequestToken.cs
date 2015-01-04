@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the request token results.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class OAuthRequestToken : RequestResult
   {
 
@@ -121,7 +121,7 @@ namespace Nemiro.OAuth
     }
 
     #endregion
-		#region ..serialization..
+    #region ..serialization..
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthRequestToken"/>.
@@ -129,16 +129,17 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    protected OAuthRequestToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    protected OAuthRequestToken(SerializationInfo info, StreamingContext context)
+      : base(info, context)
     {
       if (info == null)
       {
         throw new ArgumentNullException("info");
       }
-			_OAuthToken = info.GetString("OAuthToken");
-			_OAuthTokenSecret = info.GetString("OAuthTokenSecret");
-			_AuthorizationUrl = info.GetString("AuthorizationUrl");
-			_OAuthCallbackConfirmed = info.GetBoolean("OAuthCallbackConfirmed");
+      _OAuthToken = info.GetString("OAuthToken");
+      _OAuthTokenSecret = info.GetString("OAuthTokenSecret");
+      _AuthorizationUrl = info.GetString("AuthorizationUrl");
+      _OAuthCallbackConfirmed = info.GetBoolean("OAuthCallbackConfirmed");
     }
 
     /// <summary>
@@ -147,20 +148,21 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		public override void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			if (info == null)
-			{
-				throw new ArgumentNullException("info");
-			}
-			info.AddValue("OAuthToken", this.OAuthToken);
-			info.AddValue("OAuthTokenSecret", this.OAuthTokenSecret);
-			info.AddValue("AuthorizationUrl", this.AuthorizationUrl);
-			info.AddValue("OAuthCallbackConfirmed", this.OAuthCallbackConfirmed);
-			base.GetObjectData(info, context);
-		}
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
+      info.AddValue("OAuthToken", this.OAuthToken);
+      info.AddValue("OAuthTokenSecret", this.OAuthTokenSecret);
+      info.AddValue("AuthorizationUrl", this.AuthorizationUrl);
+      info.AddValue("OAuthCallbackConfirmed", this.OAuthCallbackConfirmed);
+      base.GetObjectData(info, context);
+    }
 
     #endregion
 
   }
+
 }

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -110,15 +110,16 @@ namespace Nemiro.OAuth.Clients
     public GitHubClient(string clientId, string clientSecret) : base
     (
       "https://github.com/login/oauth/authorize",
-      "https://github.com/login/oauth/access_token", 
+      "https://github.com/login/oauth/access_token",
       clientId,
       clientSecret
-    ) 
+    )
     {
       // default scope list
-      this.Scope = "user"; // https://developer.github.com/v3/oauth/#scopes
+      base.ScopeSeparator = ",";
+      base.DefaultScope = "user"; // https://developer.github.com/v3/oauth/#scopes
     }
-    
+
     /// <summary>
     /// Gets the user details.
     /// </summary>

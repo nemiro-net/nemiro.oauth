@@ -25,6 +25,7 @@ using Nemiro.OAuth;
 using Nemiro.OAuth.Clients;
 using System.Threading.Tasks;
 using System.IO;
+using Nemiro.OAuth.LoginForms;
 
 namespace DropboxExample
 {
@@ -234,11 +235,20 @@ namespace DropboxExample
         this.Invoke(new Action(GetAccessToken));
         return;
       }
-      new Login() { Owner = this }.ShowDialog();
-      if (!String.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
+      // create login form
+      var login = new DropboxLogin("5nkunr8uscwfoba", "n7x9icfwoe6dehq") { Owner = this };
+      // show login form
+      login.ShowDialog();
+      // authorization is success
+      if (login.IsSuccessfully)
       {
+        // save the access token to the application settings
+        Properties.Settings.Default.AccessToken = login.AccessToken.Value;
+        Properties.Settings.Default.Save();
+        // update the list of files
         this.UpdateList();
       }
+      // is fails
       else
       {
         if (MessageBox.Show("Please Click OK to login on Dropbox or CANCEL for exit from the program.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)

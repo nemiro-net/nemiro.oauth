@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,12 +46,12 @@ namespace Nemiro.OAuth
     /// </summary>
     internal object Data { get; set; }
 
-		/// <summary>
-		/// Gets a collection of string keys and <see cref="UniValue"/> values of the current <see cref="UniValue"/>.
-		/// </summary>
-		/// <remarks>
-		/// <para>Has a <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b>.</para>
-		/// </remarks>
+    /// <summary>
+    /// Gets a collection of string keys and <see cref="UniValue"/> values of the current <see cref="UniValue"/>.
+    /// </summary>
+    /// <remarks>
+    /// <para>Has a <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b>.</para>
+    /// </remarks>
     public UniValueCollection CollectionItems
     {
       get
@@ -59,7 +59,7 @@ namespace Nemiro.OAuth
         if (!this.HasValue) { return null; } // new ResultValueCollection();
         if (!this.IsCollection)
         {
-					throw null; // new InvalidCastException(String.Format("Cannot cast the {0} to the ResultValueCollection.", this.Data.GetType().Name));
+          throw null; // new InvalidCastException(String.Format("Cannot cast the {0} to the ResultValueCollection.", this.Data.GetType().Name));
         }
         return (UniValueCollection)this.Data;
       }
@@ -71,7 +71,7 @@ namespace Nemiro.OAuth
     public NameValueCollection Attributes { get; protected set; }
 
     /// <summary>
-		/// Gets the value associated with the specified key of the <see cref="CollectionItems"/>.
+    /// Gets the value associated with the specified key of the <see cref="CollectionItems"/>.
     /// </summary>
     /// <param name="key">The key of the value to get.</param>
     public UniValue this[string key]
@@ -109,14 +109,14 @@ namespace Nemiro.OAuth
             //{
             return (UniValue)result.Data;
             //}
-          } 
+          }
           else
           {
             /*if (result.Parent != null && !result.Parent.Unreferenced)
             {
               result.Parent = new UniValue(result.Parent, result.Parent.Attributes, result.Parent.Parent) { Key = result.Parent.Key, IsArraySubtype = result.Parent.IsArraySubtype, Unreferenced = true };
             }*/
-            return result; 
+            return result;
             //new UniValue(result, result.Attributes, result.Parent) { Key = result.Key, IsArraySubtype = result.IsArraySubtype, Unreferenced = true };
           }
         }
@@ -146,7 +146,7 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-		/// Gets the value associated with the specified index of the <see cref="CollectionItems"/>.
+    /// Gets the value associated with the specified index of the <see cref="CollectionItems"/>.
     /// </summary>
     /// <param name="index">The index of the value to get.</param>
     public UniValue this[int index]
@@ -157,7 +157,7 @@ namespace Nemiro.OAuth
         {
           return this.Add(index.ToString(), UniValue.Empty, this);
         }*/
-        
+
         if (this.IsValue && ((UniValue)this.Data).ContainsKey(index.ToString()))
         {
           return ((UniValue)this.Data)[index];
@@ -204,9 +204,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniValue"/>.
+    /// </summary>
     public bool IsValue
     {
       get
@@ -216,9 +216,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniTypedValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniTypedValue"/>.
+    /// </summary>
     internal bool IsTypedValue
     {
       get
@@ -228,9 +228,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniValueCollection"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="UniValueCollection"/>.
+    /// </summary>
     public bool IsCollection
     {
       get
@@ -240,10 +240,10 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.Byte"/> array.
-		/// </summary>
-		public bool IsBinary
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.Byte"/> array.
+    /// </summary>
+    public bool IsBinary
     {
       get
       {
@@ -260,7 +260,7 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.String"/>.
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.String"/>.
     /// </summary>
     public bool IsString
     {
@@ -278,9 +278,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.DateTime"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.DateTime"/>.
+    /// </summary>
     public bool IsDateTime
     {
       get
@@ -297,9 +297,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.Boolean"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to <see cref="System.Boolean"/>.
+    /// </summary>
     public bool IsBoolean
     {
       get
@@ -316,9 +316,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to numeric type.
-		/// </summary>
+    /// <summary>
+    /// Gets a value that indicates whether the data type of the <see cref="UniValue"/> is equal to numeric type.
+    /// </summary>
     public bool IsNumeric
     {
       get
@@ -334,10 +334,10 @@ namespace Nemiro.OAuth
         }
       }
     }
-    
-		/// <summary>
-		/// Gets a value indicating whether the current <see cref="UniValue"/> object has a value.
-		/// </summary>
+
+    /// <summary>
+    /// Gets a value indicating whether the current <see cref="UniValue"/> object has a value.
+    /// </summary>
     public bool HasValue
     {
       get
@@ -346,9 +346,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets a value indicating whether the current <see cref="UniValue"/> object has an attributes (only for xml data type).
-		/// </summary>
+    /// <summary>
+    /// Gets a value indicating whether the current <see cref="UniValue"/> object has an attributes (only for xml data type).
+    /// </summary>
     public bool HasAttributes
     {
       get
@@ -357,9 +357,9 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets the number of elements actually contained in the <see cref="CollectionItems"/>.
-		/// </summary>
+    /// <summary>
+    /// Gets the number of elements actually contained in the <see cref="CollectionItems"/>.
+    /// </summary>
     public int Count
     {
       get
@@ -376,15 +376,15 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Gets or sets the key for the current item, if the current item included into the collection.
-		/// </summary>
-		/// <remarks>
-		/// <para>Assigned automatically when parsing data of <b>JSON</b>, <b>XML</b> or <b>query string</b>.</para>
-		/// <para><b>root</b> for root elements.</para>
-		/// <para><b>value</b> for <see cref="UniTypedValue"/>.</para>
-		/// <para><b>____</b> for new collections created by the developer manually.</para>
-		/// </remarks>
+    /// <summary>
+    /// Gets or sets the key for the current item, if the current item included into the collection.
+    /// </summary>
+    /// <remarks>
+    /// <para>Assigned automatically when parsing data of <b>JSON</b>, <b>XML</b> or <b>query string</b>.</para>
+    /// <para><b>root</b> for root elements.</para>
+    /// <para><b>value</b> for <see cref="UniTypedValue"/>.</para>
+    /// <para><b>____</b> for new collections created by the developer manually.</para>
+    /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public string Key { get; internal set; }
 
@@ -393,8 +393,8 @@ namespace Nemiro.OAuth
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public UniValue Parent { get; internal set; }
-    
-    #if DEBUG
+
+#if DEBUG
 
     /// <summary>
     /// The <see cref="Key"/> of the <see cref="Parent"/>.
@@ -428,27 +428,27 @@ namespace Nemiro.OAuth
       }
     }
 
-		#endif
+#endif
 
-		/// <summary>
-		/// Gets or sets a value that indicates whether the data type of the <see cref="UniValue"/> is array.
-		/// </summary>
-		/// <remarks>
-		/// <para>This affects the representation of the object as a string. For arrays in a <b>JSON</b> is not use the <see cref="Key"/>.</para>
-		/// </remarks>
-		[EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// Gets or sets a value that indicates whether the data type of the <see cref="UniValue"/> is array.
+    /// </summary>
+    /// <remarks>
+    /// <para>This affects the representation of the object as a string. For arrays in a <b>JSON</b> is not use the <see cref="Key"/>.</para>
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     internal bool IsArraySubtype { get; set; }
 
-		/// <summary>
-		/// Gets or sets a value that indicates whether the type is unreferenced.
-		/// </summary>
-		[Obsolete("Technical properties. Appropriateness of the use is under consideration. // v1.5", false)]
+    /// <summary>
+    /// Gets or sets a value that indicates whether the type is unreferenced.
+    /// </summary>
+    [Obsolete("Technical properties. Appropriateness of the use is under consideration. // v1.5", false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal bool Unreferenced { get; set; }
 
-		/// <summary>
-		/// Represents the empty <see cref="UniValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Represents the empty <see cref="UniValue"/>.
+    /// </summary>
     public static UniValue Empty
     {
       get
@@ -456,46 +456,46 @@ namespace Nemiro.OAuth
         return new UniValue(null, null, null);
       }
     }
- 
+
     #endregion
     #region ..constructor..
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/>.
+    /// </summary>
     internal UniValue() : this(null, null, null) { }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/> with a specified value.
-		/// </summary>
-		/// <param name="value">The value.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/> with a specified value.
+    /// </summary>
+    /// <param name="value">The value.</param>
     internal UniValue(object value) : this(value, null, null) { }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/> with a specified value and attributes.
-		/// </summary>
-		/// <param name="value">The value.</param>
-		/// <param name="attributes">The collection of an attributes.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/> with a specified value and attributes.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="attributes">The collection of an attributes.</param>
     internal UniValue(object value, NameValueCollection attributes) : this(value, attributes, null) { }
-		
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/> with a specified value and reference to parent.
-		/// </summary>
-		/// <param name="value">The value.</param>
-		/// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/> with a specified value and reference to parent.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
     internal UniValue(object value, UniValue parent) : this(value, null, parent) { }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/> with a specified value, attributes and reference to parent.
-		/// </summary>
-		/// <param name="value">The value.</param>
-		/// <param name="attributes">The collection of an attributes.</param>
-		/// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/> with a specified value, attributes and reference to parent.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="attributes">The collection of an attributes.</param>
+    /// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
     internal UniValue(object value, NameValueCollection attributes, UniValue parent)
     {
       this.Key = "root";
       this.Parent = parent; //(parent == null ? UniValue.Empty : parent);
-      
+
       if (value == null || value == DBNull.Value)
       {
         this.Data = this.Attributes = null;
@@ -650,68 +650,68 @@ namespace Nemiro.OAuth
     #endregion
     #region ..methods..
 
-		/// <summary>
-		/// Copies items of the <see cref="UniValue"/> to a new <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
-		/// </summary>
-		/// <returns>
-		/// <para>A <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see> containing copies of the elements of the <see cref="UniValue"/>.</para>
-		/// <para>A <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
-		/// </returns>
+    /// <summary>
+    /// Copies items of the <see cref="UniValue"/> to a new <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
+    /// </summary>
+    /// <returns>
+    /// <para>A <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see> containing copies of the elements of the <see cref="UniValue"/>.</para>
+    /// <para>A <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
+    /// </returns>
     public Dictionary<string, object> ToDictionary()
     {
       if (!this.HasValue) { return null; }
       if (this.IsCollection)
       {
-				var result = new Dictionary<string, object>();
-				foreach (KeyValuePair<string, UniValue> itm in this.CollectionItems)
+        var result = new Dictionary<string, object>();
+        foreach (KeyValuePair<string, UniValue> itm in this.CollectionItems)
         {
           result.Add(itm.Key, itm.Value);
         }
-				return result;
+        return result;
       }
       else
       {
-				return null;
+        return null;
         //throw new InvalidCastException(String.Format("Cannot cast the {0} to the Dictionary<string, ResultValue>.", this.Data.GetType().Name));
       }
     }
 
-		/// <summary>
+    /// <summary>
     /// Copies items of the <see cref="UniValue"/> to a new <see cref="NameValueCollection" />.
-		/// </summary>
-		/// <returns>
-		/// <para>A <see cref="NameValueCollection" /> containing copies of the elements of the <see cref="UniValue"/>.</para>
-		/// <para>A <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
-		/// </returns>
+    /// </summary>
+    /// <returns>
+    /// <para>A <see cref="NameValueCollection" /> containing copies of the elements of the <see cref="UniValue"/>.</para>
+    /// <para>A <b>null</b> value, if the <see cref="IsCollection"/> property is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
+    /// </returns>
     public NameValueCollection ToNameValueCollection()
     {
       if (!this.HasValue) { return null; }
       if (this.IsCollection)
       {
-				var result = new NameValueCollection();
-				foreach (KeyValuePair<string, UniValue> itm in this.CollectionItems)
+        var result = new NameValueCollection();
+        foreach (KeyValuePair<string, UniValue> itm in this.CollectionItems)
         {
           foreach (var value in itm.Value) //.ToArray()
           {
             result.Add(itm.Key, value.ToString());
           }
         }
-				return result;
+        return result;
       }
       else
       {
-				return null;
+        return null;
         //throw new InvalidCastException(String.Format("Cannot cast the {0} to the NameValueCollection.", this.Data.GetType().Name));
       }
     }
 
-		/// <summary>
-		/// Returns a <see cref="System.Byte"/> array that represents the current <see cref="UniValue"/>.
-		/// </summary>
-		/// <returns>
-		/// <para>A <see cref="System.Byte"/> array containing the current <see cref="UniValue"/>.</para>
-		/// <para>A <b>null</b> value, if the property <see cref="IsBinary"/> and <see cref="IsString"/> is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
-		/// </returns>
+    /// <summary>
+    /// Returns a <see cref="System.Byte"/> array that represents the current <see cref="UniValue"/>.
+    /// </summary>
+    /// <returns>
+    /// <para>A <see cref="System.Byte"/> array containing the current <see cref="UniValue"/>.</para>
+    /// <para>A <b>null</b> value, if the property <see cref="IsBinary"/> and <see cref="IsString"/> is <b>false</b> or the <see cref="UniValue"/> is empty.</para>
+    /// </returns>
     public byte[] ToBinary()
     {
       if (!this.HasValue) { return null; }
@@ -732,17 +732,17 @@ namespace Nemiro.OAuth
       }
       else
       {
-				return null;
+        return null;
         //throw new InvalidCastException(String.Format("Cannot cast the {0} to the byte array.", this.Data.GetType().Name));
       }
     }
 
-		/// <summary>
-		/// Determines whether the <see cref="CollectionItems"/> contains the specified key.
-		/// </summary>
-		/// <param name="key">The key to locate in the <see cref="CollectionItems"/>.</param>
-		/// <returns><b>true</b> if the <see cref="CollectionItems"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
-		/// <exception cref="ArgumentNullException"><paramref name="key"/> is <b>null</b>.</exception>
+    /// <summary>
+    /// Determines whether the <see cref="CollectionItems"/> contains the specified key.
+    /// </summary>
+    /// <param name="key">The key to locate in the <see cref="CollectionItems"/>.</param>
+    /// <returns><b>true</b> if the <see cref="CollectionItems"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="key"/> is <b>null</b>.</exception>
     public bool ContainsKey(string key)
     {
       if (String.IsNullOrEmpty(key))
@@ -759,11 +759,11 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Determines whether the <see cref="Attributes"/> contains the specified key.
-		/// </summary>
-		/// <param name="key">The key to locate in the <see cref="Attributes"/>.</param>
-		/// <returns><b>true</b> if the <see cref="Attributes"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Determines whether the <see cref="Attributes"/> contains the specified key.
+    /// </summary>
+    /// <param name="key">The key to locate in the <see cref="Attributes"/>.</param>
+    /// <returns><b>true</b> if the <see cref="Attributes"/> is not <b>null</b> and contains an element with the specified <paramref name="key"/>; otherwise, <b>false</b>.</returns>
     public bool ContainsAttribute(string key)
     {
       if (!this.HasAttributes) { return false; }
@@ -774,40 +774,40 @@ namespace Nemiro.OAuth
       return true;
     }
 
-		/// <summary>
-		/// Adds the specified key and value to the <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="key">The key of the element to add.</param>
-		/// <param name="value">The value of the element to add.</param>
-		/// <returns>
-		/// <para>Returns the added element.</para>
-		/// </returns>
-		/// <remarks>
-		/// <para>
-		/// If the current <see cref="UniValue"/> is not a collection (<see cref="IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
-		/// If the current <see cref="UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
-		/// </para>
-		/// </remarks>
+    /// <summary>
+    /// Adds the specified key and value to the <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="key">The key of the element to add.</param>
+    /// <param name="value">The value of the element to add.</param>
+    /// <returns>
+    /// <para>Returns the added element.</para>
+    /// </returns>
+    /// <remarks>
+    /// <para>
+    /// If the current <see cref="UniValue"/> is not a collection (<see cref="IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
+    /// If the current <see cref="UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
+    /// </para>
+    /// </remarks>
     public UniValue Add(string key, UniValue value)
     {
       return this.Add(key, value, this.Parent);
     }
 
-		/// <summary>
-		/// Adds the specified key and value to the <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="key">The key of the element to add.</param>
-		/// <param name="value">The value of the element to add.</param>
-		/// <param name="parent">The reference to parent of the elemet to add.</param>
-		/// <returns>
-		/// <para>Returns the added element.</para>
-		/// </returns>
-		/// <remarks>
-		/// <para>
-		/// If the current <see cref="UniValue"/> is not a collection (<see cref="IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
-		/// If the current <see cref="UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
-		/// </para>
-		/// </remarks>
+    /// <summary>
+    /// Adds the specified key and value to the <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="key">The key of the element to add.</param>
+    /// <param name="value">The value of the element to add.</param>
+    /// <param name="parent">The reference to parent of the elemet to add.</param>
+    /// <returns>
+    /// <para>Returns the added element.</para>
+    /// </returns>
+    /// <remarks>
+    /// <para>
+    /// If the current <see cref="UniValue"/> is not a collection (<see cref="IsCollection"/> is <b>false</b>), it will automatically be converted to the collection.
+    /// If the current <see cref="UniValue"/> is not empty, then it will be assigned a key <c>____</c> in a new collection.
+    /// </para>
+    /// </remarks>
     public UniValue Add(string key, UniValue value, UniValue parent)
     {
       if (!this.IsCollection)
@@ -823,27 +823,27 @@ namespace Nemiro.OAuth
       return this.CollectionItems.Last().Value;
     }
 
-		/// <summary>
-		/// Removes the value with the specified key from the <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="key">The key of the element to remove.</param>
-		/// <returns>
-		/// <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
-		/// This method returns <b>false</b> if key is not found in the <see cref="UniValue"/> or is not collection (<see cref="IsCollection"/> is <b>false</b>).
-		/// </returns>
+    /// <summary>
+    /// Removes the value with the specified key from the <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="key">The key of the element to remove.</param>
+    /// <returns>
+    /// <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
+    /// This method returns <b>false</b> if key is not found in the <see cref="UniValue"/> or is not collection (<see cref="IsCollection"/> is <b>false</b>).
+    /// </returns>
     public bool Remove(string key)
     {
       if (!this.IsCollection) { return false; }
       return this.CollectionItems.Remove(key);
     }
 
-		/// <summary>
-		/// Parses the <see cref="XElement"/> and converts to <see cref="UniValueCollection"/>.
-		/// </summary>
-		/// <param name="result">The reference to the collection, which will be placed the result of parsing <paramref name="itm"/>.</param>
-		/// <param name="itm">The <see cref="XElement"/> for parsing.</param>
-		/// <param name="parent">The reference to parent.</param>
-		private void ParseXElement(UniValueCollection result, XElement itm, UniValue parent)
+    /// <summary>
+    /// Parses the <see cref="XElement"/> and converts to <see cref="UniValueCollection"/>.
+    /// </summary>
+    /// <param name="result">The reference to the collection, which will be placed the result of parsing <paramref name="itm"/>.</param>
+    /// <param name="itm">The <see cref="XElement"/> for parsing.</param>
+    /// <param name="parent">The reference to parent.</param>
+    private void ParseXElement(UniValueCollection result, XElement itm, UniValue parent)
     {
       NameValueCollection attr = null;
       if (itm.HasAttributes)
@@ -864,10 +864,10 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Returns the <see cref="UniValue"/> of the specified attribute.
-		/// </summary>
-		/// <param name="attributeName">The name of the attribute whose value you want to get.</param>
+    /// <summary>
+    /// Returns the <see cref="UniValue"/> of the specified attribute.
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute whose value you want to get.</param>
     private UniValue GetAttributeValue(string attributeName)
     {
       if (this.Attributes == null) { return UniValue.Empty; }
@@ -878,9 +878,9 @@ namespace Nemiro.OAuth
       return new UniValue(this.Attributes[attributeName], this);
     }
 
-		/// <summary>
-		/// Returns parent for new instance of <see cref="UniValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Returns parent for new instance of <see cref="UniValue"/>.
+    /// </summary>
     private UniValue GetParent()
     {
       if ((object)this.Parent != null)
@@ -896,99 +896,99 @@ namespace Nemiro.OAuth
     #endregion
     #region ..static methods..
 
-		/// <summary>
-		/// Initializes a new <see cref="UniValue"/> instance.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new <see cref="UniValue"/> instance.
+    /// </summary>
     public static UniValue Create()
     {
-			return UniValue.Create(null, null, null);
+      return UniValue.Create(null, null, null);
     }
 
-		/// <summary>
-		/// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />.
+    /// </summary>
     public static UniValue Create(object value)
     {
-			return UniValue.Create(value, null, null);
+      return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and <param name="attributes" />.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and <param name="attributes" />.
+    /// </summary>
     public static UniValue Create(object value, NameValueCollection attributes)
     {
-			return new UniValue(value, attributes, null);
+      return new UniValue(value, attributes, null);
     }
 
-		/// <summary>
-		/// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and reference to <param name="parent" />.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and reference to <param name="parent" />.
+    /// </summary>
     internal static UniValue Create(object value, UniValue parent)
     {
       return new UniValue(value, null, parent);
     }
 
-		/// <summary>
-		/// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />, <param name="attributes" /> and reference to <param name="parent" />.
-		/// </summary>
+    /// <summary>
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />, <param name="attributes" /> and reference to <param name="parent" />.
+    /// </summary>
     internal static UniValue Create(object value, NameValueCollection attributes, UniValue parent)
     {
       return new UniValue(value, attributes, parent);
     }
 
-		/// <summary>
-		/// Initializes an empty <see cref="UniValue"/> instance with a specified <param name="attributes" /> and reference to <param name="parent" />.
-		/// </summary>
+    /// <summary>
+    /// Initializes an empty <see cref="UniValue"/> instance with a specified <param name="attributes" /> and reference to <param name="parent" />.
+    /// </summary>
     internal static UniValue CreateEmpty(NameValueCollection attributes, UniValue parent)
     {
       return new UniValue(null, attributes, parent);
     }
 
-		/// <summary>
-		/// Converts the specified <b>JSON</b> string to an <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="text">A string containing a <b>JSON</b> data to parse.</param>
-		/// <returns>A new <see cref="UniValue"/> instance.</returns>
-		/// <exception cref="ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
-		/// <exception cref="ArgumentException">The <paramref name="text"/> length exceeds the value of <see cref="Int32.MaxValue"/>.</exception>
-		/// <exception cref="ArgumentException">The recursion limit defined by <see cref="Int32.MaxValue"/> was exceeded.</exception>
-		/// <exception cref="ArgumentException"><paramref name="text"/> contains an unexpected character sequence.</exception>
-		/// <exception cref="ArgumentException"><paramref name="text"/> is a dictionary type and a non-string key value was encountered.</exception>
-		/// <exception cref="ArgumentException"><paramref name="text"/> includes member definitions that are not available on the target type.</exception>
-		/// <exception cref="InvalidOperationException">It is not possible to convert <paramref name="text"/> to the target type.</exception>
+    /// <summary>
+    /// Converts the specified <b>JSON</b> string to an <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="text">A string containing a <b>JSON</b> data to parse.</param>
+    /// <returns>A new <see cref="UniValue"/> instance.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
+    /// <exception cref="ArgumentException">The <paramref name="text"/> length exceeds the value of <see cref="Int32.MaxValue"/>.</exception>
+    /// <exception cref="ArgumentException">The recursion limit defined by <see cref="Int32.MaxValue"/> was exceeded.</exception>
+    /// <exception cref="ArgumentException"><paramref name="text"/> contains an unexpected character sequence.</exception>
+    /// <exception cref="ArgumentException"><paramref name="text"/> is a dictionary type and a non-string key value was encountered.</exception>
+    /// <exception cref="ArgumentException"><paramref name="text"/> includes member definitions that are not available on the target type.</exception>
+    /// <exception cref="InvalidOperationException">It is not possible to convert <paramref name="text"/> to the target type.</exception>
     public static UniValue ParseJson(string text)
     {
-			return UniValue.Create
-			(
-				new System.Web.Script.Serialization.JavaScriptSerializer() 
-				{ 
-					MaxJsonLength = int.MaxValue,
-					RecursionLimit = int.MaxValue
-				}.DeserializeObject(text), null, null
-			);
+      return UniValue.Create
+      (
+        new System.Web.Script.Serialization.JavaScriptSerializer()
+        {
+          MaxJsonLength = int.MaxValue,
+          RecursionLimit = int.MaxValue
+        }.DeserializeObject(text), null, null
+      );
     }
 
-		/// <summary>
-		/// Converts the specified <b>XML</b> string to an <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="text">A string containing a <b>XML</b> data to parse.</param>
-		/// <returns>A new <see cref="UniValue"/> instance.</returns>
-		/// <exception cref="ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
-		public static UniValue ParseXml(string text)
+    /// <summary>
+    /// Converts the specified <b>XML</b> string to an <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="text">A string containing a <b>XML</b> data to parse.</param>
+    /// <returns>A new <see cref="UniValue"/> instance.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="text"/> is <b>null</b>.</exception>
+    public static UniValue ParseXml(string text)
     {
       return UniValue.Create(XDocument.Parse(text), null);
     }
 
-		/// <summary>
-		/// Converts the specified parameters string to an <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="text">A string containing an url parameters to parse.</param>
-		/// <returns>A new <see cref="UniValue"/> instance.</returns>
-		/// <exception cref="InvalidDataException"><paramref name="text"/> contains an <b>CR</b> or <b>LF</b> characters.</exception>
-		/// <remarks>
-		/// <para>If <paramref name="text"/> is <b>null</b> or empty, the function returns an <see cref="UniValue.Empty"/> instance.</para>
-		/// </remarks>
-		public static UniValue ParseParameters(string text)
+    /// <summary>
+    /// Converts the specified parameters string to an <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="text">A string containing an url parameters to parse.</param>
+    /// <returns>A new <see cref="UniValue"/> instance.</returns>
+    /// <exception cref="InvalidDataException"><paramref name="text"/> contains an <b>CR</b> or <b>LF</b> characters.</exception>
+    /// <remarks>
+    /// <para>If <paramref name="text"/> is <b>null</b> or empty, the function returns an <see cref="UniValue.Empty"/> instance.</para>
+    /// </remarks>
+    public static UniValue ParseParameters(string text)
     {
       if (String.IsNullOrEmpty(text)) { return UniValue.Empty; }
       if (text.IndexOf("\r") != -1 || text.IndexOf("\n") != -1)
@@ -1012,12 +1012,12 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Converts the specified <b>JSON</b> string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
-		/// </summary>
-		/// <param name="text">A string containing a <b>JSON</b> data to parse.</param>
-		/// <param name="result">If successful, this parameter takes the result of parsing data.</param>
-		/// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Converts the specified <b>JSON</b> string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
+    /// </summary>
+    /// <param name="text">A string containing a <b>JSON</b> data to parse.</param>
+    /// <param name="result">If successful, this parameter takes the result of parsing data.</param>
+    /// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
     public static bool TryParseJson(string text, out UniValue result)
     {
       result = UniValue.Empty;
@@ -1032,12 +1032,12 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Converts the specified <b>XML</b> string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
-		/// </summary>
-		/// <param name="text">A string containing a <b>XML</b> data to parse.</param>
-		/// <param name="result">If successful, this parameter takes the result of parsing data.</param>
-		/// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Converts the specified <b>XML</b> string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
+    /// </summary>
+    /// <param name="text">A string containing a <b>XML</b> data to parse.</param>
+    /// <param name="result">If successful, this parameter takes the result of parsing data.</param>
+    /// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
     public static bool TryParseXml(string text, out UniValue result)
     {
       result = UniValue.Empty;
@@ -1052,12 +1052,12 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Converts the specified url parameters string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
-		/// </summary>
-		/// <param name="text">A string containing an url parameters to parse.</param>
-		/// <param name="result">If successful, this parameter takes the result of parsing data.</param>
-		/// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Converts the specified url parameters string to an <see cref="UniValue"/>. A return value indicates whether the conversion succeeded.
+    /// </summary>
+    /// <param name="text">A string containing an url parameters to parse.</param>
+    /// <param name="result">If successful, this parameter takes the result of parsing data.</param>
+    /// <returns><b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
     public static bool TryParseParameters(string text, out UniValue result)
     {
       result = UniValue.Empty;
@@ -1072,11 +1072,11 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Indicates whether the specified value is null or an <see cref="UniValue.Empty"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance to test.</param>
-		/// <returns><b>true</b> if the <paramref name="value"/> parameter is <b>null</b> or <see cref="UniValue.HasValue"/> is <b>false</b>; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Indicates whether the specified value is null or an <see cref="UniValue.Empty"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance to test.</param>
+    /// <returns><b>true</b> if the <paramref name="value"/> parameter is <b>null</b> or <see cref="UniValue.HasValue"/> is <b>false</b>; otherwise, <b>false</b>.</returns>
     public static bool IsNullOrEmpty(UniValue value)
     {
       try
@@ -1092,10 +1092,10 @@ namespace Nemiro.OAuth
     #endregion
     #region ..iconvertible..
 
-		/// <summary>
-		/// Gets the underlying type code of the <see cref="Data"/>.
-		/// </summary>
-		/// <returns></returns>
+    /// <summary>
+    /// Gets the underlying type code of the <see cref="Data"/>.
+    /// </summary>
+    /// <returns></returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public TypeCode GetTypeCode()
     {
@@ -1103,13 +1103,13 @@ namespace Nemiro.OAuth
       return Type.GetTypeCode(this.Data.GetType());
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent <see cref="System.Boolean"/> value using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An object that supplies culture-specific formatting information. </param>
-		/// <returns>A <see cref="System.Boolean"/> value equivalent to the value of this instance.</returns>
-		/// <exception cref="FormatException" />
-		/// <exception cref="InvalidCastException" />
+    /// <summary>
+    /// Converts the value of this instance to an equivalent <see cref="System.Boolean"/> value using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An object that supplies culture-specific formatting information. </param>
+    /// <returns>A <see cref="System.Boolean"/> value equivalent to the value of this instance.</returns>
+    /// <exception cref="FormatException" />
+    /// <exception cref="InvalidCastException" />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public bool ToBoolean(IFormatProvider provider)
     {
@@ -1123,11 +1123,11 @@ namespace Nemiro.OAuth
       return Convert.ToBoolean(this.Data);
     }*/
 
-		/// <summary>
-		/// Converts the value this instance to an equivalent 8-bit unsigned integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 8-bit unsigned integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value this instance to an equivalent 8-bit unsigned integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 8-bit unsigned integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public byte ToByte(IFormatProvider provider)
     {
@@ -1135,11 +1135,11 @@ namespace Nemiro.OAuth
       return Convert.ToByte(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent Unicode character using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A Unicode character equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent Unicode character using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A Unicode character equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public char ToChar(IFormatProvider provider)
     {
@@ -1147,11 +1147,11 @@ namespace Nemiro.OAuth
       return Convert.ToChar(this.Data);
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent <see cref="System.DateTime"/> using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A <see cref="System.DateTime"/> instance equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent <see cref="System.DateTime"/> using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A <see cref="System.DateTime"/> instance equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public DateTime ToDateTime(IFormatProvider provider)
     {
@@ -1159,11 +1159,11 @@ namespace Nemiro.OAuth
       return Convert.ToDateTime(this.Data);
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent <see cref="System.Decimal"/> number using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A <see cref="System.Decimal"/> number equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent <see cref="System.Decimal"/> number using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A <see cref="System.Decimal"/> number equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public decimal ToDecimal(IFormatProvider provider)
     {
@@ -1171,11 +1171,11 @@ namespace Nemiro.OAuth
       return Convert.ToDecimal(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent double-precision floating-point number using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A double-precision floating-point number equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent double-precision floating-point number using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A double-precision floating-point number equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public double ToDouble(IFormatProvider provider)
     {
@@ -1183,11 +1183,11 @@ namespace Nemiro.OAuth
       return Convert.ToDouble(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 16-bit signed integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 16-bit signed integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 16-bit signed integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 16-bit signed integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public short ToInt16(IFormatProvider provider)
     {
@@ -1195,11 +1195,11 @@ namespace Nemiro.OAuth
       return Convert.ToInt16(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 32-bit signed integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 32-bit signed integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 32-bit signed integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 32-bit signed integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public int ToInt32(IFormatProvider provider)
     {
@@ -1207,11 +1207,11 @@ namespace Nemiro.OAuth
       return Convert.ToInt32(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 64-bit signed integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 64-bit signed integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 64-bit signed integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 64-bit signed integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public long ToInt64(IFormatProvider provider)
     {
@@ -1219,11 +1219,11 @@ namespace Nemiro.OAuth
       return Convert.ToInt64(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 8-bit signed integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 8-bit signed integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 8-bit signed integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 8-bit signed integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sbyte ToSByte(IFormatProvider provider)
     {
@@ -1231,11 +1231,11 @@ namespace Nemiro.OAuth
       return Convert.ToSByte(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent single-precision floating-point number using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A single-precision floating-point number equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent single-precision floating-point number using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A single-precision floating-point number equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public float ToSingle(IFormatProvider provider)
     {
@@ -1243,11 +1243,11 @@ namespace Nemiro.OAuth
       return Convert.ToSingle(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent <see cref="System.String"/> using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>A <see cref="System.String"/> instance equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent <see cref="System.String"/> using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>A <see cref="System.String"/> instance equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public string ToString(IFormatProvider provider)
     {
@@ -1255,12 +1255,12 @@ namespace Nemiro.OAuth
       return Convert.ToString(this.Data);
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an <see cref="System.Object"/> of the specified <see cref="System.Type"/> that has an equivalent value, using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="conversionType">The <see cref="System.Type"/> to which the value of this instance is converted. </param>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An <see cref="System.Object"/> instance of type <paramref name="conversionType"/> whose value is equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an <see cref="System.Object"/> of the specified <see cref="System.Type"/> that has an equivalent value, using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="conversionType">The <see cref="System.Type"/> to which the value of this instance is converted. </param>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An <see cref="System.Object"/> instance of type <paramref name="conversionType"/> whose value is equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public object ToType(Type conversionType, IFormatProvider provider)
     {
@@ -1268,11 +1268,11 @@ namespace Nemiro.OAuth
       return Convert.ChangeType(this.Data, conversionType);
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 16-bit unsigned integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 16-bit unsigned integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 16-bit unsigned integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 16-bit unsigned integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public ushort ToUInt16(IFormatProvider provider)
     {
@@ -1280,11 +1280,11 @@ namespace Nemiro.OAuth
       return Convert.ToUInt16(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 32-bit unsigned integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 32-bit unsigned integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 32-bit unsigned integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 32-bit unsigned integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public uint ToUInt32(IFormatProvider provider)
     {
@@ -1292,11 +1292,11 @@ namespace Nemiro.OAuth
       return Convert.ToUInt32(OAuthUtility.GetNumber(this.Data));
     }
 
-		/// <summary>
-		/// Converts the value of this instance to an equivalent 64-bit unsigned integer using the specified culture-specific formatting information.
-		/// </summary>
-		/// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
-		/// <returns>An 64-bit unsigned integer equivalent to the value of this instance.</returns>
+    /// <summary>
+    /// Converts the value of this instance to an equivalent 64-bit unsigned integer using the specified culture-specific formatting information.
+    /// </summary>
+    /// <param name="provider">An <see cref="System.IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
+    /// <returns>An 64-bit unsigned integer equivalent to the value of this instance.</returns>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public ulong ToUInt64(IFormatProvider provider)
     {
@@ -1307,10 +1307,10 @@ namespace Nemiro.OAuth
     #endregion
     #region ..icloneable..
 
-		/// <summary>
-		/// Creates a new object that is a copy of the current <see cref="UniValue"/> instance.
-		/// </summary>
-		/// <returns>A new object that is a copy of this instance.</returns>
+    /// <summary>
+    /// Creates a new object that is a copy of the current <see cref="UniValue"/> instance.
+    /// </summary>
+    /// <returns>A new object that is a copy of this instance.</returns>
     public object Clone()
     {
       NameValueCollection attributes = null;
@@ -1333,11 +1333,11 @@ namespace Nemiro.OAuth
 
     #endregion
     #region ..ienumerator..
-  
-		/// <summary>
-		/// Returns an enumerator that iterates through a collection.
-		/// </summary>
-		/// <returns>An <see cref="System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
+
+    /// <summary>
+    /// Returns an enumerator that iterates through a collection.
+    /// </summary>
+    /// <returns>An <see cref="System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
     public IEnumerator GetEnumerator()
     {
       if (!this.HasValue)
@@ -1359,11 +1359,11 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Returns an enumerator that iterates through a collection.
-		/// </summary>
-		/// <returns>An <see cref="System.Collections.IEnumerator">System.Collections.IEnumerator&lt;UniValue&gt;</see> object that can be used to iterate through the collection.</returns>
-		IEnumerator<UniValue> IEnumerable<UniValue>.GetEnumerator()
+    /// <summary>
+    /// Returns an enumerator that iterates through a collection.
+    /// </summary>
+    /// <returns>An <see cref="System.Collections.IEnumerator">System.Collections.IEnumerator&lt;UniValue&gt;</see> object that can be used to iterate through the collection.</returns>
+    IEnumerator<UniValue> IEnumerable<UniValue>.GetEnumerator()
     {
       if (!this.HasValue)
       {
@@ -1391,12 +1391,12 @@ namespace Nemiro.OAuth
     #endregion
     #region ..iserializable..
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniValue"/>.
-		/// </summary>
-		/// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
-		/// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
-		[EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UniValue"/>.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
+    /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     protected UniValue(SerializationInfo info, StreamingContext context)
     {
       if (info == null)
@@ -1412,12 +1412,12 @@ namespace Nemiro.OAuth
     }
 
     //[SecurityPermission(SecurityAction.LinkDemand, SerializationFormatter = true)]
-		/// <summary>
-		/// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
-		/// </summary>
-		/// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
-		/// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
-		[EditorBrowsable(EditorBrowsableState.Never)]
+    /// <summary>
+    /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+    /// </summary>
+    /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+    /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
     {
       if (info == null)
@@ -1435,18 +1435,18 @@ namespace Nemiro.OAuth
     #endregion
     #region ..overrides..
 
-		/// <summary>
-		/// Serves as a hash function for a particular type.
-		/// </summary>
-		/// <returns>A hash code for the current <see cref="UniValue"/>.</returns>
-		public override int GetHashCode()
-		{
-			return base.GetHashCode();
-		}
+    /// <summary>
+    /// Serves as a hash function for a particular type.
+    /// </summary>
+    /// <returns>A hash code for the current <see cref="UniValue"/>.</returns>
+    public override int GetHashCode()
+    {
+      return base.GetHashCode();
+    }
 
-		/// <summary>
-		/// Returns a string that represents the current <see cref="UniValue"/>.
-		/// </summary>
+    /// <summary>
+    /// Returns a string that represents the current <see cref="UniValue"/>.
+    /// </summary>
     public override string ToString()
     {
       if (!this.HasValue)
@@ -1459,21 +1459,21 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Determines whether two object instances are equal.
-		/// </summary>
-		/// <param name="o">The object to compare with the current instance of the <see cref="UniValue"/>.</param>
-		/// <returns><b>true</b> if the specified object is equal to the current <see cref="UniValue"/>; otherwise, <b>false</b>.</returns>
-		public override bool Equals(object o)
+    /// <summary>
+    /// Determines whether two object instances are equal.
+    /// </summary>
+    /// <param name="o">The object to compare with the current instance of the <see cref="UniValue"/>.</param>
+    /// <returns><b>true</b> if the specified object is equal to the current <see cref="UniValue"/>; otherwise, <b>false</b>.</returns>
+    public override bool Equals(object o)
     {
       return this.Equals(UniValue.Create(o));
     }
 
-		/// <summary>
-		/// Determines whether two <see cref="UniValue"/> instances are equal.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> to compare with the current instance of the <see cref="UniValue"/>.</param>
-		/// <returns><b>true</b> if the specified <see cref="UniValue"/> is equal to the current <see cref="UniValue"/>; otherwise, <b>false</b>.</returns>
+    /// <summary>
+    /// Determines whether two <see cref="UniValue"/> instances are equal.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> to compare with the current instance of the <see cref="UniValue"/>.</param>
+    /// <returns><b>true</b> if the specified <see cref="UniValue"/> is equal to the current <see cref="UniValue"/>; otherwise, <b>false</b>.</returns>
     public bool Equals(UniValue value)
     {
       if (UniValue.IsNullOrEmpty(this) != UniValue.IsNullOrEmpty(value)) { return false; }
@@ -1551,24 +1551,24 @@ namespace Nemiro.OAuth
         return this.Data.Equals(value.Data);
       }
     }
-    
-		/// <summary>
-		/// Determines whether this instance and another specified <see cref="System.String"/> object have the same value.
-		/// </summary>
-		/// <param name="value">The string to compare to this instance of the <see cref="UniValue"/>.</param>
-		/// <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
+
+    /// <summary>
+    /// Determines whether this instance and another specified <see cref="System.String"/> object have the same value.
+    /// </summary>
+    /// <param name="value">The string to compare to this instance of the <see cref="UniValue"/>.</param>
+    /// <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
     public bool Equals(string value)
     {
       return this.Equals(value, StringComparison.CurrentCulture);
     }
 
-		/// <summary>
-		/// Determines whether this string and a specified <see cref="System.String"/> object have the same value. A parameter specifies the culture, case, and sort rules used in the comparison.
-		/// </summary>
-		/// <param name="value">The string to compare to this instance.</param>
-		/// <param name="comparisonType">One of the enumeration values that specifies how the strings will be compared. </param>
-		/// <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
-		public bool Equals(string value, StringComparison comparisonType)
+    /// <summary>
+    /// Determines whether this string and a specified <see cref="System.String"/> object have the same value. A parameter specifies the culture, case, and sort rules used in the comparison.
+    /// </summary>
+    /// <param name="value">The string to compare to this instance.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies how the strings will be compared. </param>
+    /// <returns><b>true</b> if the value of the <paramref name="value"/> parameter is the same as this instance; otherwise, <b>false</b>.</returns>
+    public bool Equals(string value, StringComparison comparisonType)
     {
       if (this.HasValue == String.IsNullOrEmpty(value)) { return false; }
       if (!this.HasValue && String.IsNullOrEmpty(value)) { return true; }
@@ -1578,47 +1578,47 @@ namespace Nemiro.OAuth
     #endregion
     #region ..operators explicit..
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="NameValueCollection"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="NameValueCollection"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator NameValueCollection(UniValue value)
     {
       return value.ToNameValueCollection();
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator Dictionary<string, object>(UniValue value)
     {
       return value.ToDictionary();
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="UniValue"/> array.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="UniValue"/> array.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator UniValue[](UniValue value)
     {
       return value.ToArray();
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an array.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an array.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator Array(UniValue value)
     {
       return value.ToArray();
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.Byte"/> array.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
-		public static explicit operator byte[](UniValue value)
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.Byte"/> array.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
+    public static explicit operator byte[](UniValue value)
     {
       return value.ToBinary();
     }
@@ -1659,100 +1659,100 @@ namespace Nemiro.OAuth
       return value.ToChar(CultureInfo.InvariantCulture);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.Boolean"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.Boolean"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator bool(UniValue value)
     {
       return value.ToBoolean(CultureInfo.InvariantCulture);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.DateTime"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.DateTime"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator DateTime(UniValue value)
     {
       return value.ToDateTime(DateTimeFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.Int16"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.Int16"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator Int16(UniValue value)
     {
       return value.ToInt16(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.Int32"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.Int32"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator Int32(UniValue value)
     {
       return value.ToInt32(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.Int64"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.Int64"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator Int64(UniValue value)
     {
       return value.ToInt64(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.UInt16"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.UInt16"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator UInt16(UniValue value)
     {
       return value.ToUInt16(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.UInt32"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.UInt32"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator UInt32(UniValue value)
     {
       return value.ToUInt32(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as an <see cref="System.UInt64"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as an <see cref="System.UInt64"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator UInt64(UniValue value)
     {
       return value.ToUInt64(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.Double"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.Double"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator double(UniValue value)
     {
       return value.ToDouble(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.Decimal"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.Decimal"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator decimal(UniValue value)
     {
       return value.ToDecimal(NumberFormatInfo.CurrentInfo);
     }
 
-		/// <summary>
-		/// Converts the <see cref="UniValue"/> as a <see cref="System.Single"/>.
-		/// </summary>
-		/// <param name="value">The <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Converts the <see cref="UniValue"/> as a <see cref="System.Single"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="UniValue"/> instance.</param>
     public static explicit operator float(UniValue value)
     {
       return value.ToSingle(NumberFormatInfo.CurrentInfo);
@@ -1770,190 +1770,190 @@ namespace Nemiro.OAuth
     #endregion
     #region ..operators implicit..
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="NameValueCollection"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="NameValueCollection"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(NameValueCollection value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="Dictionary&lt;TKey, TValue&gt;">Dictionary&lt;string, object&gt;</see>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(Dictionary<string, object> value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from array.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from array.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(Array value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Byte"/> array.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Byte"/> array.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(byte[] value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.String"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(string value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int16"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int16"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(Int16 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int32"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int32"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(Int32 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int64"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Int64"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(Int64 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt16"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt16"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(UInt16 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt32"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt32"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(UInt32 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt64"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.UInt64"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(UInt64 value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Boolean"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Boolean"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(bool value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.DateTime"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.DateTime"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(DateTime value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Byte"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Byte"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(byte value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.SByte"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.SByte"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(sbyte value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Char"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Char"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(char value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Decimal"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Decimal"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(decimal value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Double"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Double"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(double value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Single"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Single"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(float value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="System.Text.StringBuilder"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="System.Text.StringBuilder"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(StringBuilder value)
     {
       return UniValue.Create(value, null, null);
     }
 
-		/// <summary>
-		/// Creates a new <see cref="UniValue"/> instance from <see cref="UniValueCollection"/>.
-		/// </summary>
-		/// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
+    /// <summary>
+    /// Creates a new <see cref="UniValue"/> instance from <see cref="UniValueCollection"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="UniValue"/>.</param>
     public static implicit operator UniValue(UniValueCollection value)
     {
       return UniValue.Create(value, null, null);
@@ -1962,11 +1962,11 @@ namespace Nemiro.OAuth
     #endregion
     #region ..conditional operators..
 
-		/// <summary>
-		/// Indicate whether two <see cref="UniValue"/> are not equal.
-		/// </summary>
-		/// <param name="x">The first <see cref="UniValue"/> instance.</param>
-		/// <param name="y">The second <see cref="UniValue"/> instance.</param>
+    /// <summary>
+    /// Indicate whether two <see cref="UniValue"/> are not equal.
+    /// </summary>
+    /// <param name="x">The first <see cref="UniValue"/> instance.</param>
+    /// <param name="y">The second <see cref="UniValue"/> instance.</param>
     public static bool operator !=(UniValue x, UniValue y)
     {
       if (UniValue.IsNullOrEmpty(x))
@@ -1979,12 +1979,12 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Indicate whether two <see cref="UniValue"/> are equal.
-		/// </summary>
-		/// <param name="x">The first <see cref="UniValue"/> instance.</param>
-		/// <param name="y">The second <see cref="UniValue"/> instance.</param>
-		public static bool operator ==(UniValue x, UniValue y)
+    /// <summary>
+    /// Indicate whether two <see cref="UniValue"/> are equal.
+    /// </summary>
+    /// <param name="x">The first <see cref="UniValue"/> instance.</param>
+    /// <param name="y">The second <see cref="UniValue"/> instance.</param>
+    public static bool operator ==(UniValue x, UniValue y)
     {
       if (UniValue.IsNullOrEmpty(x))
       {
@@ -1996,11 +1996,11 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Indicate whether <see cref="UniValue"/> and <see cref="System.String"/> are not equal.
-		/// </summary>
-		/// <param name="x">The <see cref="UniValue"/> instance.</param>
-		/// <param name="y">The string.</param>
+    /// <summary>
+    /// Indicate whether <see cref="UniValue"/> and <see cref="System.String"/> are not equal.
+    /// </summary>
+    /// <param name="x">The <see cref="UniValue"/> instance.</param>
+    /// <param name="y">The string.</param>
     public static bool operator !=(UniValue x, string y)
     {
       if (UniValue.IsNullOrEmpty(x))
@@ -2013,11 +2013,11 @@ namespace Nemiro.OAuth
       }
     }
 
-		/// <summary>
-		/// Indicate whether <see cref="UniValue"/> and <see cref="System.String"/> are equal.
-		/// </summary>
-		/// <param name="x">The <see cref="UniValue"/> instance.</param>
-		/// <param name="y">The string.</param>
+    /// <summary>
+    /// Indicate whether <see cref="UniValue"/> and <see cref="System.String"/> are equal.
+    /// </summary>
+    /// <param name="x">The <see cref="UniValue"/> instance.</param>
+    /// <param name="y">The string.</param>
     public static bool operator ==(UniValue x, string y)
     {
       if (UniValue.IsNullOrEmpty(x))

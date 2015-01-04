@@ -14,6 +14,10 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
 
 http://demo-oauth.nemiro.net/
 
+### Ready-to-use authorization forms for Windows Forms projects
+
+https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms
+
 ### Features
 
 * Support OAuth 1.0 and 2.0; 
@@ -143,4 +147,5 @@ OAuthWeb.RedirectToAuthorization("facebook", returnUrl)
 
 * http://oauth.nemiro.net
 * http://demo-oauth.nemiro.net/
+* https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms
 * http://nemiro.net 

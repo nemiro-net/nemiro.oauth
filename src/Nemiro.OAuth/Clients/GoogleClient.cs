@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -334,16 +334,17 @@ namespace Nemiro.OAuth.Clients
     public GoogleClient(string clientId, string clientSecret) : base
     (
       "https://accounts.google.com/o/oauth2/auth",
-      "https://accounts.google.com/o/oauth2/token", 
+      "https://accounts.google.com/o/oauth2/token",
       clientId,
       clientSecret
-    ) 
+    )
     {
       // visit: https://developers.google.com/+/api/oauth?#login-scopes
-      this.Scope = "https://www.googleapis.com/auth/userinfo.email";
+      base.ScopeSeparator = " ";
+      base.DefaultScope = "https://www.googleapis.com/auth/userinfo.email";
     }
 
-    
+
     /// <summary>
     /// Gets the user details.
     /// </summary>

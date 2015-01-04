@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ namespace Nemiro.OAuth
     /// <param name="fileName">Name of the file.</param>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="contentType">MIME type of the file.</param>
-    public HttpFile(string parameterName, string fileName, string contentType, HttpParameterValue fileContent) : base(HttpParameterType.File, parameterName, fileContent) 
+    public HttpFile(string parameterName, string fileName, string contentType, HttpParameterValue fileContent) : base(HttpParameterType.File, parameterName, fileContent)
     {
       if (String.IsNullOrEmpty(fileName)) // String.IsNullOrWhiteSpace
       {

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ namespace Nemiro.OAuth
     /// Gets or sets user email address.
     /// </summary>
     public string Email { get; protected internal set; }
-    
+
     /// <summary>
     /// Gets or sets user phone.
     /// </summary>
@@ -216,7 +216,7 @@ namespace Nemiro.OAuth
         }
       }
     }
-    
+
     #endregion
     #region ..methods..
 

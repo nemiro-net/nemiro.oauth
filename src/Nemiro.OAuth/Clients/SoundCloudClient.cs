@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -108,14 +108,15 @@ namespace Nemiro.OAuth.Clients
     public SoundCloudClient(string clientId, string clientSecret) : base
     (
       "https://soundcloud.com/connect",
-      "https://api.soundcloud.com/oauth2/token", 
+      "https://api.soundcloud.com/oauth2/token",
       clientId,
       clientSecret
-    ) 
+    )
     {
-      this.Scope = "non-expiring";
+      base.ScopeSeparator = " "; // don't know...
+      base.DefaultScope = "non-expiring";
     }
-    
+
     /// <summary>
     /// Gets the user details.
     /// </summary>

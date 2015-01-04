@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The exception that is thrown when you attempt to register the already registered client.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class DuplicateProviderException : Exception
   {
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DuplicateProviderException"/> class.
     /// </summary>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ namespace Nemiro.OAuth
     }
 
     private OAuthRequestToken _RequestToken = null;
-    
+
     /// <summary>
     /// Gets or sets the request token.
     /// </summary>
@@ -106,7 +106,7 @@ namespace Nemiro.OAuth
       if (String.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
 
       this.RequestTokenUrl = requestTokenUrl;
-       
+
       this.Authorization.ConsumerSecret = consumerSecret;
       this.Authorization.ConsumerKey = consumerKey;
       this.Authorization.SignatureMethod = signatureMethod;
@@ -151,8 +151,8 @@ namespace Nemiro.OAuth
       {
         this.Authorization.Callback = String.Format
         (
-          "{0}{1}state={2}", 
-          this.ReturnUrl, 
+          "{0}{1}state={2}",
+          this.ReturnUrl,
           (this.ReturnUrl.Contains("?") ? "&" : "?"),
           this.State
         );
@@ -162,14 +162,14 @@ namespace Nemiro.OAuth
       (
         OAuthUtility.ExecuteRequest
         (
-          "POST", 
-          this.RequestTokenUrl, 
+          "POST",
+          this.RequestTokenUrl,
           null,
           this.Authorization
-        ), 
+        ),
         this.AuthorizeUrl,
         this.Parameters
-      ); 
+      );
     }
 
     /// <summary>
@@ -189,9 +189,9 @@ namespace Nemiro.OAuth
       (
         OAuthUtility.ExecuteRequest
         (
-          "POST", 
-          this.AccessTokenUrl, 
-          null, 
+          "POST",
+          this.AccessTokenUrl,
+          null,
           this.Authorization
         )
       );

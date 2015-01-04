@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -67,8 +67,8 @@ namespace Nemiro.OAuth
       {
         return _AllClients;
       }
-    } 
-   
+    }
+
     private static Dictionary<string, OAuthRequest> _Requets = new Dictionary<string, OAuthRequest>();
     /// <summary>
     /// Gets the list of active requests.
@@ -92,7 +92,7 @@ namespace Nemiro.OAuth
         return _RegisteredClients;
       }
     }
-    
+
     #endregion
     #region ..constructor..
 
@@ -140,11 +140,11 @@ namespace Nemiro.OAuth
     /// <param name="e">The event data.</param>
     private static void Timer_Elapsed(object sender, EventArgs e)
     {
-      if (_Requets.Count <= 0) 
+      if (_Requets.Count <= 0)
       {
         // no active requests, stop the time
         _Timer.Stop();
-        return; 
+        return;
       }
 
       // lifetime request - 20 minutes
@@ -311,7 +311,7 @@ namespace Nemiro.OAuth
       if (initArgs != null && initArgs.Length > 0)
       {
         parm.AddRange(initArgs);
-      } 
+      }
       // creating client instance
       OAuthBase client = Activator.CreateInstance(OAuthManager.AllClients[providerName], parm.ToArray()) as OAuthBase;
       if (!String.IsNullOrEmpty(scope))
@@ -329,6 +329,23 @@ namespace Nemiro.OAuth
       // add client
       OAuthManager.RegisterClient(client);
     }
+
+    /// <summary>
+    /// Returns type of client by name.
+    /// </summary>
+    /// <param name="providerName">The provider name.</param>
+    public static Type GetClientTypeByName(string providerName)
+    {
+      if (String.IsNullOrEmpty(providerName)) { return null; }
+      // searching provider by name
+      if (!OAuthManager.AllClients.ContainsKey(providerName))
+      {
+        return null;
+      }
+      // return provider type
+      return OAuthManager.AllClients[providerName].GetType();
+    }
+
     #endregion
 
   }

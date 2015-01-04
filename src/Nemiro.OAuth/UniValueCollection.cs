@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the collection of the <see cref="UniValue"/>.
   /// </summary>
-	[Serializable]
-  public class UniValueCollection : 
-  IDictionary<string, UniValue>, 
-  ICollection<KeyValuePair<string, UniValue>>, 
+  [Serializable]
+  public class UniValueCollection :
+  IDictionary<string, UniValue>,
+  ICollection<KeyValuePair<string, UniValue>>,
   IEnumerable<KeyValuePair<string, UniValue>>,
   IEnumerable, ISerializable
   {
@@ -50,7 +50,7 @@ namespace Nemiro.OAuth
       {
         return _Items;
       }
-      protected set 
+      protected set
       {
         _Items = value;
       }
@@ -69,67 +69,67 @@ namespace Nemiro.OAuth
     /// Gets or sets the value associated with the specified key.
     /// </summary>
     /// <param name="key">The key of the value to get or set.</param>
-		public UniValue this[string key]
-		{
-			get
-			{
-				return this.Items[key];
-			}
-			set
-			{
-				this.Items[key] = value;
-			}
-		}
+    public UniValue this[string key]
+    {
+      get
+      {
+        return this.Items[key];
+      }
+      set
+      {
+        this.Items[key] = value;
+      }
+    }
 
     /// <summary>
     /// Gets or sets the element at the specified index.
     /// </summary>
     /// <param name="index">The zero-based index of the element to get or set.</param>
-		public UniValue this[int index]
-		{
-			get
-			{
-				if (this.ContainsKey(index.ToString()))
-				{
-					return this[index.ToString()];
-				}
-				if (index < 0 || index > this.Count - 1) { return UniValue.Empty; }
-				return this[this.Keys.ToArray()[index]];
-			}
-		}
+    public UniValue this[int index]
+    {
+      get
+      {
+        if (this.ContainsKey(index.ToString()))
+        {
+          return this[index.ToString()];
+        }
+        if (index < 0 || index > this.Count - 1) { return UniValue.Empty; }
+        return this[this.Keys.ToArray()[index]];
+      }
+    }
 
     /// <summary>
     /// Gets a collection containing the keys in the collection.
     /// </summary>
-		public Dictionary<string, UniValue>.KeyCollection Keys
-		{
-			get
-			{
-				return this.Items.Keys;
-			}
-		}
+    public Dictionary<string, UniValue>.KeyCollection Keys
+    {
+      get
+      {
+        return this.Items.Keys;
+      }
+    }
 
     /// <summary>
     /// Gets a collection containing the values in the collection.
     /// </summary>
-		public Dictionary<string, UniValue>.ValueCollection Values
-		{
-			get
-			{
-				return this.Items.Values;
-			}
-		}
+    public Dictionary<string, UniValue>.ValueCollection Values
+    {
+      get
+      {
+        return this.Items.Values;
+      }
+    }
 
     /// <summary>
     /// Gets the number of elements contained in the collection.
     /// </summary>
-		public int Count
-		{
-			get
-			{
-				return this.Items.Count;
-			}
-		}
+    public int Count
+    {
+      get
+      {
+        return this.Items.Count;
+      }
+    }
 
     #endregion
     #region ..constructor..
@@ -156,7 +156,7 @@ namespace Nemiro.OAuth
     {
       if (source == null) { throw new ArgumentNullException("source"); }
       //this.Unreferenced = (source.Parent != null ? source.Parent.Unreferenced : false);
-			foreach (KeyValuePair<string, UniValue> itm in source)
+      foreach (KeyValuePair<string, UniValue> itm in source)
       {
         this.Add(itm.Key, itm.Value);
       }
@@ -177,7 +177,7 @@ namespace Nemiro.OAuth
         key = "____";
       }
       if (!this.ContainsKey(key))
-      { 
+      {
         // first key
         value.Key = key;
         value.Parent = this.Parent;
@@ -204,16 +204,16 @@ namespace Nemiro.OAuth
         this[key].Key = key;
       }
     }
-    
+
     /// <summary>
     /// Determines whether the collection contains the specified key.
     /// </summary>
     /// <param name="key">The key to locate in the collection.</param>
     /// <exception cref="ArgumentNullException"><paramref name="key"/> is <b>null</b>.</exception>
-		public bool ContainsKey(string key)
-		{
-			return this.Items.ContainsKey(key);
-		}
+    public bool ContainsKey(string key)
+    {
+      return this.Items.ContainsKey(key);
+    }
 
     /// <summary>
     /// Removes the value with the specified key from the collection.
@@ -222,10 +222,10 @@ namespace Nemiro.OAuth
     /// <returns>
     /// <b>true</b> if the element is successfully found and removed; otherwise, <b>false</b>. 
     /// </returns>
-		public bool Remove(string key)
-		{
-			return this.Items.Remove(key);
-		}
+    public bool Remove(string key)
+    {
+      return this.Items.Remove(key);
+    }
 
     /// <summary>
     /// Returns a string that represents the current <see cref="UniValueCollection"/>.
@@ -361,7 +361,7 @@ namespace Nemiro.OAuth
         this.ValueToString(itm.Value)
       );
     }
-    
+
     /// <summary>
     /// Returns a string that represents the specified <see cref="UniValue"/> instance.
     /// </summary>
@@ -387,7 +387,7 @@ namespace Nemiro.OAuth
     }
 
     #endregion
-		#region ..icollection..
+    #region ..icollection..
 
     /// <summary>
     /// Gets a collection containing the keys in the collection.
@@ -400,7 +400,7 @@ namespace Nemiro.OAuth
         return this.Items.Keys;
       }
     }
-    
+
     /// <summary>
     /// Gets a collection containing the values in the collection.
     /// </summary>
@@ -412,53 +412,53 @@ namespace Nemiro.OAuth
         return this.Items.Values;
       }
     }
-    
+
     /// <summary>
     /// Gets a value indicating whether the collection is read-only. Always <b>false</b>.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		public bool IsReadOnly
-		{
-			get 
-			{ 
-				return false; 
-			}
-		}
+    public bool IsReadOnly
+    {
+      get
+      {
+        return false;
+      }
+    }
 
     /// <summary>
     /// Adds the specified item to the <see cref="UniValueCollection"/>.
     /// </summary>
     /// <param name="item">The item to add.</param>
-		public void Add(KeyValuePair<string, UniValue> item)
-		{
-			this.Add(item.Key, item.Value);
-		}
+    public void Add(KeyValuePair<string, UniValue> item)
+    {
+      this.Add(item.Key, item.Value);
+    }
 
     /// <summary>
     /// Removes all items from the collection.
     /// </summary>
-		public void Clear()
-		{
-			this.Items.Clear();
-		}
+    public void Clear()
+    {
+      this.Items.Clear();
+    }
 
     /// <summary>
     /// Determines whether the collection contains a specific value.
     /// </summary>
     /// <param name="item">The object to locate in the collection.</param>
-		public bool Contains(KeyValuePair<string, UniValue> item)
-		{
-			return this.ContainsKey(item.Key);
-		}
-    
+    public bool Contains(KeyValuePair<string, UniValue> item)
+    {
+      return this.ContainsKey(item.Key);
+    }
+
     /// <summary>
     /// Removes the first occurrence of a specific object from the collection. 
     /// </summary>
     /// <param name="item">The object to remove from the collection.</param>
-		public bool Remove(KeyValuePair<string, UniValue> item)
-		{
-			return this.Items.Remove(item.Key);
-		}
+    public bool Remove(KeyValuePair<string, UniValue> item)
+    {
+      return this.Items.Remove(item.Key);
+    }
 
     /// <summary>
     /// Gets the value associated with the specified key.
@@ -484,32 +484,32 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from collection. The <see cref="System.Array"/> must have zero-based indexing. </param>
     /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public void CopyTo(KeyValuePair<string, UniValue>[] array, int arrayIndex)
-		{
-			throw new NotImplementedException();
-		}
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public void CopyTo(KeyValuePair<string, UniValue>[] array, int arrayIndex)
+    {
+      throw new NotImplementedException();
+    }
 
-		#endregion
-		#region ..ienumerable..
-
-    /// <summary>
-    /// Returns an enumerator that iterates through a collection.
-    /// </summary>
-		public IEnumerator GetEnumerator()
-		{
-			return this.Items.GetEnumerator();
-		}
+    #endregion
+    #region ..ienumerable..
 
     /// <summary>
     /// Returns an enumerator that iterates through a collection.
     /// </summary>
-		IEnumerator<KeyValuePair<string, UniValue>> IEnumerable<KeyValuePair<string, UniValue>>.GetEnumerator()
-		{
-			return this.Items.GetEnumerator();
-		}
+    public IEnumerator GetEnumerator()
+    {
+      return this.Items.GetEnumerator();
+    }
 
-		#endregion
+    /// <summary>
+    /// Returns an enumerator that iterates through a collection.
+    /// </summary>
+    IEnumerator<KeyValuePair<string, UniValue>> IEnumerable<KeyValuePair<string, UniValue>>.GetEnumerator()
+    {
+      return this.Items.GetEnumerator();
+    }
+
+    #endregion
     #region ..iserializable..
 
     /// <summary>
@@ -541,7 +541,7 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+    public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
     {
       if (info == null)
       {
@@ -562,13 +562,13 @@ namespace Nemiro.OAuth
     }
 
     #endregion
-		#region ..operators..
+    #region ..operators..
 
     /// <summary>
     /// Returns <see cref="UniValueCollection"/> instance from <see cref="UniValue"/>.
     /// </summary>
     /// <param name="value">The value from which will be returned the <see cref="UniValueCollection"/>.</param>
-		public static implicit operator UniValueCollection(UniValue value)
+    public static implicit operator UniValueCollection(UniValue value)
     {
       return value.CollectionItems;
     }

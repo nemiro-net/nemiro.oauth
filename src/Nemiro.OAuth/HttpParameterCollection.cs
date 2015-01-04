@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Initializes a new instance of the <see cref="HttpParameterCollection"/> class.
     /// </summary>
-    public HttpParameterCollection() 
+    public HttpParameterCollection()
     {
       //this.UrlEncodingType = OAuth.UrlEncodingType.Auto;
       this.Encoding = Encoding.UTF8;
@@ -493,7 +493,7 @@ namespace Nemiro.OAuth
     /// </summary>
     public string ToStringParameters()
     {
-      return this.ToStringParameters("&", UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url); 
+      return this.ToStringParameters("&", UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url);
     }
 
     /// <summary>

@@ -26,18 +26,15 @@ namespace Test.OAuthWeb.Controllers
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
-
-        var parameters = new NameValueCollection
-        { 
-          { "access_token", Session["Facebook:AccessToken"].ToString() }
-        };
         
         // execute the request
-        var result = OAuthUtility.ExecuteRequest
+        var result = OAuthUtility.Get
         (
-          "GET",
           String.Format("https://graph.facebook.com/v2.2/me/{0}", method),
-          parameters
+          new NameValueCollection
+          { 
+            { "access_token", Session["Facebook:AccessToken"].ToString() }
+          }
         );
 
         return Content(Regex.Unescape(result.ToString()), "text/plain");

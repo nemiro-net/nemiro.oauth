@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -173,7 +173,7 @@ namespace Nemiro.OAuth
         base["oauth_signature"] = value;
       }
     }
-    
+
     /// <summary>
     /// Gets or sets the callback address.
     /// </summary>
@@ -212,7 +212,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthAuthorization"/> class.
     /// </summary>
-    public OAuthAuthorization() : base() 
+    public OAuthAuthorization() : base()
     {
       this.AuthorizationType = AuthorizationType.OAuth;
       this.DefaultInit();
@@ -312,7 +312,7 @@ namespace Nemiro.OAuth
       if (parameters != null) { param.Add(parameters); }
 
       // append the authorization headers
-			foreach (KeyValuePair<string, UniValue> itm in authorization.Value.CollectionItems)
+      foreach (KeyValuePair<string, UniValue> itm in authorization.Value.CollectionItems)
       {
         if (itm.Key.Equals("oauth_signature", StringComparison.OrdinalIgnoreCase)) { continue; }
         param.Add(itm.Key, itm.Value.ToString());

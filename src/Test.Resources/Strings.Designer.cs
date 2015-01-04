@@ -211,12 +211,12 @@ namespace Test.Resources {
         ///  &lt;a href=&quot;http://oauth.nemiro.net/&quot;&gt;http://oauth.nemiro.net/&lt;/a&gt;
         ///&lt;/p&gt;
         ///&lt;p&gt;
+        ///Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
+        ///&lt;a href=&quot;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&quot;&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
+        ///&lt;/p&gt;
+        ///&lt;p&gt;
         ///  Other projects:&lt;br /&gt;
-        ///  &lt;a href=&quot;http://nemiro.net/&quot;&gt;http://nemiro.net/&lt;/a&gt;
-        ///
-        ///&lt;h3&gt;Registration and management of applications&lt;/h3&gt;
-        ///	&lt;p&gt;Amazon:&lt;br /&gt;
-        ///		&lt;a href=&quot;http://login.amazon.com/manageApps&quot;&gt;http://login.amazon.com/ [остаток строки не уместился]&quot;;.
+        ///   [остаток строки не уместился]&quot;;.
         /// </summary>
         public static string DemoUsefulLinks {
             get {

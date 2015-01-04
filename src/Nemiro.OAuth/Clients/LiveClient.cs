@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -217,13 +217,14 @@ namespace Nemiro.OAuth.Clients
     public LiveClient(string clientId, string clientSecret) : base
     (
       "https://login.live.com/oauth20_authorize.srf",
-      "https://login.live.com/oauth20_token.srf", 
+      "https://login.live.com/oauth20_token.srf",
       clientId,
       clientSecret
-    ) 
+    )
     {
       // http://msdn.microsoft.com/en-us/library/hh243646.aspx
-      this.Scope = "wl.basic,wl.emails,wl.birthday,wl.phone_numbers"; 
+      base.ScopeSeparator = ",";
+      base.DefaultScope = "wl.basic,wl.emails,wl.birthday,wl.phone_numbers";
     }
 
 

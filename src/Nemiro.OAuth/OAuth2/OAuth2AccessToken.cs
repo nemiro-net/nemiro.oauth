@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// The access token class for OAuth 2.0.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class OAuth2AccessToken : AccessToken
   {
 
@@ -83,16 +83,16 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		protected OAuth2AccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
+    protected OAuth2AccessToken(SerializationInfo info, StreamingContext context) : base(info, context)
     {
       if (info == null)
       {
         throw new ArgumentNullException("info");
       }
-			this.ExpiresIn = info.GetInt64("ExpiresIn");
-			this.RefreshToken = info.GetString("RefreshToken");
-			this.Scope = info.GetString("Scope");
-			this.TokenType = info.GetString("TokenType");
+      this.ExpiresIn = info.GetInt64("ExpiresIn");
+      this.RefreshToken = info.GetString("RefreshToken");
+      this.Scope = info.GetString("Scope");
+      this.TokenType = info.GetString("TokenType");
     }
 
     /// <summary>
@@ -101,18 +101,18 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		public override void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			if (info == null)
-			{
-				throw new ArgumentNullException("info");
-			}
-			info.AddValue("ExpiresIn", this.ExpiresIn);
-			info.AddValue("RefreshToken", this.RefreshToken);
-			info.AddValue("Scope", this.Scope);
-			info.AddValue("TokenType", this.TokenType);
-			base.GetObjectData(info, context);
-		}
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+      if (info == null)
+      {
+        throw new ArgumentNullException("info");
+      }
+      info.AddValue("ExpiresIn", this.ExpiresIn);
+      info.AddValue("RefreshToken", this.RefreshToken);
+      info.AddValue("Scope", this.Scope);
+      info.AddValue("TokenType", this.TokenType);
+      base.GetObjectData(info, context);
+    }
 
   }
 

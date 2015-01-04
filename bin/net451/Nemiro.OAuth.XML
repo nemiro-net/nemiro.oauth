@@ -1501,6 +1501,16 @@
             The scope of the access request.
             </summary>
         </member>
+        <member name="P:Nemiro.OAuth.OAuth2Client.DefaultScope">
+            <summary>
+            The deault scope.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuth2Client.ScopeSeparator">
+            <summary>
+            The separator in the scope list.
+            </summary>
+        </member>
         <member name="P:Nemiro.OAuth.OAuth2Client.AuthorizationUrl">
             <summary>
             Gets the endpoint of the authorization.
@@ -6091,6 +6101,12 @@
             )
             </code>
             </example>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.GetClientTypeByName(System.String)">
+            <summary>
+            Returns type of client by name.
+            </summary>
+            <param name="providerName">The provider name.</param>
         </member>
         <member name="P:Nemiro.OAuth.OAuthManager.AllClients">
             <summary>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the error results of the query.
   /// </summary>
-	[Serializable]
+  [Serializable]
   public class ErrorResult : RequestResult
   {
 
@@ -46,7 +46,7 @@ namespace Nemiro.OAuth
     /// Initializes a new instance of the <see cref="ErrorResult"/> class.
     /// </summary>
     /// <param name="result">The request results.</param>
-    public ErrorResult(RequestResult result) : base(result) {  }
+    public ErrorResult(RequestResult result) : base(result) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="EmptyResult"/>.
@@ -54,8 +54,8 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-		protected ErrorResult(SerializationInfo info, StreamingContext context) : base(info, context) { }
-    
+    protected ErrorResult(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
     /// <summary>
     /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
     /// </summary>

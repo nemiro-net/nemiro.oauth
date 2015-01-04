@@ -115,6 +115,11 @@ namespace TestProject1
       }
 
       Console.WriteLine("OK");
+
+      UniValue vv = UniValue.Empty;
+      foreach (UniValue itm in vv["data"])
+      {
+      }
     }
 
   }

@@ -227,7 +227,7 @@ namespace TestProject1
 
       Console.WriteLine("ToDateTime");
 
-      r2 = "Thu Dec 04";
+      r2 = "Thu Dec 04, 2014";
       Convert.ToDateTime(r2);
 
       Console.WriteLine("OK");

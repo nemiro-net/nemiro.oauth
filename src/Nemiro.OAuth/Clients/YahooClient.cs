@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -117,18 +117,17 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     ) { }
 
-
     /// <summary>
     /// Gets the user details.
     /// </summary>
     public override UserInfo GetUserInfo()
     {
       string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", this.AccessToken["xoauth_yahoo_guid"]);
-      
+
       var result = OAuthUtility.Get
       (
-        endpoint:       url,
-        authorization:  new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
+        endpoint: url,
+        authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
       );
 
       var map = new ApiDataMapping();
@@ -201,9 +200,9 @@ namespace Nemiro.OAuth.Clients
 
       var result = OAuthUtility.Post
       (
-        endpoint:       this.AccessTokenUrl,
-        parameters:     parameters,
-        authorization:  new HttpAuthorization(AuthorizationType.Basic, OAuthUtility.ToBase64String("{0}:{1}", this.ApplicationId, this.ApplicationSecret))
+        endpoint: this.AccessTokenUrl,
+        parameters: parameters,
+        authorization: new HttpAuthorization(AuthorizationType.Basic, OAuthUtility.ToBase64String("{0}:{1}", this.ApplicationId, this.ApplicationSecret))
       );
 
       if (result.ContainsKey("error"))

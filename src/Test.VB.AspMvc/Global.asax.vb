@@ -82,16 +82,6 @@ Public Class MvcApplication
       )
     )
 
-    'OAuthManager.RegisterClient _
-    '(
-    '  New OdnoklassnikiClient _
-    '  (
-    '    "1093434880",
-    '    "CC85541E6B8A3EF53E8FCBD3",
-    '    "CBAPHNCCEBABABABA"
-    '  )
-    ')
-
     OAuthManager.RegisterClient _
     (
       New GitHubClient _

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -538,12 +538,13 @@ namespace Nemiro.OAuth.Clients
     public VkontakteClient(string clientId, string clientSecret) : base
     (
       "https://oauth.vk.com/authorize",
-      "https://oauth.vk.com/access_token", 
+      "https://oauth.vk.com/access_token",
       clientId,
       clientSecret
-    ) 
+    )
     {
-      this.Scope = "status,email";
+      base.DefaultScope = "status,email";
+      base.ScopeSeparator = ",";
     }
 
 

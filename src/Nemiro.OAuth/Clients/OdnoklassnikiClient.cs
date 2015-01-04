@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014. All rights reserved.
+// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -534,7 +534,7 @@ namespace Nemiro.OAuth.Clients
     /// Public Key for access to API.
     /// </summary>
     public string ApplicationKey { get; protected set; }
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="OdnoklassnikiClient"/>.
     /// </summary>
@@ -544,10 +544,10 @@ namespace Nemiro.OAuth.Clients
     public OdnoklassnikiClient(string clientId, string clientSecret, string publickKey) : base
     (
       "https://www.odnoklassniki.ru/oauth/authorize",
-      "http://api.odnoklassniki.ru/oauth/token.do", 
+      "http://api.odnoklassniki.ru/oauth/token.do",
       clientId,
       clientSecret
-    ) 
+    )
     {
       this.ApplicationKey = publickKey; // required only for API
     }
