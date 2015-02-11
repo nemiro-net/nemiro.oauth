@@ -1,6 +1,6 @@
 ﻿This is a sample application for **CodeProject**.
 
-![CodeProject application](preview.png)
+![CodeProject application](preview.jpg)
 
 This application allows you to view messages of the **CodeProject** forums.
 
