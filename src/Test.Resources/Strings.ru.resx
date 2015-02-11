@@ -313,7 +313,7 @@
     <value>Список лайков</value>
   </data>
   <data name="NoForLocalhost" xml:space="preserve">
-    <value>&lt;h1 style="color:red;text-align:center;"&gt;Этот сайт работает правильно только на домене oauth-test.nemiro.net!&lt;/h1&gt;
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;Этот сайт работает правильно только на домене demo-oauth.nemiro.net!&lt;/h1&gt;
   &lt;h2 style="color:red;text-align:center;"&gt;Используйте другие проекты, для проверки работы с OAuth на локальном сервере.&lt;/h2&gt;</value>
   </data>
   <data name="Note" xml:space="preserve">

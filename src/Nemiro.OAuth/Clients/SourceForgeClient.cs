@@ -31,7 +31,7 @@ namespace Nemiro.OAuth.Clients
   /// OAuth client for <b>SourceForge</b>.
   /// </summary>
   /// <remarks>
-  /// <h1>Register and Configure a Twitter Application</h1>
+  /// <h1>Register a SourceForge Application</h1>
   /// <list type="table">
   /// <item>
   /// <term><img src="../img/warning.png" alt="(!)" title="" /></term>
@@ -71,16 +71,20 @@ namespace Nemiro.OAuth.Clients
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
   /// <seealso cref="FoursquareClient"/>
   /// <seealso cref="GitHubClient"/>
   /// <seealso cref="GoogleClient"/>
+  /// <seealso cref="InstagramClient"/>
   /// <seealso cref="LinkedInClient"/>
   /// <seealso cref="LiveClient"/>
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="SourceForgeClient"/>
+  /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
   /// <seealso cref="YahooClient"/>
@@ -122,33 +126,24 @@ namespace Nemiro.OAuth.Clients
     {
       // help: https://sourceforge.net/p/forge/documentation/Allura%20API/#user
 
+      /*
       string url = String.Format("https://sourceforge.net/rest/u/{0}/profile", "");
-
-      // query parameters
-      var parameters = new HttpParameterCollection();
-      parameters.AddUrlParameter("user_id", this.AccessToken["user_id"].ToString());
-      parameters.AddUrlParameter("screen_name", this.AccessToken["screen_name"].ToString());
-      parameters.AddUrlParameter("include_entities", "false");
 
       this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
       this.Authorization.TokenSecret = this.AccessToken["oauth_token_secret"].ToString();
 
+      base.Authorization["oauth_body_hash"] = "2jmj7l5rSw0yVb/vlWAYkK/YBwk=";
+      base.Authorization.Build("GET", url, null, null);
+
       // execute the request
-      var result = OAuthUtility.Get(url, parameters, this.Authorization);
+      var result = OAuthUtility.Get(url, base.Authorization.Value.ToNameValueCollection());
+      */
 
       // field mapping
-      var map = new ApiDataMapping();
-      map.Add("id_str", "UserId", typeof(string));
-      map.Add("name", "DisplayName");
-      map.Add("screen_name", "UserName");
-      map.Add("profile_image_url", "Userpic");
-      map.Add("url", "Url");
-      map.Add("birthday", "Birthday", typeof(DateTime), @"dd\.MM\.yyyy");
-      //map.Add("verified", "Url");
-      //map.Add("location", "Url");
+      // var map = new ApiDataMapping();
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(result, map);
+      return new UserInfo(UniValue.Empty, null);
     }
     
     /// <summary>
@@ -169,18 +164,61 @@ namespace Nemiro.OAuth.Clients
         );
       }
 
+      // var sha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider();
+      base.Authorization["oauth_body_hash"] = "2jmj7l5rSw0yVb/vlWAYkK/YBwk="; // Convert.ToBase64String(sha1.ComputeHash(new byte[] { }));
+
+      // debug
+      // base.Authorization.Nonce = "13020680";
+      // base.Authorization.Timestamp = "1423301309";
+
+      base.Authorization.Build("GET", base.RequestTokenUrl, null, null);
+
       base.RequestToken = new OAuthRequestToken
       (
-        OAuthUtility.ExecuteRequest
-        (
-          "GET",
-          base.RequestTokenUrl,
-          null,
-          base.Authorization
-        ),
+        OAuthUtility.Get(base.RequestTokenUrl, base.Authorization.Value.ToNameValueCollection()),
         base.AuthorizeUrl,
         base.Parameters
       );
+    }
+
+    /// <summary>
+    /// Gets the access token from the remote server.
+    /// </summary>
+    protected override void GetAccessToken()
+    {
+      // authorization code is required for request
+      if (String.IsNullOrEmpty(this.AuthorizationCode))
+      {
+        throw new ArgumentNullException("AuthorizationCode");
+      }
+
+      // set default access tken value
+      this.AccessToken = new EmptyResult();
+
+      // prepare
+      this.Authorization.PrepareForAccessToken();
+
+      // set request data
+      this.Authorization.Verifier = this.AuthorizationCode;
+      this.Authorization.Token = this.RequestToken.OAuthToken;
+      this.Authorization.TokenSecret = this.RequestToken.OAuthTokenSecret;
+
+      base.Authorization["oauth_body_hash"] = "2jmj7l5rSw0yVb/vlWAYkK/YBwk=";
+
+      base.Authorization.Build("GET", base.AccessTokenUrl, null, null);
+
+      // send request
+      base.AccessToken = new OAuthAccessToken
+      (
+        OAuthUtility.Get
+        (
+          this.AccessTokenUrl,
+          this.Authorization.Value.ToNameValueCollection()
+        )
+      );
+
+      // remove oauth_verifier from headers
+      this.Authorization.Remove("oauth_verifier");
     }
 
   }

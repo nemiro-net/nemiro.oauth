@@ -121,6 +121,9 @@
   <data name="amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\amazon.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="codeproject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\codeproject;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="dropbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\dropbox.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -159,6 +162,9 @@
   </data>
   <data name="soundcloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\soundcloud.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sourceforge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\sourceforge.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tumblr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\tumblr.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

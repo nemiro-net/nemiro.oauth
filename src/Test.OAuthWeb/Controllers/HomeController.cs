@@ -57,7 +57,7 @@ namespace Test.OAuthWeb.Controllers
       string protocol = null;
       // I have not normal SSL
       // but some providers require https
-      string[] notSupportedHttp = { "dropbox", "amazon" };
+      string[] notSupportedHttp = { "dropbox", "amazon", "codeproject" };
       if (notSupportedHttp.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
       {
         protocol = "https";
@@ -85,7 +85,22 @@ namespace Test.OAuthWeb.Controllers
           Session[String.Format("{0}:TokenSecret", result.ProviderName)] = ((Nemiro.OAuth.OAuthAccessToken)result.AccessToken).TokenSecret;
         }
       }
-      return View(result);
+      TempData["ExternalLoginResult"] = result;
+      return RedirectToAction("Result");
+    }
+
+    /// <summary>
+    /// Login result view
+    /// </summary>
+    [OutputCache(Duration = 0, Location = System.Web.UI.OutputCacheLocation.None)]
+    public ActionResult Result()
+    {
+      if (TempData["ExternalLoginResult"] == null)
+      {
+        return RedirectToAction("Index");
+      }
+      Response.StatusCode = 403;
+      return View(TempData["ExternalLoginResult"]);
     }
 
   }

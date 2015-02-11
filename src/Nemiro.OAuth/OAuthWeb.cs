@@ -559,7 +559,7 @@ namespace Nemiro.OAuth
     /// </remarks>
     public static AuthorizationResult VerifyAuthorization(string requestId, string code)
     {
-      AuthorizationResult result = new AuthorizationResult();
+      var result = new AuthorizationResult();
       try
       {
         if (String.IsNullOrEmpty(requestId))
@@ -597,6 +597,49 @@ namespace Nemiro.OAuth
       }
       return result;
     }
+
+    /*
+    public static AuthorizationResult Authorize(string providerName, NameValueCollection parameters, string returnUrl, string username, string password)
+    {
+      if (!OAuthManager.RegisteredClients.ContainsKey(providerName))
+      {
+        throw new ClientIsNotRegisteredException();
+      }
+
+      if (OAuthManager.RegisteredClients[providerName].Version != "2.0")
+      {
+        throw new ClientIsNotRegisteredException();//todo
+      }
+
+      var result = new AuthorizationResult();
+
+      try
+      {
+        var client = (OAuth2Client)OAuthManager.RegisteredClients[providerName].Clone(parameters, returnUrl);
+        // set username and password
+        client.Username = username;
+        client.Password = password;
+
+        // preparing results
+        result.ProviderName = client.ProviderName;
+        result.ProtocolVersion = client.Version;
+        result.AccessToken = client.AccessToken;
+
+        // is not empty and not error
+        if (result.AccessToken.GetType() != typeof(EmptyResult) && result.AccessToken.GetType() != typeof(ErrorResult))
+        {
+          // get the user profile details
+          result.UserInfo = client.GetUserInfo();
+        }
+      }
+      catch (Exception ex)
+      {
+        // error
+        result.ErrorInfo = ex;
+      }
+      return result;
+    }
+    */
 
   }
 

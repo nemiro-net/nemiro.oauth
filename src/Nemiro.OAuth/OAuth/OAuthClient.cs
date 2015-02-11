@@ -160,12 +160,10 @@ namespace Nemiro.OAuth
 
       _RequestToken = new OAuthRequestToken
       (
-        OAuthUtility.ExecuteRequest
+        OAuthUtility.Post
         (
-          "POST",
           this.RequestTokenUrl,
-          null,
-          this.Authorization
+          authorization: this.Authorization
         ),
         this.AuthorizeUrl,
         this.Parameters
@@ -177,25 +175,34 @@ namespace Nemiro.OAuth
     /// </summary>
     protected override void GetAccessToken()
     {
-      base.GetAccessToken();
+      // authorization code is required for request
+      if (String.IsNullOrEmpty(this.AuthorizationCode))
+      {
+        throw new ArgumentNullException("AuthorizationCode");
+      }
 
+      // set default access tken value
+      this.AccessToken = new EmptyResult();
+
+      // prepare
       this.Authorization.PrepareForAccessToken();
 
+      // set request data
       this.Authorization.Verifier = this.AuthorizationCode;
       this.Authorization.Token = this.RequestToken.OAuthToken;
       this.Authorization.TokenSecret = this.RequestToken.OAuthTokenSecret;
 
+      // send request
       base.AccessToken = new OAuthAccessToken
       (
-        OAuthUtility.ExecuteRequest
+        OAuthUtility.Post
         (
-          "POST",
           this.AccessTokenUrl,
-          null,
-          this.Authorization
+          authorization: this.Authorization
         )
       );
 
+      // remove oauth_verifier from headers
       this.Authorization.Remove("oauth_verifier");
     }
 

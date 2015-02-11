@@ -55,10 +55,12 @@
     <Compile Include="Clients\DropboxClient.cs" />
     <Compile Include="Clients\FoursquareClient.cs" />
     <Compile Include="Clients\SoundCloudClient.cs" />
+    <Compile Include="Clients\SourceForgeClient.cs" />
     <Compile Include="Clients\YahooClient.cs" />
     <Compile Include="Clients\LinkedInClient.cs" />
     <Compile Include="Clients\TumblrClient.cs" />
     <Compile Include="Clients\InstagramClient.cs" />
+    <Compile Include="Clients\CodeProjectClient.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Clients\FacebookClient.cs" />
     <Compile Include="Clients\OdnoklassnikiClient.cs" />
@@ -83,7 +85,8 @@
     <Compile Include="HttpRequestBody.cs" />
     <Compile Include="OAuthBase.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="GrantType.cs" />
     <Compile Include="OAuthUtility.cs" />
     <Compile Include="OAuth2\OAuth2Client.cs" />
     <Compile Include="Extensions\NameValueCollectionExtension.cs" />
@@ -100,7 +103,7 @@
     <Compile Include="Clients\MailRuClient.cs" />
     <Compile Include="OAuth\OAuthClient.cs" />
     <Compile Include="OAuthManager.cs" />
-    <Compile Include="OAuth\OAuthSignatureMethods.cs" />
+    <Compile Include="Enums\SignatureMethods.cs" />
     <Compile Include="OAuth\OAuthSignature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OAuth\OAuthRequestToken.cs" />
@@ -108,6 +111,8 @@
     <Compile Include="Clients\VkontakteClient.cs" />
     <Compile Include="Clients\YandexClient.cs" />
     <Compile Include="HttpUrlParameter.cs" />
+    <Compile Include="UniValuePropertyDescriptor.cs" />
+    <Compile Include="UniValueTypeDescriptor.cs" />
     <Compile Include="UniTypedValue.cs" />
     <Compile Include="UniValue.cs" />
     <Compile Include="UniValueCollection.cs" />

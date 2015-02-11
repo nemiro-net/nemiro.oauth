@@ -78,6 +78,7 @@
   <ItemGroup>
     <None Include="Resources\amazon.dat" />
     <None Include="Resources\amazon100.dat" />
+    <None Include="Resources\codeproject" />
     <None Include="Resources\dropbox.dat" />
     <None Include="Resources\empty.dat" />
     <None Include="Resources\error.dat" />
@@ -91,6 +92,7 @@
     <None Include="Resources\mail.ru100.dat" />
     <None Include="Resources\odnoklassniki100.dat" />
     <None Include="Resources\soundcloud.dat" />
+    <None Include="Resources\sourceforge.dat" />
     <None Include="Resources\tumblr.dat" />
     <None Include="Resources\twitter100.dat" />
     <None Include="Resources\vk100.dat" />

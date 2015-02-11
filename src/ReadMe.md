@@ -9,12 +9,12 @@ You can install **Service Pack 1** or the latest version of **Visual Studio**, o
 The main project is located in the **Nemiro.OAuth** folder. 
 In other folders are examples.
 
-To test the **ASP .NET MVC** examples requires **ASP. NET MVC 3.0**.
+To test the **ASP.NET MVC** examples requires **ASP.NET MVC 3.0**.
 
 If you get an error message:
 *The type or namespace name 'Mvc' does not exist in the namespace 'System.Web'...*
 
-You need to download and install **ASP .NET MVC 3.0**:
+You need to download and install **ASP.NET MVC 3.0**:
 http://www.asp.net/mvc/mvc3
 
-If you have the **ASP .NET MVC 3**, but you still get the above error message, check the target version **.NET Framework**, must be at least 4.0
+If you have the **ASP.NET MVC 3**, but you still get the above error message, check the target version **.NET Framework**, must be at least 4.0

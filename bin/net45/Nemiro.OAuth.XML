@@ -166,28 +166,38 @@
         </member>
         <member name="M:Nemiro.OAuth.UniValue.Create(System.Object)">
             <summary>
-            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/>.
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <paramref name="value"/>.
             </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,System.Collections.Specialized.NameValueCollection)">
             <summary>
-            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/> and <param name="attributes"/>.
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <paramref name="value"/> and <paramref name="attributes"/>.
             </summary>
+            <param name="value">The value.</param>
+            <param name="attributes">The collection of an attributes.</param>
         </member>
         <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,Nemiro.OAuth.UniValue)">
             <summary>
-            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/> and reference to <param name="parent"/>.
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <paramref name="value"/> and reference to <paramref name="parent"/>.
             </summary>
+            <param name="value">The value.</param>
+            <param name="parent">The instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
         </member>
         <member name="M:Nemiro.OAuth.UniValue.Create(System.Object,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.UniValue)">
             <summary>
-            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="value"/>, <param name="attributes"/> and reference to <param name="parent"/>.
+            Initializes a new <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <paramref name="value"/>, <paramref name="attributes"/> and reference to <paramref name="parent"/>.
             </summary>
+            <param name="value">The value.</param>
+            <param name="parent">The instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
+            <param name="attributes">The collection of an attributes.</param>
         </member>
         <member name="M:Nemiro.OAuth.UniValue.CreateEmpty(System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.UniValue)">
             <summary>
-            Initializes an empty <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <param name="attributes"/> and reference to <param name="parent"/>.
+            Initializes an empty <see cref="T:Nemiro.OAuth.UniValue"/> instance with a specified <paramref name="attributes"/> and reference to <paramref name="parent"/>.
             </summary>
+            <param name="attributes">The collection of an attributes.</param>
+            <param name="parent">The instance of the <see cref="T:Nemiro.OAuth.UniValue"/>.</param>
         </member>
         <member name="M:Nemiro.OAuth.UniValue.ParseJson(System.String)">
             <summary>
@@ -726,6 +736,75 @@
             <param name="x">The <see cref="T:Nemiro.OAuth.UniValue"/> instance.</param>
             <param name="y">The string.</param>
         </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetList">
+            <summary>
+            Returns an <see cref="T:System.Collections.IList"/> that can be bound to a data source from an object that does not implement an <see cref="T:System.Collections.IList"/> itself.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetAttributes">
+            <summary>
+            Returns a collection of custom attributes for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetClassName">
+            <summary>
+            Returns the class name of this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetComponentName">
+            <summary>
+            Returns the name of this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetConverter">
+            <summary>
+            Returns a type converter for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetDefaultEvent">
+            <summary>
+            Returns the default event for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetDefaultProperty">
+            <summary>
+            Returns the default property for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetEditor(System.Type)">
+            <summary>
+            Returns an editor of the specified type for this instance of a component.
+            </summary>
+            <param name="editorBaseType">A <see cref="T:System.Type"/> that represents the editor for this object.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetEvents(System.Attribute[])">
+            <summary>
+            Returns the events for this instance of a component using the specified attribute array as a filter.
+            </summary>
+            <param name="attributes">An array of type <see cref="T:System.Attribute"/> that is used as a filter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetEvents">
+            <summary>
+            Returns the events for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetProperties(System.Attribute[])">
+            <summary>
+            Returns the properties for this instance of a component using the attribute array as a filter.
+            </summary>
+            <param name="attributes">An array of type <see cref="T:System.Attribute"/> that is used as a filter.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetProperties">
+            <summary>
+            Returns the properties for this instance of a component.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValue.GetPropertyOwner(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Returns an object that contains the property described by the specified property descriptor.
+            </summary>
+            <param name="pd">A <see cref="T:System.ComponentModel.PropertyDescriptor"/> that represents the property whose owner is to be found.</param>
+        </member>
         <member name="P:Nemiro.OAuth.UniValue.Data">
             <summary>
             Gets or sets the value.
@@ -843,6 +922,11 @@
         <member name="P:Nemiro.OAuth.UniValue.Empty">
             <summary>
             Represents the empty <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValue.ContainsListCollection">
+            <summary>
+            Gets a value indicating whether the collection is a collection of <see cref="T:System.Collections.IList"/> objects.
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.RequestResult.#ctor(Nemiro.OAuth.RequestResult)">
@@ -1296,6 +1380,7 @@
             </code>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -1307,6 +1392,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -1511,6 +1597,21 @@
             The separator in the scope list.
             </summary>
         </member>
+        <member name="P:Nemiro.OAuth.OAuth2Client.GrantType">
+            <summary>
+            Gets or sets grant type.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuth2Client.Username">
+            <summary>
+            Gets or sets <b>username</b> if <see cref="P:Nemiro.OAuth.OAuth2Client.GrantType"/> is <b>password</b> or <b>client_credentials</b>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuth2Client.Password">
+            <summary>
+            Gets or sets <b>password</b> if <see cref="P:Nemiro.OAuth.OAuth2Client.GrantType"/> is <b>password</b> or <b>client_credentials</b>.
+            </summary>
+        </member>
         <member name="P:Nemiro.OAuth.OAuth2Client.AuthorizationUrl">
             <summary>
             Gets the endpoint of the authorization.
@@ -1706,6 +1807,7 @@
             <para><img src="../img/amazon006.png" alt="Amazon User Info"/></para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -1717,6 +1819,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -1895,6 +1998,7 @@
             <para><img src="../img/live006.png" alt="User Info"/></para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -1906,6 +2010,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -1980,6 +2085,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -1991,6 +2097,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2008,11 +2115,6 @@
             <summary>
             Gets the user details.
             </summary>
-            <remarks>
-            <para>
-            For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
-            </para>
-            </remarks>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -2069,6 +2171,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2080,6 +2183,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2152,6 +2256,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2163,6 +2268,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2235,6 +2341,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2246,6 +2353,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2270,6 +2378,162 @@
         <member name="P:Nemiro.OAuth.Clients.SoundCloudClient.ProviderName">
             <summary>
             Unique provider name: <b>SoundCloud</b>.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.Clients.SourceForgeClient">
+            <summary>
+            OAuth client for <b>SourceForge</b>.
+            </summary>
+            <remarks>
+            <h1>Register a SourceForge Application</h1>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term>
+            <b>Web Management Interface may change over time. Applications registration shown below may differ.</b><br/>
+            If the interface is changed, you need to register the application and get <b>Consumer ID</b> and <b>Consumer Secret</b>. For web projects, configure <b>return URLs</b>.<br/>
+            If you have any problems with this, please <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues">visit issues</see>. If you do not find a solution to your problem, you can <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues/new">create a new question</see>.
+            </term>
+            </item>
+            </list>
+            <para>Open the <b>SourceForge Authorized Applications</b> and <b><see href="https://sourceforge.net/auth/oauth/">Register New Application</see></b>.</para>
+            <para>
+            You can see <b>Consumer Key</b> and <b>Consumer Secret</b>, use this for creating an instance of the <see cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new SourceForgeClient
+              (
+                "cXzSHLUy57C4gTBgMGRDuqQtr", 
+                "3SSldiSb5H4XeEMOIIF4osPWxOy19jrveDcPHaWtHDQqgDYP9P"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New SourceForgeClient _
+              (
+                "cXzSHLUy57C4gTBgMGRDuqQtr", 
+                "3SSldiSb5H4XeEMOIIF4osPWxOy19jrveDcPHaWtHDQqgDYP9P"
+              )
+            )
+            </code>
+            <para>
+            For more details, please visit <see href="https://sourceforge.net/p/forge/documentation/Allura%20API">Allura API</see>.
+            </para>
+            </remarks>
+            <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
+        </member>
+        <member name="T:Nemiro.OAuth.OAuthClient">
+            <summary>
+            Represents base properties and method for OAuth 1.0 client.
+            </summary>
+            <remarks>
+            <para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthClient"/> class.
+            </summary>
+            <param name="requestTokenUrl">The address for the request token.</param>
+            <param name="authorizeUrl">The address for login.</param>
+            <param name="accessTokenUrl">The address for the access token.</param>
+            <param name="consumerKey">The application identifier.</param>
+            <param name="consumerSecret">The application secret key.</param>
+            <param name="signatureMethod">The name of hashing algorithm to calculate the signature: HMAC-SHA1 (default) or PLAINTEXT.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Gets base string of the signature for current request.
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetSignature(System.String,System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Gets signature for the current request.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="tokenSecret">The token secret.</param>
+            <param name="parameters">The query parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetRequestToken">
+            <summary>
+            Gets the request token from the remote server.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthClient.GetAccessToken">
+            <summary>
+            Gets the access token from the remote server.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.RequestTokenUrl">
+            <summary>
+            Gets or sets the address for the request token.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.Authorization">
+            <summary>
+            Get the authorization parameters.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.AuthorizationUrl">
+            <summary>
+            Gets the endpoint of the authorization.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthClient.RequestToken">
+            <summary>
+            Gets or sets the request token.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>.
+            </summary>
+            <param name="consumerKey">The <b>Consumer Key</b> obtained from the <see href="https://sourceforge.net/auth/oauth/">SourceForge OAuth applications</see>.</param>
+            <param name="consumerSecret">The <b>Consumer Secret</b> obtained from the <see href="https://sourceforge.net/auth/oauth/">SourceForge OAuth applications</see>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetUserInfo">
+            <summary>
+            Gets the user details.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetRequestToken">
+            <summary>
+            Gets the request token from the remote server.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetAccessToken">
+            <summary>
+            Gets the access token from the remote server.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.Clients.SourceForgeClient.ProviderName">
+            <summary>
+            Unique provider name: <b>SourceForge</b>.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.Clients.YahooClient">
@@ -2320,6 +2584,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2331,6 +2596,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2405,6 +2671,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2416,6 +2683,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2488,6 +2756,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2499,76 +2768,12 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
-        </member>
-        <member name="T:Nemiro.OAuth.OAuthClient">
-            <summary>
-            Represents base properties and method for OAuth 1.0 client.
-            </summary>
-            <remarks>
-            <para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849"/>.</para>
-            </remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthClient"/> class.
-            </summary>
-            <param name="requestTokenUrl">The address for the request token.</param>
-            <param name="authorizeUrl">The address for login.</param>
-            <param name="accessTokenUrl">The address for the access token.</param>
-            <param name="consumerKey">The application identifier.</param>
-            <param name="consumerSecret">The application secret key.</param>
-            <param name="signatureMethod">The name of hashing algorithm to calculate the signature: HMAC-SHA1 (default) or PLAINTEXT.</param>
-            <exception cref="T:System.ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Gets base string of the signature for current request.
-            </summary>
-            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetSignature(System.String,System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Gets signature for the current request.
-            </summary>
-            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
-            <param name="url">The request URI.</param>
-            <param name="tokenSecret">The token secret.</param>
-            <param name="parameters">The query parameters.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetRequestToken">
-            <summary>
-            Gets the request token from the remote server.
-            </summary>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthClient.GetAccessToken">
-            <summary>
-            Gets the access token from the remote server.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.RequestTokenUrl">
-            <summary>
-            Gets or sets the address for the request token.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.Authorization">
-            <summary>
-            Get the authorization parameters.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.AuthorizationUrl">
-            <summary>
-            Gets the endpoint of the authorization.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.OAuthClient.RequestToken">
-            <summary>
-            Gets or sets the request token.
-            </summary>
         </member>
         <member name="M:Nemiro.OAuth.Clients.TumblrClient.#ctor(System.String,System.String)">
             <summary>
@@ -2636,6 +2841,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -2647,6 +2853,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -2671,6 +2878,93 @@
         <member name="P:Nemiro.OAuth.Clients.InstagramClient.ProviderName">
             <summary>
             Unique provider name: <b>Instagram</b>.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.Clients.CodeProjectClient">
+            <summary>
+            OAuth client for <b>CodeProject</b>.
+            </summary>
+            <remarks>
+            <h1>Register and Configure a CodeProject Application</h1>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term>
+            <b>Web Management Interface may change over time. Applications registration shown below may differ.</b><br/>
+            If the interface is changed, you need to register the application and get <b>Client ID</b> and <b>Client Secret</b>. For web projects, configure <b>return URLs</b>.<br/>
+            If you have any problems with this, please <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues">visit issues</see>. If you do not find a solution to your problem, you can <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues/new">create a new question</see>.
+            </term>
+            </item>
+            </list>
+            <para>
+            </para>
+            <para><b><see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">Register a new client</see></b>.</para>
+            <para>
+            In the application settings  you can found <b>Client ID</b> and <b>Client Secret</b>.
+            Use this for creating an instance of the <see cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/> class.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new CodeProjectClient
+              (
+                "92mWWELc2DjcL-6tu7L1Py6yllleqSCt", 
+                "YJXrk_Vzz4Ps02GqmaUY-aSLucxh4kfLq6oq0CtiukPfvbzb9yQG69NeDr2yiV9M"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New CodeProjectClient _
+              (
+                "92mWWELc2DjcL-6tu7L1Py6yllleqSCt", 
+                "YJXrk_Vzz4Ps02GqmaUY-aSLucxh4kfLq6oq0CtiukPfvbzb9yQG69NeDr2yiV9M"
+              )
+            )
+            </code>
+            <para>
+            For more details, please see <see href="https://api.codeproject.com/Help">CodeProject API Documentation</see>.
+            </para>
+            </remarks>
+            <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.CodeProjectClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.CodeProjectClient.GetUserInfo">
+            <summary>
+            Gets the user details.
+            </summary>
+            <returns>
+            <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
+            </returns>
+        </member>
+        <member name="P:Nemiro.OAuth.Clients.CodeProjectClient.ProviderName">
+            <summary>
+            Unique provider name: <b>CodeProject</b>.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.ApiException">
@@ -3024,6 +3318,7 @@
              <para><img src="../img/facebook009.png" alt="Facebook User Info"/></para>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -3035,6 +3330,7 @@
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -3543,6 +3839,7 @@
              </code>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -3554,6 +3851,7 @@
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -4909,6 +5207,74 @@
             Deep Thought.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.GrantType">
+            <summary>
+            Represents the authorization grant type.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.GrantType.AuthorizationCode">
+            <summary>
+            Using an authorization code to confirm the identity (grant type is <b>authorization_code</b>).
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.GrantType.Password">
+            <summary>
+            Using username and password (grant type is <b>password</b>).
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.GrantType.ClientCredentials">
+            <summary>
+            Using basic authorization with username and password (grant type is <b>client_credentials</b>). 
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.GrantType.RefreshToken">
+            <summary>
+            refresh_token (not used).
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.GrantType.Create(System.String)">
+            <summary>
+            Initializes a new <see cref="T:Nemiro.OAuth.GrantType"/> instance with a specified <paramref name="value"/>.
+            </summary>
+            <param name="value">The value of grant type.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.GrantType.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Nemiro.OAuth.GrantType"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.GrantType.op_Implicit(Nemiro.OAuth.GrantType)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.GrantType"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.GrantType"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.GrantType.op_Implicit(System.String)~Nemiro.OAuth.GrantType">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.GrantType"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.GrantType"/>.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.GrantType.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.GrantType.IsAuthorizationCode">
+            <summary>
+            Gets a value indicating whether the current value is <b>authorization_code</b> or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.GrantType.IsPassword">
+            <summary>
+            Gets a value indicating whether the current value is <b>password</b> or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.GrantType.IsClientCredentials">
+            <summary>
+            Gets a value indicating whether the current value is <b>client_credentials</b> or not.
+            </summary>
+        </member>
         <member name="T:Nemiro.OAuth.Extensions.NameValueCollectionExtension">
             <summary>
             Represents a class that extends the <see cref="T:System.Collections.Specialized.NameValueCollection"/> class by adding methods for use with query parameters.
@@ -5912,6 +6278,7 @@
              <para><b>NOTE:</b> For proper processing, you will need to download and put on your site a <b>receiver.html</b> file.</para>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -5923,6 +6290,7 @@
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -6550,6 +6918,7 @@
             <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URL</b> in the <b>Twitter Application Settings</b>.</para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -6561,6 +6930,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -7037,6 +7407,7 @@
              </code>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -7048,6 +7419,7 @@
              <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -7397,6 +7769,7 @@
             <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URI</b> in the <b>Yandex Application Settings</b>.</para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
@@ -7408,6 +7781,7 @@
             <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
@@ -7447,6 +7821,87 @@
             </summary>
             <param name="value">The parameter value.</param>
             <param name="name">The parameter name.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.UniValuePropertyDescriptor">
+            <summary>
+            Represents property description of a class.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UniValuePropertyDescriptor.Reader">
+            <summary>
+            The data reader.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.#ctor(System.String,System.Func{System.Object,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValuePropertyDescriptor"/> class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.CanResetValue(System.Object)">
+            <summary>
+            Returns whether resetting an object changes its value.
+            </summary>
+            <param name="component">The component to test for reset capability.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.GetValue(System.Object)">
+            <summary>
+            Gets the current value of the property on a component.
+            </summary>
+            <param name="component">The component with the property for which to retrieve the value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.ResetValue(System.Object)">
+            <summary>
+            Resets the value for this property of the component to the default value.
+            </summary>
+            <param name="component">The component with the property value that is to be reset to the default value.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets the value of the component to a different value.
+            </summary>
+            <param name="component">The component with the property value that is to be set.</param>
+            <param name="value">The new value. </param>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValuePropertyDescriptor.ShouldSerializeValue(System.Object)">
+            <summary>
+            Determines a value indicating whether the value of this property needs to be persisted.
+            </summary>
+            <param name="component">The component with the property to be examined for persistence. </param>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValuePropertyDescriptor.IsReadOnly">
+            <summary>
+            Gets a value indicating whether this property is read-only.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValuePropertyDescriptor.PropertyType">
+            <summary>
+            Gets the type of the property.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValuePropertyDescriptor.ComponentType">
+            <summary>
+            Gets the type of the component this property is bound to.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.UniValueTypeDescriptor">
+            <summary>
+            The <see cref="T:System.ComponentModel.CustomTypeDescriptor"/> for <see cref="T:Nemiro.OAuth.UniValue"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueTypeDescriptor.#ctor(Nemiro.OAuth.UniValueCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.UniValueTypeDescriptor"/> class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.UniValueTypeDescriptor.GetProperties">
+            <summary>
+            Returns a collection of property descriptors for the object represented by this type descriptor.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.UniValueTypeDescriptor.Properties">
+            <summary>
+            The properties collection.
+            </summary>
         </member>
         <member name="T:Nemiro.OAuth.UniTypedValue">
             <summary>

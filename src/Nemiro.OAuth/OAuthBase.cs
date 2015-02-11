@@ -49,13 +49,7 @@ namespace Nemiro.OAuth
     /// }
     /// </code>
     /// </example>
-    public virtual string ProviderName
-    {
-      get
-      {
-        throw new NotSupportedException();
-      }
-    }
+    public abstract string ProviderName { get; }
 
     /// <summary>
     /// Gets the endpoint of the authorization.
@@ -271,14 +265,7 @@ namespace Nemiro.OAuth
     /// <para>This is method is implemented at the protocol level (<see cref="OAuthClient"/> &amp; <see cref="OAuth2Client"/>).</para>
     /// </remarks>
     /// <exception cref="ArgumentNullException">The <see cref="AuthorizationCode"/> is <b>null</b> or <b>empty</b>.</exception>
-    protected virtual void GetAccessToken()
-    {
-      if (String.IsNullOrEmpty(this.AuthorizationCode))
-      {
-        throw new ArgumentNullException("AuthorizationCode");
-      }
-      _AccessToken = new EmptyResult();
-    }
+    protected virtual void GetAccessToken() { }
 
     /// <summary>
     /// Gets the user details via API of the provider.
@@ -286,10 +273,7 @@ namespace Nemiro.OAuth
     /// <remarks>
     /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
     /// </remarks>
-    public virtual UserInfo GetUserInfo()
-    {
-      throw new NotImplementedException();
-    }
+    public abstract UserInfo GetUserInfo();
 
     /// <summary>
     /// Creates a shallow copy of the current object.

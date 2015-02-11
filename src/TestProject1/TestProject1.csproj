@@ -41,6 +41,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +59,7 @@
     <Compile Include="SerializationTest.cs" />
     <Compile Include="SignatureTest.cs" />
     <Compile Include="UnitTest1.cs" />
+    <Compile Include="UniValueBindingTest.cs" />
     <Compile Include="UniValueCollectionTest.cs" />
     <Compile Include="UniValueTest.cs" />
   </ItemGroup>

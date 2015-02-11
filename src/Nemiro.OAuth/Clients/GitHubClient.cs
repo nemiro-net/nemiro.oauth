@@ -72,6 +72,7 @@ namespace Nemiro.OAuth.Clients
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
   /// <seealso cref="FoursquareClient"/>
@@ -83,6 +84,7 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -123,11 +125,6 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
-    /// <remarks>
-    /// <para>
-    /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
-    /// </para>
-    /// </remarks>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -150,8 +147,8 @@ namespace Nemiro.OAuth.Clients
       map.Add("login", "UserName", typeof(string));
       map.Add("name", "DisplayName");
       map.Add("email", "Email");
-      map.Add("html_url", "Url"); //blog
-      map.Add("avatar_url", "Userpic", typeof(DateTime), @"MM\/dd\/yyyy");
+      map.Add("html_url", "Url");
+      map.Add("avatar_url", "Userpic");
 
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);

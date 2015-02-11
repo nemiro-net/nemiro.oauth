@@ -340,6 +340,7 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URL</b> in the <b>Twitter Application Settings</b>.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
   /// <seealso cref="FoursquareClient"/>
@@ -351,6 +352,7 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>

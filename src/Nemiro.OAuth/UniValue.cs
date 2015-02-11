@@ -36,7 +36,9 @@ namespace Nemiro.OAuth
   /// <para><see cref="UniValue"/> represents any type of data.</para>
   /// </remarks>
   [Serializable]
-  public class UniValue : IEnumerable, IEnumerable<UniValue>, IConvertible, ICloneable, ISerializable
+  [DefaultBindingProperty("CollectionItems")]
+  [ComplexBindingProperties("CollectionItems", "Values")]
+  public class UniValue : IEnumerable, IEnumerable<UniValue>, IConvertible, ICloneable, ISerializable, IListSource, ICustomTypeDescriptor
   {
 
     #region ..fields & properties..
@@ -905,40 +907,50 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />.
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <paramref name="value"/>.
     /// </summary>
+    /// <param name="value">The value.</param>
     public static UniValue Create(object value)
     {
       return UniValue.Create(value, null, null);
     }
 
     /// <summary>
-    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and <param name="attributes" />.
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <paramref name="value" /> and <paramref name="attributes" />.
     /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="attributes">The collection of an attributes.</param>
     public static UniValue Create(object value, NameValueCollection attributes)
     {
       return new UniValue(value, attributes, null);
     }
 
     /// <summary>
-    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" /> and reference to <param name="parent" />.
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <paramref name="value" /> and reference to <paramref name="parent" />.
     /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
     internal static UniValue Create(object value, UniValue parent)
     {
       return new UniValue(value, null, parent);
     }
 
     /// <summary>
-    /// Initializes a new <see cref="UniValue"/> instance with a specified <param name="value" />, <param name="attributes" /> and reference to <param name="parent" />.
+    /// Initializes a new <see cref="UniValue"/> instance with a specified <paramref name="value" />, <paramref name="attributes" /> and reference to <paramref name="parent" />.
     /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
+    /// <param name="attributes">The collection of an attributes.</param>
     internal static UniValue Create(object value, NameValueCollection attributes, UniValue parent)
     {
       return new UniValue(value, attributes, parent);
     }
 
     /// <summary>
-    /// Initializes an empty <see cref="UniValue"/> instance with a specified <param name="attributes" /> and reference to <param name="parent" />.
+    /// Initializes an empty <see cref="UniValue"/> instance with a specified <paramref name="attributes" /> and reference to <paramref name="parent" />.
     /// </summary>
+    /// <param name="attributes">The collection of an attributes.</param>
+    /// <param name="parent">The instance of the <see cref="UniValue"/>.</param>
     internal static UniValue CreateEmpty(NameValueCollection attributes, UniValue parent)
     {
       return new UniValue(null, attributes, parent);
@@ -2028,6 +2040,181 @@ namespace Nemiro.OAuth
       {
         return x.Equals(y);
       }
+    }
+
+    #endregion
+    #region ..ilistSource..
+
+    /// <summary>
+    /// Gets a value indicating whether the collection is a collection of <see cref="IList"/> objects.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public bool ContainsListCollection
+    {
+      get 
+      {
+        return true; 
+      }
+    }
+
+    /// <summary>
+    /// Returns an <see cref="IList"/> that can be bound to a data source from an object that does not implement an <see cref="IList"/> itself.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public IList GetList()
+    {
+      if (!this.HasValue)
+      {
+        return null; //new List<UniValue>();
+      }
+
+      var result = new List<UniValue>();
+
+      if (this.IsValue)
+      {
+        result.Add((UniValue)this.Data);
+      }
+      else if (this.IsCollection)
+      {
+        result.AddRange(this.CollectionItems.Values.ToArray());
+      }
+      else
+      {
+        result.Add(new UniValue(this.Data));
+      }
+
+      return result;
+    }
+
+    #endregion
+    #region ..icustomTypeDescriptor..
+
+    /// <summary>
+    /// Returns a collection of custom attributes for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public AttributeCollection GetAttributes()
+    {
+      return new AttributeCollection();
+    }
+
+    /// <summary>
+    /// Returns the class name of this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public string GetClassName()
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns the name of this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)] 
+    public string GetComponentName()
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns a type converter for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public TypeConverter GetConverter()
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns the default event for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public EventDescriptor GetDefaultEvent()
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns the default property for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public PropertyDescriptor GetDefaultProperty()
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns an editor of the specified type for this instance of a component.
+    /// </summary>
+    /// <param name="editorBaseType">A <see cref="System.Type"/> that represents the editor for this object.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public object GetEditor(Type editorBaseType)
+    {
+      return null;
+    }
+
+    /// <summary>
+    /// Returns the events for this instance of a component using the specified attribute array as a filter.
+    /// </summary>
+    /// <param name="attributes">An array of type <see cref="Attribute"/> that is used as a filter.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public EventDescriptorCollection GetEvents(Attribute[] attributes)
+    {
+      return EventDescriptorCollection.Empty;
+    }
+
+    /// <summary>
+    /// Returns the events for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public EventDescriptorCollection GetEvents()
+    {
+      return this.GetEvents(null);
+    }
+
+    /// <summary>
+    /// Returns the properties for this instance of a component using the attribute array as a filter.
+    /// </summary>
+    /// <param name="attributes">An array of type <see cref="Attribute"/> that is used as a filter.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public PropertyDescriptorCollection GetProperties(Attribute[] attributes)
+    {
+      if (!this.HasValue)
+      {
+        return PropertyDescriptorCollection.Empty;
+      }
+
+      if (this.IsValue)
+      {
+        return new UniValueTypeDescriptor(new UniValueCollection { { this.Key, this } }).GetProperties();
+      }
+      else if (this.IsCollection)
+      {
+        return new UniValueTypeDescriptor(this.CollectionItems).GetProperties();
+      }
+      else
+      {
+        return new UniValueTypeDescriptor(new UniValueCollection { { this.Key, new UniValue(this.Data) } }).GetProperties();
+      }
+    }
+
+    /// <summary>
+    /// Returns the properties for this instance of a component.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public PropertyDescriptorCollection GetProperties()
+    {
+      return this.GetProperties(null);
+    }
+
+    /// <summary>
+    /// Returns an object that contains the property described by the specified property descriptor.
+    /// </summary>
+    /// <param name="pd">A <see cref="PropertyDescriptor"/> that represents the property whose owner is to be found.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public object GetPropertyOwner(PropertyDescriptor pd)
+    {
+      return new UniValue();
     }
 
     #endregion

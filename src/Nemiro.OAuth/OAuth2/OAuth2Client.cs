@@ -53,6 +53,21 @@ namespace Nemiro.OAuth
     internal string ScopeSeparator { get; set; }
 
     /// <summary>
+    /// Gets or sets grant type.
+    /// </summary>
+    internal GrantType GrantType { get; set; }
+
+    /// <summary>
+    /// Gets or sets <b>username</b> if <see cref="GrantType"/> is <b>password</b> or <b>client_credentials</b>.
+    /// </summary>
+    public string Username { get; set; }
+
+    /// <summary>
+    /// Gets or sets <b>password</b> if <see cref="GrantType"/> is <b>password</b> or <b>client_credentials</b>.
+    /// </summary>
+    public string Password { get; set; }
+
+    /// <summary>
     /// Gets the endpoint of the authorization.
     /// </summary>
     public override string AuthorizationUrl
@@ -119,7 +134,10 @@ namespace Nemiro.OAuth
     /// <param name="accessTokenUrl">The address for the access token.</param>
     /// <param name="clientId">The application identifier.</param>
     /// <param name="clientSecret">The application secret key.</param>
-    public OAuth2Client(string authorizeUrl, string accessTokenUrl, string clientId, string clientSecret) : base(authorizeUrl, accessTokenUrl, clientId, clientSecret) { }
+    public OAuth2Client(string authorizeUrl, string accessTokenUrl, string clientId, string clientSecret) : base(authorizeUrl, accessTokenUrl, clientId, clientSecret) 
+    {
+      this.GrantType = GrantType.AuthorizationCode;
+    }
 
     #endregion
     #region ..methods..
@@ -129,26 +147,66 @@ namespace Nemiro.OAuth
     /// </summary>
     protected override void GetAccessToken()
     {
-      base.GetAccessToken();
-
-      var parameters = new NameValueCollection
+      // authorization code is required for request
+      if (this.GrantType.IsAuthorizationCode && String.IsNullOrEmpty(this.AuthorizationCode))
       {
-        { "client_id", this.ApplicationId },
-        { "client_secret", this.ApplicationSecret },
-        { "grant_type", "authorization_code" },
-        { "code", this.AuthorizationCode }
-      };
+        throw new ArgumentNullException("AuthorizationCode");
+      }
+      else if (this.GrantType.IsPassword || this.GrantType.IsClientCredentials)
+      {
+        if (String.IsNullOrEmpty(this.Username))
+        {
+          throw new ArgumentNullException("username");
+        }
+        if (String.IsNullOrEmpty(this.Password))
+        {
+          throw new ArgumentNullException("password");
+        }
+      }
+
+      // set default access token value
+      this.AccessToken = new EmptyResult();
+
+      // set request data
+      HttpAuthorization auth = null;
+      NameValueCollection parameters = new NameValueCollection();
+
+      if (this.GrantType.IsAuthorizationCode)
+      {
+        // http://tools.ietf.org/html/rfc6749#section-4.1.3
+        parameters.Add("code", this.AuthorizationCode);
+      }
+      else if (this.GrantType.IsPassword)
+      {
+        // http://tools.ietf.org/html/rfc6749#section-4.3.2
+        parameters.Add("username", this.Username);
+        parameters.Add("password", this.Password);
+      }
+      else if (this.GrantType.IsClientCredentials)
+      {
+        // http://tools.ietf.org/html/rfc6749#section-4.4.2
+        auth = new HttpAuthorization(AuthorizationType.Basic, OAuthUtility.ToBase64String("{0}:{1}", this.Username, this.Password));
+      }
+      else
+      {
+        throw new NotSupportedException(String.Format("GrantType '{0}' is not supported. Please write the code ;)", this.GrantType));
+      }
+      
+      parameters.Add("client_id", this.ApplicationId);
+      parameters.Add("client_secret", this.ApplicationSecret);
+      parameters.Add("grant_type", this.GrantType);
+
 
       if (!String.IsNullOrEmpty(this.ReturnUrl))
       {
         parameters.Add("redirect_uri", this.ReturnUrl);
       }
 
-      var result = OAuthUtility.ExecuteRequest
+      var result = OAuthUtility.Post
       (
-        "POST",
         this.AccessTokenUrl,
-        parameters
+        parameters,
+        auth
       );
 
       if (result.ContainsKey("error"))

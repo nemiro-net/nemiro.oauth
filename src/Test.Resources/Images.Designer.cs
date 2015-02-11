@@ -73,6 +73,16 @@ namespace Test.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] codeproject {
+            get {
+                object obj = ResourceManager.GetObject("codeproject", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] dropbox {
             get {
                 object obj = ResourceManager.GetObject("dropbox", resourceCulture);
@@ -196,6 +206,16 @@ namespace Test.Resources {
         public static byte[] soundcloud {
             get {
                 object obj = ResourceManager.GetObject("soundcloud", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] sourceforge {
+            get {
+                object obj = ResourceManager.GetObject("sourceforge", resourceCulture);
                 return ((byte[])(obj));
             }
         }

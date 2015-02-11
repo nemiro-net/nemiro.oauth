@@ -255,7 +255,7 @@ Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
     <value>Get list of likes</value>
   </data>
   <data name="NoForLocalhost" xml:space="preserve">
-    <value>&lt;h1 style="color:red;text-align:center;"&gt;This site works correctly only on the oauth-test.nemiro.net!&lt;/h1&gt;</value>
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;This site works correctly only on the demo-oauth.nemiro.net!&lt;/h1&gt;</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>Note</value>

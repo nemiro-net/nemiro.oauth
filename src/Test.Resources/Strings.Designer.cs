@@ -292,7 +292,7 @@ namespace Test.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на &lt;h1 style=&quot;color:red;text-align:center;&quot;&gt;This site works correctly only on the oauth-test.nemiro.net!&lt;/h1&gt;.
+        ///   Ищет локализованную строку, похожую на &lt;h1 style=&quot;color:red;text-align:center;&quot;&gt;This site works correctly only on the demo-oauth.nemiro.net!&lt;/h1&gt;.
         /// </summary>
         public static string NoForLocalhost {
             get {

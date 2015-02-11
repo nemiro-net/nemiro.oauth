@@ -314,6 +314,7 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> For proper processing, you will need to download and put on your site a <b>receiver.html</b> file.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>
   /// <seealso cref="FoursquareClient"/>
@@ -325,6 +326,7 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
+  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>

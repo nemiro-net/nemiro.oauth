@@ -346,6 +346,16 @@ namespace Nemiro.OAuth
       return OAuthManager.AllClients[providerName].GetType();
     }
 
+    /*public static OAuthBase GetRegisteredClientByName(string providerName)
+    {
+      if (String.IsNullOrEmpty(providerName)) { return null; }
+      if (!OAuthManager.AllClients.ContainsKey(providerName) || !_RegisteredClients.ContainsKey(providerName))
+      {
+        return null;
+      }
+      return _RegisteredClients[providerName];
+    }*/
+
     #endregion
 
   }

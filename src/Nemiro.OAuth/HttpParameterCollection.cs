@@ -83,6 +83,24 @@ namespace Nemiro.OAuth
       }
     }
 
+    /*
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Dictionary&lt;TKey, TVvalue&gt;"/> class.
+    /// </summary>
+    /// <param name="source">The collection of parameters.</param>
+    /// <remarks>
+    /// <para>If the <paramref name="source"/> parameter has a value of <b>null</b> (<b>Nothing</b> for VB), it will not be added to the collection.</para>
+    /// </remarks>
+    public HttpParameterCollection(Dictionary<string, object> source) : this()
+    {
+      if (source == null) { return; }
+      foreach (string key in source.Keys)
+      {
+        this.Add(new HttpParameter(key, (source[key] != null ? source[key].ToString() : "")));
+      }
+    }
+    */
+
     /// <summary>
     /// Initializes a new instance of the <see cref="HttpParameterCollection"/> class.
     /// </summary>
@@ -717,6 +735,18 @@ namespace Nemiro.OAuth
     {
       return new HttpParameterCollection(value);
     }
+
+    /*
+    /// <summary>
+    /// The assignment operator for the <see cref="Dictionary&lt;TKey, TVvalue&gt;"/>.
+    /// </summary>
+    /// <param name="value">The collection that will be used as the <see cref="HttpParameterCollection"/>.</param>
+    /// <returns>New instance of the <see cref="HttpParameterCollection"/>.</returns>
+    public static implicit operator HttpParameterCollection(Dictionary<string, object> value)
+    {
+      return new HttpParameterCollection(value);
+    }
+    */
 
     /// <summary>
     /// The assignment operator for the byte array.
