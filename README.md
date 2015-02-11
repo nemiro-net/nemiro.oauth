@@ -20,6 +20,7 @@ http://demo-oauth.nemiro.net/
 * Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number; 
 * Ready-to-Use OAuth clients for: 
   + Amazon 
+	+ CodeProject
   + Dropbox 
   + Facebook 
   + Foursquare
@@ -31,6 +32,7 @@ http://demo-oauth.nemiro.net/
   + Mail.Ru 
   + Odnoklassniki (odnoklassniki.ru)
   + SoundCloud
+	+ SourceForge 
   + Tumblr
   + Twitter 
   + VK (vkontakte, vk.com) 
