@@ -99,6 +99,11 @@ namespace Nemiro.OAuth
             }
             if (scopeToAdd.Count > 0) { scope += this.ScopeSeparator; }
           }
+          else 
+          {
+            // Fix. Thanks to @codexboise ( https://github.com/codexboise ) // v1.8
+            scope = this.Scope;
+          }
           scope += String.Join(this.ScopeSeparator, scopeToAdd.ToArray());
         }
 
