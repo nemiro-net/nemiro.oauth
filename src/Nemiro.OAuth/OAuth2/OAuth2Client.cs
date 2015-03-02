@@ -55,7 +55,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets or sets grant type.
     /// </summary>
-    internal GrantType GrantType { get; set; }
+    public GrantType GrantType { get; set; }
 
     /// <summary>
     /// Gets or sets <b>username</b> if <see cref="GrantType"/> is <b>password</b> or <b>client_credentials</b>.
