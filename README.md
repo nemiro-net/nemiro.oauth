@@ -2,9 +2,6 @@
 
 **Nemiro.OAuth** is a class library for authorization via **OAuth** protocol in **.NET Framework**.
 
-![Nemiro.OAuth](preview.png)
-
-
 The library provides mechanisms for implementing **OAuth** clients, and also contains a ready-to-use clients for popular websites.
 
 **Nemiro.OAuth** is licensed under the **Apache License Version 2.0**.
