@@ -331,12 +331,14 @@ namespace Nemiro.OAuth
   public static class OAuthWeb
   {
 
+    #region RedirectToAuthorization
+
     /// <summary>
     /// Redirects current client to the authorization page of the specified provider.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <exception cref="ClientIsNotRegisteredException">
-    /// <paramref name="providerName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
     /// </exception>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
@@ -345,18 +347,18 @@ namespace Nemiro.OAuth
     /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string)"/>.</para>
     /// </remarks>
     /// <seealso cref="GetAuthorizationUrl(string)"/>
-    public static void RedirectToAuthorization(string providerName)
+    public static void RedirectToAuthorization(string clientName)
     {
-      OAuthWeb.RedirectToAuthorization(providerName, null, null);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, null);
     }
 
     /// <summary>
     /// Redirects current client to the authorization page of the specified provider with specified parameters.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="parameters">Additional parameters to be passed to the authorization query.</param>
     /// <exception cref="ClientIsNotRegisteredException">
-    /// <paramref name="providerName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
     /// </exception>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
@@ -365,18 +367,18 @@ namespace Nemiro.OAuth
     /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, NameValueCollection)"/>.</para>
     /// </remarks>
     /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection)"/>
-    public static void RedirectToAuthorization(string providerName, NameValueCollection parameters)
+    public static void RedirectToAuthorization(string clientName, NameValueCollection parameters)
     {
-      OAuthWeb.RedirectToAuthorization(providerName, parameters, null);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, null);
     }
 
     /// <summary>
     /// Redirects current client to the authorization page of the specified provider and return URL.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
     /// <exception cref="ClientIsNotRegisteredException">
-    /// <paramref name="providerName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
     /// </exception>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
@@ -385,19 +387,19 @@ namespace Nemiro.OAuth
     /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, string)"/>.</para>
     /// </remarks>
     /// <seealso cref="GetAuthorizationUrl(string, string)"/>
-    public static void RedirectToAuthorization(string providerName, string returnUrl)
+    public static void RedirectToAuthorization(string clientName, string returnUrl)
     {
-      OAuthWeb.RedirectToAuthorization(providerName, null, returnUrl);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, returnUrl);
     }
 
     /// <summary>
     /// Redirects current client to the authorization page of the specified provider, query parameters and return URL.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
     /// <param name="parameters">Additional parameters to be passed to the authorization query.</param>
     /// <exception cref="ClientIsNotRegisteredException">
-    /// <paramref name="providerName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
     /// </exception>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
@@ -406,72 +408,135 @@ namespace Nemiro.OAuth
     /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>.</para>
     /// </remarks>
     /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>
-    public static void RedirectToAuthorization(string providerName, NameValueCollection parameters, string returnUrl)
+    public static void RedirectToAuthorization(string clientName, NameValueCollection parameters, string returnUrl)
     {
-      if (!OAuthManager.RegisteredClients.ContainsKey(providerName))
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, returnUrl);
+    }
+
+    /// <summary>
+    /// Redirects current client to the authorization page of the specified provider, query parameters and return URL.
+    /// </summary>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <param name="parameters">Additional parameters to be passed to the authorization query.</param>
+    /// <exception cref="ClientIsNotRegisteredException">
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// </exception>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    /// <remarks>
+    /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>.</para>
+    /// </remarks>
+    /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>
+    public static void RedirectToAuthorization(ClientName clientName, NameValueCollection parameters, string returnUrl)
+    {
+      if (!OAuthManager.RegisteredClients.ContainsKey(clientName))
       {
         throw new ClientIsNotRegisteredException();
       }
 
-      OAuthManager.RegisteredClients[providerName].Clone(parameters, returnUrl).RedirectToAuthorization();
+      // get normal client name
+      clientName = OAuthManager.RegisteredClients.Keys.First(k => k == clientName);
+
+      // create new instance of the client
+      var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
+
+      // add request
+      OAuthManager.AddRequet(client.State, clientName, client);
+
+      // redirect
+      client.RedirectToAuthorization();
     }
+
+    #endregion
+    #region GetAuthorizationUrl
 
     /// <summary>
     /// Returns the authorization URL of the specified provider.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
     /// </exception>
-    public static string GetAuthorizationUrl(string providerName)
+    public static string GetAuthorizationUrl(string clientName)
     {
-      return OAuthWeb.GetAuthorizationUrl(providerName, null, null);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, null);
     }
 
     /// <summary>
     /// Returns the authorization URL of the specified provider with specified parameters.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
     /// </exception>
-    public static string GetAuthorizationUrl(string providerName, NameValueCollection parameters)
+    public static string GetAuthorizationUrl(string clientName, NameValueCollection parameters)
     {
-      return OAuthWeb.GetAuthorizationUrl(providerName, parameters, null);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, null);
     }
 
     /// <summary>
     /// Returns the authorization URL of the specified provider and return URL.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
     /// </exception>
-    public static string GetAuthorizationUrl(string providerName, string returnUrl)
+    public static string GetAuthorizationUrl(string clientName, string returnUrl)
     {
-      return OAuthWeb.GetAuthorizationUrl(providerName, null, returnUrl);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, returnUrl);
     }
 
     /// <summary>
     /// Returns the authorization URL of the specified provider, query parameters and return URL.
     /// </summary>
-    /// <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
     /// <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
     /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
     /// <exception cref="NullHttpContextException">
     /// The exception that is thrown when you try to access methods that are designed for web projects.
     /// </exception>
-    public static string GetAuthorizationUrl(string providerName, NameValueCollection parameters, string returnUrl)
+    public static string GetAuthorizationUrl(string clientName, NameValueCollection parameters, string returnUrl)
     {
-      if (!OAuthManager.RegisteredClients.ContainsKey(providerName))
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, returnUrl);
+    }
+
+    /// <summary>
+    /// Returns the authorization URL of the specified provider, query parameters and return URL.
+    /// </summary>
+    /// <param name="clientName">
+    /// The provider name, through which it is necessary to authorize the current user; or the name of the registered client.
+    /// </param>
+    /// <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    public static string GetAuthorizationUrl(ClientName clientName, NameValueCollection parameters, string returnUrl)
+    {
+      if (!OAuthManager.RegisteredClients.ContainsKey(clientName))
       {
         throw new ClientIsNotRegisteredException();
       }
 
-      return OAuthManager.RegisteredClients[providerName].Clone(parameters, returnUrl).AuthorizationUrl;
+      // get normal client name
+      clientName = OAuthManager.RegisteredClients.Keys.First(k => k == clientName);
+
+      // create new instance of the client
+      var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
+
+      // add request
+      OAuthManager.AddRequet(client.State, clientName, client);
+
+      // return url
+      return client.AuthorizationUrl;
     }
+
+    #endregion
+    #region VerifyAuthorization
 
     /// <summary>
     /// Verifies the authorization results for the current URL.
@@ -503,7 +568,9 @@ namespace Nemiro.OAuth
       AuthorizationResult result = new AuthorizationResult();
       try
       {
-        UriBuilder u = new UriBuilder(url);
+        // HtmlDecode - small fix for wrong data from provider. 
+        // Thanks to @Nacer ( https://github.com/Nacer- ) // v1.8
+        UriBuilder u = new UriBuilder(HttpUtility.HtmlDecode(url));
         NameValueCollection qs = null;
 
         if (!String.IsNullOrEmpty(u.Query))
@@ -579,7 +646,8 @@ namespace Nemiro.OAuth
         var client = OAuthManager.Requets[requestId].Client;
         client.AuthorizationCode = code;
 
-        result.ProviderName = client.ProviderName;
+        result.RequestId = requestId;
+        result.ClientName = OAuthManager.Requets[requestId].ClientName;
         result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
 
@@ -597,6 +665,57 @@ namespace Nemiro.OAuth
       }
       return result;
     }
+
+    #endregion
+    #region VerifyAuthorizationAndRemoveRequet
+
+    /// <summary>
+    /// Verifies the authorization results for the current URL and removes the request from memory.
+    /// </summary>
+    /// <remarks>
+    /// <para>The method will not work in desktop applications. For desktop applications you can use the overloads <see cref="VerifyAuthorization(string)"/> or <see cref="VerifyAuthorization(string, string)"/>.</para>
+    /// </remarks>
+    /// <returns>
+    /// <para>Returns the verification results.</para>
+    /// </returns>
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet()
+    {
+      return OAuthWeb.VerifyAuthorizationAndRemoveRequet(HttpContext.Current.Request.Url.ToString());
+    }
+
+    /// <summary>
+    /// Verifies the authorization results for the specified URL, and removes the request from memory.
+    /// </summary>
+    /// <param name="url">Address at which to perform the verification.</param>
+    /// <returns>
+    /// <para>Returns the verification results.</para>
+    /// </returns>
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet(string url)
+    {
+      var result = OAuthWeb.VerifyAuthorization(url);
+      OAuthManager.RemoveRequet(result.RequestId);
+      return result;
+    }
+
+    /// <summary>
+    /// Verifies the authorization results for the specified request identifier and the code of the authorization, and removes the request from memory.
+    /// </summary>
+    /// <param name="requestId">Request identifier.</param>
+    /// <param name="code">The authorization code received from the provider server.</param>
+    /// <returns>
+    /// <para>Returns the verification results.</para>
+    /// </returns>
+    /// <remarks>
+    /// <para>This method is intended for internal use. It is recommended to use the overload <see cref="VerifyAuthorization()"/> or <see cref="VerifyAuthorization(string)"/>.</para>
+    /// </remarks>
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet(string requestId, string code)
+    {
+      var result = OAuthWeb.VerifyAuthorization(requestId, code);
+      OAuthManager.RemoveRequet(requestId);
+      return result;
+    }
+
+    #endregion
 
     /*
     public static AuthorizationResult Authorize(string providerName, NameValueCollection parameters, string returnUrl, string username, string password)

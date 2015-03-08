@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Nemiro.OAuth;
 using Nemiro.OAuth.Clients;
+using System.Collections.Specialized;
 
 namespace Test.CSharp.AspWebForms
 {
@@ -17,11 +18,9 @@ namespace Test.CSharp.AspWebForms
       // NOTE: Specify their own client IDs and secret keys
       OAuthManager.RegisterClient
       (
-        new FacebookClient
-        (
-          "1435890426686808",
-          "c6057dfae399beee9e8dc46a4182e8fd"
-        )
+        "facebook",
+        "1435890426686808",
+        "c6057dfae399beee9e8dc46a4182e8fd"
       );
 
       OAuthManager.RegisterClient

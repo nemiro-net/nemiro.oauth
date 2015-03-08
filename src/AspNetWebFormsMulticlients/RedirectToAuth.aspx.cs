@@ -20,19 +20,23 @@ namespace AspNetWebFormsMulticlients
 
       // build callback url
       string returnUrl = new Uri(Request.Url, "ExternalLoginResult.aspx").AbsoluteUri;
+
       // pop-up indicator for JavaScript code
-      if (returnUrl.IndexOf("?") != -1)
+      if (!String.IsNullOrEmpty(Request.QueryString["popup"]))
       {
-        returnUrl += "&";
+        if (returnUrl.IndexOf("?") != -1)
+        {
+          returnUrl += "&";
+        }
+        else
+        {
+          returnUrl += "?";
+        }
+        returnUrl += "popup=true";
       }
-      else
-      {
-        returnUrl += "?";
-      }
-      returnUrl += "popup=true";
 
       // redirect to authorization page of the specified provider
-      CustomOAuthWeb.RedirectToAuthorization(Request.QueryString["group"], Request.QueryString["provider"], returnUrl);
+      OAuthWeb.RedirectToAuthorization(Request.QueryString["provider"], returnUrl);
     }
   }
 }

@@ -45,12 +45,12 @@ namespace Nemiro.OAuth
     /// <summary>
     /// The deault scope.
     /// </summary>
-    internal string DefaultScope { get; set; }
+    public string DefaultScope { get; set; }
 
     /// <summary>
     /// The separator in the scope list.
     /// </summary>
-    internal string ScopeSeparator { get; set; }
+    public string ScopeSeparator { get; set; }
 
     /// <summary>
     /// Gets or sets grant type.
@@ -146,6 +146,8 @@ namespace Nemiro.OAuth
 
     #endregion
     #region ..methods..
+
+    // [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 
     /// <summary>
     /// Gets the access token from the remote server.

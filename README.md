@@ -18,26 +18,7 @@ http://demo-oauth.nemiro.net/
 
 * Support OAuth 1.0 and 2.0; 
 * Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number; 
-* Ready-to-Use OAuth clients for: 
-  + Amazon 
-  + CodeProject
-  + Dropbox 
-  + Facebook 
-  + Foursquare
-  + GitHub 
-  + Google 
-  + Instagram
-  + LinkedIn 
-  + Microsoft Live 
-  + Mail.Ru 
-  + Odnoklassniki (odnoklassniki.ru)
-  + SoundCloud
-  + SourceForge 
-  + Tumblr
-  + Twitter 
-  + VK (vkontakte, vk.com) 
-  + Yahoo! 
-  + Yandex (yandex.ru) 
+* Ready-to-Use OAuth clients for: Amazon, Assembla, CodeProject, Dropbox, Facebook, Foursquare, GitHub, Google, Instagram, LinkedIn, Microsoft Live, Mail.Ru, Odnoklassniki (odnoklassniki.ru), SoundCloud, SourceForge, Tumblr, Twitter, VK (vkontakte, vk.com), Yahoo!, Yandex (yandex.ru);
 * Base classes to create additional clients; 
 * Basic principles of operation with API of different providers;
 * Unified mechanisms to facilitate integration with a variety of API.

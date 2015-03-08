@@ -1083,9 +1083,19 @@
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.AuthorizationResult"/> class.
             </summary>
         </member>
+        <member name="P:Nemiro.OAuth.AuthorizationResult.RequestId">
+            <summary>
+            The ID of the authorization request.
+            </summary>
+        </member>
         <member name="P:Nemiro.OAuth.AuthorizationResult.ProtocolVersion">
             <summary>
             OAuth version. For example: 1.0, 2.0.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.AuthorizationResult.ClientName">
+            <summary>
+            Provider and custom client name.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.AuthorizationResult.ProviderName">
@@ -1126,6 +1136,130 @@
         <member name="P:Nemiro.OAuth.AuthorizationResult.AccessTokenValue">
             <summary>
             Gets the access token value.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.ClientName">
+            <summary>
+            Represents the name of the client.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.
+            </summary>
+            <param name="providerName">The provider name.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.
+            </summary>
+            <param name="key">The client name. Any string.</param>
+            <param name="providerName">The provider name.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Create(System.String)">
+            <summary>
+            Returns a new <see cref="T:Nemiro.OAuth.ClientName"/> instance with a specified <paramref name="providerName"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Create(System.String,System.String)">
+            <summary>
+            Returns a new <see cref="T:Nemiro.OAuth.ClientName"/> instance with a specified <paramref name="key"/> and <paramref name="providerName"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Parse(System.String)">
+            <summary>
+            Converts a specified string to <see cref="T:Nemiro.OAuth.ClientName"/>.
+            </summary>
+            <param name="value">The string to parse.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Encode(System.String)">
+            <summary>
+            Encodes a string.
+            </summary>
+            <param name="value">The string to encode. </param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Decode(System.String)">
+            <summary>
+            Decodes a string.
+            </summary>
+            <param name="value">The string to decode.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Escape(System.String)">
+            <summary>
+            Escapes a special characters in a string.
+            </summary>
+            <param name="value">The string to escape.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Unescape(System.String)">
+            <summary>
+            Converts any escaped characters in the input string.
+            </summary>
+            <param name="value">The input string containing the value to convert.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Nemiro.OAuth.ClientName"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Equals(System.Object)">
+            <summary>
+            Determines whether two object instances are equal.
+            </summary>
+            <param name="o">The object to compare with the current instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.</param>
+            <returns><b>true</b> if the specified object is equal to the current <see cref="T:Nemiro.OAuth.ClientName"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.Equals(Nemiro.OAuth.ClientName)">
+            <summary>
+            Determines whether two object instances are equal.
+            </summary>
+            <param name="value">The instance of <see cref="T:Nemiro.OAuth.ClientName"/> to compare with the current instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.</param>
+            <returns><b>true</b> if the specified <see cref="T:Nemiro.OAuth.ClientName"/> instance is equal to the current <see cref="T:Nemiro.OAuth.ClientName"/>; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>A hash code for the current <see cref="T:Nemiro.OAuth.ClientName"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.op_Implicit(Nemiro.OAuth.ClientName)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.ClientName"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.ClientName"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.op_Implicit(System.String)~Nemiro.OAuth.ClientName">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.ClientName"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.op_Inequality(Nemiro.OAuth.ClientName,Nemiro.OAuth.ClientName)">
+            <summary>
+            Indicate whether two <see cref="T:Nemiro.OAuth.ClientName"/> are not equal.
+            </summary>
+            <param name="x">The first <see cref="T:Nemiro.OAuth.ClientName"/> instance.</param>
+            <param name="y">The second <see cref="T:Nemiro.OAuth.ClientName"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.ClientName.op_Equality(Nemiro.OAuth.ClientName,Nemiro.OAuth.ClientName)">
+            <summary>
+            Indicate whether two <see cref="T:Nemiro.OAuth.ClientName"/> are equal.
+            </summary>
+            <param name="x">The first <see cref="T:Nemiro.OAuth.ClientName"/> instance.</param>
+            <param name="y">The second <see cref="T:Nemiro.OAuth.ClientName"/> instance.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.ClientName.Key">
+            <summary>
+            Gets the client name.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.ClientName.ProviderName">
+            <summary>
+            Gets the provider name.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.ClientName.Hash">
+            <summary>
+            Gets a md5 hash code for the current instance of the <see cref="T:Nemiro.OAuth.ClientName"/>.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.Clients.GoogleClient">
@@ -1380,6 +1514,7 @@
             </code>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -1807,6 +1942,7 @@
             <para><img src="../img/amazon006.png" alt="Amazon User Info"/></para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -1998,6 +2134,7 @@
             <para><img src="../img/live006.png" alt="User Info"/></para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2085,6 +2222,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2171,6 +2309,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2256,6 +2395,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2341,6 +2481,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2425,6 +2566,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2584,6 +2726,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2671,6 +2814,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2756,6 +2900,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2841,6 +2986,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2928,6 +3074,7 @@
             </para>
             </remarks>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -2965,6 +3112,94 @@
         <member name="P:Nemiro.OAuth.Clients.CodeProjectClient.ProviderName">
             <summary>
             Unique provider name: <b>CodeProject</b>.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.Clients.AssemblaClient">
+            <summary>
+            OAuth client for <b>Assembla</b>.
+            </summary>
+            <remarks>
+            <h1>Register and Configure an Assembla Application</h1>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term>
+            <b>Web Management Interface may change over time. Applications registration shown below may differ.</b><br/>
+            If the interface is changed, you need to register the application and get <b>Client ID</b> and <b>Client Secret</b>. For web projects, configure <b>return URLs</b>.<br/>
+            If you have any problems with this, please <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues">visit issues</see>. If you do not find a solution to your problem, you can <see href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues/new">create a new question</see>.
+            </term>
+            </item>
+            </list>
+            <para>
+            </para>
+            <para><b><see href="https://www.assembla.com/user/edit/manage_clients">Register a new OAuth application</see></b>.</para>
+            <para>
+            In the application settings  you can found <b>Application ID</b> and <b>Application Secret</b>.
+            Use this for creating an instance of the <see cref="T:Nemiro.OAuth.Clients.AssemblaClient"/> class.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new AssemblaClient
+              (
+                "bOS4QkXnmr5jhdacwqjQXA", 
+                "701ee6dedf74fc4ad75bfa7476666a2f"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New AssemblaClient _
+              (
+                "bOS4QkXnmr5jhdacwqjQXA", 
+                "701ee6dedf74fc4ad75bfa7476666a2f"
+              )
+            )
+            </code>
+            <para>
+            For more details, please visit <see href="http://api-doc.assembla.com/index.html">Assembla API Documentation Site</see>.
+            </para>
+            </remarks>
+            <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.FoursquareClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GitHubClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.GoogleClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.InstagramClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LinkedInClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.LiveClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.MailRuClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.OdnoklassnikiClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SoundCloudClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.SourceForgeClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TumblrClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.TwitterClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.VkontakteClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YahooClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.YandexClient"/>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.AssemblaClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>.
+            </summary>
+            <param name="clientId">The Application ID obtained from the <see href="https://www.assembla.com/user/edit/manage_clients">Assembla Applications Manager</see>.</param>
+            <param name="clientSecret">The Application Secret obtained from the <see href="https://www.assembla.com/user/edit/manage_clients">Assembla Applications Manager</see>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.AssemblaClient.GetUserInfo">
+            <summary>
+            Gets the user details.
+            </summary>
+            <returns>
+            <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
+            </returns>
+        </member>
+        <member name="P:Nemiro.OAuth.Clients.AssemblaClient.ProviderName">
+            <summary>
+            Unique provider name: <b>Assembla</b>.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.ApiException">
@@ -3318,6 +3553,7 @@
              <para><img src="../img/facebook009.png" alt="Facebook User Info"/></para>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -3839,6 +4075,7 @@
              </code>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -4048,6 +4285,17 @@
             </summary>
             <param name="providerName">The name of the provider.</param>
         </member>
+        <member name="M:Nemiro.OAuth.DuplicateProviderException.#ctor(Nemiro.OAuth.ClientName)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.DuplicateProviderException"/> class.
+            </summary>
+            <param name="clientName">The name of the provider and client.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.DuplicateProviderException.Message">
+            <summary>
+            Gets an error message.
+            </summary>
+        </member>
         <member name="T:Nemiro.OAuth.MultipleRequestBodyException">
             <summary>
             The exception that is thrown when <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> has more than one <see cref="T:Nemiro.OAuth.HttpRequestBody"/>.
@@ -4097,282 +4345,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.IncompatibleHttpParametersException"/>.
             </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.Helpers">
-            <summary>
-            The main helper class.
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.OAuthUtility">
-            <summary>
-            Provides helpers methods for OAuth.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.OAuthUtility.UnreservedCharacters">
-            <summary>
-            Unreserved characters for the <see cref="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)"/> method.
-            </summary>
-            <remarks>
-            http://tools.ietf.org/html/rfc3986#page-13
-            </remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.#cctor">
-            <summary>
-            This is main helper class.
-            </summary>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.PercentEncode(System.String,System.Text.Encoding)">
-            <summary>
-            Percent encoding.
-            </summary>
-            <param name="value">The text to encode.</param>
-            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
-            <remarks>
-            <para>For more details, please see:</para>
-            <list type="bullet">
-            <item><description><see href="http://en.wikipedia.org/wiki/Percent-encoding"/></description></item>
-            <item><description><see href="http://tools.ietf.org/html/rfc3986"/></description></item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)">
-            <summary>
-            Percent encoding.
-            </summary>
-            <param name="value">The text to encode.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType)">
-            <summary>
-            Encodes a <b>URL</b> string using the specified encoding object.
-            </summary>
-            <param name="value">The text to encode.</param>
-            <param name="encodingType">The type of the encoder.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType,System.Text.Encoding)">
-            <summary>
-            Encodes a <b>URL</b> string using the specified encoding object.
-            </summary>
-            <param name="value">The text to encode.</param>
-            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
-            <param name="encodingType">The type of the encoder.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetTimeStamp">
-            <summary>
-            Generate timestamp for a signature (only for OAuth 1.0).
-            </summary>
-            <remarks>
-            <para>
-            The timestamp value MUST be a positive integer.  Unless otherwise
-            specified by the server's documentation, the timestamp is expressed
-            in the number of seconds since January 1, 1970 00:00:00 GMT.
-            </para>
-            <para>For more details, please see: <see href="http://tools.ietf.org/html/rfc5849#section-3.3"/></para>
-            </remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetRandomKey">
-            <summary>
-            Generate random key.
-            </summary>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetMD5Hash(System.String)">
-            <summary>
-            Compute MD5 hash.
-            </summary>
-            <param name="value">Value that must be processed.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ToBase64String(System.String,System.Object[])">
-            <summary>
-            Converts the string value to its equivalent string representation that is encoded with base-64 digits.
-            </summary>
-            <param name="value">A composite format string for encoding to Base64.</param>
-            <param name="args">An object array that contains zero or more objects to format. </param>
-            <returns>The string representation, in base 64.</returns>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Get(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Performs a web request using a <b>GET</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Post(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
-            <summary>
-            Performs a web request using a <b>POST</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Put(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
-            <summary>
-            Performs a web request using a <b>PUT</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Delete(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
-            <summary>
-            Performs a web request using a <b>DELETE</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
-            <summary>
-            Performs a web request.
-            </summary>
-            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ReadResponseStream(System.Net.HttpWebResponse)">
-            <summary>
-            Reads results of the web request to the string.
-            </summary>
-            <param name="resp"><see cref="T:System.Net.HttpWebResponse"/> instance.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
-            <summary>
-            Performs an async web request using a <b>GET</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.PostAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
-            <summary>
-            Performs an async web request using a <b>POST</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.PutAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
-            <summary>
-            Performs an async web request using a <b>PUT</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.DeleteAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
-            <summary>
-            Performs an async web request using a <b>DELETE</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequestAsync(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
-            <summary>
-            Performs an async web request.
-            </summary>
-            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetDictionaryValueOrNull(System.Object,System.String)">
-            <summary>
-            Gets the value of the specified <paramref name="key"/>, if the <paramref name="source"/> is a <see cref="T:System.Collections.Generic.Dictionary`2"/>.
-            </summary>
-            <param name="source">Source of data.</param>
-            <param name="key">The key is to be obtained.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetNumber(System.Object)">
-            <summary>
-            Returns a string containing a number.
-            </summary>
-            <param name="value">The value for processing.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignature(System.String,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
-            <summary>
-            Gets signature for the current request.
-            </summary>
-            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
-            <param name="url">The request URI.</param>
-            <param name="tokenSecret">The token secret.</param>
-            <param name="parameters">The query parameters.</param>
-            <param name="applicationSecret">The application secret key obtained from the provider website.</param>
-            <param name="authorization">The authorization parameters.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignature(System.String,System.Uri,System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
-            <summary>
-            Gets signature for the current request.
-            </summary>
-            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
-            <param name="url">The request URI.</param>
-            <param name="tokenSecret">The token secret.</param>
-            <param name="parameters">The query parameters.</param>
-            <param name="applicationSecret">The application secret key obtained from the provider website.</param>
-            <param name="authorization">The authorization parameters.</param>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignatureBaseString(System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
-            <summary>
-            Gets base string of the signature for current request (OAuth 1.0).
-            </summary>
-            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
-            <summary>
-            Gets base string of the signature for current request (OAuth 1.0).
-            </summary>
-            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
         </member>
         <member name="T:Nemiro.OAuth.HttpAuthorization">
             <summary>
@@ -5275,6 +5247,277 @@
             Gets a value indicating whether the current value is <b>client_credentials</b> or not.
             </summary>
         </member>
+        <member name="T:Nemiro.OAuth.OAuthUtility">
+            <summary>
+            Provides helpers methods for OAuth.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.OAuthUtility.UnreservedCharacters">
+            <summary>
+            Unreserved characters for the <see cref="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)"/> method.
+            </summary>
+            <remarks>
+            http://tools.ietf.org/html/rfc3986#page-13
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.#cctor">
+            <summary>
+            This is main helper class.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.PercentEncode(System.String,System.Text.Encoding)">
+            <summary>
+            Percent encoding.
+            </summary>
+            <param name="value">The text to encode.</param>
+            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
+            <remarks>
+            <para>For more details, please see:</para>
+            <list type="bullet">
+            <item><description><see href="http://en.wikipedia.org/wiki/Percent-encoding"/></description></item>
+            <item><description><see href="http://tools.ietf.org/html/rfc3986"/></description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String)">
+            <summary>
+            Percent encoding.
+            </summary>
+            <param name="value">The text to encode.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType)">
+            <summary>
+            Encodes a <b>URL</b> string using the specified encoding object.
+            </summary>
+            <param name="value">The text to encode.</param>
+            <param name="encodingType">The type of the encoder.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.UrlEncode(System.String,Nemiro.OAuth.UrlEncodingType,System.Text.Encoding)">
+            <summary>
+            Encodes a <b>URL</b> string using the specified encoding object.
+            </summary>
+            <param name="value">The text to encode.</param>
+            <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
+            <param name="encodingType">The type of the encoder.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetTimeStamp">
+            <summary>
+            Generate timestamp for a signature (only for OAuth 1.0).
+            </summary>
+            <remarks>
+            <para>
+            The timestamp value MUST be a positive integer.  Unless otherwise
+            specified by the server's documentation, the timestamp is expressed
+            in the number of seconds since January 1, 1970 00:00:00 GMT.
+            </para>
+            <para>For more details, please see: <see href="http://tools.ietf.org/html/rfc5849#section-3.3"/></para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetRandomKey">
+            <summary>
+            Generate random key.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetMD5Hash(System.String)">
+            <summary>
+            Compute MD5 hash.
+            </summary>
+            <param name="value">Value that must be processed.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ToBase64String(System.String,System.Object[])">
+            <summary>
+            Converts the string value to its equivalent string representation that is encoded with base-64 digits.
+            </summary>
+            <param name="value">A composite format string for encoding to Base64.</param>
+            <param name="args">An object array that contains zero or more objects to format. </param>
+            <returns>The string representation, in base 64.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Get(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Performs a web request using a <b>GET</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Post(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request using a <b>POST</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Put(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request using a <b>PUT</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.Delete(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Performs a web request using a <b>DELETE</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Performs a web request.
+            </summary>
+            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ReadResponseStream(System.Net.HttpWebResponse)">
+            <summary>
+            Reads results of the web request to the string.
+            </summary>
+            <param name="resp"><see cref="T:System.Net.HttpWebResponse"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>GET</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.PostAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>POST</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.PutAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>PUT</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.DeleteAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request using a <b>DELETE</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequestAsync(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+            <summary>
+            Performs an async web request.
+            </summary>
+            <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
+            <param name="endpoint">URL to which will be sent to web request.</param>
+            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for web request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetDictionaryValueOrNull(System.Object,System.String)">
+            <summary>
+            Gets the value of the specified <paramref name="key"/>, if the <paramref name="source"/> is a <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <param name="source">Source of data.</param>
+            <param name="key">The key is to be obtained.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetNumber(System.Object)">
+            <summary>
+            Returns a string containing a number.
+            </summary>
+            <param name="value">The value for processing.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignature(System.String,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets signature for the current request.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="tokenSecret">The token secret.</param>
+            <param name="parameters">The query parameters.</param>
+            <param name="applicationSecret">The application secret key obtained from the provider website.</param>
+            <param name="authorization">The authorization parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignature(System.String,System.Uri,System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets signature for the current request.
+            </summary>
+            <param name="httpMethod">The HTTP method: <b>GET</b> or <b>POST</b>. Default is <b>POST</b>.</param>
+            <param name="url">The request URI.</param>
+            <param name="tokenSecret">The token secret.</param>
+            <param name="parameters">The query parameters.</param>
+            <param name="applicationSecret">The application secret key obtained from the provider website.</param>
+            <param name="authorization">The authorization parameters.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignatureBaseString(System.String,System.String,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets base string of the signature for current request (OAuth 1.0).
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetSignatureBaseString(System.String,System.Uri,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.OAuthAuthorization)">
+            <summary>
+            Gets base string of the signature for current request (OAuth 1.0).
+            </summary>
+            <remarks><para>For more details, please visit <see href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1"/></para></remarks>
+        </member>
         <member name="T:Nemiro.OAuth.Extensions.NameValueCollectionExtension">
             <summary>
             Represents a class that extends the <see cref="T:System.Collections.Specialized.NameValueCollection"/> class by adding methods for use with query parameters.
@@ -5332,11 +5575,17 @@
             Represents the request item to OAuth server.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthRequest.#ctor(Nemiro.OAuth.OAuthBase)">
+        <member name="M:Nemiro.OAuth.OAuthRequest.#ctor(Nemiro.OAuth.ClientName,Nemiro.OAuth.OAuthBase)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthRequest"/> class.
             </summary>
             <param name="client">The instance of the OAuth client.</param>
+            <param name="clientName">The client name.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthRequest.ClientName">
+            <summary>
+            Gets name of the client.
+            </summary>
         </member>
         <member name="P:Nemiro.OAuth.OAuthRequest.Client">
             <summary>
@@ -5658,9 +5907,9 @@
             <summary>
             Redirects current client to the authorization page of the specified provider.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <exception cref="T:Nemiro.OAuth.ClientIsNotRegisteredException">
-            <paramref name="providerName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
+            <paramref name="clientName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
             </exception>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5674,10 +5923,10 @@
             <summary>
             Redirects current client to the authorization page of the specified provider with specified parameters.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <param name="parameters">Additional parameters to be passed to the authorization query.</param>
             <exception cref="T:Nemiro.OAuth.ClientIsNotRegisteredException">
-            <paramref name="providerName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
+            <paramref name="clientName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
             </exception>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5691,10 +5940,10 @@
             <summary>
             Redirects current client to the authorization page of the specified provider and return URL.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
             <exception cref="T:Nemiro.OAuth.ClientIsNotRegisteredException">
-            <paramref name="providerName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
+            <paramref name="clientName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
             </exception>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5708,11 +5957,29 @@
             <summary>
             Redirects current client to the authorization page of the specified provider, query parameters and return URL.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
             <param name="parameters">Additional parameters to be passed to the authorization query.</param>
             <exception cref="T:Nemiro.OAuth.ClientIsNotRegisteredException">
-            <paramref name="providerName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
+            <paramref name="clientName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
+            </exception>
+            <exception cref="T:Nemiro.OAuth.NullHttpContextException">
+            The exception that is thrown when you try to access methods that are designed for web projects.
+            </exception>
+            <remarks>
+            <para>The method will not work in desktop applications. For desktop applications you can use <see cref="M:Nemiro.OAuth.OAuthWeb.GetAuthorizationUrl(System.String,System.Collections.Specialized.NameValueCollection,System.String)"/>.</para>
+            </remarks>
+            <seealso cref="M:Nemiro.OAuth.OAuthWeb.GetAuthorizationUrl(System.String,System.Collections.Specialized.NameValueCollection,System.String)"/>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthWeb.RedirectToAuthorization(Nemiro.OAuth.ClientName,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Redirects current client to the authorization page of the specified provider, query parameters and return URL.
+            </summary>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+            <param name="parameters">Additional parameters to be passed to the authorization query.</param>
+            <exception cref="T:Nemiro.OAuth.ClientIsNotRegisteredException">
+            <paramref name="clientName"/> is unregistered. Use the <see cref="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.OAuthBase)"/> for OAuth clients registration.
             </exception>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5726,7 +5993,7 @@
             <summary>
             Returns the authorization URL of the specified provider.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
             </exception>
@@ -5735,7 +6002,7 @@
             <summary>
             Returns the authorization URL of the specified provider with specified parameters.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5745,7 +6012,7 @@
             <summary>
             Returns the authorization URL of the specified provider and return URL.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
             <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
             The exception that is thrown when you try to access methods that are designed for web projects.
@@ -5755,7 +6022,20 @@
             <summary>
             Returns the authorization URL of the specified provider, query parameters and return URL.
             </summary>
-            <param name="providerName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+            <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
+            <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+            <exception cref="T:Nemiro.OAuth.NullHttpContextException">
+            The exception that is thrown when you try to access methods that are designed for web projects.
+            </exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthWeb.GetAuthorizationUrl(Nemiro.OAuth.ClientName,System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Returns the authorization URL of the specified provider, query parameters and return URL.
+            </summary>
+            <param name="clientName">
+            The provider name, through which it is necessary to authorize the current user; or the name of the registered client.
+            </param>
             <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
             <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
             <exception cref="T:Nemiro.OAuth.NullHttpContextException">
@@ -5785,6 +6065,39 @@
         <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization(System.String,System.String)">
             <summary>
             Verifies the authorization results for the specified request identifier and the code of the authorization.
+            </summary>
+            <param name="requestId">Request identifier.</param>
+            <param name="code">The authorization code received from the provider server.</param>
+            <returns>
+            <para>Returns the verification results.</para>
+            </returns>
+            <remarks>
+            <para>This method is intended for internal use. It is recommended to use the overload <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization"/> or <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization(System.String)"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet">
+            <summary>
+            Verifies the authorization results for the current URL and removes the request from memory.
+            </summary>
+            <remarks>
+            <para>The method will not work in desktop applications. For desktop applications you can use the overloads <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization(System.String)"/> or <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization(System.String,System.String)"/>.</para>
+            </remarks>
+            <returns>
+            <para>Returns the verification results.</para>
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet(System.String)">
+            <summary>
+            Verifies the authorization results for the specified URL, and removes the request from memory.
+            </summary>
+            <param name="url">Address at which to perform the verification.</param>
+            <returns>
+            <para>Returns the verification results.</para>
+            </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet(System.String,System.String)">
+            <summary>
+            Verifies the authorization results for the specified request identifier and the code of the authorization, and removes the request from memory.
             </summary>
             <param name="requestId">Request identifier.</param>
             <param name="code">The authorization code received from the provider server.</param>
@@ -6278,6 +6591,7 @@
              <para><b>NOTE:</b> For proper processing, you will need to download and put on your site a <b>receiver.html</b> file.</para>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -6363,11 +6677,12 @@
             <param name="sender">Instance of the object that raised the event.</param>
             <param name="e">The event data.</param>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthManager.AddRequet(System.String,Nemiro.OAuth.OAuthBase)">
+        <member name="M:Nemiro.OAuth.OAuthManager.AddRequet(System.String,Nemiro.OAuth.ClientName,Nemiro.OAuth.OAuthBase)">
             <summary>
             Adds the specified request to the collection.
             </summary>
             <param name="key">The unique request key.</param>
+            <param name="clientName">The client name.</param>
             <param name="client">The client instance.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuthManager.RemoveRequet(System.String)">
@@ -6424,6 +6739,234 @@
             </code>
             </example>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.ClientName,Nemiro.OAuth.OAuthBase)">
+            <summary>
+            Registers the specified client in the application.
+            </summary>
+            <param name="client">The client instance.</param>
+            <param name="clientName">The any name of the client. For example: Test, Release, Project #1, Ku!, Example.org etc.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
+            <exception cref="T:Nemiro.OAuth.DuplicateProviderException">If you attempt to register the already registered client.</exception>
+            <example>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              "Test",
+              new GoogleClient
+              (
+                "00000000000000.apps.googleusercontent.com", 
+                "000000000000000000000000"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Test",
+              new FacebookClient
+              (
+                "00000000000000", 
+                "000000000000000000000000"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Release",
+              new GoogleClient
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Release",
+              new FacebookClient
+              (
+                "1435890426686808", 
+                "c6057dfae399beee9e8dc46a4182e8fd"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              "Test",
+              New GoogleClient _
+              (
+                "00000000000000.apps.googleusercontent.com", 
+                "000000000000000000000000"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Test",
+              New FacebookClient _
+              (
+                "00000000000000", 
+                "000000000000000000000000"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Release",
+              New GoogleClient _
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Release",
+              New FacebookClient _
+              (
+                "1435890426686808", 
+                "c6057dfae399beee9e8dc46a4182e8fd"
+              )
+            )
+            </code>
+            </example>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.RegisterClient(System.String,Nemiro.OAuth.OAuthBase)">
+            <summary>
+            Registers the specified client in the application. (the main method)
+            </summary>
+            <param name="client">The client instance.</param>
+            <param name="clientName">The any name of the client. For example: Test, Release, Project #1, Ku!, Example.org etc.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
+            <exception cref="T:Nemiro.OAuth.DuplicateProviderException">If you attempt to register the already registered client.</exception>
+            <example>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              "Test",
+              new GoogleClient
+              (
+                "00000000000000.apps.googleusercontent.com", 
+                "000000000000000000000000"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Test",
+              new FacebookClient
+              (
+                "00000000000000", 
+                "000000000000000000000000"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Release",
+              new GoogleClient
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              )
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "Release",
+              new FacebookClient
+              (
+                "1435890426686808", 
+                "c6057dfae399beee9e8dc46a4182e8fd"
+              )
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              "Test",
+              New GoogleClient _
+              (
+                "00000000000000.apps.googleusercontent.com", 
+                "000000000000000000000000"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Test",
+              New FacebookClient _
+              (
+                "00000000000000", 
+                "000000000000000000000000"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Release",
+              New GoogleClient _
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              )
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "Release",
+              New FacebookClient _
+              (
+                "1435890426686808", 
+                "c6057dfae399beee9e8dc46a4182e8fd"
+              )
+            )
+            </code>
+            </example>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.RegisterClient(System.String,System.String,System.String)">
+            <summary>
+            Registers the specified client in the application.
+            </summary>
+            <param name="providerName">The provider name.</param>
+            <param name="clientId">The application identifier obtained from the provider website.</param>
+            <param name="clientSecret">The application secret key obtained from the provider website.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="providerName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
+            <exception cref="T:Nemiro.OAuth.UnknownProviderException">Provider not found by <paramref name="providerName"/>.</exception>
+            <example>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              "google", 
+              "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+              "AeEbEGQqoKgOZb41JUVLvEJL"
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "facebook"
+              "1435890426686808", 
+              "c6057dfae399beee9e8dc46a4182e8fd"
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              "google",
+              "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+              "AeEbEGQqoKgOZb41JUVLvEJL"
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "facebook",
+              "1435890426686808", 
+              "c6057dfae399beee9e8dc46a4182e8fd"
+            )
+            </code>
+            </example>
+        </member>
         <member name="M:Nemiro.OAuth.OAuthManager.RegisterClient(System.String,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection,System.Object[])">
             <summary>
             Registers the specified client in the application.
@@ -6431,8 +6974,8 @@
             <param name="providerName">The provider name.</param>
             <param name="clientId">The application identifier obtained from the provider website.</param>
             <param name="clientSecret">The application secret key obtained from the provider website.</param>
-            <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
             <param name="scope">List of scope that will be requested from the provider. Only for OAuth 2.0.</param>
+            <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
             <param name="parameters">Additional parameters that will be transferred to the provider website.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="providerName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
             <exception cref="T:Nemiro.OAuth.UnknownProviderException">Provider not found by <paramref name="providerName"/>.</exception>
@@ -6469,6 +7012,100 @@
             )
             </code>
             </example>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.RegisterClient(Nemiro.OAuth.ClientName,System.String,System.String,System.String,System.Collections.Specialized.NameValueCollection,System.Object[])">
+            <summary>
+            Registers the specified client in the application.
+            </summary>
+            <param name="clientName">The provider name. And may also contain any client name for for division into groups.</param>
+            <param name="clientId">The application identifier obtained from the provider website.</param>
+            <param name="clientSecret">The application secret key obtained from the provider website.</param>
+            <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
+            <param name="scope">List of scope that will be requested from the provider. Only for OAuth 2.0.</param>
+            <param name="parameters">Additional parameters that will be transferred to the provider website.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="clientName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
+            <exception cref="T:Nemiro.OAuth.UnknownProviderException">Provider not found by <paramref name="clientName"/>.</exception>
+            <exception cref="T:System.NotSupportedException">The <paramref name="clientName"/> not suppored <paramref name="scope"/>.</exception>
+            <example>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              "google", 
+              "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+              "AeEbEGQqoKgOZb41JUVLvEJL"
+            );
+            
+            OAuthManager.RegisterClient
+            (
+              "facebook"
+              "1435890426686808", 
+              "c6057dfae399beee9e8dc46a4182e8fd"
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              "google",
+              "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+              "AeEbEGQqoKgOZb41JUVLvEJL"
+            )
+            
+            OAuthManager.RegisterClient _
+            (
+              "facebook",
+              "1435890426686808", 
+              "c6057dfae399beee9e8dc46a4182e8fd"
+            )
+            </code>
+            <para>
+            You can register multiple clients to a single provider. 
+            The following example shows how to do it.
+            </para>
+            <code lang="C#">
+            var clientName = ClientName.Create("Debug", "Facebook");
+            
+            OAuthManager.RegisterClient
+            (
+              clientName
+              "000000000000000000", 
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            );
+            
+            clientName = ClientName.Create("Any name", "Facebook");
+            
+            OAuthManager.RegisterClient
+            (
+              clientName
+              "111111111111111111", 
+              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            );
+            </code>
+            <code lang="VB">
+            Dim name As ClientName = ClientName.Create("Debug", "Facebook")
+            
+            OAuthManager.RegisterClient _
+            (
+              name,
+              "000000000000000000", 
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            )
+            
+            name As ClientName = ClientName.Create("Any name", "Facebook")
+            
+            OAuthManager.RegisterClient _
+            (
+              name,
+              "111111111111111111", 
+              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            )
+            </code>
+            </example>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthManager.IsRegisteredClient(Nemiro.OAuth.ClientName)">
+            <summary>
+            Checks registered provider with the specified name or not.
+            </summary>
+            <param name="clietName">The provider name or client name.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuthManager.GetClientTypeByName(System.String)">
             <summary>
@@ -6918,6 +7555,7 @@
             <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URL</b> in the <b>Twitter Application Settings</b>.</para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -7407,6 +8045,7 @@
              </code>
              </example>
              <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+             <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
              <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>
@@ -7769,6 +8408,7 @@
             <para><b>NOTE:</b> Do not forget to adjust the <b>Callback URI</b> in the <b>Yandex Application Settings</b>.</para>
             </example>
             <seealso cref="T:Nemiro.OAuth.Clients.AmazonClient"/>
+            <seealso cref="T:Nemiro.OAuth.Clients.AssemblaClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.CodeProjectClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.DropboxClient"/>
             <seealso cref="T:Nemiro.OAuth.Clients.FacebookClient"/>

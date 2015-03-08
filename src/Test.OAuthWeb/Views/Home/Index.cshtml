@@ -44,6 +44,8 @@
 <code>PM&gt; Install-Package Nemiro.OAuth</code>
 
 <h2>@Test.Resources.Strings.Download</h2>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.8.zip">v1.8</a> <span class="date-release">@(new DateTime(2015, 3, 8).ToString("dd MMMM yyyy"))</span></p>
+<p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.7.zip">v1.7</a> <span class="date-release">@(new DateTime(2015, 2, 11).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.6.zip">v1.6</a> <span class="date-release">@(new DateTime(2015, 1, 4).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.5.zip">v1.5</a> <span class="date-release">@(new DateTime(2014, 12, 27).ToString("dd MMMM yyyy"))</span></p>
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.4.zip">v1.4</a> <span class="date-release">@(new DateTime(2014, 11, 2).ToString("dd MMMM yyyy"))</span></p>
@@ -52,6 +54,206 @@
 <p><a href="https://github.com/alekseynemiro/nemiro.oauth.dll/archive/v1.1.zip">v1.1</a> <span class="date-release">@(new DateTime(2014, 7, 20).ToString("dd MMMM yyyy"))</span></p>
 
 @Html.Raw(Test.Resources.Strings.DemoUsefulLinks)
+
+<h3>@Test.Resources.Strings.DemoProvidersTable</h3>
+
+<table style="width: 575px;">
+  <thead>
+    <tr>
+      <th style="text-align:center;">@Html.Raw(Test.Resources.Strings.Provider)</th>
+      <th style="text-align:center;">@Html.Raw(Test.Resources.Strings.InternalName)</th>
+      <th style="text-align:center;">@Html.Raw(Test.Resources.Strings.LocalhostSupports)</th>
+      <th style="text-align:center;">@Html.Raw(Test.Resources.Strings.MultipleUrlSupports)</th>
+      <th style="text-align:center;">@Html.Raw(Test.Resources.Strings.HTTPSupports)</th>
+			<th style="text-align:center;width:20px;">&nbsp;</th>
+			<th style="text-align:center;width:20px;">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;"><a href="http://www.amazon.com/" target="_blank" rel="nofollow external">Amazon</a></td>
+      <td style="text-align:center;">amazon</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><a href="http://login.amazon.com/manageApps" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/f9402a43-ecb6-6810-a848-279294a1408c.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://www.assembla.com/" target="_blank" rel="nofollow external">Assembla</a></td>
+      <td style="text-align:center;">assembla</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><a href="https://www.assembla.com/user/edit/manage_clients" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/b2ac5a38-4b8d-3324-4831-9294b21dbedc.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="http://www.codeproject.com/" target="_blank" rel="nofollow external">CodeProject</a></td>
+      <td style="text-align:center;">codeproject</td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><a href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/e4206b0a-9a37-8161-c38a-114de41c78da.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://www.dropbox.com/" target="_blank" rel="nofollow external">Dropbox</a></td>
+      <td style="text-align:center;">dropbox</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><a href="https://www.dropbox.com/developers/apps" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/6c120256-aea1-ba88-d8d8-2b99e02908af.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://facebook.com/" target="_blank" rel="nofollow external">Facebook</a></td>
+      <td style="text-align:center;">facebook</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><a href="https://developers.facebook.com/apps/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/cef7d32b-f6c5-e237-037d-e1800350b71b.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://foursquare.com/" target="_blank" rel="nofollow external">Foursquare</a></td>
+      <td style="text-align:center;">foursquare</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://foursquare.com/oauth" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/1a0a6b31-866a-c85e-f313-599e41e5999e.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://github.com/" target="_blank" rel="nofollow external">GitHub</a></td>
+      <td style="text-align:center;">github</td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://github.com/settings/applications/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/4e42b626-21c7-d3e3-f58e-4629c58c11eb.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://google.com/" target="_blank" rel="nofollow external">Google</a></td>
+      <td style="text-align:center;">google</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://console.developers.google.com/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/aff36495-124c-a749-20ed-ce08ec915999.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://instagram.com/" target="_blank" rel="nofollow external">Instagram</a></td>
+      <td style="text-align:center;">instagram</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="http://instagram.com/developer/clients/manage/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/b3ecb8c1-1266-bb7d-fb98-31b0966b2e5b.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://linkedin.com/" target="_blank" rel="nofollow external">LinkedIn</a></td>
+      <td style="text-align:center;">linkedin</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://www.linkedin.com/secure/developer" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/e117de75-ef13-d188-1d14-428fe236eb91.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="http://www.microsoft.com/" target="_blank" rel="nofollow external">Microsoft Live</a></td>
+      <td style="text-align:center;">live</td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://account.live.com/developers/applications/index" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/fd5c23ee-28e4-1519-e88d-7d9a4382e2c0.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://mail.ru/" target="_blank" rel="nofollow external">Mail.Ru</a></td>
+      <td style="text-align:center;">mail.ru</td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="http://api.mail.ru/sites/my/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/7f3f77ce-f792-8f18-c9ec-6ec9a5f35e0f.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="http://ok.ru/" target="_blank" rel="nofollow external">Odnoklassniki</a></td>
+      <td style="text-align:center;">odnoklassniki</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="http://ok.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/5943b5b8-aac7-cb40-c6e9-e98bbd62dd17.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://soundcloud.com/" target="_blank" rel="nofollow external">SoundCloud</a></td>
+      <td style="text-align:center;">soundcloud</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="http://soundcloud.com/you/apps" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/74c22fd2-ee98-d3e2-ced3-b74de3c2caed.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://sourceforge.net/" target="_blank" rel="nofollow external">SourceForge</a></td>
+      <td style="text-align:center;">sourceforge</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://sourceforge.net/auth/oauth/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/dc173deb-cc92-5806-ec96-2e75e7733c1a.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://www.tumblr.com/" target="_blank" rel="nofollow external">Tumblr</a></td>
+      <td style="text-align:center;">tumblr</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://www.tumblr.com/oauth/apps" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/1d1d42f8-b0c7-8e20-9a33-147c33c8df53.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://twitter.com/" target="_blank" rel="nofollow external">Twitter</a></td>
+      <td style="text-align:center;">twitter</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://apps.twitter.com/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/9310ba11-b1ab-a717-3269-e5b8c0ab35bd.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="http://vk.com/" target="_blank" rel="nofollow external">VKontakte</a></td>
+      <td style="text-align:center;">vk</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="http://vk.com/apps?act=manage" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/9f08d261-5278-4a0d-35c6-4b62319d15cb.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://yahoo.com/" target="_blank" rel="nofollow external">Yahoo!</a></td>
+      <td style="text-align:center;">yahoo</td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://developer.yahoo.com/apps/" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/1370537f-44a0-cacb-f1d4-90bd08f6e5cd.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;"><a href="https://yandex.com/" target="_blank" rel="nofollow external">Yandex</a></td>
+      <td style="text-align:center;">yandex</td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/cross.png" style="width:16px;height:16px;" alt="-" title="" /></td>
+      <td style="text-align:center;"><img src="/Content/tick.png" style="width:16px;height:16px;" alt="+" title="" /></td>
+			<td style="text-align:center;"><a href="https://oauth.yandex.com/client/my" target="_blank" rel="nofollow external"><img src="/Content/config.png" style="width:16px;height:16px;" alt="(*)" title="" /></a></td>
+			<td style="text-align:center;"><a href="http://oauth.nemiro.net/?topic=html/b52801d2-a372-b410-b892-a8229f28a615.htm" target="_blank" rel="nofollow external"><img src="/Content/help.png" style="width:16px;height:16px;" alt="?" title="" /></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="font-size:11px;">@Html.Raw(Test.Resources.Strings.DemoProviderTableInfo)</div>
 
 <div class="clear"></div>
 

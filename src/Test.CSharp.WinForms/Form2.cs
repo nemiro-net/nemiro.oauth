@@ -24,6 +24,7 @@ namespace Test.CSharp.WinForms
     public Form2(string providerName)
     {
       InitializeComponent();
+      webBrowser1.ScriptErrorsSuppressed = true;
       webBrowser1.Navigate(OAuthWeb.GetAuthorizationUrl(providerName));
     }
 

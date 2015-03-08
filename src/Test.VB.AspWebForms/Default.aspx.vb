@@ -14,7 +14,7 @@ Public Class _Default
 
     ' add provider name and click handler
     Dim lnk As LinkButton = CType(e.Item.FindControl("lnk"), LinkButton)
-    lnk.Attributes.Add("data-provider", CType(e.Item.DataItem, KeyValuePair(Of String, OAuthBase)).Key)
+    lnk.Attributes.Add("data-provider", CType(e.Item.DataItem, KeyValuePair(Of ClientName, OAuthBase)).Key)
     AddHandler lnk.Click, AddressOf RedirectToLogin_Click
 
     ' add icon

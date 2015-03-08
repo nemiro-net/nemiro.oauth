@@ -84,8 +84,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\config.png" />
+    <Content Include="Content\cross.png" />
     <Content Include="Content\processing.gif" />
+    <Content Include="Content\help.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\tick.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\preview.png" />
     <Content Include="receiver.html" />

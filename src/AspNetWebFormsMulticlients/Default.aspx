@@ -10,18 +10,23 @@
     <form id="form1" runat="server">
     <div>
 
-			<asp:HyperLink NavigateUrl="~/RedirectToAuth.aspx?provider=facebook&group=default" ID="btnFacebook" runat="server" Text="[Connexion FaceBook]" EnableViewState="False" />
-			<asp:HyperLink NavigateUrl="~/RedirectToAuth.aspx?provider=foursquare&group=default" ID="btnFoursquare" runat="server" Text="[Connexion Foursquare]" EnableViewState="False" />
-			<br /><br />
-			<asp:HyperLink NavigateUrl="~/RedirectToAuth.aspx?provider=facebook&group=popup" onclick="return Popup(this.href);" ID="btnFacebook2" runat="server" Text="[Connexion FaceBook]" EnableViewState="False" />
-			<asp:HyperLink NavigateUrl="~/RedirectToAuth.aspx?provider=foursquare&group=popup" onclick="return Popup(this.href);" ID="btnFoursquare2" runat="server" Text="[Connexion Foursquare]" EnableViewState="False" />
+			<ul>
+				<%foreach (var name in Nemiro.OAuth.OAuthManager.RegisteredClients.Keys) {%>
+					<li>
+						<a href="<%=ResolveUrl(String.Format("~/RedirectToAuth.aspx?provider={0}", name.Hash))%>" onclick="<%=name.Key == "popup" ? "return Popup(this.href);" : "return true;"%>">
+							<%=name.ProviderName%> (<%=name.Key%>)
+						</a>
+					</li>
+				<%}%>
+			</ul>
 
 			<script type="text/javascript">
 				function Popup(url, width, height) {
 					if(width == undefined || !width) { width = 550; }
 					if(height == undefined || !height) { height = 450; }
-					var x = (screen.width - width) / 2; 
-					var y = (screen.height - height) / 2; 
+					var x = (screen.width - width) / 2;
+					var y = (screen.height - height) / 2;
+					url += '&popup=true';
 					window.open(url, '_blank', 'toolbar=no,status=no,resizable=yes,scrollbars=yes,width=' + width + ',height=' + height + ',left=' + x + ',top=' + y);
 					return false;
 				}

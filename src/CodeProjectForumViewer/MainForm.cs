@@ -29,6 +29,8 @@ namespace CodeProjectForumViewer
   public partial class MainForm : Form
   {
 
+    private bool AccessTokenIsCheked = false;
+
     /// <summary>
     /// Current page
     /// </summary>
@@ -96,6 +98,8 @@ namespace CodeProjectForumViewer
 
     private void GetAccessToken()
     {
+      this.AccessTokenIsCheked = true;
+
       // create login form
       var login = new CodeProjectLogin
       (
@@ -166,9 +170,21 @@ namespace CodeProjectForumViewer
 
       if (!result.IsSuccessfully)
       {
-        MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        this.RequestEnd();
+        if (!this.AccessTokenIsCheked)
+        {
+          this.GetAccessToken();
+        }
+        else
+        {
+          MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          this.RequestEnd();
+        }
         return;
+      }
+
+      if (!this.AccessTokenIsCheked)
+      {
+        this.AccessTokenIsCheked = true;
       }
 
       // set list of messages to the dataGridView

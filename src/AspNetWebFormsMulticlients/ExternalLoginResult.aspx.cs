@@ -14,6 +14,7 @@ namespace AspNetWebFormsMulticlients
     {
       preResult.InnerHtml = "";
       var result = OAuthWeb.VerifyAuthorization();
+      preResult.InnerHtml += String.Format("Client:   {0}<br />", result.ClientName.Key);
       preResult.InnerHtml += String.Format("Provider: {0}<br />", result.ProviderName);
       if (result.IsSuccessfully)
       {

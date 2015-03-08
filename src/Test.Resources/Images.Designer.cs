@@ -73,6 +73,16 @@ namespace Test.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] assembla {
+            get {
+                object obj = ResourceManager.GetObject("assembla", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] codeproject {
             get {
                 object obj = ResourceManager.GetObject("codeproject", resourceCulture);

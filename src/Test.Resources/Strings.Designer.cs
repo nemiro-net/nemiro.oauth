@@ -159,6 +159,28 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Registration and management of applications.
+        /// </summary>
+        public static string DemoProvidersTable {
+            get {
+                return ResourceManager.GetString("DemoProvidersTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;p&gt;The information in the table is current as of &lt;strong&gt;March 2015&lt;/strong&gt;.&lt;/p&gt;
+        ///&lt;p&gt;The &lt;strong&gt;internal name&lt;/strong&gt; is case-insensitive.&lt;/p&gt;
+        ///&lt;p&gt;If the provider supports the &lt;strong&gt;localhost&lt;/strong&gt;, then allowed to use the &lt;strong&gt;HTTP&lt;/strong&gt; protocol for &lt;strong&gt;localhost&lt;/strong&gt;.
+        ///&lt;strong&gt;HTTP&lt;/strong&gt; supports field is only for external addresses.&lt;/p&gt;
+        ///.
+        /// </summary>
+        public static string DemoProviderTableInfo {
+            get {
+                return ResourceManager.GetString("DemoProviderTableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;h2&gt;Is it safe?&lt;/h2&gt;
         ///&lt;p&gt;Yes safely.&lt;/p&gt;
         ///&lt;p&gt;
@@ -215,8 +237,7 @@ namespace Test.Resources {
         ///&lt;a href=&quot;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&quot;&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
         ///&lt;/p&gt;
         ///&lt;p&gt;
-        ///  Other projects:&lt;br /&gt;
-        ///   [остаток строки не уместился]&quot;;.
+        ///Article: «Users Authorizati [остаток строки не уместился]&quot;;.
         /// </summary>
         public static string DemoUsefulLinks {
             get {
@@ -252,6 +273,15 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на HTTP&lt;br /&gt;supports.
+        /// </summary>
+        public static string HTTPSupports {
+            get {
+                return ResourceManager.GetString("HTTPSupports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
         ///&lt;p&gt;Clients registration occurs in the &lt;strong&gt;Global.asax&lt;/strong&gt; file.&lt;/p&gt;
         ///&lt;p&gt;Code redirects to the login page can be found in the &lt;strong&gt;ExternalLogin&lt;/strong&gt; method  of the &lt;strong&gt;HomeController&lt;/strong&gt;.&lt;/p&gt;
@@ -283,11 +313,38 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Internal name.
+        /// </summary>
+        public static string InternalName {
+            get {
+                return ResourceManager.GetString("InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Get list of likes.
         /// </summary>
         public static string LikesList {
             get {
                 return ResourceManager.GetString("LikesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на localhost&lt;br /&gt;supports.
+        /// </summary>
+        public static string LocalhostSupports {
+            get {
+                return ResourceManager.GetString("LocalhostSupports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Multiple Url&lt;br /&gt;supports.
+        /// </summary>
+        public static string MultipleUrlSupports {
+            get {
+                return ResourceManager.GetString("MultipleUrlSupports", resourceCulture);
             }
         }
         
@@ -324,6 +381,15 @@ namespace Test.Resources {
         public static string Port59962 {
             get {
                 return ResourceManager.GetString("Port59962", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Provider.
+        /// </summary>
+        public static string Provider {
+            get {
+                return ResourceManager.GetString("Provider", resourceCulture);
             }
         }
         

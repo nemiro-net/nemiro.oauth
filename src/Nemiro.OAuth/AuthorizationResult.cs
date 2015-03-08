@@ -28,14 +28,30 @@ namespace Nemiro.OAuth
   {
 
     /// <summary>
+    /// The ID of the authorization request.
+    /// </summary>
+    internal string RequestId { get; set; }
+
+    /// <summary>
     /// OAuth version. For example: 1.0, 2.0.
     /// </summary>
     public string ProtocolVersion { get; protected internal set; }
 
     /// <summary>
+    /// Provider and custom client name.
+    /// </summary>
+    public ClientName ClientName { get; protected internal set; }
+
+    /// <summary>
     /// Provider name. For example: facebook, twitter, google.
     /// </summary>
-    public string ProviderName { get; protected internal set; }
+    public string ProviderName
+    {
+      get
+      {
+        return this.ClientName.ProviderName;
+      }
+    }
 
     /// <summary>
     /// The access token which is used to query the provider.

@@ -27,6 +27,19 @@ namespace Nemiro.OAuth
   internal class OAuthRequest
   {
 
+    private ClientName _ClientName = null;
+
+    /// <summary>
+    /// Gets name of the client.
+    /// </summary>
+    public ClientName ClientName
+    {
+      get
+      {
+        return _ClientName;
+      }
+    }
+
     private OAuthBase _Client = null;
 
     /// <summary>
@@ -57,8 +70,22 @@ namespace Nemiro.OAuth
     /// Initializes a new instance of the <see cref="OAuthRequest"/> class.
     /// </summary>
     /// <param name="client">The instance of the OAuth client.</param>
-    public OAuthRequest(OAuthBase client)
+    /// <param name="clientName">The client name.</param>
+    public OAuthRequest(ClientName clientName, OAuthBase client)
     {
+      /* is is not possible
+      if (client == null)
+      {
+        throw new ArgumentNullException("client");
+      }
+      */
+
+      if (String.IsNullOrEmpty(clientName))
+      {
+        clientName = client.ProviderName;
+      }
+
+      _ClientName = clientName;
       _Client = client;
     }
 

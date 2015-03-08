@@ -81,11 +81,11 @@ namespace Nemiro.OAuth
       }
     }
 
-    private static Dictionary<string, OAuthBase> _RegisteredClients = new Dictionary<string, OAuthBase>(StringComparer.OrdinalIgnoreCase);
+    private static Dictionary<ClientName, OAuthBase> _RegisteredClients = new Dictionary<ClientName, OAuthBase>();
     /// <summary>
     /// Gets the list of registered clients.
     /// </summary>
-    public static Dictionary<string, OAuthBase> RegisteredClients
+    public static Dictionary<ClientName, OAuthBase> RegisteredClients
     {
       get
       {
@@ -111,12 +111,13 @@ namespace Nemiro.OAuth
       // creating clients list
       foreach (var t in types)
       {
+        // var ppp = t.GetProperty("ProviderName").GetGetMethod();
         var param = new ArrayList();
         foreach (var p in t.GetConstructors().First().GetParameters())
         {
           if (p.ParameterType == typeof(string))
           {
-            param.Add("123");
+            param.Add("1");
           }
           else
           {
@@ -125,6 +126,7 @@ namespace Nemiro.OAuth
         }
         var client = Activator.CreateInstance(t, param.ToArray()) as OAuthBase;
         _AllClients.Add(client.ProviderName, t);
+        // OAuthManager.RemoveRequet(client.State);
       }
       // --
       _Timer.Elapsed += Timer_Elapsed;
@@ -168,10 +170,11 @@ namespace Nemiro.OAuth
     /// Adds the specified request to the collection.
     /// </summary>
     /// <param name="key">The unique request key.</param>
+    /// <param name="clientName">The client name.</param>
     /// <param name="client">The client instance.</param>
-    internal static void AddRequet(string key, OAuthBase client)
+    internal static void AddRequet(string key, ClientName clientName, OAuthBase client)
     {
-      OAuthManager.Requets.Add(key, new OAuthRequest(client));
+      OAuthManager.Requets.Add(key, new OAuthRequest(clientName, client));
       _Timer.Start();
     }
 
@@ -181,6 +184,7 @@ namespace Nemiro.OAuth
     /// <param name="key">The unique request key to remove..</param>
     internal static void RemoveRequet(string key)
     {
+      if (String.IsNullOrEmpty(key)) { return; }
       if (_Requets.ContainsKey(key))
       {
         _Requets.Remove(key);
@@ -236,18 +240,242 @@ namespace Nemiro.OAuth
     /// </example>
     public static void RegisterClient(OAuthBase client)
     {
-      if (client == null)
+      OAuthManager.RegisterClient(String.Empty, client);
+    }
+
+    /// <summary>
+    /// Registers the specified client in the application.
+    /// </summary>
+    /// <param name="client">The client instance.</param>
+    /// <param name="clientName">The any name of the client. For example: Test, Release, Project #1, Ku!, Example.org etc.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
+    /// <exception cref="DuplicateProviderException">If you attempt to register the already registered client.</exception>
+    /// <example>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Test",
+    ///   new GoogleClient
+    ///   (
+    ///     "00000000000000.apps.googleusercontent.com", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Test",
+    ///   new FacebookClient
+    ///   (
+    ///     "00000000000000", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Release",
+    ///   new GoogleClient
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Release",
+    ///   new FacebookClient
+    ///   (
+    ///     "1435890426686808", 
+    ///     "c6057dfae399beee9e8dc46a4182e8fd"
+    ///   )
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Test",
+    ///   New GoogleClient _
+    ///   (
+    ///     "00000000000000.apps.googleusercontent.com", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Test",
+    ///   New FacebookClient _
+    ///   (
+    ///     "00000000000000", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Release",
+    ///   New GoogleClient _
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Release",
+    ///   New FacebookClient _
+    ///   (
+    ///     "1435890426686808", 
+    ///     "c6057dfae399beee9e8dc46a4182e8fd"
+    ///   )
+    /// )
+    /// </code>
+    /// </example>
+    public static void RegisterClient(ClientName clientName, OAuthBase client)
+    {
+      OAuthManager.RegisterClient(clientName.Key, client);
+    }
+
+    /// <summary>
+    /// Registers the specified client in the application. (the main method)
+    /// </summary>
+    /// <param name="client">The client instance.</param>
+    /// <param name="clientName">The any name of the client. For example: Test, Release, Project #1, Ku!, Example.org etc.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="client"/> is <b>null</b> or <b>empty</b>.</exception>
+    /// <exception cref="DuplicateProviderException">If you attempt to register the already registered client.</exception>
+    /// <example>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Test",
+    ///   new GoogleClient
+    ///   (
+    ///     "00000000000000.apps.googleusercontent.com", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Test",
+    ///   new FacebookClient
+    ///   (
+    ///     "00000000000000", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Release",
+    ///   new GoogleClient
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   )
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "Release",
+    ///   new FacebookClient
+    ///   (
+    ///     "1435890426686808", 
+    ///     "c6057dfae399beee9e8dc46a4182e8fd"
+    ///   )
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Test",
+    ///   New GoogleClient _
+    ///   (
+    ///     "00000000000000.apps.googleusercontent.com", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Test",
+    ///   New FacebookClient _
+    ///   (
+    ///     "00000000000000", 
+    ///     "000000000000000000000000"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Release",
+    ///   New GoogleClient _
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   )
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "Release",
+    ///   New FacebookClient _
+    ///   (
+    ///     "1435890426686808", 
+    ///     "c6057dfae399beee9e8dc46a4182e8fd"
+    ///   )
+    /// )
+    /// </code>
+    /// </example>
+    public static void RegisterClient(string clientName, OAuthBase client)
+    {
+      if (client == null) { throw new ArgumentNullException("client"); }
+
+      /*if (client.ProviderName.Equals(ClientName.Parse(clientName).ProviderName, StringComparison.InvariantCultureIgnoreCase))
       {
-        throw new ArgumentNullException("client");
+        // contains provider name
+        clientName = ClientName.Escape(ClientName.Parse(clientName).Key);
       }
-      if (_RegisteredClients.ContainsKey(client.ProviderName))
+      else
       {
-        throw new DuplicateProviderException(client.ProviderName);
+        clientName = ClientName.Escape(clientName);
       }
+
+      var name = ClientName.Create(ClientName.Parse(clientName).Key ?? ClientName.Unescape(clientName), client.ProviderName);
+      */
+
+      var name = ClientName.Create(clientName, client.ProviderName);
+
+      if (_RegisteredClients.ContainsKey(name))
+      {
+        throw new DuplicateProviderException(name);
+      }
+
       // add client
-      _RegisteredClients.Add(client.ProviderName, client);
-      // remove from watching
-      OAuthManager.RemoveRequet(client.State.ToString());
+      _RegisteredClients.Add(name, client);
+
+      // remove from watching 
+      // OAuthManager.RemoveRequet(client.State.ToString());
+      // --
+
+      // if this is a new client
+      if (!OAuthManager.AllClients.ContainsKey(client.ProviderName))
+      {
+        // add to list
+        OAuthManager.AllClients.Add(client.ProviderName, client.GetType());
+      }
+      /*else
+      {
+        // check namespace
+        if (!client.GetType().Namespace.Equals("Nemiro.OAuth.Clients", StringComparison.InvariantCultureIgnoreCase))
+        {
+          // overwrite
+          OAuthManager.AllClients[client.ProviderName] = client.GetType();
+        }
+      }*/
     }
 
     /// <summary>
@@ -256,8 +484,53 @@ namespace Nemiro.OAuth
     /// <param name="providerName">The provider name.</param>
     /// <param name="clientId">The application identifier obtained from the provider website.</param>
     /// <param name="clientSecret">The application secret key obtained from the provider website.</param>
-    /// <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="providerName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
+    /// <exception cref="UnknownProviderException">Provider not found by <paramref name="providerName"/>.</exception>
+    /// <example>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "google", 
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "facebook"
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "google",
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "facebook",
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// )
+    /// </code>
+    /// </example>
+    public static void RegisterClient(string providerName, string clientId, string clientSecret)
+    {
+      OAuthManager.RegisterClient(ClientName.Parse(providerName), clientId, clientSecret, null, null, null);
+    }
+
+    /// <summary>
+    /// Registers the specified client in the application.
+    /// </summary>
+    /// <param name="providerName">The provider name.</param>
+    /// <param name="clientId">The application identifier obtained from the provider website.</param>
+    /// <param name="clientSecret">The application secret key obtained from the provider website.</param>
     /// <param name="scope">List of scope that will be requested from the provider. Only for OAuth 2.0.</param>
+    /// <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
     /// <param name="parameters">Additional parameters that will be transferred to the provider website.</param>
     /// <exception cref="ArgumentNullException"><paramref name="providerName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
     /// <exception cref="UnknownProviderException">Provider not found by <paramref name="providerName"/>.</exception>
@@ -296,13 +569,104 @@ namespace Nemiro.OAuth
     /// </example>
     public static void RegisterClient(string providerName, string clientId, string clientSecret, string scope = null, NameValueCollection parameters = null, object[] initArgs = null)
     {
-      if (String.IsNullOrEmpty(providerName)) { throw new ArgumentNullException("providerName"); }
+      OAuthManager.RegisterClient(ClientName.Parse(providerName), clientId, clientSecret, scope, parameters, initArgs);
+    }
+
+    /// <summary>
+    /// Registers the specified client in the application.
+    /// </summary>
+    /// <param name="clientName">The provider name. And may also contain any client name for for division into groups.</param>
+    /// <param name="clientId">The application identifier obtained from the provider website.</param>
+    /// <param name="clientSecret">The application secret key obtained from the provider website.</param>
+    /// <param name="initArgs">Additional parameters to be passed to the constructor of the client class.</param>
+    /// <param name="scope">List of scope that will be requested from the provider. Only for OAuth 2.0.</param>
+    /// <param name="parameters">Additional parameters that will be transferred to the provider website.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="clientName"/>, <paramref name="clientId"/> or <paramref name="clientSecret"/> is <b>null</b> or <b>empty</b>.</exception>
+    /// <exception cref="UnknownProviderException">Provider not found by <paramref name="clientName"/>.</exception>
+    /// <exception cref="NotSupportedException">The <paramref name="clientName"/> not suppored <paramref name="scope"/>.</exception>
+    /// <example>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "google", 
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// );
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   "facebook"
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "google",
+    ///   "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///   "AeEbEGQqoKgOZb41JUVLvEJL"
+    /// )
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   "facebook",
+    ///   "1435890426686808", 
+    ///   "c6057dfae399beee9e8dc46a4182e8fd"
+    /// )
+    /// </code>
+    /// <para>
+    /// You can register multiple clients to a single provider. 
+    /// The following example shows how to do it.
+    /// </para>
+    /// <code lang="C#">
+    /// var clientName = ClientName.Create("Debug", "Facebook");
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   clientName
+    ///   "000000000000000000", 
+    ///   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    /// );
+    /// 
+    /// clientName = ClientName.Create("Any name", "Facebook");
+    /// 
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   clientName
+    ///   "111111111111111111", 
+    ///   "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// Dim name As ClientName = ClientName.Create("Debug", "Facebook")
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   name,
+    ///   "000000000000000000", 
+    ///   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    /// )
+    /// 
+    /// name As ClientName = ClientName.Create("Any name", "Facebook")
+    /// 
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   name,
+    ///   "111111111111111111", 
+    ///   "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    /// )
+    /// </code>
+    /// </example>
+    public static void RegisterClient(ClientName clientName, string clientId, string clientSecret, string scope = null, NameValueCollection parameters = null, object[] initArgs = null)
+    {
+      if (String.IsNullOrEmpty(clientName)) { throw new ArgumentNullException("clientName"); }
       if (String.IsNullOrEmpty(clientId)) { throw new ArgumentNullException("clientId"); }
       if (String.IsNullOrEmpty(clientSecret)) { throw new ArgumentNullException("clientSecret"); }
       // searching provider by name
-      if (!OAuthManager.AllClients.ContainsKey(providerName))
+      if (!OAuthManager.AllClients.ContainsKey(clientName.ProviderName))
       {
-        throw new UnknownProviderException("Provider [{0}] not found. Please, check provider name.", providerName);
+        throw new UnknownProviderException("Provider [{0}] not found. Please, check provider name.", clientName.ProviderName);
       }
       // init parameters
       var parm = new ArrayList();
@@ -313,7 +677,7 @@ namespace Nemiro.OAuth
         parm.AddRange(initArgs);
       }
       // creating client instance
-      OAuthBase client = Activator.CreateInstance(OAuthManager.AllClients[providerName], parm.ToArray()) as OAuthBase;
+      OAuthBase client = Activator.CreateInstance(OAuthManager.AllClients[clientName.ProviderName], parm.ToArray()) as OAuthBase;
       if (!String.IsNullOrEmpty(scope))
       {
         if (client.GetType().BaseType != typeof(OAuth2Client))
@@ -327,7 +691,21 @@ namespace Nemiro.OAuth
         client.Parameters = parameters;
       }
       // add client
-      OAuthManager.RegisterClient(client);
+      OAuthManager.RegisterClient(clientName.Key, client);
+    }
+
+    /// <summary>
+    /// Checks registered provider with the specified name or not.
+    /// </summary>
+    /// <param name="clietName">The provider name or client name.</param>
+    public static bool IsRegisteredClient(ClientName clietName)
+    {
+      if (String.IsNullOrEmpty(clietName))
+      {
+        throw new ArgumentNullException("clietName");
+      }
+
+      return OAuthManager.RegisteredClients.ContainsKey(clietName);
     }
 
     /// <summary>

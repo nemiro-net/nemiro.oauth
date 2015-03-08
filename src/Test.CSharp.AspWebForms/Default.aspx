@@ -16,8 +16,9 @@
 
         <%-- !!!USE JAVASCRIPT LINKS TO PREVENT THEM FROM INDEXING!!! --%>
         <ul style="width:600px;margin-left:auto;margin-right:auto;">
-          <asp:Repeater ID="RepeaterOAuth" runat="server" 
-            onitemdatabound="RepeaterOAuth_ItemDataBound">
+          <asp:Repeater ID="RepeaterOAuth" runat="server" EnableViewState="false"
+            onitemdatabound="RepeaterOAuth_ItemDataBound"
+					>
             <ItemTemplate>
               <asp:LinkButton ID="lnk" runat="server">
                 <asp:Image ID="img" runat="server" />
@@ -43,6 +44,7 @@
           <div class="text"><%=Test.Resources.Strings.SeeAlsoDemo%></div>
         </div>
       </div>
+
     </form>
   </body>
 </html>

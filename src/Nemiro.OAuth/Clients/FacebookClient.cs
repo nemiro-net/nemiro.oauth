@@ -254,6 +254,7 @@ namespace Nemiro.OAuth.Clients
   /// <para><img src="../img/facebook009.png" alt="Facebook User Info" /></para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="AssemblaClient"/>
   /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>

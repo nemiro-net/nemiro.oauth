@@ -18,7 +18,14 @@ namespace Test.OAuthWeb.Controllers
         if (HttpContext.Cache["LatestRelease"] == null)
         {
           var result = OAuthUtility.Get("https://www.nuget.org/api/v2/Search()?$orderby=Id&$skip=0&$top=30&searchTerm=%27Nemiro.OAuth%27&targetFramework=%27%27&includePrerelease=false");
-          ViewBag.Version = result["d"].First()["Version"].ToString();
+          foreach (UniValue item in result["d"]["results"])
+          {
+            if (item["Id"].ToString().Equals("Nemiro.OAuth", StringComparison.OrdinalIgnoreCase))
+            {
+              ViewBag.Version = item["Version"].ToString();
+              break;
+            }
+          }
           HttpContext.Cache.Add("LatestRelease", ViewBag.Version, null, DateTime.Now.AddHours(1), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Normal, null);
         }
         else

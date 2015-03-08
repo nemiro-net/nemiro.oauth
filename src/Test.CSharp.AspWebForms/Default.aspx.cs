@@ -26,7 +26,7 @@ namespace Test.CSharp.AspWebForms
 
       // add provider name and click handler
       LinkButton lnk = e.Item.FindControl("lnk") as LinkButton;
-      lnk.Attributes.Add("data-provider", ((KeyValuePair<string, OAuthBase>)e.Item.DataItem).Key);
+      lnk.Attributes.Add("data-provider", ((KeyValuePair<ClientName, OAuthBase>)e.Item.DataItem).Key);
       lnk.Click += RedirectToLogin_Click;
 
       // add icon

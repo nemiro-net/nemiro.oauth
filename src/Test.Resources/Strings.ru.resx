@@ -203,6 +203,15 @@
   где сможете проверить работу с &lt;strong&gt;API&lt;/strong&gt; выбранного поставщика &lt;strong&gt;OAuth&lt;/strong&gt;.
 &lt;/p&gt;</value>
   </data>
+  <data name="DemoProvidersTable" xml:space="preserve">
+    <value>Регистрация и управление приложениями на сайтах поставщиков OAuth</value>
+  </data>
+  <data name="DemoProviderTableInfo" xml:space="preserve">
+    <value>&lt;p&gt;Информация в таблице актуальна по состоянию на &lt;strong&gt;март 2015 года&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Внутреннее имя&lt;/strong&gt; – это строковое имя, которое используется в библиотеке &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;. Регистр символов не имеет значения.&lt;/p&gt;
+&lt;p&gt;Если поставщик поддерживает запросы с &lt;strong&gt;localhost&lt;/strong&gt;, то эти запросы можно осуществлять через протокол &lt;strong&gt;HTTP&lt;/strong&gt;, не зависимо от поддержки провайдером протокола &lt;strong&gt;HTTP&lt;/strong&gt;.&lt;br /&gt;Значение параметра &lt;strong&gt;Разрешен протокол HTTP&lt;/strong&gt; актуально только для внешних доменов.&lt;/p&gt;
+</value>
+  </data>
   <data name="DemoSecurity" xml:space="preserve">
     <value>&lt;h2&gt;Этот сайт безопасно использовать?&lt;/h2&gt;
 &lt;p&gt;Да, безопасно. Ваши учетные данные известны только серверу-поставщику &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
@@ -253,39 +262,19 @@
 &lt;a href="https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms"&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
 &lt;/p&gt;
 &lt;p&gt;
-  Статья «Авторизация по протоколу OAuth в проектах .NET Framework»:&lt;br /&gt;
+  Статья: «Авторизация по протоколу OAuth в проектах .NET Framework»:&lt;br /&gt;
   &lt;a href="http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art"&gt;http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Видео: «Создание простого менеджера файлов для Dropbox»&lt;br /&gt;
+&lt;a href="http://www.youtube.com/watch?v=fcT-Jt8rcdY"&gt;http://www.youtube.com/watch?v=fcT-Jt8rcdY&lt;/a&gt;&lt;br /&gt;
+&lt;span style="font-size:11px;"&gt;(анг., есть русские субтитры)&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
   Другие проекты:&lt;br /&gt;
   &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
 &lt;/p&gt;
-&lt;h3&gt;Регистрация и управление приложениями на сайтах поставщиков OAuth&lt;/h3&gt;
-	&lt;p&gt;Amazon:&lt;br /&gt;
-		&lt;a href="http://login.amazon.com/manageApps"&gt;http://login.amazon.com/manageApps&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dropbox:&lt;br /&gt;&lt;a href="https://www.dropbox.com/developers/apps"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Facebook:&lt;br /&gt;
-		&lt;a href="https://developers.facebook.com/"&gt;https://developers.facebook.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Foursquare:&lt;br /&gt;&lt;a href="https://foursquare.com/oauth"&gt;https://foursquare.com/oauth&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;GitHub:&lt;br /&gt;
-		&lt;a href="https://github.com/settings/applications/"&gt;https://github.com/settings/applications/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Google:&lt;br /&gt;
-		&lt;a href="https://console.developers.google.com/"&gt;https://console.developers.google.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;LinkedIn:&lt;br /&gt;&lt;a href="https://developer.linkedin.com/"&gt;https://developer.linkedin.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Microsoft Live:&lt;br /&gt;
-		&lt;a href="https://account.live.com/developers/applications/index"&gt;https://account.live.com/developers/applications/index&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Mail.Ru:&lt;br /&gt;
-		&lt;a href="http://api.mail.ru/sites/my/"&gt;http://api.mail.ru/sites/my/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Одноклассники:&lt;br /&gt;
-		&lt;a href="http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev"&gt;http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;SoundCloud:&lt;br /&gt;&lt;a href="https://developers.soundcloud.com/"&gt;https://developers.soundcloud.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Twitter:&lt;br /&gt;
-		&lt;a href="https://apps.twitter.com/"&gt;https://apps.twitter.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;ВКонтакте:&lt;br /&gt;
-		&lt;a href="http://vk.com/dev"&gt;http://vk.com/dev&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Yahoo!:&lt;br /&gt;&lt;a href="https://developer.yahoo.com/"&gt;https://developer.yahoo.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Яндекс:&lt;br /&gt;
-		&lt;a href="https://oauth.yandex.ru/client/my"&gt;https://oauth.yandex.ru/client/my&lt;/a&gt;&lt;/p&gt;</value>
+</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Скачать</value>
@@ -295,6 +284,9 @@
   </data>
   <data name="GroupsList" xml:space="preserve">
     <value>Список групп</value>
+  </data>
+  <data name="HTTPSupports" xml:space="preserve">
+    <value>Разрешен&lt;br /&gt;протокол&lt;br /&gt;HTTP</value>
   </data>
   <data name="IndexAbout" xml:space="preserve">
     <value>&lt;p&gt;На этой странице выведен список всех зарегистрированных в приложении поставщиков OAuth.&lt;/p&gt;
@@ -309,8 +301,17 @@
   <data name="InterestsList" xml:space="preserve">
     <value>Список интересов</value>
   </data>
+  <data name="InternalName" xml:space="preserve">
+    <value>Внутреннее имя</value>
+  </data>
   <data name="LikesList" xml:space="preserve">
     <value>Список лайков</value>
+  </data>
+  <data name="LocalhostSupports" xml:space="preserve">
+    <value>Разрешено&lt;br /&gt;использовать&lt;br /&gt;адреса&lt;br /&gt;localhost</value>
+  </data>
+  <data name="MultipleUrlSupports" xml:space="preserve">
+    <value>Разрешено&lt;br /&gt;использовать&lt;br /&gt;несколько&lt;br /&gt;URL</value>
   </data>
   <data name="NoForLocalhost" xml:space="preserve">
     <value>&lt;h1 style="color:red;text-align:center;"&gt;Этот сайт работает правильно только на домене demo-oauth.nemiro.net!&lt;/h1&gt;
@@ -324,6 +325,9 @@
   </data>
   <data name="Port59962" xml:space="preserve">
     <value>Все приложения настроены на порт &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;Если у вас используется другой порт, то обработка и вывод результатов авторизации работать не будут.&lt;br /&gt;Вы можете явно указать номер порта в вашем веб-приложении (меню: Проект =&amp;gt; Свойства =&amp;gt; вкладка Веб =&amp;gt; Порт), или создать и использовать собственные приложения на сайтах поставщиков (таких как: facebook, twitter, vkontakte и т.п.).</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Название поставщика</value>
   </data>
   <data name="PublicKeyIsRequired" xml:space="preserve">
     <value>Public Key для [{0}] не найден. Пожалуйста, укажите публичный ключ в параметре [oauth:{0}:publicKey], либо удилите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>

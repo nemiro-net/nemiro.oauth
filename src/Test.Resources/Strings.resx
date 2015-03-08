@@ -157,6 +157,16 @@
   where you can check work with an &lt;strong&gt;API&lt;/strong&gt; of the &lt;strong&gt;OAuth&lt;/strong&gt; provider.
 &lt;/p&gt;</value>
   </data>
+  <data name="DemoProvidersTable" xml:space="preserve">
+    <value>Registration and management of applications</value>
+  </data>
+  <data name="DemoProviderTableInfo" xml:space="preserve">
+    <value>&lt;p&gt;The information in the table is current as of &lt;strong&gt;March 2015&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;internal name&lt;/strong&gt; is case-insensitive.&lt;/p&gt;
+&lt;p&gt;If the provider supports the &lt;strong&gt;localhost&lt;/strong&gt;, then allowed to use the &lt;strong&gt;HTTP&lt;/strong&gt; protocol for &lt;strong&gt;localhost&lt;/strong&gt;.
+&lt;strong&gt;HTTP&lt;/strong&gt; supports field is only for external addresses.&lt;/p&gt;
+</value>
+  </data>
   <data name="DemoSecurity" xml:space="preserve">
     <value>&lt;h2&gt;Is it safe?&lt;/h2&gt;
 &lt;p&gt;Yes safely.&lt;/p&gt;
@@ -198,36 +208,16 @@ Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
 &lt;a href="https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms"&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
 &lt;/p&gt;
 &lt;p&gt;
+Article: «Users Authorization through OAuth in .NET Framework»&lt;br /&gt;
+&lt;a href="http://www.codeproject.com/Articles/875991/Users-Authorization-through-OAuth-in-NET-Framework"&gt;http://www.codeproject.com/Articles/875991/Users-Authorization-through-OAuth-in-NET-Framework&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Video: «Creating a simple file manager for Dropbox»&lt;br /&gt;
+&lt;a href="http://www.youtube.com/watch?v=fcT-Jt8rcdY"&gt;http://www.youtube.com/watch?v=fcT-Jt8rcdY&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
   Other projects:&lt;br /&gt;
-  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
-
-&lt;h3&gt;Registration and management of applications&lt;/h3&gt;
-	&lt;p&gt;Amazon:&lt;br /&gt;
-		&lt;a href="http://login.amazon.com/manageApps"&gt;http://login.amazon.com/manageApps&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dropbox:&lt;br /&gt;&lt;a href="https://www.dropbox.com/developers/apps"&gt;https://www.dropbox.com/developers/apps&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Facebook:&lt;br /&gt;
-		&lt;a href="https://developers.facebook.com/"&gt;https://developers.facebook.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Foursquare:&lt;br /&gt;&lt;a href="https://foursquare.com/oauth"&gt;https://foursquare.com/oauth&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;GitHub:&lt;br /&gt;
-		&lt;a href="https://github.com/settings/applications/"&gt;https://github.com/settings/applications/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Google:&lt;br /&gt;
-		&lt;a href="https://console.developers.google.com/"&gt;https://console.developers.google.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;LinkedIn:&lt;br /&gt;&lt;a href="https://developer.linkedin.com/"&gt;https://developer.linkedin.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Microsoft Live:&lt;br /&gt;
-		&lt;a href="https://account.live.com/developers/applications/index"&gt;https://account.live.com/developers/applications/index&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Mail.Ru:&lt;br /&gt;
-		&lt;a href="http://api.mail.ru/sites/my/"&gt;http://api.mail.ru/sites/my/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Odnoklassniki:&lt;br /&gt;
-		&lt;a href="http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev"&gt;http://odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&amp;amp;st._aid=Apps_Info_MyDev&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;SoundCloud:&lt;br /&gt;&lt;a href="https://developers.soundcloud.com/"&gt;https://developers.soundcloud.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Twitter:&lt;br /&gt;
-		&lt;a href="https://apps.twitter.com/"&gt;https://apps.twitter.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;VKontakte:&lt;br /&gt;
-		&lt;a href="http://vk.com/dev"&gt;http://vk.com/dev&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Yahoo!:&lt;br /&gt;&lt;a href="https://developer.yahoo.com/"&gt;https://developer.yahoo.com/&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;Yandex:&lt;br /&gt;
-		&lt;a href="https://oauth.yandex.ru/client/my"&gt;https://oauth.yandex.ru/client/my&lt;/a&gt;&lt;/p&gt;
-&lt;/p&gt;</value>
+  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
@@ -237,6 +227,9 @@ Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
   </data>
   <data name="GroupsList" xml:space="preserve">
     <value>Get list of groups</value>
+  </data>
+  <data name="HTTPSupports" xml:space="preserve">
+    <value>HTTP&lt;br /&gt;supports</value>
   </data>
   <data name="IndexAbout" xml:space="preserve">
     <value>&lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
@@ -251,8 +244,17 @@ Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
   <data name="InterestsList" xml:space="preserve">
     <value>Get list of interests</value>
   </data>
+  <data name="InternalName" xml:space="preserve">
+    <value>Internal name</value>
+  </data>
   <data name="LikesList" xml:space="preserve">
     <value>Get list of likes</value>
+  </data>
+  <data name="LocalhostSupports" xml:space="preserve">
+    <value>localhost&lt;br /&gt;supports</value>
+  </data>
+  <data name="MultipleUrlSupports" xml:space="preserve">
+    <value>Multiple Url&lt;br /&gt;supports</value>
   </data>
   <data name="NoForLocalhost" xml:space="preserve">
     <value>&lt;h1 style="color:red;text-align:center;"&gt;This site works correctly only on the demo-oauth.nemiro.net!&lt;/h1&gt;</value>
@@ -265,6 +267,9 @@ Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
   </data>
   <data name="Port59962" xml:space="preserve">
     <value>All applications are configured on the port &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;If you have another port, the results will not shown.&lt;br /&gt;Configure the port settings for this web project (Project =&amp;gt; Properties =&amp;gt; Web =&amp;gt; Specified port), or use your own configuration applications (on sites of providers).</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
   </data>
   <data name="PublicKeyIsRequired" xml:space="preserve">
     <value>Public Key for [{0}] not found. Please set value to the [oauth:{0}:publicKey] parameter or remove [{0}] from [oauth:clients].</value>

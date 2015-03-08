@@ -500,6 +500,7 @@ namespace Nemiro.OAuth.Clients
   /// </code>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="AssemblaClient"/>
   /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>

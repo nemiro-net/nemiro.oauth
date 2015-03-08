@@ -314,6 +314,7 @@ namespace Nemiro.OAuth.Clients
   /// <para><b>NOTE:</b> For proper processing, you will need to download and put on your site a <b>receiver.html</b> file.</para>
   /// </example>
   /// <seealso cref="AmazonClient"/>
+  /// <seealso cref="AssemblaClient"/>
   /// <seealso cref="CodeProjectClient"/>
   /// <seealso cref="DropboxClient"/>
   /// <seealso cref="FacebookClient"/>

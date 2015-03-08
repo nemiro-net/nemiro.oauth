@@ -78,6 +78,7 @@
   <ItemGroup>
     <None Include="Resources\amazon.dat" />
     <None Include="Resources\amazon100.dat" />
+    <None Include="Resources\assembla.dat" />
     <None Include="Resources\codeproject" />
     <None Include="Resources\dropbox.dat" />
     <None Include="Resources\empty.dat" />

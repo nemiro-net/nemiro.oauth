@@ -28,11 +28,41 @@ namespace Nemiro.OAuth
   public class DuplicateProviderException : Exception
   {
 
+    private string _Message = "";
+
+    /// <summary>
+    /// Gets an error message.
+    /// </summary>
+    public override string Message
+    {
+      get
+      {
+        return _Message;
+      }
+    }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DuplicateProviderException"/> class.
     /// </summary>
     /// <param name="providerName">The name of the provider.</param>
+    [Obsolete("Please use an overload. // v1.8", true)]
     public DuplicateProviderException(string providerName) : base(String.Format("Provider \"{0}\" already registered.", providerName)) { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DuplicateProviderException"/> class.
+    /// </summary>
+    /// <param name="clientName">The name of the provider and client.</param>
+    public DuplicateProviderException(ClientName clientName)
+    {
+      if (!String.IsNullOrEmpty(clientName.Key))
+      {
+        _Message = String.Format("Provider \"{0}\" with name \"{1}\" already registered.", clientName.ProviderName, clientName.Key);
+      }
+      else
+      {
+        _Message = String.Format("Provider \"{0}\" already registered. You can use the ClientName, to register multiple clients for the same provider.", clientName);
+      }
+    }
 
   }
 

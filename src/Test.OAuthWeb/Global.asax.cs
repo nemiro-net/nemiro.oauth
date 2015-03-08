@@ -71,7 +71,7 @@ namespace Test.OAuthWeb
         {
           throw new ArgumentNullException(String.Format(Test.Resources.Strings.ClientKeyIsRequired, clientName));
         }
-
+         
         // public key for odnoklassniki.ru
         ArrayList args = null;
         if (clientName.Equals("odnoklassniki", StringComparison.OrdinalIgnoreCase))
@@ -92,7 +92,7 @@ namespace Test.OAuthWeb
           scope = ConfigurationManager.AppSettings[String.Format("oauth:{0}:scope", clientName)];
         }
         // --
-
+          
         OAuthManager.RegisterClient
         (
           clientName,

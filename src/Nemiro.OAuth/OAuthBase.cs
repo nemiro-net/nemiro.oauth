@@ -233,8 +233,11 @@ namespace Nemiro.OAuth
 
       // set unique identifier to the instance
       this.State = OAuthUtility.GetRandomKey();
+
+      // I do not remember, why. I'll try to change it. // v1.8 
       // add the instance to the clients collection
-      OAuthManager.AddRequet(this.State, this);
+      // OAuthManager.AddRequet(this.State, this.ProviderName, this);
+      // --
     }
 
     #endregion
@@ -316,7 +319,9 @@ namespace Nemiro.OAuth
         ((OAuthClient)result).RequestToken = null;
       }
 
-      OAuthManager.AddRequet(result.State, result);
+      // I do not remember, why. I'll try to change it. // v1.8 
+      // OAuthManager.AddRequet(result.State, result.ProviderName, result);
+      // --
 
       return result;
     }

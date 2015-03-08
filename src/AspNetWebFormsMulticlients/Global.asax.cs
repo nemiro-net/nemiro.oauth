@@ -13,36 +13,32 @@ namespace AspNetWebFormsMulticlients
   {
 
     protected void Application_Start(object sender, EventArgs e)
-    {
-      CustomOAuthManager.RegisterClient
+    { 
+      OAuthManager.RegisterClient
       (
-        "default",
-        "facebook",
+        ClientName.Create("default", "facebook"),
         "1435890426686808",
         "c6057dfae399beee9e8dc46a4182e8fd"
       );
-
-      CustomOAuthManager.RegisterClient
+      
+      OAuthManager.RegisterClient
       (
-        "popup",
-        "facebook",
+        ClientName.Create("default", "foursquare"),
+        "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
+        "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+      );
+
+      OAuthManager.RegisterClient
+      (
+        ClientName.Create("popup", "facebook"),
         "1435890426686808",
         "c6057dfae399beee9e8dc46a4182e8fd",
         parameters: new NameValueCollection { { "display", "popup" } }
       );
 
-      CustomOAuthManager.RegisterClient
+      OAuthManager.RegisterClient
       (
-        "default",
-        "foursquare",
-        "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
-        "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
-      );
-
-      CustomOAuthManager.RegisterClient
-      (
-        "popup",
-        "foursquare",
+        ClientName.Create("popup", "foursquare"),
         "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
         "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT",
         parameters: new NameValueCollection { { "display", "touch" } }

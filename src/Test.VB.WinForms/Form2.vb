@@ -6,6 +6,7 @@ Public Class Form2
 
   Public Sub New(providerName As String)
     InitializeComponent()
+    WebBrowser1.ScriptErrorsSuppressed = True
     WebBrowser1.Navigate(OAuthWeb.GetAuthorizationUrl(providerName))
   End Sub
 

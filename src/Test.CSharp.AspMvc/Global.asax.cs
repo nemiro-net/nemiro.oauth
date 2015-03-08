@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Nemiro.OAuth;
 using Nemiro.OAuth.Clients;
+using System.Collections.Specialized;
 
 namespace Test.CSharp.AspMvc
 {
@@ -48,6 +49,7 @@ namespace Test.CSharp.AspMvc
         )
         {
           Scope = "public_profile,email,user_groups,user_likes,user_interests"
+          //Parameters = new NameValueCollection { { "display", "popup" } }
         }
       );
 
@@ -55,7 +57,7 @@ namespace Test.CSharp.AspMvc
       (
         new TwitterClient
         (
-          "1Ayh2ZM2l9chloiFsmxNpi7Gg", 
+          "1Ayh2ZM2l9chloiFsmxNpi7Gg",
           "dbVXKWVIlH5fRuVI0FvE2ZDsZAbBg74UrGFYwW1kLSwc0ceJnJ"
         )
       );
@@ -64,7 +66,7 @@ namespace Test.CSharp.AspMvc
       (
         new VkontakteClient
         (
-          "2419779", 
+          "2419779",
           "31nnASa9T1eO150VCFgr"
         )
       );
@@ -73,7 +75,7 @@ namespace Test.CSharp.AspMvc
       (
         new MailRuClient
         (
-          "722701", 
+          "722701",
           "d0622d3d9c9efc69e4ca42aa173b938a"
         )
       );
@@ -91,7 +93,7 @@ namespace Test.CSharp.AspMvc
       (
         new YandexClient
         (
-          "7b0a53d23e384033be3a414739be255f", 
+          "7b0a53d23e384033be3a414739be255f",
           "3c85e4a1148640b2a490cbd8c75384df"
         )
       );
@@ -131,15 +133,14 @@ namespace Test.CSharp.AspMvc
           "amzn1.application-oa2-client.f0ffe4edc256488dae00dcaf96d75d1b",
           "764dcefe49b441c8c6244c93e5d5d04de54fda6dfdc83da9693bf346f4dc4515"
         ) { ReturnUrl = "http://localhost" }
-      ); 
+      );
 
       OAuthManager.RegisterClient
       (
-        new FoursquareClient
-        (
-          "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
-          "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
-        )
+        "foursquare",
+        "LHYZN1KUXN50L141QCQFNNVOYBGUE3G3FCWFZ3EEZTOZHY5Q",
+        "HWXYFLLSS2IUQ0H4XNCDAZEFZKIU3MZRP5G55TNBDHRPNOQT"
+        // parameters: new NameValueCollection { { "display", "webpopup" } } // webpopup
       );
 
       OAuthManager.RegisterClient
@@ -157,6 +158,15 @@ namespace Test.CSharp.AspMvc
         (
           "215a1941ebed4e4fa74e94dd84762836",
           "ba53a710e1624870bc066e7a9ae38601"
+        )
+      );
+
+      OAuthManager.RegisterClient
+      (
+        new AssemblaClient
+        (
+          "bOS4QkXnmr5jhdacwqjQXA",
+          "701ee6dedf74fc4ad75bfa7476666a2f"
         )
       );
     }
