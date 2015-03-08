@@ -12,7 +12,7 @@ This version includes enhancements for customization.
 * Allowed to specify the GrantType after an instance of a client;
 * Opened access (public modifier) to basic properties of the OAuth protocol;
 * Added OAuth client for Assembla;
-* Deleted file of the obsolete Helper class.
+* Deleted file of the obsolete Helper class (obsolete since v1.4; use OAuthUtility).
 
 ##### Thanks:
 
