@@ -34,7 +34,7 @@ The version includes minor improvements.
 * Added OAuthManager.GetClientTypeByName method to obtain the type of client;
 * Added default scope.
 
-v1.5 (December 27, 2014)
+#### v1.5 (December 27, 2014)
 
 In this version were made significant changes and improvements, which are mainly aimed at simplifying integration with a variety of API.
 
