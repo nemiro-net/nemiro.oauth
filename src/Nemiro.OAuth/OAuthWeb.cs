@@ -443,7 +443,7 @@ namespace Nemiro.OAuth
       var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
 
       // add request
-      OAuthManager.AddRequet(client.State, clientName, client);
+      OAuthManager.AddRequest(client.State, clientName, client);
 
       // redirect
       client.RedirectToAuthorization();
@@ -529,7 +529,7 @@ namespace Nemiro.OAuth
       var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
 
       // add request
-      OAuthManager.AddRequet(client.State, clientName, client);
+      OAuthManager.AddRequest(client.State, clientName, client);
 
       // return url
       return client.AuthorizationUrl;
@@ -638,16 +638,16 @@ namespace Nemiro.OAuth
           throw new ArgumentNullException("code");
         }
 
-        if (!OAuthManager.Requets.ContainsKey(requestId))
+        if (!OAuthManager.Request.ContainsKey(requestId))
         {
           throw new AuthorizationException("Sorry, request key not found. Please try again authorization.");
         }
 
-        var client = OAuthManager.Requets[requestId].Client;
+        var client = OAuthManager.Request[requestId].Client;
         client.AuthorizationCode = code;
 
         result.RequestId = requestId;
-        result.ClientName = OAuthManager.Requets[requestId].ClientName;
+        result.ClientName = OAuthManager.Request[requestId].ClientName;
         result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
 
@@ -667,7 +667,7 @@ namespace Nemiro.OAuth
     }
 
     #endregion
-    #region VerifyAuthorizationAndRemoveRequet
+    #region VerifyAuthorizationAndRemoveRequest
 
     /// <summary>
     /// Verifies the authorization results for the current URL and removes the request from memory.
@@ -678,9 +678,9 @@ namespace Nemiro.OAuth
     /// <returns>
     /// <para>Returns the verification results.</para>
     /// </returns>
-    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet()
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequest()
     {
-      return OAuthWeb.VerifyAuthorizationAndRemoveRequet(HttpContext.Current.Request.Url.ToString());
+      return OAuthWeb.VerifyAuthorizationAndRemoveRequest(HttpContext.Current.Request.Url.ToString());
     }
 
     /// <summary>
@@ -690,10 +690,10 @@ namespace Nemiro.OAuth
     /// <returns>
     /// <para>Returns the verification results.</para>
     /// </returns>
-    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet(string url)
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequest(string url)
     {
       var result = OAuthWeb.VerifyAuthorization(url);
-      OAuthManager.RemoveRequet(result.RequestId);
+      OAuthManager.RemoveRequest(result.RequestId);
       return result;
     }
 
@@ -708,10 +708,10 @@ namespace Nemiro.OAuth
     /// <remarks>
     /// <para>This method is intended for internal use. It is recommended to use the overload <see cref="VerifyAuthorization()"/> or <see cref="VerifyAuthorization(string)"/>.</para>
     /// </remarks>
-    public static AuthorizationResult VerifyAuthorizationAndRemoveRequet(string requestId, string code)
+    public static AuthorizationResult VerifyAuthorizationAndRemoveRequest(string requestId, string code)
     {
       var result = OAuthWeb.VerifyAuthorization(requestId, code);
-      OAuthManager.RemoveRequet(requestId);
+      OAuthManager.RemoveRequest(requestId);
       return result;
     }
 

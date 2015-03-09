@@ -33,7 +33,7 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Provides helpers methods for OAuth.
   /// </summary>
-  public class OAuthUtility
+  public static class OAuthUtility
   {
 
     /// <summary>

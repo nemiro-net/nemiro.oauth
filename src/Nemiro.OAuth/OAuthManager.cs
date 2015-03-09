@@ -69,15 +69,15 @@ namespace Nemiro.OAuth
       }
     }
 
-    private static Dictionary<string, OAuthRequest> _Requets = new Dictionary<string, OAuthRequest>();
+    private static Dictionary<string, OAuthRequest> _Request = new Dictionary<string, OAuthRequest>();
     /// <summary>
     /// Gets the list of active requests.
     /// </summary>
-    internal static Dictionary<string, OAuthRequest> Requets
+    internal static Dictionary<string, OAuthRequest> Request
     {
       get
       {
-        return _Requets;
+        return _Request;
       }
     }
 
@@ -126,7 +126,7 @@ namespace Nemiro.OAuth
         }
         var client = Activator.CreateInstance(t, param.ToArray()) as OAuthBase;
         _AllClients.Add(client.ProviderName, t);
-        // OAuthManager.RemoveRequet(client.State);
+        // OAuthManager.RemoveRequest(client.State);
       }
       // --
       _Timer.Elapsed += Timer_Elapsed;
@@ -142,7 +142,7 @@ namespace Nemiro.OAuth
     /// <param name="e">The event data.</param>
     private static void Timer_Elapsed(object sender, EventArgs e)
     {
-      if (_Requets.Count <= 0)
+      if (_Request.Count <= 0)
       {
         // no active requests, stop the time
         _Timer.Stop();
@@ -152,18 +152,18 @@ namespace Nemiro.OAuth
       // lifetime request - 20 minutes
       // remove old requests
       var now = DateTime.Now;
-      var toRemove = _Requets.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
+      var toRemove = _Request.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
 
       foreach (var itm in toRemove)
       {
-        if (_Requets.ContainsKey(itm.Key))
+        if (_Request.ContainsKey(itm.Key))
         {
-          OAuthManager.RemoveRequet(itm.Key);
+          OAuthManager.RemoveRequest(itm.Key);
         }
       }
 
       // change the status of the timer
-      _Timer.Enabled = (_Requets.Count > 0);
+      _Timer.Enabled = (_Request.Count > 0);
     }
 
     /// <summary>
@@ -172,9 +172,9 @@ namespace Nemiro.OAuth
     /// <param name="key">The unique request key.</param>
     /// <param name="clientName">The client name.</param>
     /// <param name="client">The client instance.</param>
-    internal static void AddRequet(string key, ClientName clientName, OAuthBase client)
+    internal static void AddRequest(string key, ClientName clientName, OAuthBase client)
     {
-      OAuthManager.Requets.Add(key, new OAuthRequest(clientName, client));
+      OAuthManager.Request.Add(key, new OAuthRequest(clientName, client));
       _Timer.Start();
     }
 
@@ -182,14 +182,14 @@ namespace Nemiro.OAuth
     /// Removes the request from collection.
     /// </summary>
     /// <param name="key">The unique request key to remove..</param>
-    internal static void RemoveRequet(string key)
+    internal static void RemoveRequest(string key)
     {
       if (String.IsNullOrEmpty(key)) { return; }
-      if (_Requets.ContainsKey(key))
+      if (_Request.ContainsKey(key))
       {
-        _Requets.Remove(key);
+        _Request.Remove(key);
       }
-      _Timer.Enabled = (_Requets.Count > 0);
+      _Timer.Enabled = (_Request.Count > 0);
     }
 
     /// <summary>
@@ -458,7 +458,7 @@ namespace Nemiro.OAuth
       _RegisteredClients.Add(name, client);
 
       // remove from watching 
-      // OAuthManager.RemoveRequet(client.State.ToString());
+      // OAuthManager.RemoveRequest(client.State.ToString());
       // --
 
       // if this is a new client
