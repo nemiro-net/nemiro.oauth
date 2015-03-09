@@ -638,16 +638,16 @@ namespace Nemiro.OAuth
           throw new ArgumentNullException("code");
         }
 
-        if (!OAuthManager.Request.ContainsKey(requestId))
+        if (!OAuthManager.Requests.ContainsKey(requestId))
         {
           throw new AuthorizationException("Sorry, request key not found. Please try again authorization.");
         }
 
-        var client = OAuthManager.Request[requestId].Client;
+        var client = OAuthManager.Requests[requestId].Client;
         client.AuthorizationCode = code;
 
         result.RequestId = requestId;
-        result.ClientName = OAuthManager.Request[requestId].ClientName;
+        result.ClientName = OAuthManager.Requests[requestId].ClientName;
         result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
 

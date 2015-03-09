@@ -69,15 +69,15 @@ namespace Nemiro.OAuth
       }
     }
 
-    private static Dictionary<string, OAuthRequest> _Request = new Dictionary<string, OAuthRequest>();
+    private static Dictionary<string, OAuthRequest> _Requests = new Dictionary<string, OAuthRequest>();
     /// <summary>
     /// Gets the list of active requests.
     /// </summary>
-    internal static Dictionary<string, OAuthRequest> Request
+    internal static Dictionary<string, OAuthRequest> Requests
     {
       get
       {
-        return _Request;
+        return _Requests;
       }
     }
 
@@ -142,7 +142,7 @@ namespace Nemiro.OAuth
     /// <param name="e">The event data.</param>
     private static void Timer_Elapsed(object sender, EventArgs e)
     {
-      if (_Request.Count <= 0)
+      if (_Requests.Count <= 0)
       {
         // no active requests, stop the time
         _Timer.Stop();
@@ -152,18 +152,18 @@ namespace Nemiro.OAuth
       // lifetime request - 20 minutes
       // remove old requests
       var now = DateTime.Now;
-      var toRemove = _Request.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
+      var toRemove = _Requests.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
 
       foreach (var itm in toRemove)
       {
-        if (_Request.ContainsKey(itm.Key))
+        if (_Requests.ContainsKey(itm.Key))
         {
           OAuthManager.RemoveRequest(itm.Key);
         }
       }
 
       // change the status of the timer
-      _Timer.Enabled = (_Request.Count > 0);
+      _Timer.Enabled = (_Requests.Count > 0);
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ namespace Nemiro.OAuth
     /// <param name="client">The client instance.</param>
     internal static void AddRequest(string key, ClientName clientName, OAuthBase client)
     {
-      OAuthManager.Request.Add(key, new OAuthRequest(clientName, client));
+      OAuthManager.Requests.Add(key, new OAuthRequest(clientName, client));
       _Timer.Start();
     }
 
@@ -185,11 +185,11 @@ namespace Nemiro.OAuth
     internal static void RemoveRequest(string key)
     {
       if (String.IsNullOrEmpty(key)) { return; }
-      if (_Request.ContainsKey(key))
+      if (_Requests.ContainsKey(key))
       {
-        _Request.Remove(key);
+        _Requests.Remove(key);
       }
-      _Timer.Enabled = (_Request.Count > 0);
+      _Timer.Enabled = (_Requests.Count > 0);
     }
 
     /// <summary>
