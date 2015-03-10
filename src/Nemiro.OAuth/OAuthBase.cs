@@ -68,7 +68,7 @@ namespace Nemiro.OAuth
     private RequestResult _AccessToken = null;
 
     /// <summary>
-    /// Gets or sets the access token.
+    /// Gets or sets an access token.
     /// </summary>
     public virtual RequestResult AccessToken
     {
@@ -83,6 +83,21 @@ namespace Nemiro.OAuth
       protected set
       {
         _AccessToken = value;
+      }
+    }
+
+    /// <summary>
+    /// Gets an access token value.
+    /// </summary>
+    public virtual string AccessTokenValue
+    {
+      get
+      {
+        if (this.AccessToken.GetType().IsSubclassOf(typeof(AccessToken)))
+        {
+          return ((AccessToken)this.AccessToken).Value;
+        }
+        return null;
       }
     }
 
@@ -200,6 +215,23 @@ namespace Nemiro.OAuth
       }
     }
 
+    // Is a revoke token supported for this client.
+    public virtual bool SupportRevokeToken
+    {
+      get
+      {
+        return false;
+      }
+    }
+
+    public virtual bool SupportRefreshToken
+    {
+      get
+      {
+        return false;
+      }
+    }
+
     #endregion
     #region ..constructor..
 
@@ -270,6 +302,16 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentNullException">The <see cref="AuthorizationCode"/> is <b>null</b> or <b>empty</b>.</exception>
     protected virtual void GetAccessToken() { }
 
+    public virtual RequestResult RevokeToken(string accessToken = null) 
+    {
+      throw new NotSupportedException();
+    }
+
+    public virtual AccessToken RefreshToken(string accessToken = null)
+    {
+      throw new NotSupportedException();
+    }
+
     /// <summary>
     /// Gets the user details via API of the provider.
     /// </summary>
@@ -324,6 +366,21 @@ namespace Nemiro.OAuth
       // --
 
       return result;
+    }
+
+    internal protected string GetSpecifiedTokenOrCurrent(string accessToken)
+    {
+      if (!String.IsNullOrEmpty(accessToken))
+      {
+        return accessToken;
+      }
+
+      if (this.AccessToken.GetType() == typeof(AccessToken))
+      {
+        return ((AccessToken)this.AccessToken).Value;
+      }
+
+      return null;
     }
 
     #endregion

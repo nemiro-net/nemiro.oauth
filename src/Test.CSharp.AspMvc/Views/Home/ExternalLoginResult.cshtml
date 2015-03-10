@@ -8,18 +8,26 @@
 <pre>
   @if (Model.IsSuccessfully)
   {
-    var user = Model.UserInfo;
-    @:Provider: @Model.ProviderName
-    @:User ID:  @user.UserId
-    @:Name:     @user.DisplayName
-    @:Email:    @user.Email
-  }
+		var user = Model.UserInfo;
+@:Provider: @Model.ProviderName
+@:User ID:  @user.UserId
+@:Name:     @user.DisplayName
+@:Email:    @user.Email
+	}
 	else
 	{
     @Model.ErrorInfo.Message
 	}
 </pre>
 
+@if (Model.IsSuccessfully)
+{
+	@Html.ActionLink("Refresh token", "Refresh", "Home", new { clientName = Model.ProviderName, accessToken = Model.AccessTokenValue }, null) @:&middot;
+	@Html.ActionLink("Revoke token", "Revoke", "Home", new { clientName = Model.ProviderName, accessToken = Model.AccessTokenValue }, null)
+}
+
+<br />
 <hr />
+<br /><br />
 
 @Html.ActionLink("Try again", "Index")

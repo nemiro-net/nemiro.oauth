@@ -307,6 +307,22 @@ namespace Nemiro.OAuth.Clients
       }
     }
 
+    public override bool SupportRevokeToken
+    {
+      get
+      {
+        return true;
+      }
+    }
+
+    public override bool SupportRefreshToken
+    {
+      get
+      {
+        return true;
+      }
+    }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="FacebookClient"/>.
     /// </summary>
@@ -345,7 +361,7 @@ namespace Nemiro.OAuth.Clients
       };
 
       // execute the request
-      var result = OAuthUtility.Get("https://graph.facebook.com/me", parameters);
+      var result = OAuthUtility.Get("https://graph.facebook.com/v2.2/me", parameters);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -379,6 +395,53 @@ namespace Nemiro.OAuth.Clients
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
     }
+
+    public override RequestResult RevokeToken(string accessToken = null)
+    {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
+      // todo: think
+      if (String.IsNullOrEmpty(accessToken))
+      {
+        throw new ArgumentNullException("accessToken");
+      }
+
+      return OAuthUtility.Delete
+      (
+        "https://graph.facebook.com/v2.2/me/permissions", 
+        new NameValueCollection
+        { 
+          { "access_token" , accessToken }
+        }
+      );
+    }
+
+    public override AccessToken RefreshToken(string accessToken = null)
+    {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
+      // todo: think
+      if (String.IsNullOrEmpty(accessToken))
+      {
+        throw new ArgumentNullException("accessToken");
+      }
+
+      var result = OAuthUtility.Post
+      (
+        "https://graph.facebook.com/oauth/access_token",
+        new NameValueCollection
+        { 
+          { "client_id", this.ApplicationId },
+          { "client_secret", this.ApplicationSecret },
+          { "grant_type", "fb_exchange_token" },
+          { "fb_exchange_token" , accessToken }
+        }
+      );
+
+      // todo: think
+      return new OAuth2AccessToken(result);
+    }
+
 
   }
 
