@@ -380,7 +380,8 @@ namespace Nemiro.OAuth
         return ((AccessToken)this.AccessToken).Value;
       }
 
-      return null;
+      // todo: other exception
+      throw new ArgumentNullException("accessToken");
     }
 
     #endregion

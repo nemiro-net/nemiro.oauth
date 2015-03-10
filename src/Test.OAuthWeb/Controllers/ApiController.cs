@@ -35,6 +35,62 @@ namespace Test.OAuthWeb.Controllers
       }
     }
 
+    [HttpPost]
+    public ActionResult Refresh(string provider)
+    {
+      try
+      {
+        string accessToken = "";
+        if (Session[String.Format("{0}:AccessToken", provider)] != null)
+        {
+          accessToken = Session[String.Format("{0}:AccessToken", provider)].ToString();
+        }
+
+        if (String.IsNullOrEmpty(accessToken))
+        {
+          throw new Exception(Test.Resources.Strings.SessionIsDead);
+        }
+
+        return Content
+        (
+          OAuthManager.RegisteredClients[provider].RefreshToken(accessToken).ToString(),
+          "text/plain"
+        );
+      }
+      catch (Exception ex)
+      {
+        return Content(ex.ToString(), "text/plain");
+      }
+    }
+
+    [HttpPost]
+    public ActionResult Revoke(string provider)
+    {
+      try
+      {
+        string accessToken = "";
+        if (Session[String.Format("{0}:AccessToken", provider)] != null)
+        {
+          accessToken = Session[String.Format("{0}:AccessToken", provider)].ToString();
+        }
+
+        if (String.IsNullOrEmpty(accessToken))
+        {
+          throw new Exception(Test.Resources.Strings.SessionIsDead);
+        }
+
+        return Content
+        (
+          OAuthManager.RegisteredClients[provider].RevokeToken(accessToken).ToString(),
+          "text/plain"
+        );
+      }
+      catch (Exception ex)
+      {
+        return Content(ex.ToString(), "text/plain");
+      }
+    }
+
   }
 
 }

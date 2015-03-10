@@ -104,6 +104,14 @@ namespace Nemiro.OAuth.Clients
       }
     }
 
+    public override bool SupportRevokeToken
+    {
+      get
+      {
+        return true;
+      }
+    }
+    
     /// <summary>
     /// Initializes a new instance of the <see cref="DropboxClient"/>.
     /// </summary>
@@ -143,6 +151,18 @@ namespace Nemiro.OAuth.Clients
 
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
+    }
+
+    public override RequestResult RevokeToken(string accessToken = null)
+    {
+      return OAuthUtility.Post
+      (
+        "https://api.dropbox.com/1/disable_access_token",
+        new NameValueCollection
+        { 
+          { "access_token", base.GetSpecifiedTokenOrCurrent(accessToken) }
+        }
+      );
     }
 
   }

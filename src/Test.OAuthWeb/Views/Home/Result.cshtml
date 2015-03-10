@@ -102,6 +102,14 @@
     <div id="buttons">
 			<div id="processing"></div>
 			@Html.Partial(Model.ProviderName, Model.AccessToken)
+			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRefreshToken)
+			{
+				@Ajax.ActionLink("Refresh token", "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })
+			}
+			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRevokeToken)
+			{
+				@Ajax.ActionLink("Revoke token", "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })
+			}
 		</div>
     <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
   

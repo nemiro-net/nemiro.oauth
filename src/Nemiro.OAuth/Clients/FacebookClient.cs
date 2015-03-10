@@ -398,34 +398,18 @@ namespace Nemiro.OAuth.Clients
 
     public override RequestResult RevokeToken(string accessToken = null)
     {
-      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
-
-      // todo: think
-      if (String.IsNullOrEmpty(accessToken))
-      {
-        throw new ArgumentNullException("accessToken");
-      }
-
       return OAuthUtility.Delete
       (
         "https://graph.facebook.com/v2.2/me/permissions", 
         new NameValueCollection
         { 
-          { "access_token" , accessToken }
+          { "access_token", base.GetSpecifiedTokenOrCurrent(accessToken) }
         }
       );
     }
 
     public override AccessToken RefreshToken(string accessToken = null)
     {
-      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
-
-      // todo: think
-      if (String.IsNullOrEmpty(accessToken))
-      {
-        throw new ArgumentNullException("accessToken");
-      }
-
       var result = OAuthUtility.Post
       (
         "https://graph.facebook.com/oauth/access_token",
@@ -434,15 +418,13 @@ namespace Nemiro.OAuth.Clients
           { "client_id", this.ApplicationId },
           { "client_secret", this.ApplicationSecret },
           { "grant_type", "fb_exchange_token" },
-          { "fb_exchange_token" , accessToken }
+          { "fb_exchange_token", base.GetSpecifiedTokenOrCurrent(accessToken) }
         }
       );
 
-      // todo: think
       return new OAuth2AccessToken(result);
     }
-
-
+    
   }
 
 }
