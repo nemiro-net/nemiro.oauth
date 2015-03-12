@@ -27,7 +27,7 @@ namespace Nemiro.OAuth
   /// Represents base properties and method for access token results.
   /// </summary>
   [Serializable]
-  public abstract class AccessToken : RequestResult
+  public class AccessToken : RequestResult
   {
 
     #region ..fields & properties..
@@ -37,14 +37,37 @@ namespace Nemiro.OAuth
     /// </summary>
     public string Value { get; protected set; }
 
+    public static readonly AccessToken Empty = null;
+
+    /// <summary>
+    /// Gets a value indicating whether the <see cref="AccessToken"/> is empty or not.
+    /// </summary>
+    public new bool IsEmpty
+    {
+      get
+      {
+        return String.IsNullOrEmpty(this.Value);
+      }
+    }
+
     #endregion
     #region ..constructor..
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AccessToken"/> class.
     /// </summary>
+    protected AccessToken() : base() { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AccessToken"/> class.
+    /// </summary>
     /// <param name="result">Result of request to the OAuth server.</param>
-    public AccessToken(RequestResult result) : base(result) { }
+    internal AccessToken(RequestResult result) : base(result) { }
+
+    static AccessToken()
+    {
+      AccessToken.Empty = new AccessToken() { Value = null };
+    }
 
     #endregion
     #region ..methods..
@@ -55,6 +78,57 @@ namespace Nemiro.OAuth
     public override string ToString()
     {
       return this.Value;
+    }
+
+    public static AccessToken Parse(string value)
+    {
+      return AccessToken.Parse<AccessToken>(value);
+    }
+
+    public static T Parse<T>(string value) where T : AccessToken
+    {
+      if (String.IsNullOrEmpty(value)) { return (T)AccessToken.Empty; }
+
+      var result = new RequestResult("text/plain", value);
+
+      if (result["oauth_token"].HasValue && result["oauth_token_secret"].HasValue)
+      {
+        /*if (typeof(T) != typeof(OAuthAccessToken))
+        {
+          throw new AccessTokenException("Found access token for protocol version 1.0, which is incompatible with the version 2.0");
+        }*/
+        return (T)(AccessToken)new OAuthAccessToken(result);
+      }
+      else if (result["access_token"].HasValue)
+      {
+        /*if (typeof(T) != typeof(OAuth2AccessToken))
+        {
+          throw new AccessTokenException("Found access token for protocol version 2.0, which is incompatible with the version 1.0.");
+        }*/
+        return (T)(AccessToken)new OAuth2AccessToken(result);
+      }
+
+      // value
+      var r = (T)Activator.CreateInstance(typeof(T), true);
+      r.Value = value;
+      return r;
+    }
+
+    /// <summary>
+    /// Indicates whether the specified value is null or an <see cref="AccessToken.Empty"/>.
+    /// </summary>
+    /// <param name="value">The <see cref="AccessToken"/> instance to test.</param>
+    /// <returns><b>true</b> if the <paramref name="value"/> parameter is <b>null</b> or <see cref="AccessToken.IsEmpty"/> is <b>false</b>; otherwise, <b>false</b>.</returns>
+    public static bool IsNullOrEmpty(AccessToken value)
+    {
+      try
+      {
+        return value.IsEmpty;
+      }
+      catch
+      {
+        return true;
+      }
     }
 
     #endregion
@@ -85,6 +159,27 @@ namespace Nemiro.OAuth
       }
       info.AddValue("Value", this.Value);
       base.GetObjectData(info, context);
+    }
+
+    #endregion
+    #region ..operators..
+
+    /// <summary>
+    /// Converts the <see cref="AccessToken"/> to <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="v">The <see cref="AccessToken"/> instance.</param>
+    public static implicit operator string(AccessToken v)
+    {
+      return v.Value;
+    }
+
+    /// <summary>
+    /// Creates a new <see cref="AccessToken"/> instance from <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="AccessToken"/>.</param>
+    public static implicit operator AccessToken(string value)
+    {
+      return AccessToken.Parse(value);
     }
 
     #endregion

@@ -65,12 +65,12 @@ namespace Nemiro.OAuth
       }
     }
 
-    private RequestResult _AccessToken = null;
+    private AccessToken _AccessToken = null;
 
     /// <summary>
     /// Gets or sets an access token.
     /// </summary>
-    public virtual RequestResult AccessToken
+    public virtual AccessToken AccessToken
     {
       get
       {
@@ -302,12 +302,12 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentNullException">The <see cref="AuthorizationCode"/> is <b>null</b> or <b>empty</b>.</exception>
     protected virtual void GetAccessToken() { }
 
-    public virtual RequestResult RevokeToken(string accessToken = null) 
+    public virtual RequestResult RevokeToken(AccessToken accessToken = null) 
     {
       throw new NotSupportedException();
     }
 
-    public virtual AccessToken RefreshToken(string accessToken = null)
+    public virtual AccessToken RefreshToken(AccessToken accessToken = null)
     {
       throw new NotSupportedException();
     }
@@ -318,8 +318,23 @@ namespace Nemiro.OAuth
     /// <remarks>
     /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
     /// </remarks>
-    public abstract UserInfo GetUserInfo();
-
+    public virtual UserInfo GetUserInfo(AccessToken accessToken = null)
+    {
+      return new UserInfo(UniValue.Empty, null);
+    }
+   
+    /// <summary>
+    /// Gets the user details via API of the provider.
+    /// </summary>
+    /// <remarks>
+    /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
+    /// </remarks>
+    [Obsolete("Please use overload. // v1.9", false)]
+    public virtual UserInfo GetUserInfo()
+    {
+      return this.GetUserInfo(this.AccessToken);
+    }
+    
     /// <summary>
     /// Creates a shallow copy of the current object.
     /// </summary>
@@ -368,20 +383,20 @@ namespace Nemiro.OAuth
       return result;
     }
 
-    internal protected string GetSpecifiedTokenOrCurrent(string accessToken)
+    protected AccessToken GetSpecifiedTokenOrCurrent(AccessToken value)
     {
-      if (!String.IsNullOrEmpty(accessToken))
+      if (!AccessToken.IsNullOrEmpty(value))
       {
-        return accessToken;
+        return value;
       }
 
-      if (this.AccessToken.GetType() == typeof(AccessToken))
+      // todo: check if need check
+      if (this.AccessToken.GetType() == typeof(AccessToken) || this.AccessToken.GetType().IsSubclassOf(typeof(AccessToken)))
       {
-        return ((AccessToken)this.AccessToken).Value;
+        return (AccessToken)this.AccessToken;
       }
 
-      // todo: other exception
-      throw new ArgumentNullException("accessToken");
+      throw new AccessTokenException("Access token is not found or is not specified. Please obtain an access token or pass a token to the method parameters.");
     }
 
     #endregion

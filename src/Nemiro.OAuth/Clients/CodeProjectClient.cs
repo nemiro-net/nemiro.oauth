@@ -127,13 +127,15 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // execute the request
       var result = OAuthUtility.Get
       (
-        "https://api.codeproject.com/v1/my/profile", 
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
+        "https://api.codeproject.com/v1/my/profile",
+        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value)
       );
 
       // field mapping

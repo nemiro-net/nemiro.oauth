@@ -387,15 +387,18 @@ namespace Nemiro.OAuth.Clients
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
     /// <exception cref="ApiException"/>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // http://api.mail.ru/docs/reference/rest/users.getInfo/
+
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       var parameters = new NameValueCollection
       { 
         { "method", "users.getInfo" },
         { "app_id", this.ApplicationId },
         { "secure", "1" },
-        { "uid" , this.AccessToken["x_mailru_vid"].ToString() },
+        { "uid", accessToken["x_mailru_vid"].ToString() },
         { "format", "json" }
       };
 

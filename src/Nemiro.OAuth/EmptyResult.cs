@@ -48,7 +48,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Initializes a new instance of the <see cref="EmptyResult"/> class.
     /// </summary>
-    public EmptyResult() : base() { }
+    public EmptyResult() : base(source: new byte[]{0}) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="EmptyResult"/>.

@@ -123,14 +123,16 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", this.AccessToken["xoauth_yahoo_guid"]);
 
       var result = OAuthUtility.Get
       (
         endpoint: url,
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
+        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken)
       );
 
       var map = new ApiDataMapping();
@@ -210,7 +212,7 @@ namespace Nemiro.OAuth.Clients
 
       if (result.ContainsKey("error"))
       {
-        this.AccessToken = new ErrorResult(result);
+        this.AccessToken = new AccessToken(new ErrorResult(result));
       }
       else
       {

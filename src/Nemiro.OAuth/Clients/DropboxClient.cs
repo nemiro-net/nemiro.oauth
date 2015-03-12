@@ -132,12 +132,14 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "access_token" , this.AccessToken["access_token"].ToString() }
+        { "access_token", accessToken }
       };
 
       // execute the request
@@ -153,14 +155,16 @@ namespace Nemiro.OAuth.Clients
       return new UserInfo(result, map);
     }
 
-    public override RequestResult RevokeToken(string accessToken = null)
+    public override RequestResult RevokeToken(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       return OAuthUtility.Post
       (
         "https://api.dropbox.com/1/disable_access_token",
         new NameValueCollection
         { 
-          { "access_token", base.GetSpecifiedTokenOrCurrent(accessToken) }
+          { "access_token", accessToken }
         }
       );
     }

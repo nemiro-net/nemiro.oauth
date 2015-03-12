@@ -30,20 +30,37 @@ namespace Nemiro.OAuth
   public class OAuthAccessToken : AccessToken
   {
 
+    #region ..fields & properties..
+
+    // NOTE: Value - for usability
+
+    /// <summary>
+    /// The access token issued by the authorization server.
+    /// </summary>
+    public new string Value
+    {
+      get
+      {
+        return base.Value;
+      }
+      protected set
+      {
+        base.Value = value;
+      }
+    }
+
     /// <summary>
     /// The access token issued by the authorization server.
     /// </summary>
     public string TokenSecret { get; protected set; }
 
+    #endregion
+    #region ..constructor..
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="OAuthAccessToken"/> class.
+    /// Initializes a new instance of the <see cref="OAuthAccessToken"/>.
     /// </summary>
-    /// <param name="result">Result of request to the OAuth server.</param>
-    public OAuthAccessToken(RequestResult result) : base(result)
-    {
-      this.Value = result["oauth_token"].ToString();
-      this.TokenSecret = result["oauth_token_secret"].ToString();
-    }
+    protected OAuthAccessToken() : base() { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthAccessToken"/>.
@@ -61,6 +78,19 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="OAuthAccessToken"/> class.
+    /// </summary>
+    /// <param name="result">Result of request to the OAuth server.</param>
+    public OAuthAccessToken(RequestResult result) : base(result)
+    {
+      this.Value = result["oauth_token"].ToString();
+      this.TokenSecret = result["oauth_token_secret"].ToString();
+    }
+
+    #endregion
+    #region ..methods..
+
+    /// <summary>
     /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
     /// </summary>
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
@@ -75,6 +105,43 @@ namespace Nemiro.OAuth
       info.AddValue("TokenSecret", this.TokenSecret);
       base.GetObjectData(info, context);
     }
+
+    /// <summary>
+    /// Returns the <see cref="Value"/>.
+    /// </summary>
+    public override string ToString()
+    {
+      return this.Value;
+    }
+
+    public new static OAuthAccessToken Parse(string value)
+    {
+      return AccessToken.Parse<OAuthAccessToken>(value);
+    }
+
+    #endregion
+    #region ..operators..
+
+    /// <summary>
+    /// Converts the <see cref="OAuthAccessToken"/> to <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="v">The <see cref="OAuthAccessToken"/> instance.</param>
+    public static implicit operator string(OAuthAccessToken v)
+    {
+      return v.Value;
+    }
+
+    /// <summary>
+    /// Creates a new <see cref="OAuthAccessToken"/> instance from <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="OAuthAccessToken"/>.</param>
+    public static implicit operator OAuthAccessToken(string value)
+    {
+      return OAuthAccessToken.Parse(value);
+    }
+
+    #endregion
+
 
   }
 

@@ -129,18 +129,20 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // api documentation: 
       // https://developer.linkedin.com/apis
       // https://developer.linkedin.com/documents/profile-api
       // https://developer.linkedin.com/documents/profile-fields
 
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // execute the request
       var result = OAuthUtility.Get
       (
         endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)",
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"]),
+        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.ToString()),
         headers: new NameValueCollection { { "x-li-format", "json" } }
       );
 

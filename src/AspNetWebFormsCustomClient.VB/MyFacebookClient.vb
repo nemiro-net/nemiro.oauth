@@ -51,8 +51,10 @@ Public Class MyFacebookClient
   ''' <returns>
   ''' <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
   ''' </returns>
-  Public Overrides Function GetUserInfo() As UserInfo
-    Dim parameters As New NameValueCollection() From {{"access_token", Me.AccessToken("access_token").ToString()}}
+  Public Overrides Function GetUserInfo(Optional ByVal accessToken As AccessToken = Nothing) As UserInfo
+    accessToken = MyBase.GetSpecifiedTokenOrCurrent(accessToken)
+
+    Dim parameters As New NameValueCollection() From {{"access_token", accessToken.ToString()}}
     Dim result As RequestResult = OAuthUtility.[Get]("https://graph.facebook.com/me", parameters)
 
     Dim map As New ApiDataMapping()

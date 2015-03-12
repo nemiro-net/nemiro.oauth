@@ -30,7 +30,9 @@ Public Class MyTwitterClient
     )
   End Sub
 
-  Public Overrides Function GetUserInfo() As Nemiro.OAuth.UserInfo
+  Public Overrides Function GetUserInfo(Optional ByVal accessToken As AccessToken = Nothing) As Nemiro.OAuth.UserInfo
+    accessToken = MyBase.GetSpecifiedTokenOrCurrent(accessToken)
+
     Dim url As String = "https://api.twitter.com/1.1/users/show.json"
 
     Dim parameters As New HttpParameterCollection()

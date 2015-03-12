@@ -354,12 +354,14 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "access_token" , this.AccessToken["access_token"].ToString() }
+        { "access_token" , accessToken }
       };
 
       // execute the request

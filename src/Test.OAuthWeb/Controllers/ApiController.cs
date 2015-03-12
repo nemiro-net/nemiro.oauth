@@ -51,9 +51,11 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
+        Session[String.Format("{0}:AccessToken", provider)] = OAuthManager.RegisteredClients[provider].RefreshToken(accessToken).ToString();
+
         return Content
         (
-          OAuthManager.RegisteredClients[provider].RefreshToken(accessToken).ToString(),
+          "ok",
           "text/plain"
         );
       }
@@ -78,10 +80,17 @@ namespace Test.OAuthWeb.Controllers
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
+        
+        var result = OAuthManager.RegisteredClients[provider].RevokeToken(accessToken);
+        
+        if (result.IsSuccessfully)
+        {
+          Session[String.Format("{0}:AccessToken", provider)] = null;
+        }
 
         return Content
         (
-          OAuthManager.RegisteredClients[provider].RevokeToken(accessToken).ToString(),
+          (result.IsSuccessfully ? "ok" : result.ToString()),
           "text/plain"
         );
       }

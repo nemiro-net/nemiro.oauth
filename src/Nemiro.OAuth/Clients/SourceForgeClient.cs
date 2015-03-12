@@ -123,7 +123,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // help: https://sourceforge.net/p/forge/documentation/Allura%20API/#user
 
@@ -194,7 +194,7 @@ namespace Nemiro.OAuth.Clients
       }
 
       // set default access tken value
-      this.AccessToken = new EmptyResult();
+      this.AccessToken = Nemiro.OAuth.AccessToken.Empty;
 
       // prepare
       this.Authorization.PrepareForAccessToken();

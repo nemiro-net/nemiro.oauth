@@ -211,8 +211,7 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="contentType">The content type of the response.</param>
     /// <param name="source">The source of the response.</param>
-    [Obsolete("Please use an overloads. // v1.5", false)]
-    public RequestResult(string contentType, string source) : this(contentType, Encoding.UTF8.GetBytes(source), null, 0) { }
+    public RequestResult(string contentType, string source) : this(contentType, Encoding.UTF8.GetBytes(source ?? ""), null, 0) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RequestResult"/> class.

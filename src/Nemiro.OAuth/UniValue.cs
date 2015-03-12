@@ -451,13 +451,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Represents the empty <see cref="UniValue"/>.
     /// </summary>
-    public static UniValue Empty
-    {
-      get
-      {
-        return new UniValue(null, null, null);
-      }
-    }
+    public static readonly UniValue Empty = new UniValue(null, null, null);
 
     #endregion
     #region ..constructor..

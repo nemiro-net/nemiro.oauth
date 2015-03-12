@@ -237,13 +237,15 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // http://msdn.microsoft.com/en-us/library/hh243648.aspx
 
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       var parameters = new NameValueCollection
       { 
-        { "access_token" , this.AccessToken["access_token"].ToString() }
+        { "access_token" , accessToken }
       };
 
       var result = OAuthUtility.Get("https://apis.live.net/v5.0/me", parameters);

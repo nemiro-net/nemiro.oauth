@@ -555,15 +555,17 @@ namespace Nemiro.OAuth.Clients
     /// Gets the user details.
     /// </summary>
     /// <exception cref="ApiException"/>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // help: http://vk.com/dev/users.get
+
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "user_ids", this.AccessToken["user_id"].ToString() },
-        { "access_token" , this.AccessToken["access_token"].ToString() },
+        { "user_ids", accessToken["user_id"].ToString() },
+        { "access_token" , accessToken["access_token"].ToString() },
         { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" }
       };
 

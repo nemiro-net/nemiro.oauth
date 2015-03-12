@@ -49,7 +49,7 @@ namespace Nemiro.OAuth
     public ErrorResult(RequestResult result) : base(result) { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EmptyResult"/>.
+    /// Initializes a new instance of the <see cref="ErrorResult"/>.
     /// </summary>
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>

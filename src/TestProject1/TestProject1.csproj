@@ -50,18 +50,31 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessTokenTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SerializationTest.cs" />
-    <Compile Include="SignatureTest.cs" />
-    <Compile Include="UnitTest1.cs" />
-    <Compile Include="UniValueBindingTest.cs" />
-    <Compile Include="UniValueCollectionTest.cs" />
-    <Compile Include="UniValueTest.cs" />
+    <Compile Include="SerializationTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SignatureTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitTest1.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UniValueBindingTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UniValueCollectionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UniValueTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nemiro.OAuth\Nemiro.OAuth.csproj">

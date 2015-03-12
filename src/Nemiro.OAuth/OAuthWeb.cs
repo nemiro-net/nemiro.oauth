@@ -650,12 +650,12 @@ namespace Nemiro.OAuth
         result.ClientName = OAuthManager.Requests[requestId].ClientName;
         result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
-
+         
         // is not empty and not error
-        if (result.AccessToken.GetType() != typeof(EmptyResult) && result.AccessToken.GetType() != typeof(ErrorResult))
+        if (!result.AccessToken.IsEmpty && result.AccessToken.IsSuccessfully)
         {
           // get the user profile details
-          result.UserInfo = client.GetUserInfo();
+          result.UserInfo = client.GetUserInfo(client.AccessToken);
         }
       }
       catch (Exception ex)

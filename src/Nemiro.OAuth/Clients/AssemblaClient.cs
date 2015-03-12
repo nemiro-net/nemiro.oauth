@@ -125,13 +125,15 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // execute the request
       var result = OAuthUtility.Get
       (
         "https://api.assembla.com/v1/user.json",
-         authorization: new HttpAuthorization(AuthorizationType.Bearer, this.AccessToken["access_token"])
+         authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value)
       );
 
       // help: http://api-doc.assembla.com/content/ref/user_show.html

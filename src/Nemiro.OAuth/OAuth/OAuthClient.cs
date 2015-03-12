@@ -182,7 +182,7 @@ namespace Nemiro.OAuth
       }
 
       // set default access tken value
-      this.AccessToken = new EmptyResult();
+      this.AccessToken = Nemiro.OAuth.AccessToken.Empty;
 
       // prepare
       this.Authorization.PrepareForAccessToken();

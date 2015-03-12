@@ -56,7 +56,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// The access token which is used to query the provider.
     /// </summary>
-    public RequestResult AccessToken { get; protected internal set; }
+    public AccessToken AccessToken { get; protected internal set; }
 
     /// <summary>
     /// The user profile details that is returned from the provider.

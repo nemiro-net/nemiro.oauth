@@ -172,8 +172,8 @@ namespace Nemiro.OAuth
       }
 
       // set default access token value
-      this.AccessToken = new EmptyResult();
-
+      this.AccessToken = Nemiro.OAuth.AccessToken.Empty;
+      
       // set request data
       HttpAuthorization auth = null;
       NameValueCollection parameters = new NameValueCollection();
@@ -218,7 +218,7 @@ namespace Nemiro.OAuth
 
       if (result.ContainsKey("error"))
       {
-        this.AccessToken = new ErrorResult(result);
+        this.AccessToken = new AccessToken(new ErrorResult(result));
       }
       else
       {

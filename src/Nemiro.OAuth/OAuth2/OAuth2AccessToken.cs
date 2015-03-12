@@ -31,6 +31,25 @@ namespace Nemiro.OAuth
   public class OAuth2AccessToken : AccessToken
   {
 
+    #region ..fields & properties..
+
+    // NOTE: Value - for usability
+
+    /// <summary>
+    /// The access token issued by the authorization server.
+    /// </summary>
+    public new string Value
+    {
+      get
+      {
+        return base.Value;
+      }
+      protected set
+      {
+        base.Value = value;
+      }
+    }
+
     /// <summary>
     /// The lifetime in seconds of the access token.
     /// </summary>
@@ -52,30 +71,13 @@ namespace Nemiro.OAuth
     /// </summary>
     public string TokenType { get; protected set; }
 
+    #endregion
+    #region ..constructor..
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="OAuth2AccessToken"/> class.
+    /// Initializes a new instance of the <see cref="OAuth2AccessToken"/>.
     /// </summary>
-    /// <param name="result">Result of request to the OAuth server.</param>
-    public OAuth2AccessToken(RequestResult result) : base(result)
-    {
-      this.Value = result["access_token"].ToString();
-      if (result.ContainsKey("expires_in"))
-      {
-        this.ExpiresIn = Convert.ToInt64(result["expires_in"]);
-      }
-      if (result.ContainsKey("refresh_token") && result["refresh_token"].HasValue)
-      {
-        this.RefreshToken = result["refresh_token"].ToString();
-      }
-      if (result.ContainsKey("scope") && result["scope"].HasValue)
-      {
-        this.Scope = result["scope"].ToString();
-      }
-      if (result.ContainsKey("token_type") && result["token_type"].HasValue)
-      {
-        this.TokenType = result["token_type"].ToString();
-      }
-    }
+    protected OAuth2AccessToken() : base() { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuth2AccessToken"/>.
@@ -94,6 +96,39 @@ namespace Nemiro.OAuth
       this.Scope = info.GetString("Scope");
       this.TokenType = info.GetString("TokenType");
     }
+    
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuth2AccessToken"/> class.
+    /// </summary>
+    /// <param name="result">Result of request to the OAuth server.</param>
+    public OAuth2AccessToken(RequestResult result) : base(result)
+    {
+      this.Value = result["access_token"].ToString();
+      if (result.ContainsKey("expires_in"))
+      {
+        this.ExpiresIn = Convert.ToInt64(result["expires_in"]);
+      }
+      // todo: think
+      /*if (result.ContainsKey("expires"))
+      {
+        this.ExpiresIn = Convert.ToInt64(result["expires"]);
+      }*/
+      if (result.ContainsKey("refresh_token") && result["refresh_token"].HasValue)
+      {
+        this.RefreshToken = result["refresh_token"].ToString();
+      }
+      if (result.ContainsKey("scope") && result["scope"].HasValue)
+      {
+        this.Scope = result["scope"].ToString();
+      }
+      if (result.ContainsKey("token_type") && result["token_type"].HasValue)
+      {
+        this.TokenType = result["token_type"].ToString();
+      }
+    }
+
+    #endregion
+    #region ..methods..
 
     /// <summary>
     /// Populates a <see cref="System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
@@ -113,6 +148,42 @@ namespace Nemiro.OAuth
       info.AddValue("TokenType", this.TokenType);
       base.GetObjectData(info, context);
     }
+
+    /// <summary>
+    /// Returns the <see cref="Value"/>.
+    /// </summary>
+    public override string ToString()
+    {
+      return this.Value;
+    }
+
+    public new static OAuth2AccessToken Parse(string value)
+    {
+      return AccessToken.Parse<OAuth2AccessToken>(value);
+    }
+
+    #endregion
+    #region ..operators..
+
+    /// <summary>
+    /// Converts the <see cref="OAuth2AccessToken"/> to <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="v">The <see cref="OAuth2AccessToken"/> instance.</param>
+    public static implicit operator string(OAuth2AccessToken v)
+    {
+      return v.Value;
+    }
+
+    /// <summary>
+    /// Creates a new <see cref="OAuthAccessToken"/> instance from <see cref="System.String"/>.
+    /// </summary>
+    /// <param name="value">The value from which will be created a new instance of the <see cref="OAuth2AccessToken"/>.</param>
+    public static implicit operator OAuth2AccessToken(string value)
+    {
+      return new OAuth2AccessToken(new RequestResult("text/plain", Encoding.UTF8.GetBytes(String.Format("access_token={0}", value))));
+    }
+
+    #endregion
 
   }
 

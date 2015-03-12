@@ -63,6 +63,7 @@
     <Compile Include="Clients\InstagramClient.cs" />
     <Compile Include="Clients\CodeProjectClient.cs" />
     <Compile Include="Clients\AssemblaClient.cs" />
+    <Compile Include="Exceptions\AccessTokenException.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Clients\FacebookClient.cs" />
     <Compile Include="Clients\OdnoklassnikiClient.cs" />

@@ -124,13 +124,15 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // api documentation: 
       // https://www.tumblr.com/docs/en/api/v2#user-methods
 
-      this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
-      this.Authorization.TokenSecret = this.AccessToken["oauth_token_secret"].ToString();
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
+      this.Authorization["oauth_token"] = accessToken["oauth_token"];
+      this.Authorization.TokenSecret = accessToken["oauth_token_secret"].ToString();
 
       // execute the request
       var result = OAuthUtility.Get

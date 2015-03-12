@@ -129,8 +129,22 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
+      // query parameters
+      var parameters = new NameValueCollection
+      { 
+        { "access_token", accessToken }
+      };
+
+      var result = OAuthUtility.Get
+      (
+        "https://api.instagram.com/v1/users/self",
+        parameters
+      );
+
       // field mapping
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));
@@ -140,7 +154,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("full_name", "DisplayName");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(this.AccessToken[1], map);
+      return new UserInfo(result["data"], map);
     }
 
   }

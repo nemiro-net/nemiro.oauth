@@ -391,20 +391,22 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // help: https://dev.twitter.com/docs/api/1/get/users/show
+
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       string url = "https://api.twitter.com/1.1/users/show.json";
 
       // query parameters
       var parameters = new HttpParameterCollection();
-      parameters.AddUrlParameter("user_id", this.AccessToken["user_id"].ToString());
-      parameters.AddUrlParameter("screen_name", this.AccessToken["screen_name"].ToString());
+      parameters.AddUrlParameter("user_id", accessToken["user_id"].ToString());
+      parameters.AddUrlParameter("screen_name", accessToken["screen_name"].ToString());
       parameters.AddUrlParameter("include_entities", "false");
 
-      this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
-      this.Authorization.TokenSecret = this.AccessToken["oauth_token_secret"].ToString();
+      this.Authorization["oauth_token"] = accessToken["oauth_token"];
+      this.Authorization.TokenSecret = accessToken["oauth_token_secret"].ToString();
 
       // execute the request
       var result = OAuthUtility.Get(url, parameters, this.Authorization);

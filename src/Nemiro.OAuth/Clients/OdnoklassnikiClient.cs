@@ -559,9 +559,12 @@ namespace Nemiro.OAuth.Clients
     /// Gets the user details.
     /// </summary>
     /// <exception cref="ApiException"/>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=46137373#APIДокументация(Русский)-users.getCurrentUser
+
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // query parameters
       var parameters = new NameValueCollection
       { 
@@ -574,11 +577,11 @@ namespace Nemiro.OAuth.Clients
       // signature base string
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=75989046
       string signatureBaseString = parameters.Sort().ToParametersString(true);
-      signatureBaseString += OAuthUtility.GetMD5Hash(((OAuth2AccessToken)this.AccessToken).Value + this.ApplicationSecret);
+      signatureBaseString += OAuthUtility.GetMD5Hash(accessToken + this.ApplicationSecret);
 
       // calculate the signature
       parameters["sig"] = OAuthUtility.GetMD5Hash(signatureBaseString);
-      parameters["access_token"] = ((OAuth2AccessToken)this.AccessToken).Value;
+      parameters["access_token"] = accessToken;
 
       // execute the request
       var result = OAuthUtility.Post("http://api.odnoklassniki.ru/fb.do", parameters);
