@@ -118,11 +118,15 @@ namespace Nemiro.OAuth.Clients
       "https://api.login.yahoo.com/oauth2/get_token",
       clientId,
       clientSecret
-    ) { }
+    ) 
+    {
+      // base.SupportRefreshToken = true;
+    }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
@@ -132,7 +136,7 @@ namespace Nemiro.OAuth.Clients
       var result = OAuthUtility.Get
       (
         endpoint: url,
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken)
+        accessToken: accessToken
       );
 
       var map = new ApiDataMapping();
@@ -201,7 +205,7 @@ namespace Nemiro.OAuth.Clients
       }
 
       parameters.Add("code", this.AuthorizationCode);
-      parameters.Add("grant_type", "authorization_code");
+      parameters.Add("grant_type", GrantType.AuthorizationCode);
 
       var result = OAuthUtility.Post
       (
@@ -220,6 +224,50 @@ namespace Nemiro.OAuth.Clients
       }
     }
 
+    /*
+    https://developer.yahoo.com/oauth2/guide/
+    Yahoo - time killer!
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    /// <exception cref="ArgumentNullException">An exception occurs if there is no authorization code.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+
+      var parameters = new HttpParameterCollection();
+      parameters.AddFormParameter("client_id", this.ApplicationId);
+      parameters.AddFormParameter("client_secret", this.ApplicationSecret);
+      //parameters.AddFormParameter("redirect_uri", this.ReturnUrl);
+      parameters.AddFormParameter("grant_type", GrantType.RefreshToken);
+      parameters.AddFormParameter("refresh_token", token.RefreshToken);
+
+      var result = OAuthUtility.Post
+      (
+        this.AccessTokenUrl,
+        parameters: parameters,
+        authorization: new HttpAuthorization(AuthorizationType.Basic, OAuthUtility.ToBase64String("{0}:{1}", this.ApplicationId, this.ApplicationSecret))
+      );
+
+      return new OAuth2AccessToken(result);
+    }
+    */
+  
   }
 
 }

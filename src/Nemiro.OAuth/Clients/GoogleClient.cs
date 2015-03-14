@@ -337,7 +337,7 @@ namespace Nemiro.OAuth.Clients
     public GoogleClient(string clientId, string clientSecret) : base
     (
       "https://accounts.google.com/o/oauth2/auth",
-      "https://accounts.google.com/o/oauth2/token",
+      "https://www.googleapis.com/oauth2/v3/token",
       clientId,
       clientSecret
     )
@@ -345,12 +345,20 @@ namespace Nemiro.OAuth.Clients
       // visit: https://developers.google.com/+/api/oauth?#login-scopes
       base.ScopeSeparator = " ";
       base.DefaultScope = "https://www.googleapis.com/auth/userinfo.email";
-    }
+      base.SupportRevokeToken = true;
 
+      #region TODO: Think
+      // https://developers.google.com/accounts/docs/OAuth2WebServer#offline
+      // bad idea
+      // base.SupportRefreshToken = true;
+      // base.Parameters.Add("access_type", "offline");
+      #endregion
+    }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -358,14 +366,12 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token" , accessToken }
-      };
-
       // execute the request
-      var result = OAuthUtility.Get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json", parameters);
+      var result = OAuthUtility.Get
+      (
+        "https://www.googleapis.com/oauth2/v1/userinfo?alt=json", 
+        accessToken: accessToken
+      );
 
       // field mapping
       var map = new ApiDataMapping();
@@ -400,7 +406,29 @@ namespace Nemiro.OAuth.Clients
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
     }
+    
+    /// <summary>
+    /// Sends a request to revoke the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be revoked.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
+    public override RequestResult RevokeToken(AccessToken accessToken = null)
+    {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
+      return OAuthUtility.Post
+      (
+        "https://accounts.google.com/o/oauth2/revoke",
+        parameters: new NameValueCollection { { "token", accessToken.Value } }
+      );
+    }
+    
   }
 
 }

@@ -228,12 +228,17 @@ namespace Nemiro.OAuth.Clients
       // http://msdn.microsoft.com/en-us/library/hh243646.aspx
       base.ScopeSeparator = ",";
       base.DefaultScope = "wl.basic,wl.emails,wl.birthday,wl.phone_numbers";
+
+      // TODO: Think
+      // If the wl.offline_access scope was requested, then a refresh token is also returned. 
+      // base.SupportRefreshToken = true;
     }
 
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -243,12 +248,11 @@ namespace Nemiro.OAuth.Clients
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      var parameters = new NameValueCollection
-      { 
-        { "access_token" , accessToken }
-      };
-
-      var result = OAuthUtility.Get("https://apis.live.net/v5.0/me", parameters);
+      var result = OAuthUtility.Get
+      (
+        "https://apis.live.net/v5.0/me", 
+        accessToken: accessToken
+      );
 
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));

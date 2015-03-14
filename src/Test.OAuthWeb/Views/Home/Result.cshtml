@@ -96,35 +96,39 @@
       }
     </table>
   </section>
-  
-  if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
-  {
-    <div id="buttons">
-			<div id="processing"></div>
-			@Html.Partial(Model.ProviderName, Model.AccessToken)
+
+  <div id="buttons">
+		<div id="processing"></div>
+		<ul>
+			@if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
+			{
+				@Html.Partial(Model.ProviderName, Model.AccessToken)
+			}
+			<li>@Ajax.ActionLink("Get token", "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRefreshToken)
 			{
-				@Ajax.ActionLink("Refresh token", "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })@:&nbsp; 
+				<li>@Ajax.ActionLink("Refresh token", "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			}
 			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRevokeToken)
 			{
-				@Ajax.ActionLink("Revoke token", "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })@:&nbsp;
+				<li>@Ajax.ActionLink("Revoke token", "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			}
-		</div>
-    <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
+		</ul>
+		<div class="clear"></div>
+	</div>
+  <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
   
-    <script type="text/javascript">
-    	function OnBegin() {
-    		$('#processing').height($('#processing').parent().height() + 10);
-    		$('#processing').show();
-    	}
+  <script type="text/javascript">
+    function OnBegin() {
+    	$('#processing').height($('#processing').parent().height() + 10);
+    	$('#processing').show();
+    }
 
-    	function OnComplete() {
-    		$('#processing').hide('slow');
-    		$('#apiResults').show();
-    	}
-    </script>
-  }
+    function OnComplete() {
+    	$('#processing').hide('slow');
+    	$('#apiResults').show();
+    }
+  </script>
 }
 else
 {

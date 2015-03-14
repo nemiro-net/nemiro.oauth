@@ -27,6 +27,9 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
+        // get access token from session
+        var token = (OAuth2AccessToken)Session["Mail.Ru:AccessToken"];
+
         // query parameters
         var parameters = new NameValueCollection
         { 

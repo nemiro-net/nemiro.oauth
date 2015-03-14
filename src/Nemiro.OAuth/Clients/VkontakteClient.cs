@@ -554,6 +554,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
@@ -565,12 +566,16 @@ namespace Nemiro.OAuth.Clients
       var parameters = new NameValueCollection
       { 
         { "user_ids", accessToken["user_id"].ToString() },
-        { "access_token" , accessToken["access_token"].ToString() },
         { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" }
       };
 
       // execute the request
-      var result = OAuthUtility.Get("https://api.vk.com/method/users.get", parameters);
+      var result = OAuthUtility.Get
+      (
+        "https://api.vk.com/method/users.get", 
+        parameters: parameters, 
+        accessToken: accessToken
+      );
 
       if (result.ContainsKey("error"))
       {

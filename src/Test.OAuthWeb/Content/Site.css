@@ -97,6 +97,10 @@ table tr th {padding: 4px;background-color: #E6E6E6;border: solid 1px #999999;co
 table tr td {padding: 4px;background-color: #FFFFFF;border: solid 1px #999999; }
 
 #buttons {margin-top:24px;margin-bottom:8px;position:relative;}
+
+#buttons ul { list-style: none; margin: 0; padding: 0; }
+#buttons ul li { float: left; margin-right: 4px; display:block; }
+
 #buttons a, .btn 
 {
   text-decoration: none;

@@ -10,6 +10,7 @@ using Nemiro.OAuth.Clients;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using Nemiro.OAuth.Extensions;
+using System.Text;
 
 namespace Test.OAuthWeb.Controllers
 {
@@ -36,22 +37,40 @@ namespace Test.OAuthWeb.Controllers
     }
 
     [HttpPost]
-    public ActionResult Refresh(string provider)
+    public ActionResult Token(string provider)
     {
       try
       {
-        string accessToken = "";
-        if (Session[String.Format("{0}:AccessToken", provider)] != null)
-        {
-          accessToken = Session[String.Format("{0}:AccessToken", provider)].ToString();
-        }
-
-        if (String.IsNullOrEmpty(accessToken))
+        if (Session[String.Format("{0}:AccessToken", provider)] == null)
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
-        Session[String.Format("{0}:AccessToken", provider)] = OAuthManager.RegisteredClients[provider].RefreshToken(accessToken).ToString();
+        return Content(Encoding.UTF8.GetString(((AccessToken)Session[String.Format("{0}:AccessToken", provider)]).Source), "text/plain");
+      }
+      catch (Exception ex)
+      {
+        return Content(ex.ToString(), "text/plain");
+      }
+    }
+
+    [HttpPost]
+    public ActionResult Refresh(string provider)
+    {
+      try
+      {
+        AccessToken accessToken = AccessToken.Empty;
+        if (Session[String.Format("{0}:AccessToken", provider)] != null)
+        {
+          accessToken = (AccessToken)Session[String.Format("{0}:AccessToken", provider)];
+        }
+
+        if (AccessToken.IsNullOrEmpty(accessToken))
+        {
+          throw new Exception(Test.Resources.Strings.SessionIsDead);
+        }
+
+        Session[String.Format("{0}:AccessToken", provider)] = OAuthManager.RegisteredClients[provider].RefreshToken(accessToken);
 
         return Content
         (
@@ -70,17 +89,17 @@ namespace Test.OAuthWeb.Controllers
     {
       try
       {
-        string accessToken = "";
+        AccessToken accessToken = AccessToken.Empty;
         if (Session[String.Format("{0}:AccessToken", provider)] != null)
         {
-          accessToken = Session[String.Format("{0}:AccessToken", provider)].ToString();
+          accessToken = (AccessToken)Session[String.Format("{0}:AccessToken", provider)];
         }
 
-        if (String.IsNullOrEmpty(accessToken))
+        if (AccessToken.IsNullOrEmpty(accessToken))
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
-        
+
         var result = OAuthManager.RegisteredClients[provider].RevokeToken(accessToken);
         
         if (result.IsSuccessfully)

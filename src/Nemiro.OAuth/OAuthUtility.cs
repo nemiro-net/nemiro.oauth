@@ -209,9 +209,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null)
+    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
     {
-      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null);
+      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken);
     }
 
     /// <summary>
@@ -225,9 +225,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null)
+    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
     {
-      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType);
+      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken);
     }
 
     /// <summary>
@@ -241,9 +241,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null)
+    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
     {
-      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType);
+      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken);
     }
 
     /// <summary>
@@ -256,9 +256,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null)
+    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
     {
-      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null);
+      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken);
     }
 
     /// <summary>
@@ -273,9 +273,19 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null)
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
+    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
     {
+      // checking
       if (String.IsNullOrEmpty(endpoint)) { throw new ArgumentNullException("endpoint"); }
+      if (!AccessToken.IsNullOrEmpty(accessToken) && authorization != null)
+      {
+        throw new ArgumentException("The request can not contain both authorization headers and access token.");
+      }
+
+      // set default values
       if (!String.IsNullOrEmpty(method)) { method = method.ToUpper(); }
       string[] post = { "POST", "PUT" };
       if (String.IsNullOrEmpty(method) || (parameters != null && (parameters.HasFiles || parameters.IsRequestBody) && Array.IndexOf(post, method) == -1))
@@ -285,9 +295,42 @@ namespace Nemiro.OAuth
       bool isPost = Array.IndexOf(post, method) != -1;
 
       // set protocols
-      ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls; // | SecurityProtocolType.Ssl3;
+      ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
       // ignore errors
       ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+      // --
+
+      // access token
+      if (!AccessToken.IsNullOrEmpty(accessToken))
+      {
+        if (accessToken.GetType() == typeof(OAuth2AccessToken) || accessToken.GetType().IsSubclassOf(typeof(OAuth2AccessToken)))
+        {
+          // is oauth 2.0
+          var token = (OAuth2AccessToken)accessToken;
+          if (!String.IsNullOrEmpty(token.TokenType) && (token.TokenType.Equals(AccessTokenType.Bearer, StringComparison.OrdinalIgnoreCase))) //  || token.TokenType.Equals(AccessTokenType.OAuth, StringComparison.OrdinalIgnoreCase)
+          {
+            // bearer
+            authorization = new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value);
+          }
+          else
+          {
+            // other
+            if (parameters == null) { parameters = new HttpParameterCollection(); }
+            parameters.AddUrlParameter("access_token", accessToken.Value);
+          }
+        }
+        else if (accessToken.GetType() == typeof(OAuthAccessToken) || accessToken.GetType().IsSubclassOf(typeof(OAuthAccessToken)))
+        {
+          // is oauth 1.0
+          authorization = new OAuthAuthorization(accessToken);
+        }
+        else
+        {
+          // I do not know that. But it's definitely need to consider.
+          if (parameters == null) { parameters = new HttpParameterCollection(); }
+          parameters.AddUrlParameter("access_token", accessToken.Value);
+        }
+      }
       // --
 
       string requestUrl = endpoint; // need source endpoint for signature
@@ -463,9 +506,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, ExecuteRequestAsyncCallback callback = null)
+    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
-      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, callback);
+      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback);
     }
 
     /// <summary>
@@ -480,9 +523,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, ExecuteRequestAsyncCallback callback = null)
+    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
-      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, callback);
+      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
     }
 
     /// <summary>
@@ -497,9 +540,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, ExecuteRequestAsyncCallback callback = null)
+    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
-      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, callback);
+      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
     }
 
     /// <summary>
@@ -513,9 +556,9 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, ExecuteRequestAsyncCallback callback = null)
+    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
-      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, callback);
+      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback);
     }
 
     /// <summary>
@@ -531,7 +574,7 @@ namespace Nemiro.OAuth
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
-    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, ExecuteRequestAsyncCallback callback = null)
+    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       var t = new Thread
       (() =>
@@ -539,7 +582,7 @@ namespace Nemiro.OAuth
         RequestResult result = null;
         try
         {
-          result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType);
+          result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType, accessToken);
         }
         catch (RequestException ex)
         {

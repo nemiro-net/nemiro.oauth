@@ -123,6 +123,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // help: https://sourceforge.net/p/forge/documentation/Allura%20API/#user

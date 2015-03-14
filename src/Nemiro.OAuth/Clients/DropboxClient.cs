@@ -103,14 +103,6 @@ namespace Nemiro.OAuth.Clients
         return "Dropbox";
       }
     }
-
-    public override bool SupportRevokeToken
-    {
-      get
-      {
-        return true;
-      }
-    }
     
     /// <summary>
     /// Initializes a new instance of the <see cref="DropboxClient"/>.
@@ -124,11 +116,14 @@ namespace Nemiro.OAuth.Clients
       clientId,
       clientSecret
     ) 
-    { }
+    {
+      base.SupportRevokeToken = true;
+    }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -136,14 +131,8 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token", accessToken }
-      };
-
       // execute the request
-      var result = OAuthUtility.Get("https://api.dropbox.com/1/account/info", parameters);
+      var result = OAuthUtility.Get("https://api.dropbox.com/1/account/info", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -155,6 +144,17 @@ namespace Nemiro.OAuth.Clients
       return new UserInfo(result, map);
     }
 
+    /// <summary>
+    /// Sends a request to revoke the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be revoked.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
     public override RequestResult RevokeToken(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
@@ -162,10 +162,7 @@ namespace Nemiro.OAuth.Clients
       return OAuthUtility.Post
       (
         "https://api.dropbox.com/1/disable_access_token",
-        new NameValueCollection
-        { 
-          { "access_token", accessToken }
-        }
+        accessToken: accessToken
       );
     }
 

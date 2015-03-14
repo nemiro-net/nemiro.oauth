@@ -126,6 +126,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -138,11 +139,19 @@ namespace Nemiro.OAuth.Clients
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
+      // fix: server does not return token type, but requires Bearer
+      accessToken = new OAuth2AccessToken
+      (
+        accessToken.Value, 
+        ((OAuth2AccessToken)accessToken).RefreshToken, 
+        AccessTokenType.Bearer
+      );
+
       // execute the request
       var result = OAuthUtility.Get
       (
         endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)",
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.ToString()),
+        accessToken: accessToken,
         headers: new NameValueCollection { { "x-li-format", "json" } }
       );
 

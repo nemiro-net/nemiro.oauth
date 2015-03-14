@@ -29,6 +29,8 @@ namespace Test.OAuthWeb.Controllers
 
         InitTestFiles();
 
+        var token = (OAuth2AccessToken)Session["Dropbox:AccessToken"];
+
         // execute the request
         var result = OAuthUtility.ExecuteRequest
         (
@@ -36,7 +38,7 @@ namespace Test.OAuthWeb.Controllers
           "https://api-content.dropbox.com/1/files_put/auto/Nemiro.OAuth.zip",
           new HttpParameterCollection
           { 
-            { "access_token" , Session["Dropbox:AccessToken"] },
+            { "access_token" , token.Value },
             { "overwrite", "true" },
             { HttpContext.Cache["Nemiro.OAuth"] } // content of the file from cache
           }

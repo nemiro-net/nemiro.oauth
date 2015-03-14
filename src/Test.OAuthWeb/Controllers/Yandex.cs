@@ -27,8 +27,11 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
+        // get access token from session
+        var token = (OAuth2AccessToken)Session["Yandex:AccessToken"];
+
         RequestResult result = null;
-        string auth = String.Format("OAuth {0}", Session["Yandex:AccessToken"]);
+        string auth = String.Format("OAuth {0}", token.Value);
 
         if (method == "upload")
         {

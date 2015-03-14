@@ -73,6 +73,8 @@ namespace Nemiro.OAuth
     PercentEncoding
   }
 
+  // TODO: Think about AccessTokenType
+
   /// <summary>
   /// The list of authorization type.
   /// </summary>

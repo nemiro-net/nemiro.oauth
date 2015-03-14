@@ -121,6 +121,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets an user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -131,7 +132,7 @@ namespace Nemiro.OAuth.Clients
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      this.Authorization["oauth_token"] = accessToken["oauth_token"];
+      this.Authorization["oauth_token"] = accessToken["oauth_token"].ToString();
       this.Authorization.TokenSecret = accessToken["oauth_token_secret"].ToString();
 
       // execute the request

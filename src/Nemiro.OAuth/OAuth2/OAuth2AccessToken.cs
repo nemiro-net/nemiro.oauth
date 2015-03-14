@@ -126,6 +126,31 @@ namespace Nemiro.OAuth
         this.TokenType = result["token_type"].ToString();
       }
     }
+        /// <summary>
+    /// Initializes a new instance of the <see cref="OAuth2AccessToken"/> class with a specified access token and refresh token.
+    /// </summary>
+    /// <param name="accessTolen">The access token.</param>
+    /// <param name="refreshToken">The refresh token.</param>
+    public OAuth2AccessToken(string accessTolen, string refreshToken) : this(accessTolen, refreshToken, null) { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuth2AccessToken"/> class with a specified access token and refresh token.
+    /// </summary>
+    /// <param name="accessTolen">The access token.</param>
+    /// <param name="refreshToken">The refresh token.</param>
+    /// <param name="tokenType">The token type. For example: bearer. Default: null.</param>
+    public OAuth2AccessToken(string accessTolen, string refreshToken, string tokenType) : base()
+    {
+      this["access_token"] = this.Value = accessTolen;
+      if (!String.IsNullOrEmpty(refreshToken))
+      {
+        this["refresh_token"] = this.RefreshToken = refreshToken;
+      }
+      if (!String.IsNullOrEmpty(tokenType))
+      {
+        this["token_type"] = this.TokenType = tokenType;
+      }
+    }
 
     #endregion
     #region ..methods..

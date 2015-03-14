@@ -391,6 +391,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       // help: https://dev.twitter.com/docs/api/1/get/users/show
@@ -405,7 +406,7 @@ namespace Nemiro.OAuth.Clients
       parameters.AddUrlParameter("screen_name", accessToken["screen_name"].ToString());
       parameters.AddUrlParameter("include_entities", "false");
 
-      this.Authorization["oauth_token"] = accessToken["oauth_token"];
+      this.Authorization["oauth_token"] = accessToken["oauth_token"].ToString();
       this.Authorization.TokenSecret = accessToken["oauth_token_secret"].ToString();
 
       // execute the request

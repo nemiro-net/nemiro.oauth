@@ -117,11 +117,14 @@ namespace Nemiro.OAuth.Clients
       clientId,
       clientSecret
     )
-    { }
+    {
+      base.SupportRefreshToken = true;
+    }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -133,7 +136,7 @@ namespace Nemiro.OAuth.Clients
       var result = OAuthUtility.Get
       (
         "https://api.assembla.com/v1/user.json",
-         authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value)
+        accessToken: accessToken
       );
 
       // help: http://api-doc.assembla.com/content/ref/user_show.html

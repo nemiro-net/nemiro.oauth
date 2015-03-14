@@ -30,7 +30,7 @@ namespace Nemiro.OAuth
     public const string ClientCredentials = "client_credentials";
 
     /// <summary>
-    /// refresh_token (not used).
+    /// Using a token to refreshing the access token (grant type is <b>refresh_token</b>).
     /// </summary>
     public const string RefreshToken = "refresh_token";
 

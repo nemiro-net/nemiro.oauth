@@ -124,6 +124,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -135,7 +136,7 @@ namespace Nemiro.OAuth.Clients
       var result = OAuthUtility.Get
       (
         "https://api.codeproject.com/v1/my/profile",
-        authorization: new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value)
+        accessToken: accessToken
       );
 
       // field mapping

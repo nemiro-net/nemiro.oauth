@@ -126,6 +126,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -133,14 +134,8 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token" , accessToken }
-      };
-
       // execute the request
-      var result = OAuthUtility.Get("https://api.github.com/user", parameters);
+      var result = OAuthUtility.Get("https://api.github.com/user", accessToken: accessToken);
 
       // help: https://developer.github.com/v3/users/#get-the-authenticated-user
 

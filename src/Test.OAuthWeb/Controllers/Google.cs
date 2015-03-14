@@ -27,9 +27,13 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
+        // get access token from session
+        var token = (OAuth2AccessToken)Session["Google:AccessToken"];
+
+        // set parameters
         var parameters = new NameValueCollection
         { 
-          { "access_token", Session["Google:AccessToken"].ToString() }
+          { "access_token", token.Value }
         };
 
         string url = String.Format("https://www.google.com/m8/feeds/contacts/{0}/full", HttpUtility.UrlEncode(Session["Google:Email"].ToString()));

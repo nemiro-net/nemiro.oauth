@@ -226,6 +226,62 @@ namespace Nemiro.OAuth
       }
     }
 
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      if (!this.SupportRefreshToken)
+      {
+        throw new NotSupportedException();
+      }
+
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+   
+      //HttpAuthorization authorization = null;
+      var parameters = new NameValueCollection
+      { 
+        { "client_id", this.ApplicationId },
+        { "client_secret", this.ApplicationSecret },
+        { "grant_type", GrantType.RefreshToken },
+        { "refresh_token", token.RefreshToken }
+      };
+
+      /*if (!String.IsNullOrEmpty(token.TokenType) && token.TokenType.Equals(AccessTokenType.Bearer, StringComparison.OrdinalIgnoreCase))
+      {
+        authorization = new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value);
+      }
+      else
+      {
+        parameters.Add("access_token", accessToken.Value);
+      }*/
+      
+      var result = OAuthUtility.Post
+      (
+        this.AccessTokenUrl,
+        parameters: parameters,
+        accessToken: token
+        //authorization: authorization
+      );
+
+      return new OAuth2AccessToken(result);
+    }
+
     #endregion
 
   }

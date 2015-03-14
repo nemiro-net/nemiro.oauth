@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Nemiro.OAuth;
+using System.Text;
 
 namespace Test.OAuthWeb.Controllers
 {
@@ -83,14 +84,10 @@ namespace Test.OAuthWeb.Controllers
       var result = Nemiro.OAuth.OAuthWeb.VerifyAuthorization();
       if (result.IsSuccessfully)
       {
-        Session[String.Format("{0}:AccessToken", result.ProviderName)] = result.AccessTokenValue;
+        Session[String.Format("{0}:AccessToken", result.ProviderName)] = result.AccessToken;
         Session[String.Format("{0}:UserId", result.ProviderName)] = result.UserInfo.UserId;
         Session[String.Format("{0}:UserName", result.ProviderName)] = result.UserInfo.UserName;
         Session[String.Format("{0}:Email", result.ProviderName)] = result.UserInfo.Email;
-        if (result.ProtocolVersion == "1.0")
-        {
-          Session[String.Format("{0}:TokenSecret", result.ProviderName)] = ((Nemiro.OAuth.OAuthAccessToken)result.AccessToken).TokenSecret;
-        }
       }
       TempData["ExternalLoginResult"] = result;
       return RedirectToAction("Result");

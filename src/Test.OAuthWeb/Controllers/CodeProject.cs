@@ -18,26 +18,26 @@ namespace Test.OAuthWeb.Controllers
   {
 
     [HttpPost]
-    public ActionResult Facebook(string method)
+    public ActionResult CodeProject(string method)
     {
       try
       {
-        if (Session["Facebook:AccessToken"] == null)
+        if (Session["CodeProject:AccessToken"] == null)
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
-        // get access token from session
-        var token = (OAuth2AccessToken)Session["Facebook:AccessToken"];
+        var token = (OAuth2AccessToken)Session["CodeProject:AccessToken"];
 
         // execute the request
         var result = OAuthUtility.Get
         (
-          String.Format("https://graph.facebook.com/v2.2/me/{0}", method),
-          new NameValueCollection
+          "https://api.codeproject.com/v1/Articles",
+          new HttpParameterCollection
           { 
-            { "access_token", token.Value }
-          }
+            { "tags" , "asp.net,c#,vb.net" }
+          },
+          authorization: new HttpAuthorization(AuthorizationType.Bearer, token.Value)
         );
 
         return Content(Regex.Unescape(result.ToString()), "text/plain");

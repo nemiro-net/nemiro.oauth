@@ -553,11 +553,13 @@ namespace Nemiro.OAuth.Clients
     )
     {
       this.ApplicationKey = publickKey; // required only for API
+      base.SupportRefreshToken = true;
     }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
@@ -577,11 +579,11 @@ namespace Nemiro.OAuth.Clients
       // signature base string
       // http://apiok.ru/wiki/pages/viewpage.action?pageId=75989046
       string signatureBaseString = parameters.Sort().ToParametersString(true);
-      signatureBaseString += OAuthUtility.GetMD5Hash(accessToken + this.ApplicationSecret);
+      signatureBaseString += OAuthUtility.GetMD5Hash(accessToken.Value + this.ApplicationSecret);
 
       // calculate the signature
       parameters["sig"] = OAuthUtility.GetMD5Hash(signatureBaseString);
-      parameters["access_token"] = accessToken;
+      parameters["access_token"] = accessToken.Value;
 
       // execute the request
       var result = OAuthUtility.Post("http://api.odnoklassniki.ru/fb.do", parameters);

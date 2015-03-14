@@ -27,6 +27,8 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
+        var token = (OAuthAccessToken)Session["Twitter:AccessToken"];
+
         string url = "https://api.twitter.com/1.1/followers/ids.json";
 
         if (method == "user_timeline")
@@ -37,11 +39,11 @@ namespace Test.OAuthWeb.Controllers
         var auth = new OAuthAuthorization();
         auth.ConsumerKey = ConfigurationManager.AppSettings["oauth:twitter:id"];
         auth.ConsumerSecret = ConfigurationManager.AppSettings["oauth:twitter:key"];
-        auth.TokenSecret = Session["Twitter:TokenSecret"].ToString();
+        auth.TokenSecret = token.TokenSecret;
         auth.SignatureMethod = SignatureMethods.HMACSHA1;
         auth.Nonce = OAuthUtility.GetRandomKey();
         auth.Timestamp = OAuthUtility.GetTimeStamp();
-        auth.Token = Session["Twitter:AccessToken"].ToString();
+        auth.Token = token.Value;
         auth.Version = "1.0";
 
         var result = OAuthUtility.ExecuteRequest("GET", url, authorization: auth);

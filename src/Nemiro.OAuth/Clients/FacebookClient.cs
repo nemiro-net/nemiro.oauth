@@ -307,22 +307,6 @@ namespace Nemiro.OAuth.Clients
       }
     }
 
-    public override bool SupportRevokeToken
-    {
-      get
-      {
-        return true;
-      }
-    }
-
-    public override bool SupportRefreshToken
-    {
-      get
-      {
-        return true;
-      }
-    }
-
     /// <summary>
     /// Initializes a new instance of the <see cref="FacebookClient"/>.
     /// </summary>
@@ -339,11 +323,15 @@ namespace Nemiro.OAuth.Clients
       // scope list
       base.ScopeSeparator = ",";
       base.DefaultScope = "public_profile,email"; //,user_website,user_birthday
+      // features for access token
+      base.SupportRefreshToken = true;
+      base.SupportRevokeToken = true;
     }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <remarks>
     /// <para>
     /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
@@ -356,14 +344,8 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token" , accessToken }
-      };
-
       // execute the request
-      var result = OAuthUtility.Get("https://graph.facebook.com/v2.2/me", parameters);
+      var result = OAuthUtility.Get("https://graph.facebook.com/v2.2/me", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -397,7 +379,18 @@ namespace Nemiro.OAuth.Clients
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
     }
-
+    
+    /// <summary>
+    /// Sends a request to revoke the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be revoked.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
     public override RequestResult RevokeToken(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
@@ -407,14 +400,25 @@ namespace Nemiro.OAuth.Clients
         "https://graph.facebook.com/v2.2/me/permissions", 
         new NameValueCollection
         { 
-          { "access_token", accessToken }
+          { "access_token", accessToken.Value }
         }
       );
     }
 
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
     public override AccessToken RefreshToken(AccessToken accessToken = null)
     {
-      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: false);
 
       var result = OAuthUtility.Post
       (
@@ -424,7 +428,7 @@ namespace Nemiro.OAuth.Clients
           { "client_id", this.ApplicationId },
           { "client_secret", this.ApplicationSecret },
           { "grant_type", "fb_exchange_token" },
-          { "fb_exchange_token", accessToken }
+          { "fb_exchange_token", accessToken.Value }
         }
       );
 

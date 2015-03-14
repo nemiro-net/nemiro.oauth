@@ -126,6 +126,7 @@ namespace Nemiro.OAuth.Clients
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -133,16 +134,10 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token", accessToken }
-      };
-
       var result = OAuthUtility.Get
       (
         "https://api.instagram.com/v1/users/self",
-        parameters
+        accessToken: accessToken
       );
 
       // field mapping

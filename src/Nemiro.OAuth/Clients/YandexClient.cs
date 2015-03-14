@@ -408,11 +408,13 @@ namespace Nemiro.OAuth.Clients
       "https://oauth.yandex.ru/token",
       clientId,
       clientSecret
-    ) { }
+    ) 
+    { }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
@@ -421,7 +423,7 @@ namespace Nemiro.OAuth.Clients
       var parameters = new NameValueCollection
       { 
         { "format", "json" },
-        { "oauth_token", accessToken },
+        { "oauth_token", accessToken.Value },
       };
 
       // execute the request

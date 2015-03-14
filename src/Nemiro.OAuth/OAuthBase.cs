@@ -215,22 +215,15 @@ namespace Nemiro.OAuth
       }
     }
 
-    // Is a revoke token supported for this client.
-    public virtual bool SupportRevokeToken
-    {
-      get
-      {
-        return false;
-      }
-    }
+    /// <summary>
+    /// Gets or sets a value indicating whether the current client supports revoking access token.
+    /// </summary>
+    public bool SupportRevokeToken { get; protected set; }
 
-    public virtual bool SupportRefreshToken
-    {
-      get
-      {
-        return false;
-      }
-    }
+    /// <summary>
+    /// Gets or sets a value indicating whether the current client supports refreshing access token.
+    /// </summary>
+    public bool SupportRefreshToken { get; protected set; }
 
     #endregion
     #region ..constructor..
@@ -265,6 +258,10 @@ namespace Nemiro.OAuth
 
       // set unique identifier to the instance
       this.State = OAuthUtility.GetRandomKey();
+
+      // default values
+      this.SupportRefreshToken = false;
+      this.SupportRevokeToken = false;
 
       // I do not remember, why. I'll try to change it. // v1.8 
       // add the instance to the clients collection
@@ -302,11 +299,33 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentNullException">The <see cref="AuthorizationCode"/> is <b>null</b> or <b>empty</b>.</exception>
     protected virtual void GetAccessToken() { }
 
+    /// <summary>
+    /// Sends a request to revoke the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be revoked.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
     public virtual RequestResult RevokeToken(AccessToken accessToken = null) 
     {
       throw new NotSupportedException();
     }
 
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// </remarks>
     public virtual AccessToken RefreshToken(AccessToken accessToken = null)
     {
       throw new NotSupportedException();
@@ -315,6 +334,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets the user details via API of the provider.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <remarks>
     /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
     /// </remarks>
@@ -383,20 +403,34 @@ namespace Nemiro.OAuth
       return result;
     }
 
-    protected AccessToken GetSpecifiedTokenOrCurrent(AccessToken value)
+    /// <summary>
+    /// Returns the specified access token or the current access token.
+    /// </summary>
+    /// <param name="value">May contain an access token, which will be refunded.</param>
+    /// <param name="refreshTokenRequired">Indicates the need to check the parameter <b>refresh_token</b> in the access token. Default: <b>false</b>.</param>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    protected AccessToken GetSpecifiedTokenOrCurrent(AccessToken value, bool refreshTokenRequired = false)
     {
-      if (!AccessToken.IsNullOrEmpty(value))
+      if (AccessToken.IsNullOrEmpty(value))
       {
-        return value;
+        value = this.AccessToken;
       }
 
-      // todo: check if need check
-      if (this.AccessToken.GetType() == typeof(AccessToken) || this.AccessToken.GetType().IsSubclassOf(typeof(AccessToken)))
+      if (AccessToken.IsNullOrEmpty(value))
       {
-        return (AccessToken)this.AccessToken;
+        throw new AccessTokenException("Access token is not found or is not specified. Please obtain an access token or pass a token to the method parameters.");
       }
 
-      throw new AccessTokenException("Access token is not found or is not specified. Please obtain an access token or pass a token to the method parameters.");
+      if (refreshTokenRequired && !value["refresh_token"].HasValue)
+      {
+        throw new AccessTokenException("[refresh_token] required.");
+      }
+
+      return value;
     }
 
     #endregion

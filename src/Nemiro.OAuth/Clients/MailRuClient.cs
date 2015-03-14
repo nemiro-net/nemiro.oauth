@@ -378,14 +378,21 @@ namespace Nemiro.OAuth.Clients
       "https://connect.mail.ru/oauth/token",
       clientId,
       clientSecret
-    ) { }
+    ) 
+    {
+      base.SupportRefreshToken = true;
+    }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
+    /// <remarks>
+    /// <para>The access token must contain the user ID in the parameter <b>x_mailru_vid</b>.</para>
+    /// </remarks>
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
@@ -441,6 +448,49 @@ namespace Nemiro.OAuth.Clients
       );
 
       return new UserInfo(result.First(), map);
+    }
+
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+
+      // fix: требуют bearer, но в этом запросе bearer не поддерживают
+      token = new OAuth2AccessToken(token.Value, token.RefreshToken, "");
+
+      var parameters = new NameValueCollection
+      { 
+        { "client_id", this.ApplicationId },
+        { "client_secret", this.ApplicationSecret },
+        { "grant_type", GrantType.RefreshToken },
+        { "refresh_token", token.RefreshToken }
+      };
+
+      var result = OAuthUtility.Post
+      (
+        "https://appsmail.ru/oauth/token",
+        parameters: parameters,
+        accessToken: token
+      );
+
+      return new OAuth2AccessToken(result);
     }
 
   }

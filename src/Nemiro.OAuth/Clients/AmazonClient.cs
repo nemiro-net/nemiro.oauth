@@ -235,24 +235,20 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     )
     {
-      this.DefaultScope = "profile";
+      base.DefaultScope = "profile";
+      base.SupportRefreshToken = true;
     }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      // query parameters
-      var parameters = new NameValueCollection
-      { 
-        { "access_token" , accessToken.Value }
-      };
-
       // execute the request
-      var result = OAuthUtility.Get("https://api.amazon.com/user/profile", parameters);
+      var result = OAuthUtility.Get("https://api.amazon.com/user/profile", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();

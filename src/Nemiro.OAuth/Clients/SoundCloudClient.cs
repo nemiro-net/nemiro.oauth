@@ -118,11 +118,14 @@ namespace Nemiro.OAuth.Clients
     {
       base.ScopeSeparator = " "; // don't know...
       base.DefaultScope = "non-expiring";
+      // https://developers.soundcloud.com/docs/api/guide#authentication
+      base.SupportRefreshToken = false;
     }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
@@ -133,7 +136,7 @@ namespace Nemiro.OAuth.Clients
       // query parameters
       var parameters = new NameValueCollection
       { 
-        { "oauth_token", accessToken }
+        { "oauth_token", accessToken.Value }
       };
 
       // execute the request

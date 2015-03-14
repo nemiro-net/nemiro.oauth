@@ -26,14 +26,17 @@ namespace Test.OAuthWeb.Controllers
         {
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
-
+        
         string fields = "sex,bdate,city,country,photo_max_orig,domain,contacts,site";
         string url = "https://api.vk.com/method/friends.get";
+        
+        // get access token from session
+        var token = (OAuth2AccessToken)Session["VK:AccessToken"];
 
         // query parameters
         var parameters = new NameValueCollection
         { 
-          { "access_token" , Session["VK:AccessToken"].ToString() }
+          { "access_token" , token.Value }
         };
 
         if (method == "status.get")
