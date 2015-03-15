@@ -40,7 +40,7 @@ namespace Test.OAuthWeb.Controllers
           }
         );
 
-        return Content(Regex.Unescape(result.ToString()), "text/plain");
+        return Content(result.ToString(), "text/plain");
       }
       catch (Exception ex)
       {

@@ -158,9 +158,9 @@ namespace Nemiro.OAuth.Clients
       // field mapping
       var map = new ApiDataMapping();
       map.Add("id", "UserId", typeof(string));
-      map.Add("first-name", "FirstName");
-      map.Add("last-name", "LastName");
-      map.Add("picture-url", "Userpic");
+      map.Add("firstName", "FirstName");
+      map.Add("lastName", "LastName");
+      map.Add("pictureUrl", "Userpic");
       map.Add("emailAddress", "Email");
 
       // parse the server response and returns the UserInfo instance

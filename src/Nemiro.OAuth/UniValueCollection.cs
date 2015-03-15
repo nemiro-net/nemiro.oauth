@@ -306,9 +306,9 @@ namespace Nemiro.OAuth
         {
           return String.Format
           (
-            "{{ value: {0}, {1} }}",
+            "{{ \"value\": {0}, {1} }}",
             this.ValueToString(itm.Value),
-            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("'@{0}': '{1}'", k, itm.Value.Attributes[k].Replace("'", "\\'"))).ToArray())
+            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("\"@{0}\": \"{1}\"", k, OAuthUtility.JavaScriptStringEncode(itm.Value.Attributes[k]))).ToArray())
           );
         }
         else
@@ -316,7 +316,7 @@ namespace Nemiro.OAuth
           return String.Format
           (
             "{{ {0} }}",
-            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("'@{0}': '{1}'", k, itm.Value.Attributes[k].Replace("'", "\\'"))).ToArray())
+            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("\"@{0}\": \"{1}\"", k, OAuthUtility.JavaScriptStringEncode(itm.Value.Attributes[k]))).ToArray())
           );
         }
       }
@@ -325,7 +325,7 @@ namespace Nemiro.OAuth
       {
         return String.Format
         (
-          "{0}: {1}",
+          "\"{0}\": {1}",
           itm.Key,
           this.ValueToString(itm.Value)
         );
@@ -337,26 +337,26 @@ namespace Nemiro.OAuth
         {
           return String.Format
           (
-            "{0}: {{ value: {1}, {2} }}",
+            "\"{0}\": {{ value: {1}, {2} }}",
             itm.Key,
             this.ValueToString(itm.Value),
-            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("'@{0}': '{1}'", k, itm.Value.Attributes[k].Replace("'", "\\'"))).ToArray())
+            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("\"@{0}\": \"{1}\"", k, OAuthUtility.JavaScriptStringEncode(itm.Value.Attributes[k]))).ToArray())
           );
         }
         else
         {
           return String.Format
           (
-            "{0}: {{ {1} }}",
+            "\"{0}\": {{ {1} }}",
             itm.Key,
-            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("'@{0}': '{1}'", k, itm.Value.Attributes[k].Replace("'", "\\'"))).ToArray())
+            String.Join(", ", itm.Value.Attributes.AllKeys.Select(k => String.Format("\"@{0}\": \"{1}\"", k, OAuthUtility.JavaScriptStringEncode(itm.Value.Attributes[k]))).ToArray())
           );
         }
       }
 
       return String.Format
       (
-        "{0}: {1}",
+        "\"{0}\": {1}",
         itm.Key,
         this.ValueToString(itm.Value)
       );
@@ -370,7 +370,7 @@ namespace Nemiro.OAuth
     {
       if (value.IsString)
       {
-        return String.Format("'{0}'", value.ToString().Replace("'", "\\'"));
+        return String.Format("\"{0}\"", OAuthUtility.JavaScriptStringEncode(value.ToString()));
       }
       else if (value.IsBoolean)
       {
@@ -378,7 +378,11 @@ namespace Nemiro.OAuth
       }
       else if (value.IsDateTime)
       {
-        return String.Format("'{0}'", ((DateTime)value).ToString("r"));
+        return String.Format("\"{0}\"", ((DateTime)value).ToString("r"));
+      }
+      else if (value.IsNumeric)
+      {
+        return String.Format("{0}", value.ToString().Replace(",", "."));
       }
       else
       {

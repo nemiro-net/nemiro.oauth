@@ -260,6 +260,49 @@ namespace Nemiro.OAuth.Clients
       return new UserInfo(result, map);
     }
 
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      if (!this.SupportRefreshToken)
+      {
+        throw new NotSupportedException();
+      }
+
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+
+      var parameters = new HttpParameterCollection();
+      parameters.AddFormParameter("access_token", token.Value);
+      parameters.AddFormParameter("client_id", this.ApplicationId);
+      parameters.AddFormParameter("client_secret", this.ApplicationSecret);
+      parameters.AddFormParameter("grant_type", GrantType.RefreshToken);
+      parameters.AddFormParameter("refresh_token",  token.RefreshToken);
+
+      var result = OAuthUtility.Post
+      (
+        this.AccessTokenUrl,
+        parameters: parameters
+      );
+
+      return new OAuth2AccessToken(result);
+    }
+
   }
 
 }

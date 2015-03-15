@@ -345,14 +345,9 @@ namespace Nemiro.OAuth.Clients
       // visit: https://developers.google.com/+/api/oauth?#login-scopes
       base.ScopeSeparator = " ";
       base.DefaultScope = "https://www.googleapis.com/auth/userinfo.email";
+      // features for access token
       base.SupportRevokeToken = true;
-
-      #region TODO: Think
-      // https://developers.google.com/accounts/docs/OAuth2WebServer#offline
-      // bad idea
-      // base.SupportRefreshToken = true;
-      // base.Parameters.Add("access_type", "offline");
-      #endregion
+      base.SupportRefreshToken = true;
     }
 
     /// <summary>
@@ -428,7 +423,79 @@ namespace Nemiro.OAuth.Clients
         parameters: new NameValueCollection { { "token", accessToken.Value } }
       );
     }
-    
+
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// <para>
+    /// In order to <b>Google</b> returned the <b>refresh_token</b>, when receiving an access token, you must specify <b>access_type=offline</b>.
+    /// </para>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   new GoogleClient
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   )
+    ///   {
+    ///     Parameters = new NameValueCollection { { "access_type", "offline" } }
+    ///    }
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   New GoogleClient _
+    ///   (
+    ///     "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+    ///     "AeEbEGQqoKgOZb41JUVLvEJL"
+    ///   ) With _
+    ///   {
+    ///     .Parameters = New NameValueCollection() From {{"access_type", "offline"}}
+    ///   }
+    /// )
+    /// </code>
+    /// <para>For more details, please see <see href="https://developers.google.com/accounts/docs/OAuth2WebServer#offline">Google Documentation</see>.</para>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      // NOTE: access_type=offline required!
+
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+
+      var parameters = new NameValueCollection
+      { 
+        { "client_id", this.ApplicationId },
+        { "client_secret", this.ApplicationSecret },
+        { "grant_type", GrantType.RefreshToken },
+        { "refresh_token", token.RefreshToken }
+      };
+
+      var result = OAuthUtility.Post
+      (
+        this.AccessTokenUrl,
+        parameters: parameters,
+        accessToken: token
+      );
+
+      return new OAuth2AccessToken(result);
+    }
+
   }
 
 }

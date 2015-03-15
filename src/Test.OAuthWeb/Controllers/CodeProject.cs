@@ -40,7 +40,7 @@ namespace Test.OAuthWeb.Controllers
           authorization: new HttpAuthorization(AuthorizationType.Bearer, token.Value)
         );
 
-        return Content(Regex.Unescape(result.ToString()), "text/plain");
+        return Content(result.ToString(), "text/plain");
       }
       catch (Exception ex)
       {

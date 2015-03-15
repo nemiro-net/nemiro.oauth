@@ -64,11 +64,11 @@ namespace TestProject1
       }
 
       Console.WriteLine(c);
-      if (c.ToString() != "{ test: ['123', '234', '345'] }")
+      if (c.ToString() != "{ \"test\": [\"123\", \"234\", \"345\"] }")
       {
         Assert.Fail();
       }
-      if (c["test"] != "['123', '234', '345']")
+      if (c["test"] != "[\"123\", \"234\", \"345\"]")
       {
         Assert.Fail();
       }

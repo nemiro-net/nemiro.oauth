@@ -226,7 +226,7 @@ namespace Nemiro.OAuth
     /// </summary>
     public override string ToString()
     {
-      return this.UserName ?? this.UserId;
+      return this.UserName ?? this.UserId ?? this.GetType().Name;
     }
 
     #endregion

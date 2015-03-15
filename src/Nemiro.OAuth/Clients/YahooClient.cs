@@ -120,18 +120,21 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     ) 
     {
-      // base.SupportRefreshToken = true;
+      base.SupportRefreshToken = true;
     }
 
     /// <summary>
     /// Gets the user details.
     /// </summary>
     /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+    /// <remarks>
+    /// <para>Access token must contain the user ID in the parameter <b>xoauth_yahoo_guid</b>.</para>
+    /// </remarks>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", this.AccessToken["xoauth_yahoo_guid"]);
+      string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", accessToken["xoauth_yahoo_guid"]);
 
       var result = OAuthUtility.Get
       (
@@ -224,9 +227,6 @@ namespace Nemiro.OAuth.Clients
       }
     }
 
-    /*
-    https://developer.yahoo.com/oauth2/guide/
-    Yahoo - time killer!
     /// <summary>
     /// Sends a request to refresh the access token.
     /// </summary>
@@ -234,6 +234,12 @@ namespace Nemiro.OAuth.Clients
     /// <remarks>
     /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
     /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// <list type="table">
+    /// <item>
+    /// <term><img src="../img/warning.png" alt="(!)" title="" /></term>
+    /// <term><b>To update the access token, you must specify the return address that was used in obtaining the access token.</b></term>
+    /// </item>
+    /// </list>
     /// </remarks>
     /// <exception cref="NotSupportedException">
     /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
@@ -248,12 +254,43 @@ namespace Nemiro.OAuth.Clients
     /// <exception cref="ArgumentNullException">An exception occurs if there is no authorization code.</exception>
     public override AccessToken RefreshToken(AccessToken accessToken = null)
     {
+      return this.RefreshToken(accessToken, null);
+    }
+
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <param name="returnUrl">Callback address that was used in obtaining the access token.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// <list type="table">
+    /// <item>
+    /// <term><img src="../img/warning.png" alt="(!)" title="" /></term>
+    /// <term><b>To update the access token, you must specify the return address that was used in obtaining the access token.</b></term>
+    /// </item>
+    /// </list>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    /// <exception cref="ArgumentNullException">An exception occurs if there is no authorization code.</exception>
+    public AccessToken RefreshToken(AccessToken accessToken, string returnUrl)
+    {
       var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
 
       var parameters = new HttpParameterCollection();
       parameters.AddFormParameter("client_id", this.ApplicationId);
       parameters.AddFormParameter("client_secret", this.ApplicationSecret);
-      //parameters.AddFormParameter("redirect_uri", this.ReturnUrl);
+      parameters.AddFormParameter("redirect_uri", returnUrl);
       parameters.AddFormParameter("grant_type", GrantType.RefreshToken);
       parameters.AddFormParameter("refresh_token", token.RefreshToken);
 
@@ -266,7 +303,7 @@ namespace Nemiro.OAuth.Clients
 
       return new OAuth2AccessToken(result);
     }
-    */
+    
   
   }
 

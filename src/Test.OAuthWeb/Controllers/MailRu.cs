@@ -46,7 +46,7 @@ namespace Test.OAuthWeb.Controllers
         // execute the request
         var result = OAuthUtility.ExecuteRequest("POST", "http://www.appsmail.ru/platform/api", parameters);
 
-        return Content(Regex.Unescape(result.ToString()), "text/plain");
+        return Content(result.ToString(), "text/plain");
       }
       catch (Exception ex)
       {

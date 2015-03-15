@@ -55,7 +55,7 @@ namespace Test.OAuthWeb.Controllers
         // execute the request
         var result = OAuthUtility.ExecuteRequest("GET", url, parameters);
 
-        return Content(Regex.Unescape(result.ToString()), "text/plain");
+        return Content(result.ToString(), "text/plain");
       }
       catch (Exception ex)
       {

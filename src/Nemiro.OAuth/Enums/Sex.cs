@@ -16,12 +16,32 @@
 namespace Nemiro.OAuth
 {
 
-  public static class AccessTokenType
+  /// <summary>
+  /// Very sexy list.
+  /// </summary>
+  public enum Sex
   {
-
-    public const string Bearer = "Bearer";
-    public const string OAuth = "OAuth";
-
+    /// <summary>
+    /// No sex.
+    /// </summary>
+    /// <remarks>:o)</remarks>
+    None = 0,
+    /// <summary>
+    /// Male.
+    /// </summary>
+    Male = 1,
+    /// <summary>
+    /// Female.
+    /// </summary>
+    Female = 2,
+    /// <summary>
+    /// Programmer.
+    /// </summary>
+    Programmer = 8,
+    /// <summary>
+    /// Deep Thought.
+    /// </summary>
+    DeepThought = 42
   }
 
 }

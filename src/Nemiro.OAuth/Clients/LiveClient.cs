@@ -228,10 +228,8 @@ namespace Nemiro.OAuth.Clients
       // http://msdn.microsoft.com/en-us/library/hh243646.aspx
       base.ScopeSeparator = ",";
       base.DefaultScope = "wl.basic,wl.emails,wl.birthday,wl.phone_numbers";
-
-      // TODO: Think
-      // If the wl.offline_access scope was requested, then a refresh token is also returned. 
-      // base.SupportRefreshToken = true;
+      // features for access token
+      base.SupportRefreshToken = true;
     }
 
 
@@ -318,6 +316,74 @@ namespace Nemiro.OAuth.Clients
       );
 
       return new UserInfo(result, map);
+    }
+
+    /// <summary>
+    /// Sends a request to refresh the access token.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which should be refreshed.</param>
+    /// <remarks>
+    /// <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+    /// <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+    /// <para>
+    /// In order to <b>Microsoft Live</b> returned the <b>refresh_token</b>, when receiving an access token, you must specify the scope <b>wl.offline_access</b>.
+    /// </para>
+    /// <code lang="C#">
+    /// OAuthManager.RegisterClient
+    /// (
+    ///   new LiveClient
+    ///   (
+    ///     "0000000040124265", 
+    ///     "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
+    ///   )
+    ///   {
+    ///     Scope = "wl.offline_access"
+    ///    }
+    /// );
+    /// </code>
+    /// <code lang="VB">
+    /// OAuthManager.RegisterClient _
+    /// (
+    ///   New LiveClient _
+    ///   (
+    ///     "0000000040124265", 
+    ///     "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
+    ///   ) With { .Scope = "wl.offline_access" }
+    /// )
+    /// </code>
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+    /// <para>Use the property <see cref="OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+    /// </exception>
+    /// <exception cref="AccessTokenException">
+    /// <para>Access token is not found or is not specified.</para>
+    /// <para>-or-</para>
+    /// <para><b>refresh_token</b> value is empty.</para>
+    /// </exception>
+    /// <exception cref="RequestException">Error during execution of a web request.</exception>
+    public override AccessToken RefreshToken(AccessToken accessToken = null)
+    {
+      // NOTE: wl.offline_access required!
+
+      var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
+
+      var parameters = new NameValueCollection
+      { 
+        { "client_id", this.ApplicationId },
+        { "client_secret", this.ApplicationSecret },
+        { "grant_type", GrantType.RefreshToken },
+        { "refresh_token", token.RefreshToken }
+      };
+
+      var result = OAuthUtility.Post
+      (
+        this.AccessTokenUrl,
+        parameters: parameters,
+        accessToken: token
+      );
+
+      return new OAuth2AccessToken(result);
     }
 
   }

@@ -100,11 +100,12 @@
   <div id="buttons">
 		<div id="processing"></div>
 		<ul>
+			<li>@Ajax.ActionLink("User info", "GetUserInfo", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			@if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
 			{
 				@Html.Partial(Model.ProviderName, Model.AccessToken)
 			}
-			<li>@Ajax.ActionLink("Get token", "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			<li>@Ajax.ActionLink("Show token", "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRefreshToken)
 			{
 				<li>@Ajax.ActionLink("Refresh token", "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
@@ -116,18 +117,33 @@
 		</ul>
 		<div class="clear"></div>
 	</div>
-  <textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:700px;display:none;" rows="25" cols="50"></textarea>
-  
+	<div id="resultContainer">
+		<textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:100%;display:none;max-height:350px;" rows="25" cols="50"></textarea>
+	  <div id="jsonView" style="height:350px;max-height:350px;width:100%;max-width:100%;overflow:auto;display:none;"></div>
+	</div>
+	<div class="clear"></div>
+	
   <script type="text/javascript">
-    function OnBegin() {
+  	function OnBegin() {
+  		$('#jsonView,#apiResults').hide();
+  		$('#resultContainer').addClass('processing');
     	$('#processing').height($('#processing').parent().height() + 10);
     	$('#processing').show();
     }
 
     function OnComplete() {
     	$('#processing').hide('slow');
-    	$('#apiResults').show();
+			try {
+				$("#jsonView").JSONView(eval('(' + $('#apiResults').val() + ')'));
+				$('#jsonView').show();
+			}
+			catch (e)	{
+				$('#apiResults').show();
+			}
+			$('#resultContainer').removeClass('processing');
     }
+
+    /*$(document).ready(function () { });*/
   </script>
 }
 else
@@ -139,3 +155,9 @@ else
 <br />
 @Html.ActionLink(Test.Resources.Strings.BackToProviders, "Index")
 <br /><br /><br />
+
+@section head
+{
+	<script src="@Url.Content("~/Content/js/jquery.jsonview.js")" type="text/javascript"></script>
+	<link href="@Url.Content("~/Content/css/jquery.jsonview.css")" rel="stylesheet" type="text/css" />
+}

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Nemiro.OAuth;
 using System.Text;
+using System.Collections.Specialized;
 
 namespace Test.OAuthWeb.Controllers
 {
@@ -88,6 +89,12 @@ namespace Test.OAuthWeb.Controllers
         Session[String.Format("{0}:UserId", result.ProviderName)] = result.UserInfo.UserId;
         Session[String.Format("{0}:UserName", result.ProviderName)] = result.UserInfo.UserName;
         Session[String.Format("{0}:Email", result.ProviderName)] = result.UserInfo.Email;
+
+        if (result.ProviderName.Equals("yahoo", StringComparison.OrdinalIgnoreCase))
+        {
+          // for refreshing token
+          Session[String.Format("{0}:ReturnUrl", result.ProviderName)] = Request.Url.ToString();
+        }
       }
       TempData["ExternalLoginResult"] = result;
       return RedirectToAction("Result");

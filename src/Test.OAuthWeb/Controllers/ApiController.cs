@@ -37,6 +37,32 @@ namespace Test.OAuthWeb.Controllers
     }
 
     [HttpPost]
+    public ActionResult GetUserInfo(string provider)
+    {
+        AccessToken accessToken = AccessToken.Empty;
+      try
+      {
+        if (Session[String.Format("{0}:AccessToken", provider)] != null)
+        {
+          accessToken = (AccessToken)Session[String.Format("{0}:AccessToken", provider)];
+        }
+
+        if (AccessToken.IsNullOrEmpty(accessToken))
+        {
+          throw new Exception(Test.Resources.Strings.SessionIsDead);
+        }
+
+        var result = OAuthManager.RegisteredClients[provider].GetUserInfo(accessToken);
+
+        return Content(result.Items.ToString(), "text/plain");
+      }
+      catch (Exception ex)
+      {
+        return Content(ex.ToString(), "text/plain");
+      }
+    }
+
+    [HttpPost]
     public ActionResult Token(string provider)
     {
       try
@@ -46,7 +72,7 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
-        return Content(Encoding.UTF8.GetString(((AccessToken)Session[String.Format("{0}:AccessToken", provider)]).Source), "text/plain");
+        return Content(RequestResult.Create((RequestResult)Session[String.Format("{0}:AccessToken", provider)]).ToString(), "text/plain");
       }
       catch (Exception ex)
       {
@@ -70,11 +96,19 @@ namespace Test.OAuthWeb.Controllers
           throw new Exception(Test.Resources.Strings.SessionIsDead);
         }
 
-        Session[String.Format("{0}:AccessToken", provider)] = OAuthManager.RegisteredClients[provider].RefreshToken(accessToken);
+        if (provider.Equals("yahoo", StringComparison.OrdinalIgnoreCase))
+        {
+          // #!@#%^
+          Session[String.Format("{0}:AccessToken", provider)] = ((YahooClient)OAuthManager.RegisteredClients[provider]).RefreshToken(accessToken, Session[String.Format("{0}:ReturnUrl", provider)].ToString());
+        }
+        else
+        {
+          Session[String.Format("{0}:AccessToken", provider)] = OAuthManager.RegisteredClients[provider].RefreshToken(accessToken);
+        }
 
         return Content
         (
-          "ok",
+          "{ msgbox: 'ok' }",
           "text/plain"
         );
       }
@@ -109,7 +143,7 @@ namespace Test.OAuthWeb.Controllers
 
         return Content
         (
-          (result.IsSuccessfully ? "ok" : result.ToString()),
+          (result.IsSuccessfully ? "{ msgbox: 'ok' }" : result.ToString()),
           "text/plain"
         );
       }

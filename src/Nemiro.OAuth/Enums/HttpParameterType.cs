@@ -13,15 +13,37 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // ----------------------------------------------------------------------------
+using System;
+
 namespace Nemiro.OAuth
 {
 
-  public static class AccessTokenType
+  /// <summary>
+  /// The list of the types a HTTP parameters.
+  /// </summary>
+  [Flags]
+  public enum HttpParameterType
   {
-
-    public const string Bearer = "Bearer";
-    public const string OAuth = "OAuth";
-
+    /// <summary>
+    /// Unformed parameter.
+    /// </summary>
+    Unformed = 0,
+    /// <summary>
+    /// Parameter of the query string.
+    /// </summary>
+    Url = 1,
+    /// <summary>
+    /// Parameter of the form.
+    /// </summary>
+    Form = 2,
+    /// <summary>
+    /// File.
+    /// </summary>
+    File = 4,
+    /// <summary>
+    /// Body of the request.
+    /// </summary>
+    RequestBody = 8
   }
 
 }

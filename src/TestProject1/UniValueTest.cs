@@ -242,7 +242,6 @@ namespace TestProject1
       var testValue2 = new string[] { "test", "test2", "test3" };
       var testValue3 = new string[] { "1", "2" };
       var testValue4 = new string[] { "hi", "hello" };
-
       Console.WriteLine("Test 1");
       UniValue value = UniValue.ParseJson("{data: [{id: 1, name: 'test'}, {id: 2, name: 'test2'}, {id: 3, name: 'test3', list: [{x:1,y:'hi'}, {x:2, y:'hello'}] }] }");
       foreach (UniValue itm in value["data"])
@@ -1031,7 +1030,7 @@ namespace TestProject1
       Console.WriteLine(value);
       Console.WriteLine("-------------------------------------");
 
-      if (value != "{ response: { item: ['1', '2', '3'] } }")
+      if (value != "{ \"response\": { \"item\": [\"1\", \"2\", \"3\"] } }")
       {
         Assert.Fail();
       }
@@ -1043,7 +1042,7 @@ namespace TestProject1
       value["response"]["item"]["test"] = "123";
       Console.WriteLine(value);
 
-      if (value != "{ response: { item: { 0: '1', 1: '2', 2: '3', test: '123' } } }")
+      if (value != "{ \"response\": { \"item\": { \"0\": \"1\", \"1\": \"2\", \"2\": \"3\", \"test\": \"123\" } } }")
       {
         Assert.Fail();
       }
@@ -1055,11 +1054,11 @@ namespace TestProject1
       Console.WriteLine("-------------------------------------");
 
       Console.WriteLine("Test 2");
-      value = UniValue.ParseJson("{data: [{id: 1, name: 'test'}, {id: 2, name: 'test2'}, {id: 3, name: 'test3', list: [{x:1,y:'hi'}, {x:2, y:'hello'}] }] }");
+      value = UniValue.ParseJson("{\"data\": [{\"id\": 1, \"name\": \"test\"}, {\"id\": 2, \"name\": \"test2\"}, {\"id\": 3, \"name\": \"test3\", \"list\": [{\"x\":1,\"y\":\"hi\"}, {\"x\":2, \"y\":\"hello\"}] }] }");
       Console.WriteLine("-------------------------------------");
 
       Console.WriteLine("[] = {0}", value);
-      if (value != "{ data: [{ id: 1, name: 'test' }, { id: 2, name: 'test2' }, { id: 3, name: 'test3', list: [{ x: 1, y: 'hi' }, { x: 2, y: 'hello' }] }] }")
+      if (value != "{ \"data\": [{ \"id\": 1, \"name\": \"test\" }, { \"id\": 2, \"name\": \"test2\" }, { \"id\": 3, \"name\": \"test3\", \"list\": [{ \"x\": 1, \"y\": \"hi\" }, { \"x\": 2, \"y\": \"hello\" }] }] }")
       {
         Assert.Fail();
       }
@@ -1069,7 +1068,7 @@ namespace TestProject1
       }
 
       Console.WriteLine("[data] = {0}", value["data"]);
-      if (value["data"] != "[{ id: 1, name: 'test' }, { id: 2, name: 'test2' }, { id: 3, name: 'test3', list: [{ x: 1, y: 'hi' }, { x: 2, y: 'hello' }] }]")
+      if (value["data"] != "[{ \"id\": 1, \"name\": \"test\" }, { \"id\": 2, \"name\": \"test2\" }, { \"id\": 3, \"name\": \"test3\", \"list\": [{ \"x\": 1, \"y\": \"hi\" }, { \"x\": 2, \"y\": \"hello\" }] }]")
       {
         Assert.Fail();
       }
@@ -1134,7 +1133,7 @@ namespace TestProject1
       Console.WriteLine("[response][item]");
       Console.WriteLine(value["response"]["item"]);
 
-      if (value["response"]["item"] != "[{ value: { vvalue: { '@abc': 'test', '@avalue': '1234567' } }, '@id': '1', '@style': 'bold', '@color': 'white' }, { value: { v: '456' }, '@id': '2', '@style': 'italic', '@color': 'red' }]")
+      if (value["response"]["item"] != "[{ \"value\": { \"vvalue\": { \"@abc\": \"test\", \"@avalue\": \"1234567\" } }, \"@id\": \"1\", \"@style\": \"bold\", \"@color\": \"white\" }, { \"value\": { \"v\": \"456\" }, \"@id\": \"2\", \"@style\": \"italic\", \"@color\": \"red\" }]")
       {
         Assert.Fail();
       }
@@ -1148,7 +1147,7 @@ namespace TestProject1
       Console.WriteLine("[response][item][0]");
       Console.WriteLine(value["response"]["item"][0]);
 
-      if (value["response"]["item"][0] != "{ vvalue: { '@abc': 'test', '@avalue': '1234567' } }")
+      if (value["response"]["item"][0] != "{ \"vvalue\": { \"@abc\": \"test\", \"@avalue\": \"1234567\" } }")
       {
         Assert.Fail();
       }
@@ -1157,6 +1156,16 @@ namespace TestProject1
         Console.WriteLine("OK");
       }
 
+      Console.WriteLine("-------------------------------------");
+
+      Console.WriteLine("Test 5");
+      value = UniValue.ParseJson("{data: [{id: 1, name: null}, {id: 2, name: 'test2\r\n123'}, {id: 3, name: 'test3', list: [{x:1,y:'hi'}, {x:2, y:'hello'}] }] }");
+      Console.WriteLine(value);
+      Assert.AreEqual(value.ToString(), "{ \"data\": [{ \"id\": 1, \"name\": null }, { \"id\": 2, \"name\": \"test2\\r\\n123\" }, { \"id\": 3, \"name\": \"test3\", \"list\": [{ \"x\": 1, \"y\": \"hi\" }, { \"x\": 2, \"y\": \"hello\" }] }] }");
+
+      value = "test\r\ntest";
+      Console.WriteLine(value);
+      Assert.AreEqual(value.ToString(), "test\r\ntest");
       Console.WriteLine("-------------------------------------");
     }
 

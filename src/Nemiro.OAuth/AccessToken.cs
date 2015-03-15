@@ -37,7 +37,16 @@ namespace Nemiro.OAuth
     /// </summary>
     public string Value { get; protected set; }
 
-    public static readonly AccessToken Empty = null;
+    /// <summary>
+    /// Represents the empty <see cref="AccessToken"/>.
+    /// </summary>
+    public static new AccessToken Empty
+    {
+      get
+      {
+        return new AccessToken() { Value = null };
+      }
+    }
 
     /// <summary>
     /// Gets a value indicating whether the <see cref="AccessToken"/> is empty or not.
@@ -63,11 +72,6 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="result">Result of request to the OAuth server.</param>
     internal AccessToken(RequestResult result) : base(result) { }
-
-    static AccessToken()
-    {
-      AccessToken.Empty = new AccessToken() { Value = null };
-    }
 
     #endregion
     #region ..methods..

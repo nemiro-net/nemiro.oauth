@@ -618,9 +618,9 @@ namespace Nemiro.OAuth.Clients
       );
 
       // email, thanks to Aleksander (KamAz) Kryatov (http://vk.com/acid_rock) for idea
-      if (this.AccessToken.ContainsKey("email"))
+      if (accessToken.ContainsKey("email"))
       {
-        result["response"].First().Add("at_email", this.AccessToken["email"]);
+        result["response"].First().Add("at_email", accessToken["email"]);
         map.Add("at_email", "Email", typeof(string));
       }
       // --

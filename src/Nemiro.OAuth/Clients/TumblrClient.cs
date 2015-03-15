@@ -134,6 +134,9 @@ namespace Nemiro.OAuth.Clients
 
       this.Authorization["oauth_token"] = accessToken["oauth_token"].ToString();
       this.Authorization.TokenSecret = accessToken["oauth_token_secret"].ToString();
+      // required new stamp
+      this.Authorization.Timestamp = OAuthUtility.GetTimeStamp();
+      this.Authorization.Nonce = OAuthUtility.GetRandomKey();
 
       // execute the request
       var result = OAuthUtility.Get

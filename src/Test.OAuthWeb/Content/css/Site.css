@@ -247,10 +247,24 @@ background-color: #e6e6e6;
 
 #processing 
 {
-	background-image:url('/content/processing.gif');
+	background-image:url('/content/images/processing.gif');
 	background-color:rgba(255, 255, 255, 0.65);
 	position:absolute;
 	width:960px;
 	height:60px;
 	display:none;
+}
+
+#resultContainer
+{
+	background-image: none;
+	height:350px;
+	width: 100%;
+}
+
+#resultContainer.processing
+{
+	background-image:url('/content/images/processing2.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
 }

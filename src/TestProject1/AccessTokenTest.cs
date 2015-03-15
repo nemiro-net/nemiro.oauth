@@ -99,7 +99,10 @@ namespace TestProject1
 
       var token12 = client.GetSpecifiedTokenOrCurrent(null);
       */
-      
+
+      var token13 = new OAuth2AccessToken("123", "4567");
+      Assert.AreEqual(token13.Value, "123");
+      Assert.AreEqual(token13.RefreshToken, "4567");
     }
 
   }

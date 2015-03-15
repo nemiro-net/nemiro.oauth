@@ -370,7 +370,20 @@ namespace Nemiro.OAuth
     {
       OAuthBase result = this.Clone() as OAuthBase;
       if (returnUrl != null) { result.ReturnUrl = returnUrl; }
-      if (parameters != null) { result.Parameters = parameters; }
+      if (parameters != null) 
+      {
+        if (result.Parameters.Count <= 0)
+        {
+          result.Parameters = parameters;
+        }
+        else
+        {
+          foreach (string key in parameters.Keys)
+          {
+            result.Parameters[key] = parameters[key];
+          }
+        }
+      }
       return result;
     }
 

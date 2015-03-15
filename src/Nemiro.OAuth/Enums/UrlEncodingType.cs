@@ -16,12 +16,28 @@
 namespace Nemiro.OAuth
 {
 
-  public static class AccessTokenType
+  /// <summary>
+  /// The list of url encding methods.
+  /// </summary>
+  public enum UrlEncodingType
   {
-
-    public const string Bearer = "Bearer";
-    public const string OAuth = "OAuth";
-
+    /// <summary>
+    /// Without encoding.
+    /// </summary>
+    None,
+    /// <summary>
+    /// <see cref="UrlEncodingType.PercentEncoding"/> for POST requests when a conetent-type is x-www-form-urlencoded.
+    /// And <see cref="UrlEncodingType.Default"/> for other requests.
+    /// </summary>
+    Auto,
+    /// <summary>
+    /// x-www-form-urlencoded (spaces encoded as plus (+) signs).
+    /// </summary>
+    Default,
+    /// <summary>
+    /// RFC 3986 (spaces encoded as %20).
+    /// </summary>
+    PercentEncoding
   }
 
 }

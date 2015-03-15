@@ -175,7 +175,7 @@ namespace Test.OAuthWeb.Controllers
           #endregion
         }
 
-        return Content(Regex.Unescape(result.ToString()), "text/plain");
+        return Content(result.ToString(), "text/plain");
       }
       catch (Exception ex)
       {

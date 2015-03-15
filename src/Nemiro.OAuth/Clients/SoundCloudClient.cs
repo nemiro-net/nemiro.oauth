@@ -116,10 +116,12 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     )
     {
+      // https://developers.soundcloud.com/docs/api/reference
       base.ScopeSeparator = " "; // don't know...
       base.DefaultScope = "non-expiring";
+      // features for access token
       // https://developers.soundcloud.com/docs/api/guide#authentication
-      base.SupportRefreshToken = false;
+      base.SupportRefreshToken = false; // scope = "*" not working and refresh_token too...
     }
 
     /// <summary>

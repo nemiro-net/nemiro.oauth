@@ -16,12 +16,29 @@
 namespace Nemiro.OAuth
 {
 
-  public static class AccessTokenType
+  // TODO: Think about AccessTokenType
+
+  /// <summary>
+  /// The list of authorization type.
+  /// </summary>
+  public enum AuthorizationType
   {
-
-    public const string Bearer = "Bearer";
-    public const string OAuth = "OAuth";
-
+    /// <summary>
+    /// Basic
+    /// </summary>
+    Basic,
+    /// <summary>
+    /// Bearer
+    /// </summary>
+    Bearer,
+    /// <summary>
+    /// Digest
+    /// </summary>
+    Digest,
+    /// <summary>
+    /// OAuth
+    /// </summary>
+    OAuth
   }
 
 }

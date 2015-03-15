@@ -36,6 +36,8 @@ namespace Nemiro.OAuth
   public static class OAuthUtility
   {
 
+    #region ..properties and fields..
+
     /// <summary>
     /// Unreserved characters for the <see cref="UrlEncode(string)"/> method.
     /// </summary>
@@ -54,12 +56,30 @@ namespace Nemiro.OAuth
 
     internal static readonly Type[] ExcludedTypeOfClasses = new Type[] { typeof(string), typeof(byte[]) };
 
+    internal static readonly Dictionary<char, string> JavaScriptChars = new Dictionary<char, string>
+    {
+      { '\'', "\\\'" }, // \u0027
+      { '\"', "\\\"" },
+      { '\\', "\\\\" },
+      { '\b', "\\b" },
+      { '\f', "\\f" },
+      { '\n', "\\n" },
+      { '\r', "\\r" },
+      { '\t', "\\t" },
+      { '<', "\u003c" },
+      { '&', "\u0026" }
+    };
+
+    #endregion
+    #region ..constructor..
+
     /// <summary>
     /// This is main helper class.
     /// </summary>
-    static OAuthUtility()
-    {
-    }
+    static OAuthUtility() { }
+
+    #endregion
+    #region ..methods..
 
     /// <summary>
     /// Percent encoding.
@@ -141,6 +161,40 @@ namespace Nemiro.OAuth
       {
         return value;
       }
+    }
+
+    /// <summary>
+    /// Encodes a string into JavaScript string.
+    /// </summary>
+    /// <param name="value">The string to encode.</param>
+    public static string JavaScriptStringEncode(string value)
+    {
+      if (String.IsNullOrEmpty(value)) { return value; }
+      // return value.ToString().Replace("'", "\\'").Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
+
+      var result = new StringBuilder();
+
+      foreach (char c in value)
+      {
+        if (OAuthUtility.JavaScriptChars.ContainsKey(c))
+        {
+          result.Append(OAuthUtility.JavaScriptChars[c]);
+        }
+        else
+        {
+          int code = (int)c;
+          if (code < 32 || code > 127)
+          {
+            result.AppendFormat("\\u{0:x4}", code);
+          }
+          else
+          {
+            result.Append(c);
+          }
+        }
+      }
+
+      return result.ToString();
     }
 
     /// <summary>
@@ -666,6 +720,7 @@ namespace Nemiro.OAuth
       return false;
     }
 
+    #endregion
     #region [obsolete]
 
     /// <summary>
