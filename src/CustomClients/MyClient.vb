@@ -24,7 +24,8 @@ Public Class MyClient
   ''' <summary>
   ''' Gets the user details.
   ''' </summary>
-  Public Overrides Function GetUserInfo() As UserInfo
+  ''' <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+  Public Overrides Function GetUserInfo(Optional ByVal accessToken As AccessToken = Nothing) As UserInfo
     Return New UserInfo(UniValue.Empty, Nothing)
   End Function
 

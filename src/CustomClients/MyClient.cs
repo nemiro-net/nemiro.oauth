@@ -31,7 +31,8 @@ public class MyClient : OAuth2Client
   /// <summary>
   /// Gets the user details.
   /// </summary>
-  public override UserInfo GetUserInfo()
+  /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+  public override UserInfo GetUserInfo(AccessToken accessToken = null)
   {
     return new UserInfo(UniValue.Empty, null);
   }
