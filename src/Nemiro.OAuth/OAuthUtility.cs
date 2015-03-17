@@ -254,77 +254,109 @@ namespace Nemiro.OAuth
     #region web methods
 
     /// <summary>
-    /// Performs a web request using a <b>GET</b> method.
+    /// Performs a request using a <b>GET</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="headers">HTTP headers for request.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
     {
       return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken);
     }
 
     /// <summary>
-    /// Performs a web request using a <b>POST</b> method.
+    /// Performs a request using a <b>POST</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
     /// <param name="headers">HTTP headers for web request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
     {
       return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken);
     }
 
     /// <summary>
-    /// Performs a web request using a <b>PUT</b> method.
+    /// Performs a request using a <b>PUT</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to the request.</param>
+    /// <param name="parameters">Parameters to be passed to the request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
+    /// <param name="headers">HTTP headers for the request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
     {
       return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken);
     }
 
     /// <summary>
-    /// Performs a web request using a <b>DELETE</b> method.
+    /// Performs a request using a <b>DELETE</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to the request.</param>
+    /// <param name="parameters">Parameters to be passed to the request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="headers">HTTP headers for the request.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
     {
       return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken);
     }
 
     /// <summary>
-    /// Performs a web request.
+    /// Performs a request.
     /// </summary>
     /// <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
     /// <param name="headers">HTTP headers for web request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
@@ -550,84 +582,119 @@ namespace Nemiro.OAuth
     #region async web methods
 
     /// <summary>
-    /// Performs an async web request using a <b>GET</b> method.
+    /// Performs an async request using a <b>GET</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
-    /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="headers">HTTP headers for request.</param>
+    /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback);
     }
 
     /// <summary>
-    /// Performs an async web request using a <b>POST</b> method.
+    /// Performs an async request using a <b>POST</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
+    /// <param name="headers">HTTP headers for request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-    /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
     }
 
     /// <summary>
-    /// Performs an async web request using a <b>PUT</b> method.
+    /// Performs an async request using a <b>PUT</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
+    /// <param name="headers">HTTP headers for request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-    /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
     }
 
     /// <summary>
-    /// Performs an async web request using a <b>DELETE</b> method.
+    /// Performs an async request using a <b>DELETE</b> method.
     /// </summary>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
-    /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="headers">HTTP headers for request.</param>
+    /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback);
     }
 
     /// <summary>
-    /// Performs an async web request.
+    /// Performs an async request.
     /// </summary>
     /// <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-    /// <param name="endpoint">URL to which will be sent to web request.</param>
-    /// <param name="parameters">Parameters to be passed to web request.</param>
+    /// <param name="endpoint">URL to which will be sent to request.</param>
+    /// <param name="parameters">Parameters to be passed to request.</param>
     /// <param name="authorization">Authorization header value.</param>
-    /// <param name="headers">HTTP headers for web request.</param>
+    /// <param name="headers">HTTP headers for request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the web request.</returns>
+    /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <remarks>
+    /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
+    /// <exception cref="ArgumentException">
+    /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+    /// </exception>
     public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
     {
       var t = new Thread

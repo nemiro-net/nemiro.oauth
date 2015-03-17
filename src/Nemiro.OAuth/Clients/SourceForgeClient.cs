@@ -118,18 +118,31 @@ namespace Nemiro.OAuth.Clients
       consumerSecret,
       SignatureMethods.HMACSHA1
     ) { }
-
-
+    
     /// <summary>
     /// Gets the user details.
     /// </summary>
     /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      return new UserInfo(UniValue.Empty, null);
+    }
+
+    /// <summary>
+    /// Gets the user details.
+    /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+    /// <param name="usersname">Name of the user whose data should be obtained.</param>
+    public UserInfo GetUserInfo(AccessToken accessToken = null, string usersname = "")
+    {
+      if (String.IsNullOrEmpty("usersname"))
+      {
+        throw new ArgumentNullException("usersname");
+      }
+
       // help: https://sourceforge.net/p/forge/documentation/Allura%20API/#user
 
-      /*
-      string url = String.Format("https://sourceforge.net/rest/u/{0}/profile", "");
+      string url = String.Format("https://sourceforge.net/rest/u/{0}/profile", usersname);
 
       this.Authorization["oauth_token"] = this.AccessToken["oauth_token"];
       this.Authorization.TokenSecret = this.AccessToken["oauth_token_secret"].ToString();
@@ -139,15 +152,32 @@ namespace Nemiro.OAuth.Clients
 
       // execute the request
       var result = OAuthUtility.Get(url, base.Authorization.Value.ToNameValueCollection());
-      */
 
       // field mapping
-      // var map = new ApiDataMapping();
+      var map = new ApiDataMapping();
+      map.Add("username", "UserName");
+      map.Add("name", "DisplayName");
+      map.Add
+      (
+        "sex", "Sex",
+        delegate(UniValue value)
+        {
+          if (value.Equals("Male", StringComparison.OrdinalIgnoreCase))
+          {
+            return Sex.Male;
+          }
+          else if (value.Equals("Female", StringComparison.OrdinalIgnoreCase))
+          {
+            return Sex.Female;
+          }
+          return Sex.None;
+        }
+      );
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(UniValue.Empty, null);
+      return new UserInfo(UniValue.Empty, map);
     }
-    
+
     /// <summary>
     /// Gets the request token from the remote server.
     /// </summary>

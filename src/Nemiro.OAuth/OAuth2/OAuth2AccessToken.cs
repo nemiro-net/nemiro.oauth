@@ -182,6 +182,11 @@ namespace Nemiro.OAuth
       return this.Value;
     }
 
+    /// <summary>
+    /// Converts the specified string to an <see cref="OAuth2AccessToken"/>.
+    /// </summary>
+    /// <param name="value">A string containing an access token to parse.</param>
+    /// <returns>A new <see cref="OAuth2AccessToken"/> instance.</returns>
     public new static OAuth2AccessToken Parse(string value)
     {
       return AccessToken.Parse<OAuth2AccessToken>(value);

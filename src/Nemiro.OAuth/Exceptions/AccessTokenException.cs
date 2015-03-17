@@ -21,14 +21,19 @@ using System.Text;
 namespace Nemiro.OAuth
 {
 
+  /// <summary>
+  /// Represents the access token exception.
+  /// </summary>
   [Serializable]
   public class AccessTokenException : RequestException
   {
 
-    // public AccessTokenException() : this("") { }
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AccessTokenException"/> class with a specified message.
+    /// </summary>
+    /// <param name="message">The error message that explains the reason for this exception.</param>
     public AccessTokenException(string message) : base(message) { }
-    
+
   }
 
 }

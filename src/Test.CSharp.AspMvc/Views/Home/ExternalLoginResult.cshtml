@@ -20,11 +20,11 @@
 	}
 </pre>
 
-@if (Model.IsSuccessfully)
+@*if (Model.IsSuccessfully)
 {
-	@Html.ActionLink("Refresh token", "Refresh", "Home", new { clientName = Model.ProviderName, accessToken = Model.AccessTokenValue }, null) @:&middot;
+	@Html.ActionLink("Refresh token", "Refresh", "Home", new { clientName = Model.ProviderName, accessToken = Model.AccessTokenValue, refreshToken = (Model.AccessToken["refresh_token"].HasValue ? Model.AccessToken["refresh_token"].ToString() : "" )}, null) @:&middot;
 	@Html.ActionLink("Revoke token", "Revoke", "Home", new { clientName = Model.ProviderName, accessToken = Model.AccessTokenValue }, null)
-}
+}*@
 
 <br />
 <hr />

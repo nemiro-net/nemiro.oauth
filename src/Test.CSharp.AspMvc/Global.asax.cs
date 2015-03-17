@@ -87,6 +87,7 @@ namespace Test.CSharp.AspMvc
           "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com",
           "AeEbEGQqoKgOZb41JUVLvEJL"
         )
+        // { Parameters = new NameValueCollection { { "approval_prompt", "force" } } }
       );
 
       OAuthManager.RegisterClient

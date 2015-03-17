@@ -13,15 +13,14 @@ again:
     Console.WriteLine("Password:")
     client.Password = Console.ReadLine()
     Console.WriteLine("Getting access token...")
-    Dim accessToken As RequestResult = client.AccessToken
-    If accessToken.IsSuccessfully Then
+    If Not String.IsNullOrEmpty(client.AccessTokenValue) Then
       Console.WriteLine("Access token:")
-      Console.WriteLine(CType(accessToken, AccessToken).Value)
+      Console.WriteLine(client.AccessTokenValue)
       Console.WriteLine("")
       Console.WriteLine("Press any key to exit")
       Console.ReadKey()
     Else
-      Console.WriteLine(accessToken.ToString())
+      Console.WriteLine(client.AccessToken.ToString())
       GoTo again
     End If
   End Sub

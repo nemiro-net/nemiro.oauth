@@ -78,6 +78,7 @@ namespace AspNetWebFormsCustomClient
     /// <summary>
     /// Gets the user details.
     /// </summary>
+    /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <remarks>
     /// <para>
     /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
@@ -86,8 +87,10 @@ namespace AspNetWebFormsCustomClient
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
-    public override UserInfo GetUserInfo()
+    public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
+      accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
+
       // query parameters
       var parameters = new NameValueCollection
       { 

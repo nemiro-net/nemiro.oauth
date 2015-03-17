@@ -16,10 +16,20 @@
 namespace Nemiro.OAuth
 {
 
+  /// <summary>
+  /// The list of access token types.
+  /// </summary>
   public static class AccessTokenType
   {
 
+    /// <summary>
+    /// Bearer
+    /// </summary>
     public const string Bearer = "Bearer";
+
+    /// <summary>
+    /// OAuth
+    /// </summary>
     public const string OAuth = "OAuth";
 
   }

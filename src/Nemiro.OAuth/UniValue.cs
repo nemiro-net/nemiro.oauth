@@ -419,7 +419,7 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-		/// Retrieves the hash code of the object.
+    /// Retrieves the hash code of the object.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal int Hash

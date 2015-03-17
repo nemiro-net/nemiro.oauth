@@ -84,11 +84,22 @@ namespace Nemiro.OAuth
       return this.Value;
     }
 
+    /// <summary>
+    /// Converts the specified string to an <see cref="AccessToken"/>.
+    /// </summary>
+    /// <param name="value">A string containing an access token to parse.</param>
+    /// <returns>A new <see cref="AccessToken"/> instance.</returns>
     public static AccessToken Parse(string value)
     {
       return AccessToken.Parse<AccessToken>(value);
     }
 
+    /// <summary>
+    /// Converts the specified string to an <see cref="AccessToken"/>.
+    /// </summary>
+    /// <typeparam name="T">Type Inherited from the <see cref="AccessToken"/> that should be returned.</typeparam>
+    /// <param name="value">A string containing an access token to parse.</param>
+    /// <returns>A new <typeparamref name="T"/> instance.</returns>
     public static T Parse<T>(string value) where T : AccessToken
     {
       if (String.IsNullOrEmpty(value)) { return (T)AccessToken.Empty; }

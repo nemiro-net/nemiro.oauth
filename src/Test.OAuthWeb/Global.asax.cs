@@ -10,6 +10,7 @@ using Nemiro.OAuth.Clients;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
+using System.Collections.Specialized;
 
 namespace Test.OAuthWeb
 {
@@ -85,21 +86,30 @@ namespace Test.OAuthWeb
         }
         // --
 
-        // necessary permissions 
+        // necessary permissions
         string scope = null;
         if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings[String.Format("oauth:{0}:scope", clientName)]))
         {
           scope = ConfigurationManager.AppSettings[String.Format("oauth:{0}:scope", clientName)];
         }
         // --
-          
+        
+        // other parameters
+        NameValueCollection parameters = null;
+        if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings[String.Format("oauth:{0}:parameters", clientName)]))
+        {
+          parameters = HttpUtility.ParseQueryString(ConfigurationManager.AppSettings[String.Format("oauth:{0}:parameters", clientName)]);
+        }
+        // --
+
         OAuthManager.RegisterClient
         (
           clientName,
           ConfigurationManager.AppSettings[String.Format("oauth:{0}:id", clientName)], 
           ConfigurationManager.AppSettings[String.Format("oauth:{0}:key", clientName)], 
           initArgs: (args != null ? args.ToArray() : null),
-          scope: scope
+          scope: scope,
+          parameters: parameters
         );
       }
     }

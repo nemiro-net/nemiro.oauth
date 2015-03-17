@@ -1043,6 +1043,11 @@
             Gets a value indicating the <see cref="P:Nemiro.OAuth.RequestResult.Result"/> is array or not.
             </summary>
         </member>
+        <member name="M:Nemiro.OAuth.AccessToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.AccessToken"/> class.
+            </summary>
+        </member>
         <member name="M:Nemiro.OAuth.AccessToken.#ctor(Nemiro.OAuth.RequestResult)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.AccessToken"/> class.
@@ -1053,6 +1058,28 @@
             <summary>
             Returns the <see cref="P:Nemiro.OAuth.AccessToken.Value"/>.
             </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.Parse(System.String)">
+            <summary>
+            Converts the specified string to an <see cref="T:Nemiro.OAuth.AccessToken"/>.
+            </summary>
+            <param name="value">A string containing an access token to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.AccessToken"/> instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.Parse``1(System.String)">
+            <summary>
+            Converts the specified string to an <see cref="T:Nemiro.OAuth.AccessToken"/>.
+            </summary>
+            <typeparam name="T">Type Inherited from the <see cref="T:Nemiro.OAuth.AccessToken"/> that should be returned.</typeparam>
+            <param name="value">A string containing an access token to parse.</param>
+            <returns>A new <typeparamref name="T"/> instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.IsNullOrEmpty(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Indicates whether the specified value is null or an <see cref="P:Nemiro.OAuth.AccessToken.Empty"/>.
+            </summary>
+            <param name="value">The <see cref="T:Nemiro.OAuth.AccessToken"/> instance to test.</param>
+            <returns><b>true</b> if the <paramref name="value"/> parameter is <b>null</b> or <see cref="P:Nemiro.OAuth.AccessToken.IsEmpty"/> is <b>false</b>; otherwise, <b>false</b>.</returns>
         </member>
         <member name="M:Nemiro.OAuth.AccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
@@ -1068,9 +1095,31 @@
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
             <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         </member>
+        <member name="M:Nemiro.OAuth.AccessToken.op_Implicit(Nemiro.OAuth.AccessToken)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.AccessToken"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="v">The <see cref="T:Nemiro.OAuth.AccessToken"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessToken.op_Implicit(System.String)~Nemiro.OAuth.AccessToken">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.AccessToken"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.AccessToken"/>.</param>
+        </member>
         <member name="P:Nemiro.OAuth.AccessToken.Value">
             <summary>
             The access token issued by the authorization server.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.AccessToken.Empty">
+            <summary>
+            Represents the empty <see cref="T:Nemiro.OAuth.AccessToken"/>.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.AccessToken.IsEmpty">
+            <summary>
+            Gets a value indicating whether the <see cref="T:Nemiro.OAuth.AccessToken"/> is empty or not.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.AuthorizationResult">
@@ -1585,6 +1634,41 @@
             </remarks>
             <exception cref="T:System.ArgumentNullException">The <see cref="P:Nemiro.OAuth.OAuthBase.AuthorizationCode"/> is <b>null</b> or <b>empty</b>.</exception>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthBase.RevokeToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to revoke the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be revoked.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthBase.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthBase.GetUserInfo(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Gets the user details via API of the provider.
+            </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+            <remarks>
+            <para>This is method is implemented at the <see cref="N:Nemiro.OAuth.Clients">client</see> level.</para>
+            </remarks>
+        </member>
         <member name="M:Nemiro.OAuth.OAuthBase.GetUserInfo">
             <summary>
             Gets the user details via API of the provider.
@@ -1617,6 +1701,18 @@
             </remarks>
             <seealso cref="M:Nemiro.OAuth.OAuthBase.Clone(System.Collections.Specialized.NameValueCollection,System.String)"/>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthBase.GetSpecifiedTokenOrCurrent(Nemiro.OAuth.AccessToken,System.Boolean)">
+            <summary>
+            Returns the specified access token or the current access token.
+            </summary>
+            <param name="value">May contain an access token, which will be refunded.</param>
+            <param name="refreshTokenRequired">Indicates the need to check the parameter <b>refresh_token</b> in the access token. Default: <b>false</b>.</param>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+        </member>
         <member name="P:Nemiro.OAuth.OAuthBase.ProviderName">
             <summary>
             Unique provider name.
@@ -1647,7 +1743,12 @@
         </member>
         <member name="P:Nemiro.OAuth.OAuthBase.AccessToken">
             <summary>
-            Gets or sets the access token.
+            Gets or sets an access token.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthBase.AccessTokenValue">
+            <summary>
+            Gets an access token value.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.OAuthBase.AuthorizationCode">
@@ -1703,6 +1804,16 @@
             <para>These parameters will be transferred to the provider.</para>
             </remarks>
         </member>
+        <member name="P:Nemiro.OAuth.OAuthBase.SupportRevokeToken">
+            <summary>
+            Gets or sets a value indicating whether the current client supports revoking access token.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken">
+            <summary>
+            Gets or sets a value indicating whether the current client supports refreshing access token.
+            </summary>
+        </member>
         <member name="M:Nemiro.OAuth.OAuth2Client.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2Client"/> class.
@@ -1716,6 +1827,26 @@
             <summary>
             Gets the access token from the remote server.
             </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2Client.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
         </member>
         <member name="P:Nemiro.OAuth.OAuth2Client.Scope">
             <summary>
@@ -1759,13 +1890,77 @@
             <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
             <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.GoogleClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.GoogleClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.GoogleClient.RevokeToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to revoke the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be revoked.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.GoogleClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            <para>
+            In order to <b>Google</b> returned the <b>refresh_token</b>, when receiving an access token, you must specify <b>access_type=offline</b>.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new GoogleClient
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              )
+              {
+                Parameters = new NameValueCollection { { "access_type", "offline" } }
+               }
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New GoogleClient _
+              (
+                "1058655871432-83b9micke7cll89jfmcno5nftha3e95o.apps.googleusercontent.com", 
+                "AeEbEGQqoKgOZb41JUVLvEJL"
+              ) With _
+              {
+                .Parameters = New NameValueCollection() From {{"access_type", "offline"}}
+              }
+            )
+            </code>
+            <para>For more details, please see <see href="https://developers.google.com/accounts/docs/OAuth2WebServer#offline">Google Documentation</see>.</para>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
         </member>
         <member name="P:Nemiro.OAuth.Clients.GoogleClient.ProviderName">
             <summary>
@@ -1969,10 +2164,31 @@
             <param name="clientId">The client ID obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
             <param name="clientSecret">The client secret obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.AmazonClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.AmazonClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.AmazonClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
         </member>
         <member name="P:Nemiro.OAuth.Clients.AmazonClient.ProviderName">
             <summary>
@@ -2161,13 +2377,60 @@
             <param name="clientId">The Client ID obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
             <param name="clientSecret">The Client Secret obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.LiveClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.LiveClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.LiveClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            <para>
+            In order to <b>Microsoft Live</b> returned the <b>refresh_token</b>, when receiving an access token, you must specify the scope <b>wl.offline_access</b>.
+            </para>
+            <code lang="C#">
+            OAuthManager.RegisterClient
+            (
+              new LiveClient
+              (
+                "0000000040124265", 
+                "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
+              )
+              {
+                Scope = "wl.offline_access"
+               }
+            );
+            </code>
+            <code lang="VB">
+            OAuthManager.RegisterClient _
+            (
+              New LiveClient _
+              (
+                "0000000040124265", 
+                "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
+              ) With { .Scope = "wl.offline_access" }
+            )
+            </code>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
         </member>
         <member name="P:Nemiro.OAuth.Clients.LiveClient.ProviderName">
             <summary>
@@ -2249,10 +2512,11 @@
             <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
             <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.GitHubClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.GitHubClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -2336,13 +2600,27 @@
             <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
             <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.DropboxClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.DropboxClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.DropboxClient.RevokeToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to revoke the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be revoked.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
         </member>
         <member name="P:Nemiro.OAuth.Clients.DropboxClient.ProviderName">
             <summary>
@@ -2422,10 +2700,11 @@
             <param name="clientId">The <b>Client ID</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
             <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.FoursquareClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.FoursquareClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -2508,10 +2787,11 @@
             <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
             <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.SoundCloudClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.SoundCloudClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -2658,10 +2938,18 @@
             <param name="consumerKey">The <b>Consumer Key</b> obtained from the <see href="https://sourceforge.net/auth/oauth/">SourceForge OAuth applications</see>.</param>
             <param name="consumerSecret">The <b>Consumer Secret</b> obtained from the <see href="https://sourceforge.net/auth/oauth/">SourceForge OAuth applications</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetUserInfo(Nemiro.OAuth.AccessToken,System.String)">
+            <summary>
+            Gets the user details.
+            </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+            <param name="usersname">Name of the user whose data should be obtained.</param>
         </member>
         <member name="M:Nemiro.OAuth.Clients.SourceForgeClient.GetRequestToken">
             <summary>
@@ -2753,15 +3041,74 @@
             <param name="clientId">The <b>Consumer Key</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
             <param name="clientSecret">The <b>Consumer Secret</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.YahooClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.YahooClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
+            <remarks>
+            <para>Access token must contain the user ID in the parameter <b>xoauth_yahoo_guid</b>.</para>
+            </remarks>
         </member>
         <member name="M:Nemiro.OAuth.Clients.YahooClient.GetAccessToken">
             <summary>
             Gets the access token from the remote server.
             </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.YahooClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term><b>To update the access token, you must specify the return address that was used in obtaining the access token.</b></term>
+            </item>
+            </list>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
+            <exception cref="T:System.ArgumentNullException">An exception occurs if there is no authorization code.</exception>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.YahooClient.RefreshToken(Nemiro.OAuth.AccessToken,System.String)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <param name="returnUrl">Callback address that was used in obtaining the access token.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            <list type="table">
+            <item>
+            <term><img src="../img/warning.png" alt="(!)" title=""/></term>
+            <term><b>To update the access token, you must specify the return address that was used in obtaining the access token.</b></term>
+            </item>
+            </list>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
+            <exception cref="T:System.ArgumentNullException">An exception occurs if there is no authorization code.</exception>
         </member>
         <member name="P:Nemiro.OAuth.Clients.YahooClient.ProviderName">
             <summary>
@@ -2841,10 +3188,11 @@
             <param name="clientId">The <b>Api Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
             <param name="clientSecret">The <b>Secret Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.LinkedInClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.LinkedInClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -2927,10 +3275,11 @@
             <param name="consumerKey">The <b>Consumer Key</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
             <param name="consumerSecret">The <b>Consumer Secret</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.TumblrClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.TumblrClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets an user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -3013,10 +3362,11 @@
             <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
             <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.InstagramClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.InstagramClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -3101,10 +3451,11 @@
             <param name="clientId">The Client ID obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
             <param name="clientSecret">The Client Secret obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.CodeProjectClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.CodeProjectClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -3189,10 +3540,11 @@
             <param name="clientId">The Application ID obtained from the <see href="https://www.assembla.com/user/edit/manage_clients">Assembla Applications Manager</see>.</param>
             <param name="clientSecret">The Application Secret obtained from the <see href="https://www.assembla.com/user/edit/manage_clients">Assembla Applications Manager</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.AssemblaClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.AssemblaClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
@@ -3202,9 +3554,136 @@
             Unique provider name: <b>Assembla</b>.
             </summary>
         </member>
-        <member name="T:Nemiro.OAuth.ApiException">
+        <member name="T:Nemiro.OAuth.AccessTokenType">
             <summary>
-            The exception that is thrown when server of API returns error.
+            The list of access token types.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AccessTokenType.Bearer">
+            <summary>
+            Bearer
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AccessTokenType.OAuth">
+            <summary>
+            OAuth
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.AuthorizationType">
+            <summary>
+            The list of authorization type.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Basic">
+            <summary>
+            Basic
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Bearer">
+            <summary>
+            Bearer
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.Digest">
+            <summary>
+            Digest
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.AuthorizationType.OAuth">
+            <summary>
+            OAuth
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.HttpParameterType">
+            <summary>
+            The list of the types a HTTP parameters.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Unformed">
+            <summary>
+            Unformed parameter.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Url">
+            <summary>
+            Parameter of the query string.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.Form">
+            <summary>
+            Parameter of the form.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.File">
+            <summary>
+            File.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.HttpParameterType.RequestBody">
+            <summary>
+            Body of the request.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.Sex">
+            <summary>
+            Very sexy list.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.Sex.None">
+            <summary>
+            No sex.
+            </summary>
+            <remarks>:o)</remarks>
+        </member>
+        <member name="F:Nemiro.OAuth.Sex.Male">
+            <summary>
+            Male.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.Sex.Female">
+            <summary>
+            Female.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.Sex.Programmer">
+            <summary>
+            Programmer.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.Sex.DeepThought">
+            <summary>
+            Deep Thought.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.UrlEncodingType">
+            <summary>
+            The list of url encding methods.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.None">
+            <summary>
+            Without encoding.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.Auto">
+            <summary>
+            <see cref="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding"/> for POST requests when a conetent-type is x-www-form-urlencoded.
+            And <see cref="F:Nemiro.OAuth.UrlEncodingType.Default"/> for other requests.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.Default">
+            <summary>
+            x-www-form-urlencoded (spaces encoded as plus (+) signs).
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding">
+            <summary>
+            RFC 3986 (spaces encoded as %20).
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.AccessTokenException">
+            <summary>
+            Represents the access token exception.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.RequestException">
@@ -3262,6 +3741,17 @@
         <member name="P:Nemiro.OAuth.RequestException.HttpHeaders">
             <summary>
             Gets the http headers of the response.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.AccessTokenException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.AccessTokenException"/> class with a specified message.
+            </summary>
+            <param name="message">The error message that explains the reason for this exception.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.ApiException">
+            <summary>
+            The exception that is thrown when server of API returns error.
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.ApiException.#ctor(Nemiro.OAuth.RequestResult,System.Exception)">
@@ -3580,10 +4070,11 @@
             <param name="clientId">The App ID obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
             <param name="clientSecret">The App Secret obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.FacebookClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.FacebookClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <remarks>
             <para>
             For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
@@ -3592,6 +4083,32 @@
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.FacebookClient.RevokeToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to revoke the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be revoked.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support revoking the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRevokeToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.FacebookClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            </remarks>
         </member>
         <member name="P:Nemiro.OAuth.Clients.FacebookClient.ProviderName">
             <summary>
@@ -4103,10 +4620,11 @@
             <param name="clientSecret">The Client Secret.</param>
             <param name="publickKey">The Public Key.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.OdnoklassnikiClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.OdnoklassnikiClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <exception cref="T:Nemiro.OAuth.ApiException"/>
         </member>
         <member name="P:Nemiro.OAuth.Clients.OdnoklassnikiClient.ProviderName">
@@ -4144,7 +4662,7 @@
         </member>
         <member name="M:Nemiro.OAuth.ErrorResult.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.EmptyResult"/>.
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.ErrorResult"/>.
             </summary>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
@@ -5026,11 +5544,10 @@
             The access token class for OAuth 2.0.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(Nemiro.OAuth.RequestResult)">
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> class.
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/>.
             </summary>
-            <param name="result">Result of request to the OAuth server.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
@@ -5039,12 +5556,62 @@
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
         </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(Nemiro.OAuth.RequestResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> class.
+            </summary>
+            <param name="result">Result of request to the OAuth server.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> class with a specified access token and refresh token.
+            </summary>
+            <param name="accessTolen">The access token.</param>
+            <param name="refreshToken">The refresh token.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> class with a specified access token and refresh token.
+            </summary>
+            <param name="accessTolen">The access token.</param>
+            <param name="refreshToken">The refresh token.</param>
+            <param name="tokenType">The token type. For example: bearer. Default: null.</param>
+        </member>
         <member name="M:Nemiro.OAuth.OAuth2AccessToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
             </summary>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
             <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.ToString">
+            <summary>
+            Returns the <see cref="P:Nemiro.OAuth.OAuth2AccessToken.Value"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.Parse(System.String)">
+            <summary>
+            Converts the specified string to an <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/>.
+            </summary>
+            <param name="value">A string containing an access token to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.op_Implicit(Nemiro.OAuth.OAuth2AccessToken)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="v">The <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuth2AccessToken.op_Implicit(System.String)~Nemiro.OAuth.OAuth2AccessToken">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.OAuth2AccessToken"/>.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuth2AccessToken.Value">
+            <summary>
+            The access token issued by the authorization server.
+            </summary>
         </member>
         <member name="P:Nemiro.OAuth.OAuth2AccessToken.ExpiresIn">
             <summary>
@@ -5065,118 +5632,6 @@
         <member name="P:Nemiro.OAuth.OAuth2AccessToken.TokenType">
             <summary>
             The type of the token issued. Value is case insensitive.
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.HttpParameterType">
-            <summary>
-            The list of the types a HTTP parameters.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.HttpParameterType.Unformed">
-            <summary>
-            Unformed parameter.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.HttpParameterType.Url">
-            <summary>
-            Parameter of the query string.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.HttpParameterType.Form">
-            <summary>
-            Parameter of the form.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.HttpParameterType.File">
-            <summary>
-            File.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.HttpParameterType.RequestBody">
-            <summary>
-            Body of the request.
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.UrlEncodingType">
-            <summary>
-            The list of url encding methods.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.UrlEncodingType.None">
-            <summary>
-            Without encoding.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.UrlEncodingType.Auto">
-            <summary>
-            <see cref="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding"/> for POST requests when a conetent-type is x-www-form-urlencoded.
-            And <see cref="F:Nemiro.OAuth.UrlEncodingType.Default"/> for other requests.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.UrlEncodingType.Default">
-            <summary>
-            x-www-form-urlencoded (spaces encoded as plus (+) signs).
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.UrlEncodingType.PercentEncoding">
-            <summary>
-            RFC 3986 (spaces encoded as %20).
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.AuthorizationType">
-            <summary>
-            The list of authorization type.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.AuthorizationType.Basic">
-            <summary>
-            Basic
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.AuthorizationType.Bearer">
-            <summary>
-            Bearer
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.AuthorizationType.Digest">
-            <summary>
-            Digest
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.AuthorizationType.OAuth">
-            <summary>
-            OAuth
-            </summary>
-        </member>
-        <member name="T:Nemiro.OAuth.Sex">
-            <summary>
-            Very sexy list.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.Sex.None">
-            <summary>
-            No sex.
-            </summary>
-            <remarks>:o)</remarks>
-        </member>
-        <member name="F:Nemiro.OAuth.Sex.Male">
-            <summary>
-            Male.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.Sex.Female">
-            <summary>
-            Female.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.Sex.Programmer">
-            <summary>
-            Programmer.
-            </summary>
-        </member>
-        <member name="F:Nemiro.OAuth.Sex.DeepThought">
-            <summary>
-            Deep Thought.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.GrantType">
@@ -5201,7 +5656,7 @@
         </member>
         <member name="F:Nemiro.OAuth.GrantType.RefreshToken">
             <summary>
-            refresh_token (not used).
+            Using a token to refreshing the access token (grant type is <b>refresh_token</b>).
             </summary>
         </member>
         <member name="M:Nemiro.OAuth.GrantType.Create(System.String)">
@@ -5300,6 +5755,12 @@
             <param name="codePage">The <see cref="T:System.Text.Encoding"/> object that specifies the encoding scheme. </param>
             <param name="encodingType">The type of the encoder.</param>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.JavaScriptStringEncode(System.String)">
+            <summary>
+            Encodes a string into JavaScript string.
+            </summary>
+            <param name="value">The string to encode.</param>
+        </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.GetTimeStamp">
             <summary>
             Generate timestamp for a signature (only for OAuth 1.0).
@@ -5332,69 +5793,104 @@
             <param name="args">An object array that contains zero or more objects to format. </param>
             <returns>The string representation, in base 64.</returns>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Get(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.Get(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.AccessToken)">
             <summary>
-            Performs a web request using a <b>GET</b> method.
+            Performs a request using a <b>GET</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="headers">HTTP headers for request.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Post(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.Post(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken)">
             <summary>
-            Performs a web request using a <b>POST</b> method.
+            Performs a request using a <b>POST</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
-            <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
-        </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Put(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
-            <summary>
-            Performs a web request using a <b>PUT</b> method.
-            </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
             <param name="headers">HTTP headers for web request.</param>
             <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.Delete(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.Put(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken)">
             <summary>
-            Performs a web request using a <b>DELETE</b> method.
+            Performs a request using a <b>PUT</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to the request.</param>
+            <param name="parameters">Parameters to be passed to the request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="headers">HTTP headers for the request.</param>
+            <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.Delete(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.AccessToken)">
             <summary>
-            Performs a web request.
+            Performs a request using a <b>DELETE</b> method.
+            </summary>
+            <param name="endpoint">URL to which will be sent to the request.</param>
+            <param name="parameters">Parameters to be passed to the request.</param>
+            <param name="authorization">Authorization header value.</param>
+            <param name="headers">HTTP headers for the request.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequest(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken)">
+            <summary>
+            Performs a request.
             </summary>
             <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
             <param name="headers">HTTP headers for web request.</param>
             <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.ReadResponseStream(System.Net.HttpWebResponse)">
             <summary>
@@ -5402,74 +5898,109 @@
             </summary>
             <param name="resp"><see cref="T:System.Net.HttpWebResponse"/> instance.</param>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.GetAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.GetAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.AccessToken,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
             <summary>
-            Performs an async web request using a <b>GET</b> method.
+            Performs an async request using a <b>GET</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="headers">HTTP headers for request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.PostAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.PostAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
             <summary>
-            Performs an async web request using a <b>POST</b> method.
+            Performs an async request using a <b>POST</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
+            <param name="headers">HTTP headers for request.</param>
             <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.PutAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.PutAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
             <summary>
-            Performs an async web request using a <b>PUT</b> method.
+            Performs an async request using a <b>PUT</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
+            <param name="headers">HTTP headers for request.</param>
             <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.DeleteAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.DeleteAsync(System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,Nemiro.OAuth.AccessToken,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
             <summary>
-            Performs an async web request using a <b>DELETE</b> method.
+            Performs an async request using a <b>DELETE</b> method.
             </summary>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
-            <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="headers">HTTP headers for request.</param>
+            <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequestAsync(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
+        <member name="M:Nemiro.OAuth.OAuthUtility.ExecuteRequestAsync(System.String,System.String,Nemiro.OAuth.HttpParameterCollection,Nemiro.OAuth.HttpAuthorization,System.Collections.Specialized.NameValueCollection,System.String,Nemiro.OAuth.AccessToken,Nemiro.OAuth.ExecuteRequestAsyncCallback)">
             <summary>
-            Performs an async web request.
+            Performs an async request.
             </summary>
             <param name="method">HTTP Method: <b>POST</b> (default), <b>PUT</b>, <b>GET</b> or <b>DELETE</b>.</param>
-            <param name="endpoint">URL to which will be sent to web request.</param>
-            <param name="parameters">Parameters to be passed to web request.</param>
+            <param name="endpoint">URL to which will be sent to request.</param>
+            <param name="parameters">Parameters to be passed to request.</param>
             <param name="authorization">Authorization header value.</param>
-            <param name="headers">HTTP headers for web request.</param>
+            <param name="headers">HTTP headers for request.</param>
             <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
             <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
-            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the web request.</returns>
+            <param name="accessToken">Access token to be used in the request.</param>
+            <remarks>
+            <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+            </remarks>
+            <returns>Returns an instance of the <see cref="T:Nemiro.OAuth.RequestResult"/> class, which contains the result of the request.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:Nemiro.OAuth.RequestException"></exception>
+            <exception cref="T:System.ArgumentException">
+            <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
+            </exception>
         </member>
         <member name="M:Nemiro.OAuth.OAuthUtility.GetDictionaryValueOrNull(System.Object,System.String)">
             <summary>
@@ -6075,7 +6606,7 @@
             <para>This method is intended for internal use. It is recommended to use the overload <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization"/> or <see cref="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorization(System.String)"/>.</para>
             </remarks>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet">
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequest">
             <summary>
             Verifies the authorization results for the current URL and removes the request from memory.
             </summary>
@@ -6086,7 +6617,7 @@
             <para>Returns the verification results.</para>
             </returns>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet(System.String)">
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequest(System.String)">
             <summary>
             Verifies the authorization results for the specified URL, and removes the request from memory.
             </summary>
@@ -6095,7 +6626,7 @@
             <para>Returns the verification results.</para>
             </returns>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequet(System.String,System.String)">
+        <member name="M:Nemiro.OAuth.OAuthWeb.VerifyAuthorizationAndRemoveRequest(System.String,System.String)">
             <summary>
             Verifies the authorization results for the specified request identifier and the code of the authorization, and removes the request from memory.
             </summary>
@@ -6113,11 +6644,10 @@
             The access token class for OAuth 1.0.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthAccessToken.#ctor(Nemiro.OAuth.RequestResult)">
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> class.
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/>.
             </summary>
-            <param name="result">Result of request to the OAuth server.</param>
         </member>
         <member name="M:Nemiro.OAuth.OAuthAccessToken.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
@@ -6126,12 +6656,47 @@
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with data.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
         </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.#ctor(Nemiro.OAuth.RequestResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> class.
+            </summary>
+            <param name="result">Result of request to the OAuth server.</param>
+        </member>
         <member name="M:Nemiro.OAuth.OAuthAccessToken.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
             </summary>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
             <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.ToString">
+            <summary>
+            Returns the <see cref="P:Nemiro.OAuth.OAuthAccessToken.Value"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.Parse(System.String)">
+            <summary>
+            Converts the specified string to an <see cref="T:Nemiro.OAuth.OAuthAccessToken"/>.
+            </summary>
+            <param name="value">A string containing an access token to parse.</param>
+            <returns>A new <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> instance.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.op_Implicit(Nemiro.OAuth.OAuthAccessToken)~System.String">
+            <summary>
+            Converts the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="v">The <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.OAuthAccessToken.op_Implicit(System.String)~Nemiro.OAuth.OAuthAccessToken">
+            <summary>
+            Creates a new <see cref="T:Nemiro.OAuth.OAuthAccessToken"/> instance from <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The value from which will be created a new instance of the <see cref="T:Nemiro.OAuth.OAuthAccessToken"/>.</param>
+        </member>
+        <member name="P:Nemiro.OAuth.OAuthAccessToken.Value">
+            <summary>
+            The access token issued by the authorization server.
+            </summary>
         </member>
         <member name="P:Nemiro.OAuth.OAuthAccessToken.TokenSecret">
             <summary>
@@ -6618,14 +7183,38 @@
             <param name="clientId">The Client ID.</param>
             <param name="clientSecret">The Client Secret.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.MailRuClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.MailRuClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <returns>
             <para>Returns an instance of the <see cref="T:Nemiro.OAuth.UserInfo"/> class, containing information about the user.</para>
             </returns>
+            <remarks>
+            <para>The access token must contain the user ID in the parameter <b>x_mailru_vid</b>.</para>
+            </remarks>
             <exception cref="T:Nemiro.OAuth.ApiException"/>
+        </member>
+        <member name="M:Nemiro.OAuth.Clients.MailRuClient.RefreshToken(Nemiro.OAuth.AccessToken)">
+            <summary>
+            Sends a request to refresh the access token.
+            </summary>
+            <param name="accessToken">May contain an access token, which should be refreshed.</param>
+            <remarks>
+            <para>If <paramref name="accessToken"/> parameter is not specified, it will use the current access token from the same property of the current class instance.</para>
+            <para>Token must contain the <b>refresh_token</b>, which was received together with the access token.</para>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">
+            <para>Provider does not support refreshing the access token, or the method is not implemented.</para>
+            <para>Use the property <see cref="P:Nemiro.OAuth.OAuthBase.SupportRefreshToken"/>, to check the possibility of calling this method.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.AccessTokenException">
+            <para>Access token is not found or is not specified.</para>
+            <para>-or-</para>
+            <para><b>refresh_token</b> value is empty.</para>
+            </exception>
+            <exception cref="T:Nemiro.OAuth.RequestException">Error during execution of a web request.</exception>
         </member>
         <member name="P:Nemiro.OAuth.Clients.MailRuClient.ProviderName">
             <summary>
@@ -6677,7 +7266,7 @@
             <param name="sender">Instance of the object that raised the event.</param>
             <param name="e">The event data.</param>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthManager.AddRequet(System.String,Nemiro.OAuth.ClientName,Nemiro.OAuth.OAuthBase)">
+        <member name="M:Nemiro.OAuth.OAuthManager.AddRequest(System.String,Nemiro.OAuth.ClientName,Nemiro.OAuth.OAuthBase)">
             <summary>
             Adds the specified request to the collection.
             </summary>
@@ -6685,7 +7274,7 @@
             <param name="clientName">The client name.</param>
             <param name="client">The client instance.</param>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthManager.RemoveRequet(System.String)">
+        <member name="M:Nemiro.OAuth.OAuthManager.RemoveRequest(System.String)">
             <summary>
             Removes the request from collection.
             </summary>
@@ -7118,7 +7707,7 @@
             Gets the list of all clients.
             </summary>
         </member>
-        <member name="P:Nemiro.OAuth.OAuthManager.Requets">
+        <member name="P:Nemiro.OAuth.OAuthManager.Requests">
             <summary>
             Gets the list of active requests.
             </summary>
@@ -7582,10 +8171,11 @@
             <param name="consumerKey">The API Key obtained from the <see href="https://apps.twitter.com">Twitter Application Management</see>.</param>
             <param name="consumerSecret">The API Secret obtained from the <see href="https://apps.twitter.com">Twitter Application Management</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.TwitterClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.TwitterClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
         </member>
         <member name="P:Nemiro.OAuth.Clients.TwitterClient.ProviderName">
             <summary>
@@ -8072,10 +8662,11 @@
             <param name="clientId">The Application ID obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
             <param name="clientSecret">The Secure Key obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.VkontakteClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.VkontakteClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
             <exception cref="T:Nemiro.OAuth.ApiException"/>
         </member>
         <member name="P:Nemiro.OAuth.Clients.VkontakteClient.ProviderName">
@@ -8435,10 +9026,11 @@
             <param name="clientId">The Application ID.</param>
             <param name="clientSecret">The Application Password.</param>
         </member>
-        <member name="M:Nemiro.OAuth.Clients.YandexClient.GetUserInfo">
+        <member name="M:Nemiro.OAuth.Clients.YandexClient.GetUserInfo(Nemiro.OAuth.AccessToken)">
             <summary>
             Gets the user details.
             </summary>
+            <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
         </member>
         <member name="P:Nemiro.OAuth.Clients.YandexClient.ProviderName">
             <summary>

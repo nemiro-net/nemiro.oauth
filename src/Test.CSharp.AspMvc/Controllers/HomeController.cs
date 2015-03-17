@@ -59,9 +59,14 @@ namespace Test.CSharp.AspMvc.Controllers
       return View(OAuthWeb.VerifyAuthorization());
     }
 
-    public ActionResult Refresh(string clientName, string accessToken)
+    public ActionResult Refresh(string clientName, string accessToken, string refreshToken)
     {
-      var result = OAuthManager.RegisteredClients[clientName].RefreshToken(accessToken);
+      AccessToken token = accessToken;
+      if (!String.IsNullOrEmpty(refreshToken))
+      {
+        token = new OAuth2AccessToken(accessToken, refreshToken);
+      }
+      var result = OAuthManager.RegisteredClients[clientName].RefreshToken(token);
       return new ContentResult { Content = result.ToString(), ContentType = "text/plain" };
     }
 
