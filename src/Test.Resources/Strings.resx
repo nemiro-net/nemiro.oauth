@@ -304,4 +304,16 @@ Video: «Creating a simple file manager for Dropbox»&lt;br /&gt;
   <data name="YandexDiskSummary" xml:space="preserve">
     <value>Summary info of Yandex.Disk</value>
   </data>
+  <data name="RefreshToken" xml:space="preserve">
+    <value>Refresh token</value>
+  </data>
+  <data name="RevokeToken" xml:space="preserve">
+    <value>Revoke token</value>
+  </data>
+  <data name="ShowToken" xml:space="preserve">
+    <value>Show token</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>User info</value>
+  </data>
 </root>

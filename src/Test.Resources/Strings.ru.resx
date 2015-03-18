@@ -362,4 +362,16 @@
   <data name="YandexDiskSummary" xml:space="preserve">
     <value>Информация о Яндекс.Диск</value>
   </data>
+  <data name="RefreshToken" xml:space="preserve">
+    <value>Обновить токен</value>
+  </data>
+  <data name="RevokeToken" xml:space="preserve">
+    <value>Отозвать токен</value>
+  </data>
+  <data name="ShowToken" xml:space="preserve">
+    <value>Показать токен</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
 </root>

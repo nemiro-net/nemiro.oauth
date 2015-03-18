@@ -2,6 +2,30 @@
 
 This document summarizes the changes in recent releases.
 
+#### v1.9 (March 19, 2015)
+
+This version includes fixes and enhancements.
+
+* In the method GetUserInfo added ability to specify an access token;
+* In the web methods of the OAuthUtility class added ability to specify an access token;
+* Fixed JSON: 
+  * single quotes replaced by double; 
+	* names are placed in quotation marks; 
+	* added encoding special characters, and unicode characters; 
+	* fixed the decimal separator for numbers.
+* Fixed bug with overwriting the query parameters in obtaining authorization address;
+* Fixed UserInfo mapper for LinkedIn;
+* Fixed typo (internal): Requet -> Requests;
+* Updated URLs in the GoogleClient;
+* Reworked the AccessToken class;
+* Implemented refreshing and revoking an access token for providers that support it.
+
+##### Thanks:
+
+* [Mike Norgate](https://github.com/oesoftware)
+* [sdbarron](https://github.com/sdbarron)
+
+
 #### v1.8 (March 8, 2015)
 
 This version includes enhancements for customization.

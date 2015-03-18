@@ -403,6 +403,24 @@ namespace Test.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Refresh token.
+        /// </summary>
+        public static string RefreshToken {
+            get {
+                return ResourceManager.GetString("RefreshToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Revoke token.
+        /// </summary>
+        public static string RevokeToken {
+            get {
+                return ResourceManager.GetString("RevokeToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на See also &lt;a href=&quot;http://demo-oauth.nemiro.net/&quot;&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;..
         /// </summary>
         public static string SeeAlsoDemo {
@@ -417,6 +435,15 @@ namespace Test.Resources {
         public static string SessionIsDead {
             get {
                 return ResourceManager.GetString("SessionIsDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Show token.
+        /// </summary>
+        public static string ShowToken {
+            get {
+                return ResourceManager.GetString("ShowToken", resourceCulture);
             }
         }
         
@@ -453,6 +480,15 @@ namespace Test.Resources {
         public static string UseJavaScriptLinks {
             get {
                 return ResourceManager.GetString("UseJavaScriptLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на User info.
+        /// </summary>
+        public static string UserInfo {
+            get {
+                return ResourceManager.GetString("UserInfo", resourceCulture);
             }
         }
         

@@ -100,19 +100,19 @@
   <div id="buttons">
 		<div id="processing"></div>
 		<ul>
-			<li>@Ajax.ActionLink("User info", "GetUserInfo", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			<li>@Ajax.ActionLink(Test.Resources.Strings.UserInfo, "GetUserInfo", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			@if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
 			{
 				@Html.Partial(Model.ProviderName, Model.AccessToken)
 			}
-			<li>@Ajax.ActionLink("Show token", "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			<li>@Ajax.ActionLink(Test.Resources.Strings.ShowToken, "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRefreshToken)
 			{
-				<li>@Ajax.ActionLink("Refresh token", "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+				<li>@Ajax.ActionLink(Test.Resources.Strings.RefreshToken, "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			}
 			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRevokeToken)
 			{
-				<li>@Ajax.ActionLink("Revoke token", "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+				<li>@Ajax.ActionLink(Test.Resources.Strings.RevokeToken, "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
 			}
 		</ul>
 		<div class="clear"></div>
@@ -136,6 +136,7 @@
 			try {
 				$("#jsonView").JSONView(eval('(' + $('#apiResults').val() + ')'));
 				$('#jsonView').show();
+				$("#jsonView").scrollTop(0);
 			}
 			catch (e)	{
 				$('#apiResults').show();
