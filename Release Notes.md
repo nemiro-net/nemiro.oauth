@@ -10,9 +10,9 @@ This version includes fixes and enhancements.
 * In the web methods of the OAuthUtility class added ability to specify an access token;
 * Fixed JSON: 
   * single quotes replaced by double; 
-	* names are placed in quotation marks; 
-	* added encoding special characters, and unicode characters; 
-	* fixed the decimal separator for numbers.
+  * names are placed in quotation marks; 
+  * added encoding special characters, and unicode characters; 
+  * fixed the decimal separator for numbers.
 * Fixed bug with overwriting the query parameters in obtaining authorization address;
 * Fixed UserInfo mapper for LinkedIn;
 * Fixed typo (internal): Requet -> Requests;
