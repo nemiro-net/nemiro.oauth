@@ -674,13 +674,13 @@ namespace Nemiro.OAuth
       }
       // get request body 
       byte[] b = this.ToRequestBody(req.ContentType);
-      // todo: optimized for large data
-      req.GetRequestStream().Write(b, 0, b.Length);
       // for .NET Framework 2.0/3.0/3.5
       if (Environment.Version.Major < 4)
       {
         req.ContentLength = b.Length;
       }
+      // todo: optimized for large data
+      req.GetRequestStream().Write(b, 0, b.Length);
       // --
     }
 

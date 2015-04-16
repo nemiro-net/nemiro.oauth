@@ -342,18 +342,6 @@ namespace Nemiro.OAuth
     {
       return new UserInfo(UniValue.Empty, null);
     }
-   
-    /// <summary>
-    /// Gets the user details via API of the provider.
-    /// </summary>
-    /// <remarks>
-    /// <para>This is method is implemented at the <see cref="Nemiro.OAuth.Clients">client</see> level.</para>
-    /// </remarks>
-    [Obsolete("Please use overload. // v1.9", false)]
-    public virtual UserInfo GetUserInfo()
-    {
-      return this.GetUserInfo(this.AccessToken);
-    }
     
     /// <summary>
     /// Creates a shallow copy of the current object.
