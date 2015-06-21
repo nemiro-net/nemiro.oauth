@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Text;
 
 namespace Nemiro.OAuth
@@ -96,6 +97,7 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
     /// <param name="context">The destination (see <see cref="System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
     public override void GetObjectData(SerializationInfo info, StreamingContext context)
     {
       if (info == null)

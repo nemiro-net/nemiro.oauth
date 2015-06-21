@@ -309,6 +309,16 @@ namespace Nemiro.OAuth
       return new HttpParameterValue(value);
     }
 
+    /// <summary>
+    /// Implements the assignment operator for the <see cref="System.Web.HttpPostedFile"/>.
+    /// </summary>
+    /// <param name="value">The value to be assigned.</param>
+    /// <returns>New instance of the <see cref="HttpParameterValue"/>.</returns>
+    public static implicit operator HttpParameterValue(HttpPostedFile value)
+    {
+      return new HttpParameterValue(value.InputStream);
+    }
+
     #endregion
 
   }

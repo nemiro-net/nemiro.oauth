@@ -32,7 +32,13 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="value">The parameter value.</param>
     /// <param name="name">The parameter name.</param>
-    public HttpUrlParameter(string name, HttpParameterValue value) : base(HttpParameterType.Url, name, value) { }
+    public HttpUrlParameter(string name, HttpParameterValue value) : base(HttpParameterType.Url, name, value, null)
+    {
+      if (String.IsNullOrEmpty(name))
+      {
+        throw new ArgumentNullException("name");
+      }
+    }
 
   }
 

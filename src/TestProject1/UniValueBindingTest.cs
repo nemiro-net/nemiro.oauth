@@ -51,7 +51,12 @@ namespace TestProject1
 
       form.Controls.Add(list3);
 
-      form.ShowDialog();
+      form.Show();
+
+      list.SelectedIndex = 0;
+      Assert.IsTrue(list.Text == "test");
+
+      form.Close();
       
       list.SelectedIndex = 1;
       if (list.Text != "123")

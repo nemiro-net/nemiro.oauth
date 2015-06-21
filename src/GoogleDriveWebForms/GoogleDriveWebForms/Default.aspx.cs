@@ -50,10 +50,13 @@ namespace GoogleDriveWebForms
       }
 
       // help: https://developers.google.com/drive/v2/reference/files/insert
+
       var token = Session["AccessToken"].ToString();
 
       try
       {
+        /*
+        // simple upload
         var result = OAuthUtility.Post
         (
           "https://www.googleapis.com/upload/drive/v2/files",
@@ -63,6 +66,20 @@ namespace GoogleDriveWebForms
             { FileUpload1.PostedFile } 
           },
           new HttpAuthorization(AuthorizationType.Bearer, token)
+        );
+        */
+
+        var parameters = new HttpParameterCollection();
+        parameters.Add("uploadType", "multipart");
+        parameters.AddContent("application/json", new { title = FileUpload1.FileName });
+        parameters.AddContent(FileUpload1.PostedFile);
+
+        var result = OAuthUtility.Post
+        (
+          "https://www.googleapis.com/upload/drive/v2/files",
+          parameters, 
+          authorization: new HttpAuthorization(AuthorizationType.Bearer, token),
+          contentType: "multipart/related"
         );
 
         // ok

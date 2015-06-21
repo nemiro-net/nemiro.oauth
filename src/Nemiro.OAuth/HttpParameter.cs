@@ -38,6 +38,11 @@ namespace Nemiro.OAuth
     public HttpParameterValue Value { get; protected set; }
 
     /// <summary>
+    /// Gets or sets Content-Type.
+    /// </summary>
+    public string ContentType { get; set; }
+
+    /// <summary>
     /// Gets or sets type of the parameter.
     /// </summary>
     public HttpParameterType ParameterType { get; protected set; }
@@ -47,7 +52,8 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
     /// <param name="value">The value of the parameter.</param>
-    internal HttpParameter(string name, HttpParameterValue value) : this(HttpParameterType.Unformed, name, value) { }
+    /// <param name="contentType">The content-type of the parameter.</param>
+    internal HttpParameter(string name, HttpParameterValue value, string contentType = null) : this(HttpParameterType.Unformed, name, value, contentType) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="HttpParameter"/> class.
@@ -55,15 +61,13 @@ namespace Nemiro.OAuth
     /// <param name="name">The name of the parameter.</param>
     /// <param name="value">The value of the parameter.</param>
     /// <param name="parameterType">The type of the parameter.</param>
-    protected HttpParameter(HttpParameterType parameterType, string name, HttpParameterValue value)
+    /// <param name="contentType">The content-type of the parameter.</param>
+    protected HttpParameter(HttpParameterType parameterType, string name, HttpParameterValue value, string contentType)
     {
-      if (String.IsNullOrEmpty(name))
-      {
-        throw new ArgumentNullException("name");
-      }
       this.ParameterType = parameterType;
       this.Name = name;
       this.Value = value;
+      this.ContentType = contentType;
     }
 
     /// <summary>
@@ -71,7 +75,14 @@ namespace Nemiro.OAuth
     /// </summary>
     public override string ToString()
     {
-      return String.Format("{0}={1}", this.Name, (this.Value != null ? this.Value.ToEncodedString() : null));
+      if (!String.IsNullOrEmpty(this.Name))
+      {
+        return String.Format("{0}={1}", this.Name, (this.Value != null ? this.Value.ToEncodedString() : null));
+      }
+      else
+      {
+        return (this.Value != null ? this.Value.ToEncodedString() : base.ToString());
+      }
     }
 
   }

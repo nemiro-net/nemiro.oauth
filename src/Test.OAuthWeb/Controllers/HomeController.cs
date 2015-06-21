@@ -89,7 +89,7 @@ namespace Test.OAuthWeb.Controllers
         Session[String.Format("{0}:UserId", result.ProviderName)] = result.UserInfo.UserId;
         Session[String.Format("{0}:UserName", result.ProviderName)] = result.UserInfo.UserName;
         Session[String.Format("{0}:Email", result.ProviderName)] = result.UserInfo.Email;
-
+        
         if (result.ProviderName.Equals("yahoo", StringComparison.OrdinalIgnoreCase))
         {
           // for refreshing token

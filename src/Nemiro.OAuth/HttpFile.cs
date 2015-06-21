@@ -33,11 +33,6 @@ namespace Nemiro.OAuth
     public string FileName { get; set; }
 
     /// <summary>
-    /// Gets or sets Content-Type of the file.
-    /// </summary>
-    public string ContentType { get; set; }
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="HttpFile"/> class.
     /// </summary>
     /// <param name="fileContent">Content of the file.</param>
@@ -61,7 +56,7 @@ namespace Nemiro.OAuth
     /// <param name="fileName">Name of the file.</param>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="contentType">MIME type of the file.</param>
-    public HttpFile(string parameterName, string fileName, string contentType, HttpParameterValue fileContent) : base(HttpParameterType.File, parameterName, fileContent)
+    public HttpFile(string parameterName, string fileName, string contentType, HttpParameterValue fileContent) : base(HttpParameterType.File, parameterName, fileContent, contentType)
     {
       if (String.IsNullOrEmpty(fileName)) // String.IsNullOrWhiteSpace
       {
@@ -72,7 +67,6 @@ namespace Nemiro.OAuth
         contentType = "application/octet-stream";
       }
       this.FileName = fileName;
-      this.ContentType = contentType;
     }
 
   }

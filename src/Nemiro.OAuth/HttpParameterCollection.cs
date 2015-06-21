@@ -165,19 +165,20 @@ namespace Nemiro.OAuth
     {
       if (value != null)
       {
-        if (value.GetType() == typeof(System.Web.HttpPostedFile))
+        var t = value.GetType();
+        if (t == typeof(System.Web.HttpPostedFile))
         {
           this.Add(name, (System.Web.HttpPostedFile)value);
         }
-        else if (value.GetType() == typeof(Stream) || (value.GetType().BaseType != null && value.GetType().BaseType == typeof(Stream)))
+        else if (t == typeof(Stream) || (t.BaseType != null && t.BaseType == typeof(Stream)))
         {
           this.Add(name, (Stream)value);
         }
-        else if (value.GetType() == typeof(byte[]))
+        else if (t == typeof(byte[]))
         {
-          throw new NotSupportedException();
+          this.Add(name, new MemoryStream((byte[])value));
         }
-        else if (value.GetType() == typeof(HttpParameterValue))
+        else if (t == typeof(HttpParameterValue))
         {
           this.Add(name, ((HttpParameterValue)value).Value);
         }
@@ -188,7 +189,7 @@ namespace Nemiro.OAuth
       }
       else
       {
-        this.Add(name, Convert.ToString(value));
+        this.Add(name, "");
       }
     }
 
@@ -393,6 +394,91 @@ namespace Nemiro.OAuth
     public void AddFormParameter(string parameterName, string parameterValue)
     {
       this.Add(HttpParameterType.Form, parameterName, parameterValue);
+    }
+
+    /// <summary>
+    /// Adds file as content to the end of the collection.
+    /// </summary>
+    /// <param name="file">The posted file.</param>
+    public void AddContent(System.Web.HttpPostedFile file)
+    {
+      this.AddContent(null, file);
+    }
+
+    /// <summary>
+    /// Adds content to the end of the collection.
+    /// </summary>
+    /// <param name="contentType">The Content-Type of the <paramref name="value"/>.</param>
+    /// <param name="value">The content value.</param>
+    public void AddContent(string contentType, object value)
+    {
+      if (String.IsNullOrEmpty(contentType) && value != null && value.GetType() == typeof(System.Web.HttpPostedFile))
+      {
+        contentType = ((System.Web.HttpPostedFile)value).ContentType;
+      }
+
+      if (String.IsNullOrEmpty(contentType)) 
+      {
+        throw new ArgumentNullException("contentType");
+      }
+
+      contentType = contentType.ToLower();
+
+      if (value == null)
+      {
+        this.Add(new HttpParameter(null, null, contentType));
+        return;
+      }
+
+      var t = value.GetType();
+
+      if (t == typeof(System.Web.HttpPostedFile))
+      {
+        this.Add(new HttpParameter(null, (System.Web.HttpPostedFile)value, contentType));
+      }
+      else if (t == typeof(Stream) || (t.BaseType != null && t.BaseType == typeof(Stream)))
+      {
+        this.Add(new HttpParameter(null, (Stream)value, contentType));
+      }
+      else if (t == typeof(byte[]))
+      {
+        this.Add(new HttpParameter(null, (byte[])value, contentType));
+      }
+      else if (t == typeof(HttpParameterValue))
+      {
+        this.Add(new HttpParameter(null, (HttpParameterValue)value, contentType));
+      }
+      else
+      {
+        if (t.IsClass && Array.IndexOf(OAuthUtility.ExcludedTypeOfClasses, t) == -1 || (t.IsArray && t != typeof(byte[])))
+        {
+          if (contentType.Contains("json"))
+          {
+            string json = new System.Web.Script.Serialization.JavaScriptSerializer()
+            {
+              MaxJsonLength = int.MaxValue,
+              RecursionLimit = int.MaxValue
+            }.Serialize(value);
+            this.Add(new HttpParameter(null, new HttpParameterValue(json), contentType));
+          }
+          else if (contentType.Contains("xml"))
+          {
+            using (var m = new MemoryStream())
+            {
+              new System.Xml.Serialization.XmlSerializer(t).Serialize(m, value);
+              this.Add(new HttpParameter(null, new HttpParameterValue(this.Encoding.GetString(m.ToArray())), contentType));
+            }
+          }
+          else
+          {
+            throw new NotSupportedException("Use the content type application/json or text/xml, or specify the value as a string or byte array.");
+          }
+        }
+        else
+        {
+          this.Add(new HttpParameter(null, new HttpParameterValue(value), contentType));
+        }
+      }
     }
 
     #endregion
@@ -610,12 +696,13 @@ namespace Nemiro.OAuth
     {
       if (contentType == null) { contentType = ""; }
       contentType = contentType.ToLower();
-      bool ismultipart = contentType.Contains("multipart/form-data");
-      if (this.IsRequestBody && !ismultipart)
+      bool isMultipart = contentType.Contains("multipart/"); // multipart/form-data
+      bool isFormData = contentType.Contains("multipart/form-data");
+      if (this.IsRequestBody && !isMultipart)
       {
         return this.FirstOrDefault(itm => itm.GetType() == typeof(HttpRequestBody)).Value.ToByteArray();
       }
-      else if (this.HasFiles || ismultipart)
+      else if (this.HasFiles || isMultipart)
       {
         using (MemoryStream m = new MemoryStream())
         {
@@ -625,11 +712,29 @@ namespace Nemiro.OAuth
             if (itm.GetType() == typeof(HttpFile))
             {
               var file = itm as HttpFile;
-              this.AddFile(itm.Name, file.FileName, file.ContentType, file.Value.ToByteArray(), m);
+              if (isFormData)
+              {
+                // add form-data parameter
+                this.WriteFormDataFile(itm.Name, file.FileName, file.ContentType, file.Value.ToByteArray(), m);
+              }
+              else
+              {
+                // add other type
+                this.WriteParameter(itm.ContentType, file.Value.ToByteArray(), m);
+              }
             }
             else
             {
-              this.AddQuery(itm.Name, itm.Value.ToString(), m);
+              if (isFormData)
+              {
+                // add form-data parameter
+                this.WriteFormDataParameter(itm.Name, itm.Value.ToString(), m);
+              }
+              else
+              {
+                // add other type
+                this.WriteParameter(itm.ContentType, itm.Value.ToByteArray(), m);
+              }
             }
           }
           var end = this.Encoding.GetBytes(String.Format("\r\n--{0}--\r\n", this.Boundary));
@@ -667,7 +772,7 @@ namespace Nemiro.OAuth
         }
       }
       // set boundary
-      if (req.ContentType.ToLower().Contains("multipart/form-data") && !req.ContentType.ToLower().Contains("boundary"))
+      if (req.ContentType.ToLower().Contains("multipart/") && !req.ContentType.ToLower().Contains("boundary"))
       {
         if (!req.ContentType.EndsWith(";")) { req.ContentType += "; "; }
         req.ContentType += String.Format("boundary={0}", this.Boundary);
@@ -685,14 +790,14 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-    /// Adds a file to the request.
+    /// Writes a file to the request.
     /// </summary>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="fileName">The filename.</param>
     /// <param name="contentType">The Content-Type of the file.</param>
     /// <param name="body">The content of the file.</param>
     /// <param name="output">The output stream instance.</param>
-    private void AddFile(string parameterName, string fileName, string contentType, byte[] body, Stream output)
+    private void WriteFormDataFile(string parameterName, string fileName, string contentType, byte[] body, Stream output)
     {
       string headerTemplate = String.Format("\r\n--{0}\r\nContent-Disposition: form-data; name=\"{{0}}\"; filename=\"{{1}}\"\r\nContent-Type: {{2}}\r\n\r\n", this.Boundary);
       byte[] buffer = this.Encoding.GetBytes(String.Format(headerTemplate, parameterName, fileName, contentType));
@@ -701,16 +806,29 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
-    /// Adds a query parameter to the request.
+    /// Writes a form-data parameter to the request.
     /// </summary>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="value">The value of the parameter.</param>
     /// <param name="output">The output stream instance.</param>
-    private void AddQuery(string parameterName, string value, Stream output)
+    private void WriteFormDataParameter(string parameterName, string value, Stream output)
     {
       string formDataTemplate = String.Format("\r\n--{0}\r\nContent-Disposition: form-data; name=\"{{0}}\";\r\n\r\n{{1}}", this.Boundary);
       byte[] buffer = this.Encoding.GetBytes(String.Format(formDataTemplate, parameterName, value));
       output.Write(buffer, 0, buffer.Length);
+    }
+    
+    /// <summary>
+    /// Writes any parameter to the request.
+    /// </summary>
+    /// <param name="contentType">The Content-Type of the <paramref name="content"/>.</param>
+    /// <param name="content">The content value.</param>
+    /// <param name="output">The instance of the output stream.</param>
+    private void WriteParameter(string contentType, byte[] content, Stream output)
+    {
+      byte[] buffer = this.Encoding.GetBytes(String.Format("\r\n--{0}\r\nContent-Type: {1}\r\n\r\n", this.Boundary, contentType));
+      output.Write(buffer, 0, buffer.Length);
+      output.Write(content, 0, content.Length);
     }
 
     #endregion

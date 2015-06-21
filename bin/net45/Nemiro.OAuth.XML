@@ -1669,14 +1669,6 @@
             <para>This is method is implemented at the <see cref="N:Nemiro.OAuth.Clients">client</see> level.</para>
             </remarks>
         </member>
-        <member name="M:Nemiro.OAuth.OAuthBase.GetUserInfo">
-            <summary>
-            Gets the user details via API of the provider.
-            </summary>
-            <remarks>
-            <para>This is method is implemented at the <see cref="N:Nemiro.OAuth.Clients">client</see> level.</para>
-            </remarks>
-        </member>
         <member name="M:Nemiro.OAuth.OAuthBase.Clone(System.Collections.Specialized.NameValueCollection,System.String)">
             <summary>
             Creates a shallow copy of the current object.
@@ -4950,20 +4942,22 @@
             Implements a HTTP paramter.
             </summary>
         </member>
-        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(System.String,Nemiro.OAuth.HttpParameterValue)">
+        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(System.String,Nemiro.OAuth.HttpParameterValue,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameter"/> class.
             </summary>
             <param name="name">The name of the parameter.</param>
             <param name="value">The value of the parameter.</param>
+            <param name="contentType">The content-type of the parameter.</param>
         </member>
-        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(Nemiro.OAuth.HttpParameterType,System.String,Nemiro.OAuth.HttpParameterValue)">
+        <member name="M:Nemiro.OAuth.HttpParameter.#ctor(Nemiro.OAuth.HttpParameterType,System.String,Nemiro.OAuth.HttpParameterValue,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Nemiro.OAuth.HttpParameter"/> class.
             </summary>
             <param name="name">The name of the parameter.</param>
             <param name="value">The value of the parameter.</param>
             <param name="parameterType">The type of the parameter.</param>
+            <param name="contentType">The content-type of the parameter.</param>
         </member>
         <member name="M:Nemiro.OAuth.HttpParameter.ToString">
             <summary>
@@ -4978,6 +4972,11 @@
         <member name="P:Nemiro.OAuth.HttpParameter.Value">
             <summary>
             Gets or sets parameter value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.HttpParameter.ContentType">
+            <summary>
+            Gets or sets Content-Type.
             </summary>
         </member>
         <member name="P:Nemiro.OAuth.HttpParameter.ParameterType">
@@ -5012,11 +5011,6 @@
         <member name="P:Nemiro.OAuth.HttpFile.FileName">
             <summary>
             Gets or sets the filename.
-            </summary>
-        </member>
-        <member name="P:Nemiro.OAuth.HttpFile.ContentType">
-            <summary>
-            Gets or sets Content-Type of the file.
             </summary>
         </member>
         <member name="T:Nemiro.OAuth.HttpParameterCollection">
@@ -5178,6 +5172,19 @@
             <param name="parameterName">The name of parameter.</param>
             <param name="parameterValue">The parameter value.</param>
         </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddContent(System.Web.HttpPostedFile)">
+            <summary>
+            Adds file as content to the end of the collection.
+            </summary>
+            <param name="file">The posted file.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddContent(System.String,System.Object)">
+            <summary>
+            Adds content to the end of the collection.
+            </summary>
+            <param name="contentType">The Content-Type of the <paramref name="value"/>.</param>
+            <param name="value">The content value.</param>
+        </member>
         <member name="M:Nemiro.OAuth.HttpParameterCollection.Insert(System.Int32,Nemiro.OAuth.HttpParameter)">
             <summary>
             Inserts an element into the instance of the <see cref="T:Nemiro.OAuth.HttpParameterCollection"/> at the specified index.
@@ -5299,9 +5306,9 @@
             </summary>
             <param name="req">The instance of the request.</param>
         </member>
-        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddFile(System.String,System.String,System.String,System.Byte[],System.IO.Stream)">
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.WriteFormDataFile(System.String,System.String,System.String,System.Byte[],System.IO.Stream)">
             <summary>
-            Adds a file to the request.
+            Writes a file to the request.
             </summary>
             <param name="parameterName">The name of the parameter.</param>
             <param name="fileName">The filename.</param>
@@ -5309,13 +5316,21 @@
             <param name="body">The content of the file.</param>
             <param name="output">The output stream instance.</param>
         </member>
-        <member name="M:Nemiro.OAuth.HttpParameterCollection.AddQuery(System.String,System.String,System.IO.Stream)">
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.WriteFormDataParameter(System.String,System.String,System.IO.Stream)">
             <summary>
-            Adds a query parameter to the request.
+            Writes a form-data parameter to the request.
             </summary>
             <param name="parameterName">The name of the parameter.</param>
             <param name="value">The value of the parameter.</param>
             <param name="output">The output stream instance.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterCollection.WriteParameter(System.String,System.Byte[],System.IO.Stream)">
+            <summary>
+            Writes any parameter to the request.
+            </summary>
+            <param name="contentType">The Content-Type of the <paramref name="content"/>.</param>
+            <param name="content">The content value.</param>
+            <param name="output">The instance of the output stream.</param>
         </member>
         <member name="M:Nemiro.OAuth.HttpParameterCollection.op_Implicit(Nemiro.OAuth.HttpParameter[])~Nemiro.OAuth.HttpParameterCollection">
             <summary>
@@ -5507,6 +5522,13 @@
         <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.IO.Stream)~Nemiro.OAuth.HttpParameterValue">
             <summary>
             Implements the assignment operator for the <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="value">The value to be assigned.</param>
+            <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>
+        </member>
+        <member name="M:Nemiro.OAuth.HttpParameterValue.op_Implicit(System.Web.HttpPostedFile)~Nemiro.OAuth.HttpParameterValue">
+            <summary>
+            Implements the assignment operator for the <see cref="T:System.Web.HttpPostedFile"/>.
             </summary>
             <param name="value">The value to be assigned.</param>
             <returns>New instance of the <see cref="T:Nemiro.OAuth.HttpParameterValue"/>.</returns>

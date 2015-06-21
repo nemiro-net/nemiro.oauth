@@ -32,7 +32,7 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="value">The parameter value.</param>
     /// <param name="name">The parameter name.</param>
-    public HttpFormParameter(string name, HttpParameterValue value) : base(HttpParameterType.Form, name, value) { }
+    public HttpFormParameter(string name, HttpParameterValue value) : base(HttpParameterType.Form, name, value, null) { }
 
   }
 

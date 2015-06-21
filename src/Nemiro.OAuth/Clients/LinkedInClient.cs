@@ -118,7 +118,7 @@ namespace Nemiro.OAuth.Clients
     {
       // default scope
       base.ScopeSeparator = " ";
-      base.DefaultScope = "r_basicprofile r_emailaddress r_fullprofile r_contactinfo";
+      base.DefaultScope = "r_basicprofile r_emailaddress";
       // for more details please see 
       // https://developer.linkedin.com/documents/authentication#granting
     }

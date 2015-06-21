@@ -2,6 +2,22 @@
 
 This document summarizes the changes in recent releases.
 
+#### v1.10 (June 21, 2015)
+
+This version includes fixes for .NET 3.5 and common enhancements.
+
+* Fixed bug in the WriteToRequestStream method for .NET Framework 3.5;
+* Fixed error: "Inheritance security rules violated while overriding member: UniValue.GetObjectData...". An error was detected only in projects .NET Framework 3.5;
+* Fixed client for LinkedIn (updated default scope);
+* Added the ability to use any multipart requests (not only multipart/form-data);
+* Removed the obsolete overload of the GetUserInfo.
+
+##### Thanks:
+
+* [Ramil Khazhiev](https://github.com/RamilKhazhiev)
+* [Asi Nehrim](http://www.youtube.com/channel/UC6dAAoRUxMGBR3FwP_P9vAA)
+* [CodeProject Member 11728803](http://www.codeproject.com/script/Membership/View.aspx?mid=11728803)
+
 #### v1.9 (March 19, 2015)
 
 This version includes fixes and enhancements.
@@ -24,7 +40,6 @@ This version includes fixes and enhancements.
 
 * [Mike Norgate](https://github.com/oesoftware)
 * [sdbarron](https://github.com/sdbarron)
-
 
 #### v1.8 (March 8, 2015)
 
