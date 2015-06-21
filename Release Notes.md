@@ -6,8 +6,8 @@ This document summarizes the changes in recent releases.
 
 This version includes fixes for .NET 3.5 and common enhancements.
 
-* Fixed bug in the WriteToRequestStream method for .NET Framework 3.5;
-* Fixed error: "Inheritance security rules violated while overriding member: UniValue.GetObjectData...". An error was detected only in projects .NET Framework 3.5;
+* Fixed bug in the WriteToRequestStream for .NET Framework 3.5;
+* Fixed error: "Inheritance security rules violated while overriding member: UniValue.GetObjectData...". An error was detected in projects .NET Framework 3.5;
 * Fixed client for LinkedIn (updated default scope);
 * Added the ability to use any multipart requests (not only multipart/form-data);
 * Removed the obsolete overload of the GetUserInfo.
