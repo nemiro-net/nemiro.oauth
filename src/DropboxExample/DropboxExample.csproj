@@ -38,9 +38,9 @@
     <ApplicationIcon>dropbox.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.1.4.650, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.2.4.893, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.1\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
+      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.2\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,7 +104,9 @@
       <DependentUpon>Upload.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
