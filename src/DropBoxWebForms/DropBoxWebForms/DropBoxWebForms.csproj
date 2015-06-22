@@ -34,8 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nemiro.OAuth">
-      <HintPath>..\packages\Nemiro.OAuth.1.9\lib\net40\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.10.4.895, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nemiro.OAuth.1.10\lib\net40\Nemiro.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />

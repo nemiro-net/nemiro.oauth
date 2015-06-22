@@ -32,11 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth">
-      <HintPath>..\packages\Nemiro.OAuth.1.6\lib\net45\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.10.45.895, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nemiro.OAuth.1.10\lib\net45\Nemiro.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Nemiro.OAuth.LoginForms">
-      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.0\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.2.45.893, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.2\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
