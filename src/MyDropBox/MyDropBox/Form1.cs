@@ -48,6 +48,7 @@ namespace MyDropBox
       {
         Properties.Settings.Default.AccessToken = login.AccessToken.Value;
         Properties.Settings.Default.Save();
+        this.GetFiles();
       }
       else
       {

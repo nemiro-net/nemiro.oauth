@@ -36,9 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nemiro.OAuth.1.10\lib\net45\Nemiro.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.2.45.893, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.3.45.897, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.2\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
+      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.3\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
