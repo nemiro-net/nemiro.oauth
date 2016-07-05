@@ -105,18 +105,7 @@ namespace Nemiro.OAuth
     public string ToEncodedString(UrlEncodingType encodingType)
     {
       if (this.Value == null) { return null; }
-      if (encodingType == UrlEncodingType.Default)
-      {
-        return HttpUtility.UrlEncode(this.ToString());
-      }
-      else if (encodingType == UrlEncodingType.PercentEncoding)
-      {
-        return OAuthUtility.UrlEncode(this.ToString());
-      }
-      else
-      {
-        return this.ToString();
-      }
+      return OAuthUtility.UrlEncode(this.ToString(), encodingType);
     }
 
     /// <summary>

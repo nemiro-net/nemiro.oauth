@@ -39,6 +39,7 @@ namespace Test.CSharp.AspMvc.Controllers
     {
       // build callback url
       string returnUrl = Url.Action("ExternalLoginResult", "Home", null, null, Request.Url.Host);
+      
       // not suppored localhost (it is only for localhost)
       string[] notSupportedLocalhost = { "live", "mail.ru", "github" };
       if (notSupportedLocalhost.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))

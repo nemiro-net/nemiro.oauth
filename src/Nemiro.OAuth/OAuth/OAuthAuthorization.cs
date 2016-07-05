@@ -336,7 +336,7 @@ namespace Nemiro.OAuth
       {
         //if (itm.Key.Equals("oauth_verifier", StringComparison.OrdinalIgnoreCase)) { continue; }
         if (signBaseString.Length > 0) { signBaseString.Append(OAuthUtility.UrlEncode("&")); }
-        signBaseString.Append(OAuthUtility.UrlEncode(String.Format("{0}={1}", itm.Key, OAuthUtility.UrlEncode(itm.Value))));
+        signBaseString.Append(OAuthUtility.UrlEncode(String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Key), OAuthUtility.UrlEncode(itm.Value))));
       }
 
       signBaseString.Insert(0, String.Format("{0}&{1}&", httpMethod.ToUpper(), OAuthUtility.UrlEncode(url.ToString())));

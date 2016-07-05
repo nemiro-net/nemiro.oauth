@@ -666,7 +666,7 @@ namespace Nemiro.OAuth
         // note: !parametersType.HasFlag(HttpParameterType.Unformed) is not supported in the .net framework 3.5
         if (itm.GetType() != typeof(HttpUrlParameter) && (parametersType & HttpParameterType.Unformed) != HttpParameterType.Unformed) { continue; }
         if (result.Length > 0) { result += "&"; }
-        result += String.Format("{0}={1}", itm.Name, itm.Value.ToEncodedString(encodingType));
+        result += String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Name, encodingType), itm.Value.ToEncodedString(encodingType));
       }
       return result;
     }
