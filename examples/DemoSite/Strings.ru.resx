@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioList" xml:space="preserve">
+    <value>Список музыки</value>
+  </data>
+  <data name="BackToProviders" xml:space="preserve">
+    <value>Вернуться к списку поставщиков</value>
+  </data>
+  <data name="ClientIdIsRequired" xml:space="preserve">
+    <value>Client ID для [{0}] не найден. Пожалуйста, укажите идентификатор приложения в параметре [oauth:{0}:id], либо удалите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="ClientKeyIsRequired" xml:space="preserve">
+    <value>Cleint Secret для [{0}] не найден. Пожалуйста, укажите секретный ключ в параметре [oauth:{0}:key], либо удалите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>Список контактов</value>
+  </data>
+  <data name="CurrentStatus" xml:space="preserve">
+    <value>Текущий статус</value>
+  </data>
+  <data name="DefaultAbout" xml:space="preserve">
+    <value>&lt;p&gt;На этой странице выведен список всех зарегистрированных в приложении поставщиков OAuth.&lt;/p&gt;
+&lt;p&gt;Регистрация поставщиков производится в файле &lt;strong&gt;Global.asax&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Перенаправление на авторизацию можно найти в серверном коде этой страницы.&lt;/p&gt;
+&lt;p&gt;Обработка результатов авторизации производится на странице &lt;strong&gt;ExternalLoginResult.asxp&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Попробуйте пройти процедуру авторизации, нажав на любую из кнопок.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoFeedback" xml:space="preserve">
+    <value>&lt;p&gt;Если что-то не работает или работает неправильно, пожалуйста, &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;сообщите об этом разработчику&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoHow" xml:space="preserve">
+    <value>&lt;h2&gt;Как работает этот сайт?&lt;/h2&gt;
+
+&lt;p&gt;Демонстрационный сайт &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt; имеет немного другой код, чем представленные в &lt;a href="http://oauth.nemiro.net/"&gt;документации&lt;/a&gt; примеры.&lt;/p&gt;
+&lt;p&gt;Параметры конфигурации приложений для поставщиков &lt;strong&gt;OAuth&lt;/strong&gt; находятся в файле &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Web.config"&gt;web.config&lt;/a&gt; (в целях безопасности, секретные ключи были удалены из публичного файла).&lt;/p&gt;
+&lt;p&gt;Список поставщиков &lt;strong&gt;OAuth&lt;/strong&gt;, которые нужно использовать на сайте, находится в параметре &lt;strong&gt;oauth:clients&lt;/strong&gt;. Имена поставщиков записываются через запятую, без пробелов.&lt;/p&gt;
+&lt;p&gt;
+  Идентификаторы и секретные ключи приложений указываются в параметрах &lt;strong&gt;oauth:{имя поставщика}:id&lt;/strong&gt; и &lt;strong&gt;oauth:{имя поставщика}:key&lt;/strong&gt;.&lt;br /&gt;
+  Где &lt;strong&gt;{имя поставщика}&lt;/strong&gt; - это имя поставщика &lt;strong&gt;OAuth&lt;/strong&gt;, для которого предназначены указанные настройки.
+&lt;/p&gt;
+&lt;p&gt;
+  Помимо этого, в файле &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Web.config"&gt;web.config&lt;/a&gt;,
+  в параметре &lt;strong&gt;oauth:{имя поставщика}:scope&lt;/strong&gt; можно указать права доступа, которые необходимы приложению.
+  Список прав нужно указывать в том формате, в котором требует поставщик &lt;strong&gt;OAuth&lt;/strong&gt; (см. документацию на сайте конкретного поставщика).
+&lt;/p&gt;
+&lt;p&gt;
+  Инициализация поставщиков производится в методе &lt;strong&gt;RegistrationOAuthClients&lt;/strong&gt; 
+  файла &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Global.asax.cs"&gt;Global.asax&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Перенаправление на авторизацию осуществляется в методе &lt;strong&gt;ExternalLogin&lt;/strong&gt; 
+  контроллера &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Controllers/HomeController.cs"&gt;HomeController&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Обработка результатов авторизации происходит в методе &lt;strong&gt;ExternalLoginResult&lt;/strong&gt;. 
+  Полученные с внешего сервера данные заносятся в &lt;strong&gt;Session&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Для работы с &lt;strong&gt;API&lt;/strong&gt;, для отдельных поставщиков, сделаны свои представления, которые можно найти в папке 
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/DemoOAuth/Views/Shared"&gt;Shared&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Отправка запросов к &lt;strong&gt;API&lt;/strong&gt; и обработка ответов осуществляется в контроллере 
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Controllers/ApiController.cs"&gt;ApiController&lt;/a&gt;.
+  Исключение составляет базовая информация о пользователе, которая получается непосредственно библиотекой &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Все тексты и изображения, которые выводятся на этом сайте, 
+  находятся в отдельном &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/DemoOAuth"&gt;проекте-ресурсов&lt;/a&gt;.
+  Исключая, конечно данные, которые были получены от &lt;strong&gt;API&lt;/strong&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Вывод иконок поставщиков &lt;strong&gt;OAuth&lt;/strong&gt; из ресурсов осуществляется методом &lt;strong&gt;Icon&lt;/strong&gt;
+  контроллера &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Controllers/HomeController.cs"&gt;HomeController&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;При желании, вы можете использовать подобную реализацию в собственных проектах.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoIntro" xml:space="preserve">
+    <value>&lt;p&gt;Библиотека &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; предназначена для реализации авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; в проектах &lt;strong&gt;.NET Framework (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Библиотека является бесплатной. Исходный код &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;открыт&lt;/a&gt; и предоставляется по лицензии &lt;strong&gt;Apache 2.0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  Для проверки работы библиотеки, нажмите на одну из иконок, расположенных ниже.&lt;br /&gt;
+  Если потребуется, пройдите процедуру аутентификации на внешнем сайте.&lt;br /&gt;
+  Разрешите тестовому приложению доступ к запрашиваемым данным.&lt;br /&gt;
+  Если все работает правильно, то после авторизации на внешнем ресурсе, вы вернетесь обратно на сайт &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, 
+  где сможете проверить работу с &lt;strong&gt;API&lt;/strong&gt; выбранного поставщика &lt;strong&gt;OAuth&lt;/strong&gt;.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoProvidersTable" xml:space="preserve">
+    <value>Регистрация и управление приложениями на сайтах поставщиков OAuth</value>
+  </data>
+  <data name="DemoProviderTableInfo" xml:space="preserve">
+    <value>&lt;p&gt;Информация в таблице актуальна по состоянию на &lt;strong&gt;март 2015 года&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Внутреннее имя&lt;/strong&gt; – это строковое имя, которое используется в библиотеке &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;. Регистр символов не имеет значения.&lt;/p&gt;
+&lt;p&gt;Если поставщик поддерживает запросы с &lt;strong&gt;localhost&lt;/strong&gt;, то эти запросы можно осуществлять через протокол &lt;strong&gt;HTTP&lt;/strong&gt;, не зависимо от поддержки провайдером протокола &lt;strong&gt;HTTP&lt;/strong&gt;.&lt;br /&gt;Значение параметра &lt;strong&gt;Разрешен протокол HTTP&lt;/strong&gt; актуально только для внешних доменов.&lt;/p&gt;
+</value>
+  </data>
+  <data name="DemoSecurity" xml:space="preserve">
+    <value>&lt;h2&gt;Этот сайт безопасно использовать?&lt;/h2&gt;
+&lt;p&gt;Да, безопасно. Ваши учетные данные известны только серверу-поставщику &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  После аутентификации и авторизации, поставщик передает на страницу обратного вызова специальный код авторизации. 
+  Этот код одноразовый и, как правило, с довольно ограниченным сроком действия.
+  Сама страница обратного вызова всегда возвращает HTTP-код 403, чтобы полностью исключить попадание в поисковый индекс.
+&lt;/p&gt;
+&lt;p&gt;Библиотека &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; использует код авторизации для получения маркера доступа (&lt;strong&gt;access token&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;Маркер доступа записывается в сессию (&lt;strong&gt;session&lt;/strong&gt;) сервера и ни в каком виде не выводится на страницах сайта.&lt;/p&gt;
+&lt;p&gt;Маркер доступа используется для работы с &lt;strong&gt;API&lt;/strong&gt; поставщиков &lt;strong&gt;OAuth&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Все запросы делаются по защищенному протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;В &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/tree/master/src/DemoOAuth"&gt;опубликованном исходном коде&lt;/a&gt; сайта &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, параметры доступа к поставщикам &lt;strong&gt;OAuth&lt;/strong&gt;, в целях безопасности, &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/blob/master/src/DemoOAuth/Web.config"&gt;отсутствуют&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;
+  Некоторые поставщики требуют, чтобы страница обратного вызова открывалась по протоколу &lt;strong&gt;HTTPS&lt;/strong&gt;. 
+  Для демонстрации работы авторизации по протоколу &lt;strong&gt;OAuth&lt;/strong&gt; используется самоподписанный сертификат. 
+  Браузер вас об этом предупредит. Вы можете проигнорировать это предупреждение,
+ причин для беспокойства, с учетом изложенного выше, нет.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoTechInfo" xml:space="preserve">
+    <value>&lt;h2&gt;Техническая информация&lt;/h2&gt;
+&lt;p&gt;Последний официальный релиз &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;:&lt;/p&gt;
+&lt;h3&gt;v{1}&lt;/h3&gt;
+&lt;p&gt;Версия &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; на этом сервере:&lt;/p&gt;
+&lt;h3&gt;v{0}&lt;/h3&gt;
+&lt;p&gt;Номер версии последнего релиза библиотеки &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; может отличаться от номера версии, который размещен на этом сервере. Если номер версии на этом сервере выше, то вероятно в ближайшее время следует ожидать появления новой версии официального релиза.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;em&gt;Первое число - основная версия, на данный момент «один». Изменение номера основной версии не гарантирует совместимость с предыдущими номерами основных версий проекта. В ближайшем будущем изменение основной версии не планируется;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Второе число - младшая версия, меняется при изменении в функционале библиотеки: добавлении новых методов и классов, улучшении старых, удалении не нужных объектов, с сохранением совместимости с предыдущими версиями в рамках основной версии;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Третье число - содержит информацию о платформе, для которой предназначена сборка. Это целое число, содержащее номер версии &lt;strong&gt;.NET Framework&lt;/strong&gt;;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Четвертое число - номер ревизии в локальной системе контроля версий (номер редакции). Номер может меняться часто и скачками. Этот номер живет своей, отдельной жизнью, не стоит обращать на него особого внимания.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>Демонстрация работы библиотеки Nemiro.OAuth</value>
+  </data>
+  <data name="DemoUsefulLinks" xml:space="preserve">
+    <value>&lt;h2&gt;Полезные ссылки&lt;/h2&gt;
+&lt;p&gt;
+  Исходный код:&lt;br /&gt;
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;https://github.com/alekseynemiro/nemiro.oauth.dll&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Документация:&lt;br /&gt;
+  &lt;a href="http://oauth.nemiro.net/"&gt;http://oauth.nemiro.net/&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Готовые формы авторизации для проектов Windows Forms:&lt;br /&gt;
+&lt;a href="https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms"&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Статья: «Авторизация по протоколу OAuth в проектах .NET Framework»:&lt;br /&gt;
+  &lt;a href="http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art"&gt;http://kbyte.ru/ru/Programming/Articles.aspx?id=82&amp;mode=art&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Видео: «Создание простого менеджера файлов для Dropbox»&lt;br /&gt;
+&lt;a href="http://www.youtube.com/watch?v=fcT-Jt8rcdY"&gt;http://www.youtube.com/watch?v=fcT-Jt8rcdY&lt;/a&gt;&lt;br /&gt;
+&lt;span style="font-size:11px;"&gt;(анг., есть русские субтитры)&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Другие проекты:&lt;br /&gt;
+  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
+&lt;/p&gt;
+</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="FriendsList" xml:space="preserve">
+    <value>Список друзей</value>
+  </data>
+  <data name="GroupsList" xml:space="preserve">
+    <value>Список групп</value>
+  </data>
+  <data name="HTTPSupports" xml:space="preserve">
+    <value>Разрешен&lt;br /&gt;протокол&lt;br /&gt;HTTP</value>
+  </data>
+  <data name="IndexAbout" xml:space="preserve">
+    <value>&lt;p&gt;На этой странице выведен список всех зарегистрированных в приложении поставщиков OAuth.&lt;/p&gt;
+&lt;p&gt;Регистрация поставщиков производится в файле &lt;strong&gt;Global.asax&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Код перенаправления на авторизацию можно найти в методе &lt;strong&gt;ExternalLogin&lt;/strong&gt; контроллера &lt;strong&gt;HomeController&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Обработка результатов авторизации производится в методе &lt;strong&gt;ExternalLoginResult&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Попробуйте пройти процедуру авторизации, нажав на любую из кнопок.&lt;/p&gt;</value>
+  </data>
+  <data name="InstallViaNuGet" xml:space="preserve">
+    <value>Установить через &lt;a href="https://www.nuget.org/packages/Nemiro.OAuth/"&gt;NuGet&lt;/a&gt;</value>
+  </data>
+  <data name="InterestsList" xml:space="preserve">
+    <value>Список интересов</value>
+  </data>
+  <data name="InternalName" xml:space="preserve">
+    <value>Внутреннее имя</value>
+  </data>
+  <data name="LikesList" xml:space="preserve">
+    <value>Список лайков</value>
+  </data>
+  <data name="LocalhostSupports" xml:space="preserve">
+    <value>Разрешено&lt;br /&gt;использовать&lt;br /&gt;адреса&lt;br /&gt;localhost</value>
+  </data>
+  <data name="MultipleUrlSupports" xml:space="preserve">
+    <value>Разрешено&lt;br /&gt;использовать&lt;br /&gt;несколько&lt;br /&gt;URL</value>
+  </data>
+  <data name="NoForLocalhost" xml:space="preserve">
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;Этот сайт работает правильно только на домене demo-oauth.nemiro.net!&lt;/h1&gt;
+  &lt;h2 style="color:red;text-align:center;"&gt;Используйте другие проекты, для проверки работы с OAuth на локальном сервере.&lt;/h2&gt;</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Примечание</value>
+  </data>
+  <data name="Photoalbums" xml:space="preserve">
+    <value>Фотоальбомы</value>
+  </data>
+  <data name="Port59962" xml:space="preserve">
+    <value>Все приложения настроены на порт &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;Если у вас используется другой порт, то обработка и вывод результатов авторизации работать не будут.&lt;br /&gt;Вы можете явно указать номер порта в вашем веб-приложении (меню: Проект =&amp;gt; Свойства =&amp;gt; вкладка Веб =&amp;gt; Порт), или создать и использовать собственные приложения на сайтах поставщиков (таких как: facebook, twitter, vkontakte и т.п.).</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Название поставщика</value>
+  </data>
+  <data name="PublicKeyIsRequired" xml:space="preserve">
+    <value>Public Key для [{0}] не найден. Пожалуйста, укажите публичный ключ в параметре [oauth:{0}:publicKey], либо удилите клиента [{0}] из параметра [oauth:clients] (файл web.config).</value>
+  </data>
+  <data name="SeeAlsoDemo" xml:space="preserve">
+    <value>Если что-то не работает в &lt;strong&gt;localhost&lt;/strong&gt;, вы можете проверить работу библиотеки на сервере &lt;a href="http://demo-oauth.nemiro.net/"&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;.</value>
+  </data>
+  <data name="SessionIsDead" xml:space="preserve">
+    <value>Срок действия сессии истек. Пожалуйста, пройдите процедуру авторизации повторно, чтобы получить новый маркер доступа для работы с API.</value>
+  </data>
+  <data name="Twits" xml:space="preserve">
+    <value>Мои твиты</value>
+  </data>
+  <data name="TwitterFollowersList" xml:space="preserve">
+    <value>Мои преследователи</value>
+  </data>
+  <data name="UpdatesList" xml:space="preserve">
+    <value>Что нового?</value>
+  </data>
+  <data name="UseJavaScriptLinks" xml:space="preserve">
+    <value>Используйте ссылки JavaScript, чтобы исключить их индексацию. Индексация таких ссылок может негативно отразиться на производительности.</value>
+  </data>
+  <data name="UserInfoTitle" xml:space="preserve">
+    <value>Информация о пользователе</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="YandexDiskContent" xml:space="preserve">
+    <value>Содержимое Яндекс.Диск</value>
+  </data>
+  <data name="YandexDiskSummary" xml:space="preserve">
+    <value>Информация о Яндекс.Диск</value>
+  </data>
+  <data name="RefreshToken" xml:space="preserve">
+    <value>Обновить токен</value>
+  </data>
+  <data name="RevokeToken" xml:space="preserve">
+    <value>Отозвать токен</value>
+  </data>
+  <data name="ShowToken" xml:space="preserve">
+    <value>Показать токен</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+</root>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Threading;
 
 namespace Nemiro.OAuth
 {
@@ -173,6 +174,10 @@ namespace Nemiro.OAuth
         else if (t == typeof(Stream) || (t.BaseType != null && t.BaseType == typeof(Stream)))
         {
           this.Add(name, (Stream)value);
+        }
+        else if (t == typeof(FileInfo) || (t.BaseType != null && t.BaseType == typeof(FileInfo)))
+        {
+          this.Add(name, ((FileInfo)value).OpenRead());
         }
         else if (t == typeof(byte[]))
         {
@@ -440,6 +445,10 @@ namespace Nemiro.OAuth
       {
         this.Add(new HttpParameter(null, (Stream)value, contentType));
       }
+      else if (t == typeof(FileInfo) || (t.BaseType != null && t.BaseType == typeof(FileInfo)))
+      {
+        this.Add(new HttpParameter(null, ((FileInfo)value).OpenRead(), contentType));
+      }
       else if (t == typeof(byte[]))
       {
         this.Add(new HttpParameter(null, (byte[])value, contentType));
@@ -692,12 +701,17 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets a body for the request.
     /// </summary>
+    /// <param name="contentType">Content-Type</param>
+    [Obsolete("Please use WriteRequestBody. // v1.11", false)]
     public byte[] ToRequestBody(string contentType = null)
     {
       if (contentType == null) { contentType = ""; }
+
       contentType = contentType.ToLower();
+
       bool isMultipart = contentType.Contains("multipart/"); // multipart/form-data
       bool isFormData = contentType.Contains("multipart/form-data");
+
       if (this.IsRequestBody && !isMultipart)
       {
         return this.FirstOrDefault(itm => itm.GetType() == typeof(HttpRequestBody)).Value.ToByteArray();
@@ -750,10 +764,109 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
+    /// Writes a body to stream.
+    /// </summary>
+    /// <param name="output">Output stream.</param>
+    /// <param name="contentType">Content-Type</param>
+    /// <param name="bufferSize">Buffer size. Default: <c>4096</c>.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    public void WriteRequestBody(Stream output, string contentType = null, int bufferSize = 4096, StreamWriteEventArgs outputStatus = null)
+    {
+      if (output == null)
+      {
+        throw new ArgumentNullException("stream");
+      }
+
+      if (outputStatus == null)
+      {
+        outputStatus = new StreamWriteEventArgs();
+      }
+
+      if (contentType == null) { contentType = ""; }
+
+      contentType = contentType.ToLower();
+
+      bool isMultipart = contentType.Contains("multipart/"); // multipart/form-data
+      bool isFormData = contentType.Contains("multipart/form-data");
+
+      if (this.IsRequestBody && !isMultipart)
+      {
+        this.FirstOrDefault(itm => itm.GetType() == typeof(HttpRequestBody)).Value.WriteToStream(output, bufferSize, outputStatus);
+      }
+      else if (this.HasFiles || isMultipart)
+      {
+        foreach (var itm in this)
+        {
+          if (itm.GetType() == typeof(HttpUrlParameter)) { continue; } // ignore url parameters
+          if (itm.GetType() == typeof(HttpFile))
+          {
+            var file = itm as HttpFile;
+            if (isFormData)
+            {
+              // add form-data parameter
+              this.WriteFormDataFile(itm.Name, file.FileName, file.ContentType, file.Value, output, bufferSize, outputStatus);
+            }
+            else
+            {
+              // add other type
+              this.WriteParameter(itm.ContentType, file.Value, output, bufferSize, outputStatus);
+            }
+          }
+          else
+          {
+            if (isFormData)
+            {
+              // add form-data parameter
+              this.WriteFormDataParameter(itm.Name, itm.Value.ToString(), output);
+            }
+            else
+            {
+              // add other type
+              this.WriteParameter(itm.ContentType, itm.Value, output, bufferSize, outputStatus);
+            }
+          }
+        }
+
+        var end = this.Encoding.GetBytes(String.Format("\r\n--{0}--\r\n", this.Boundary));
+        output.Write(end, 0, end.Length);
+        output.Flush();
+
+        outputStatus.BytesWritten = end.Length;
+      }
+      else
+      {
+        var buffer = this.Encoding.GetBytes(((HttpParameterCollection)this.Where(itm => itm.GetType() != typeof(HttpUrlParameter)).ToArray()).ToStringParameters(UrlEncodingType.PercentEncoding));
+        output.Write(buffer, 0, buffer.Length);
+        outputStatus.BytesWritten = buffer.Length;
+      }
+    }
+
+    /// <summary>
     /// Writes the parameters to the request.
     /// </summary>
     /// <param name="req">The instance of the request.</param>
     public void WriteToRequestStream(HttpWebRequest req)
+    {
+      this.WriteToRequestStream(req, 4096, null);
+    }
+
+    /// <summary>
+    /// Writes the parameters to the request.
+    /// </summary>
+    /// <param name="req">The instance of the request.</param>
+    /// <param name="callback">A delegate that, if provided, is called when writing a data block to the stream.</param>
+    public void WriteToRequestStream(HttpWebRequest req, HttpWriteRequestStream callback)
+    {
+      this.WriteToRequestStream(req, 4096, callback);
+    }
+
+    /// <summary>
+    /// Writes the parameters to the request.
+    /// </summary>
+    /// <param name="req">The instance of the request.</param>
+    /// <param name="bufferSize">Buffer size. Default: 4096.</param>
+    /// <param name="callback">A delegate that, if provided, is called when writing a data block to the stream.</param>
+    public void WriteToRequestStream(HttpWebRequest req, int bufferSize, HttpWriteRequestStream callback)
     {
       // content-type
       if (String.IsNullOrEmpty(req.ContentType))
@@ -771,22 +884,77 @@ namespace Nemiro.OAuth
           req.ContentType = "application/x-www-form-urlencoded";
         }
       }
+
+      if (bufferSize <= 0)
+      {
+        bufferSize = 4096;
+      }
+
+      var writerArgs = new StreamWriteEventArgs();
+
+      writerArgs.Changed += (s, e) =>
+      {
+        if (callback != null)
+        {
+          callback(req, writerArgs);
+        }
+      };
+
       // set boundary
-      if (req.ContentType.ToLower().Contains("multipart/") && !req.ContentType.ToLower().Contains("boundary"))
+      if (req.ContentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) != -1 && req.ContentType.IndexOf("boundary", StringComparison.OrdinalIgnoreCase) == -1)
       {
         if (!req.ContentType.EndsWith(";")) { req.ContentType += "; "; }
         req.ContentType += String.Format("boundary={0}", this.Boundary);
       }
-      // get request body 
-      byte[] b = this.ToRequestBody(req.ContentType);
-      // for .NET Framework 2.0/3.0/3.5
-      if (Environment.Version.Major < 4)
+
+      if ((this.HasFiles || this.IsRequestBody || req.ContentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) != -1) && !req.AllowWriteStreamBuffering)
       {
-        req.ContentLength = b.Length;
+        #region for large data (without buffering)
+
+        // not as bad as it could be :)
+        // backwards compatibility with earlier versions of fully preserved
+
+        bool beginGetRequestStream = false;
+
+        // write async
+        var asyncResult = req.BeginGetRequestStream((IAsyncResult r) => {
+          using (var s = req.EndGetRequestStream(r))
+          {
+            this.WriteRequestBody(s, req.ContentType, bufferSize, writerArgs);
+          }
+          beginGetRequestStream = true;
+        }, null);
+
+        // waiting result
+        while (!beginGetRequestStream)
+        {
+          Thread.Sleep(250);
+        }
+
+        writerArgs.IsCompleted = true;
+
+        #endregion
       }
-      // todo: optimized for large data
-      req.GetRequestStream().Write(b, 0, b.Length);
-      // --
+      else
+      {
+        #region small data (old/original code)
+
+        // get request body 
+        byte[] b = this.ToRequestBody(req.ContentType);
+
+        // fix for .NET Framework 2.0/3.0/3.5
+        if (Environment.Version.Major < 4)
+        {
+          req.ContentLength = b.Length;
+        }
+
+        req.GetRequestStream().Write(b, 0, b.Length);
+
+        writerArgs.BytesWritten = b.Length;
+        writerArgs.IsCompleted = true;
+
+        #endregion
+      }
     }
 
     /// <summary>
@@ -803,6 +971,30 @@ namespace Nemiro.OAuth
       byte[] buffer = this.Encoding.GetBytes(String.Format(headerTemplate, parameterName, fileName, contentType));
       output.Write(buffer, 0, buffer.Length);
       output.Write(body, 0, body.Length);
+    }
+
+    /// <summary>
+    /// Writes a file to the request.
+    /// </summary>
+    /// <param name="parameterName">The name of the parameter.</param>
+    /// <param name="fileName">The filename.</param>
+    /// <param name="contentType">The Content-Type of the file.</param>
+    /// <param name="output">The output stream instance.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    /// <param name="bufferSize">Buffer size.</param>
+    /// <param name="value">The parameter value to write.</param>
+    private void WriteFormDataFile(string parameterName, string fileName, string contentType, HttpParameterValue value, Stream output, int bufferSize, StreamWriteEventArgs outputStatus)
+    {
+      string headerTemplate = String.Format("\r\n--{0}\r\nContent-Disposition: form-data; name=\"{{0}}\"; filename=\"{{1}}\"\r\nContent-Type: {{2}}\r\n\r\n", this.Boundary);
+      byte[] buffer = this.Encoding.GetBytes(String.Format(headerTemplate, parameterName, fileName, contentType));
+      output.Write(buffer, 0, buffer.Length);
+
+      if (outputStatus != null)
+      {
+        outputStatus.BytesWritten = buffer.Length;
+      }
+
+      value.WriteToStream(output, bufferSize, outputStatus);
     }
 
     /// <summary>
@@ -829,6 +1021,27 @@ namespace Nemiro.OAuth
       byte[] buffer = this.Encoding.GetBytes(String.Format("\r\n--{0}\r\nContent-Type: {1}\r\n\r\n", this.Boundary, contentType));
       output.Write(buffer, 0, buffer.Length);
       output.Write(content, 0, content.Length);
+    }
+
+    /// <summary>
+    /// Writes any parameter to the request.
+    /// </summary>
+    /// <param name="contentType">The Content-Type of the <paramref name="value"/>.</param>
+    /// <param name="output">The instance of the output stream.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    /// <param name="value">The parameter value to write.</param>
+    /// <param name="bufferSize">Buffer size.</param>
+    private void WriteParameter(string contentType, HttpParameterValue value, Stream output, int bufferSize, StreamWriteEventArgs outputStatus)
+    {
+      byte[] buffer = this.Encoding.GetBytes(String.Format("\r\n--{0}\r\nContent-Type: {1}\r\n\r\n", this.Boundary, contentType));
+      output.Write(buffer, 0, buffer.Length);
+
+      if (outputStatus != null)
+      {
+        outputStatus.BytesWritten = buffer.Length;
+      }
+
+      value.WriteToStream(output, bufferSize, outputStatus);
     }
 
     #endregion

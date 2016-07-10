@@ -71,7 +71,7 @@ namespace Nemiro.OAuth.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Aleksey Sergeevich Nemiro is a Russian developer of applications and websites, 
+        ///   Ищет локализованную строку, похожую на **Aleksey Sergeevich Nemiro** is a Russian developer of applications and websites, 
         ///author of articles on programming and information technology.
         ///
         ///Aleksey was born on October 3, 1983 in the city of Vladivostok (Primorsky Krai, Russia).
@@ -80,7 +80,7 @@ namespace Nemiro.OAuth.Properties {
         ///Started programming in 1998 on the G-Basic and QBasic.
         ///
         ///At various times worked with programming languages and technologies: 
-        ///Visaul Basic, Delphi, C, Visual C++, Java, PHP, ASP VBScript and JScript [остаток строки не уместился]&quot;;.
+        ///Visaul Basic, Delphi, C, Visual C++, Java, PHP, ASP VBScript and JSc [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string mediakit {
             get {

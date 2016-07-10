@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // ----------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Web;
@@ -127,6 +126,7 @@ namespace Nemiro.OAuth
     public byte[] ToByteArray()
     {
       if (this.Value == null) { return null; }
+
       if (this.Value.GetType() == typeof(byte[]))
       {
         return (byte[])this.Value;
@@ -137,11 +137,12 @@ namespace Nemiro.OAuth
         {
           ((Stream)this.Value).Position = 0;
         }
+
         using (BinaryReader br = new BinaryReader((Stream)this.Value))
         {
           List<byte> result = new List<byte>();
           int bytesRead = 0;
-          byte[] buffer = new byte[4095];
+          byte[] buffer = new byte[4096];
           while ((bytesRead = br.Read(buffer, 0, buffer.Length)) != 0)
           {
             byte[] b = new byte[bytesRead];
@@ -152,7 +153,84 @@ namespace Nemiro.OAuth
           return result.ToArray();
         }
       }
+
       return Encoding.Default.GetBytes(this.Value.ToString());
+    }
+
+    /// <summary>
+    /// Writes the value of the current instance of the class to the output stream.
+    /// </summary>
+    /// <param name="output">The output stream.</param>
+    public void WriteToStream(Stream output)
+    {
+      this.WriteToStream(output, 4096, null);
+    }
+
+    /// <summary>
+    /// Writes the value of the current instance of the class to the output stream.
+    /// </summary>
+    /// <param name="output">The output stream.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    public void WriteToStream(Stream output, StreamWriteEventArgs outputStatus)
+    {
+      this.WriteToStream(output, 4096, outputStatus);
+    }
+
+    /// <summary>
+    /// Writes the value of the current instance of the class to the output stream.
+    /// </summary>
+    /// <param name="output">The output stream.</param>
+    /// <param name="bufferSize">Buffer size.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    public void WriteToStream(Stream output, int bufferSize, StreamWriteEventArgs outputStatus)
+    {
+      if (this.Value == null) { return; }
+
+      if (output == null)
+      {
+        throw new ArgumentNullException("stream");
+      }
+
+      if (bufferSize <= 0)
+      {
+        throw new ArgumentOutOfRangeException("The value of the bufferSize must be greater than zero.");
+      }
+
+      if (outputStatus == null)
+      {
+        outputStatus = new StreamWriteEventArgs();
+      }
+
+      if (this.Value.GetType() == typeof(byte[]))
+      {
+        output.Write((byte[])this.Value, 0, ((byte[])this.Value).Length);
+        outputStatus.BytesWritten = ((byte[])this.Value).Length;
+      }
+      else if (this.Value.GetType() == typeof(Stream) || this.Value.GetType().IsSubclassOf(typeof(Stream)))
+      {
+        if (((Stream)this.Value).CanSeek)
+        {
+          ((Stream)this.Value).Position = 0;
+        }
+
+        using (BinaryReader br = new BinaryReader((Stream)this.Value))
+        {
+          int bytesRead = 0;
+          byte[] buffer = new byte[bufferSize];
+
+          while ((bytesRead = br.Read(buffer, 0, buffer.Length)) != 0)
+          {
+            output.Write(buffer, 0, bytesRead);
+            outputStatus.BytesWritten = bytesRead;
+          }
+        }
+      }
+      else
+      {
+        var buffer = Encoding.Default.GetBytes(this.Value.ToString());
+        output.Write(buffer, 0, buffer.Length);
+        outputStatus.BytesWritten = buffer.Length;
+      }
     }
 
     #endregion
@@ -296,6 +374,16 @@ namespace Nemiro.OAuth
     public static implicit operator HttpParameterValue(Stream value)
     {
       return new HttpParameterValue(value);
+    }
+
+    /// <summary>
+    /// Implements the assignment operator for the <see cref="System.IO.FileInfo"/>.
+    /// </summary>
+    /// <param name="value">The value to be assigned.</param>
+    /// <returns>New instance of the <see cref="HttpParameterValue"/>.</returns>
+    public static implicit operator HttpParameterValue(FileInfo value)
+    {
+      return new HttpParameterValue(((FileInfo)value).OpenRead());
     }
 
     /// <summary>

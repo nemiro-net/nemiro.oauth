@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,11 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // ----------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Nemiro.OAuth
 {
 
@@ -32,5 +27,12 @@ namespace Nemiro.OAuth
   /// </summary>
   /// <param name="result">The result of the asynchronous web request.</param>
   public delegate void ExecuteRequestAsyncCallback(RequestResult result);
+
+  /// <summary>
+  /// Defines a callback method for notifying applications when written data to a stream.
+  /// </summary>
+  /// <param name="sender">The reference to an instance of the class which caused the event.</param>
+  /// <param name="e">The event arguments.</param>
+  public delegate void HttpWriteRequestStream(object sender, StreamWriteEventArgs e);
 
 }

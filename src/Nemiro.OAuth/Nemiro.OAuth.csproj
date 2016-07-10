@@ -35,6 +35,12 @@
     <DocumentationFile>bin\Release\Nemiro.OAuth.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Nemiro.OAuth.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -90,6 +96,7 @@
     <Compile Include="HttpParameterCollection.cs" />
     <Compile Include="HttpParameterValue.cs" />
     <Compile Include="HttpRequestBody.cs" />
+    <Compile Include="StreamWriteEventArgs.cs" />
     <Compile Include="OAuthBase.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />
     <Compile Include="GrantType.cs" />
@@ -129,8 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />
-    <None Include="Resources\Media Kit.txt" />
+    <None Include="Nemiro.OAuth.snk" />
     <None Include="Resources\aleksey.nemiro.gif" />
+    <None Include="Resources\mediakit.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

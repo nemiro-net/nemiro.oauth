@@ -1,0 +1,164 @@
+﻿@model Nemiro.OAuth.AuthorizationResult
+@{
+  ViewBag.Title = "Login Result";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--table>
+  <tr>
+    <th>Provider:</th>
+    <td>@Model.ProviderName</td>
+  </tr>
+</table-->
+@if (Model.IsSuccessfully)
+{
+  <a href="/"><img src="@Url.Action("Icon", new { id = Model.ProviderName })" alt="@Model.ProviderName" title="" width="100" height="100" /></a>
+  <section>
+    @{var user = Model.UserInfo; }
+    <h3>@DemoOAuth.Strings.UserInfoTitle</h3>
+    <table>
+      @if (!String.IsNullOrEmpty(user.UserId))
+      {
+        <tr>
+          <th>User ID:</th>
+          <td>@user.UserId</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.UserName))
+      {
+        <tr>
+          <th>Login:</th>
+          <td>@user.UserName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Email))
+      {
+        <tr>
+          <th>Email:</th>
+          <td>@user.Email</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.DisplayName))
+      {
+        <tr>
+          <th>Display name:</th>
+          <td>@user.DisplayName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.FirstName))
+      {
+        <tr>
+          <th>First name:</th>
+          <td>@user.FirstName</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.LastName))
+      {
+        <tr>
+          <th>Last name:</th>
+          <td>@user.LastName</td>
+        </tr>
+      }
+      @if (user.Birthday.HasValue)
+      {
+        <tr>
+          <th>Birthday:</th>
+          <td>@user.Birthday.Value.ToShortDateString()</td>
+        </tr>
+      }
+      @if (user.Sex == Nemiro.OAuth.Sex.Male || user.Sex == Nemiro.OAuth.Sex.Female)
+      {      
+        <tr>
+          <th>Sex:</th>
+          <td>@user.Sex.ToString()</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Phone))
+      {      
+        <tr>
+          <th>Phone:</th>
+          <td>@user.Phone</td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Url))
+      {
+        <tr>
+          <th>Url:</th>
+          <td><a href="@user.Url" target="_blank">@user.Url</a></td>
+        </tr>
+      }
+      @if (!String.IsNullOrEmpty(user.Userpic))
+      {
+        <tr>
+          <th>Photo:</th>
+          <td><img src="@user.Userpic" style="max-width:300px;" alt="photo" title="" /></td>
+        </tr>
+      }
+    </table>
+  </section>
+
+  <div id="buttons">
+		<div id="processing"></div>
+		<ul>
+			<li>@Ajax.ActionLink(DemoOAuth.Strings.UserInfo, "GetUserInfo", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			@if (ViewEngines.Engines.FindPartialView(Html.ViewContext, Model.ProviderName).View != null)
+			{
+				@Html.Partial(Model.ProviderName, Model.AccessToken)
+			}
+			<li>@Ajax.ActionLink(DemoOAuth.Strings.ShowToken, "Token", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRefreshToken)
+			{
+				<li>@Ajax.ActionLink(DemoOAuth.Strings.RefreshToken, "Refresh", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			}
+			@if(Nemiro.OAuth.OAuthManager.RegisteredClients[Model.ProviderName].SupportRevokeToken)
+			{
+				<li>@Ajax.ActionLink(DemoOAuth.Strings.RevokeToken, "Revoke", "Api", new { provider = Model.ProviderName }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+			}
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div id="resultContainer">
+		<textarea id="apiResults" style="margin-top:12px;margin-bottom:8px;width:100%;display:none;max-height:350px;" rows="25" cols="50"></textarea>
+	  <div id="jsonView" style="height:350px;max-height:350px;width:100%;max-width:100%;overflow:auto;display:none;"></div>
+	</div>
+	<div class="clear"></div>
+	
+  <script type="text/javascript">
+  	function OnBegin() {
+  		$('#jsonView,#apiResults').hide();
+  		$('#resultContainer').addClass('processing');
+    	$('#processing').height($('#processing').parent().height() + 10);
+    	$('#processing').show();
+    }
+
+    function OnComplete() {
+    	$('#processing').hide('slow');
+			try {
+				$("#jsonView").JSONView(eval('(' + $('#apiResults').val() + ')'));
+				$('#jsonView').show();
+				$("#jsonView").scrollTop(0);
+			}
+			catch (e)	{
+				$('#apiResults').show();
+			}
+			$('#resultContainer').removeClass('processing');
+    }
+
+    /*$(document).ready(function () { });*/
+  </script>
+}
+else
+{
+  @Model.ErrorInfo.Message
+}
+
+<hr />
+<br />
+@Html.ActionLink(DemoOAuth.Strings.BackToProviders, "Index")
+<br /><br /><br />
+
+@section head
+{
+	<script src="@Url.Content("~/Content/js/jquery.jsonview.js")" type="text/javascript"></script>
+	<link href="@Url.Content("~/Content/css/jquery.jsonview.css")" rel="stylesheet" type="text/css" />
+}

@@ -1,0 +1,2 @@
+﻿<li>@Ajax.ActionLink(DemoOAuth.Strings.TwitterFollowersList, "Twitter", "Api", new { method = "followers" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>
+<li>@Ajax.ActionLink(DemoOAuth.Strings.Twits, "Twitter", "Api", new { method = "user_timeline" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "apiResults", OnBegin = "OnBegin()", OnComplete = "OnComplete()" })</li>

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright (c) Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ using System.Web;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using System.Collections.Generic;
-using Nemiro.OAuth.Extensions;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Globalization;
@@ -70,13 +69,25 @@ namespace Nemiro.OAuth
       { '&', "\u0026" }
     };
 
+    /// <summary>
+    /// Version number of Nemiro.OAuth.
+    /// </summary>
+    private static readonly string LibraryVersion;
+
     #endregion
     #region ..constructor..
 
     /// <summary>
     /// This is main helper class.
     /// </summary>
-    static OAuthUtility() { }
+    static OAuthUtility()
+    {
+      var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+      if (assembly != null)
+      {
+        OAuthUtility.LibraryVersion = assembly.GetName().Version.ToString();
+      }
+    }
 
     #endregion
     #region ..methods..
@@ -261,8 +272,24 @@ namespace Nemiro.OAuth
     /// <param name="authorization">Authorization header value.</param>
     /// <param name="headers">HTTP headers for request.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
@@ -270,9 +297,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
+    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken);
+      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -284,8 +311,24 @@ namespace Nemiro.OAuth
     /// <param name="headers">HTTP headers for web request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
@@ -293,9 +336,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
+    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken);
+      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -307,8 +350,24 @@ namespace Nemiro.OAuth
     /// <param name="headers">HTTP headers for the request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
@@ -316,9 +375,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
+    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken);
+      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -329,18 +388,34 @@ namespace Nemiro.OAuth
     /// <param name="authorization">Authorization header value.</param>
     /// <param name="headers">HTTP headers for the request.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
+    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null)
+    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken);
+      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -353,8 +428,24 @@ namespace Nemiro.OAuth
     /// <param name="headers">HTTP headers for web request.</param>
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
     /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
@@ -362,7 +453,7 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null)
+    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
       // checking
       if (String.IsNullOrEmpty(endpoint)) { throw new ArgumentNullException("endpoint"); }
@@ -373,16 +464,22 @@ namespace Nemiro.OAuth
 
       // set default values
       if (!String.IsNullOrEmpty(method)) { method = method.ToUpper(); }
+
       string[] post = { "POST", "PUT" };
+
       if (String.IsNullOrEmpty(method) || (parameters != null && (parameters.HasFiles || parameters.IsRequestBody) && Array.IndexOf(post, method) == -1))
       {
         method = "POST";
       }
+
       bool isPost = Array.IndexOf(post, method) != -1;
 
       // set protocols
+      var securityProtocol = ServicePointManager.SecurityProtocol;
       ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+
       // ignore errors
+      var serverCertificateValidationCallback = ServicePointManager.ServerCertificateValidationCallback;
       ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
       // --
 
@@ -461,26 +558,11 @@ namespace Nemiro.OAuth
       // req.ProtocolVersion = HttpVersion.Version10;
 
       // user-agent (required for some providers)
-      req.UserAgent = "Nemiro.OAuth";
+      req.UserAgent = String.Format("Nemiro.OAuth v{0}", OAuthUtility.LibraryVersion);
 
       // json format acceptable for the response
       req.Accept = "application/json";
-
-      // set parameters to the body if the request is executed using the POST method
-      if (isPost)
-      {
-        if (parameters != null && parameters.Count > 0)
-        {
-          req.ContentType = contentType;
-          parameters.WriteToRequestStream(req);
-        }
-        else
-        {
-          // for some servers
-          req.ContentLength = 0;
-        }
-      }
-
+      
       // set authorization header
       if (authorization != null)
       {
@@ -504,6 +586,33 @@ namespace Nemiro.OAuth
         req.Headers.Add(headers);
       }
 
+      // set parameters to the body if the request is executed using the POST method
+      if (isPost)
+      {
+        if (parameters != null && parameters.Count > 0)
+        {
+          req.ContentType = contentType;
+
+          if (contentLength > 0)
+          {
+            req.ContentLength = contentLength;
+          }
+
+          if (parameters.HasFiles || parameters.IsRequestBody || (!String.IsNullOrEmpty(contentType) && contentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) != -1))
+          {
+            req.AllowWriteStreamBuffering = allowWriteStreamBuffering;
+            req.SendChunked = allowSendChunked;
+          }
+
+          parameters.WriteToRequestStream(req, writeBufferSize, streamWriteCallback);
+        }
+        else
+        {
+          // for some servers
+          req.ContentLength = 0;
+        }
+      }
+      
       WebHeaderCollection rh = null;
       Exception exception = null;
       string ct = "";
@@ -518,32 +627,41 @@ namespace Nemiro.OAuth
           ct = resp.ContentType;
           rh = resp.Headers;
           status = (int)resp.StatusCode;
-          result = OAuthUtility.ReadResponseStream(resp);
+          result = OAuthUtility.ReadResponseStream(resp, readBufferSize);
         }
       }
       catch (WebException ex)
-      { // web exception, 
+      { 
+        // web exception, 
         if (ex.Response != null)
-        { // reading contents of the response
+        { 
+          // reading contents of the response
           using (var resp = (HttpWebResponse)ex.Response)
           {
             ct = resp.ContentType;
             rh = resp.Headers;
             status = (int)resp.StatusCode;
-            result = OAuthUtility.ReadResponseStream(resp);
+            result = OAuthUtility.ReadResponseStream(resp, readBufferSize);
           }
         }
         else
-        { // no response, get error message
+        { 
+          // no response, get error message
           result = Encoding.UTF8.GetBytes(ex.Message);
         }
+
         exception = ex;
       }
       catch (Exception ex)
-      { // other exception
+      { 
+        // other exception
         result = Encoding.UTF8.GetBytes(ex.Message);
         exception = ex;
       }
+
+      // restore ServicePoint
+      ServicePointManager.SecurityProtocol = securityProtocol;
+      ServicePointManager.ServerCertificateValidationCallback = serverCertificateValidationCallback;
 
       // exception
       if (exception != null)
@@ -559,15 +677,21 @@ namespace Nemiro.OAuth
     /// Reads results of the web request to the string.
     /// </summary>
     /// <param name="resp"><see cref="System.Net.HttpWebResponse"/> instance.</param>
-    private static byte[] ReadResponseStream(HttpWebResponse resp)
+    /// <param name="bufferSize">Size of read buffer. Default: <c>4096</c>.</param>
+    private static byte[] ReadResponseStream(HttpWebResponse resp, int bufferSize = 4096)
     {
+      if (bufferSize <= 0)
+      {
+        throw new ArgumentOutOfRangeException("The value of the bufferSize must be greater than zero.");
+      }
+
       using (Stream s = resp.GetResponseStream())
       {
         using (BinaryReader sr = new BinaryReader(s, Encoding.UTF8))
         {
           using (MemoryStream result = new MemoryStream())
           {
-            int readed = 0; byte[] buffer = new byte[4095];
+            int readed = 0; byte[] buffer = new byte[bufferSize];
             while ((readed = sr.Read(buffer, 0, buffer.Length)) != 0)
             {
               result.Write(buffer, 0, readed);
@@ -590,18 +714,33 @@ namespace Nemiro.OAuth
     /// <param name="headers">HTTP headers for request.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
+    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback);
+      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -614,18 +753,33 @@ namespace Nemiro.OAuth
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
+    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
+      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -638,18 +792,33 @@ namespace Nemiro.OAuth
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
+    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback);
+      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -661,18 +830,33 @@ namespace Nemiro.OAuth
     /// <param name="headers">HTTP headers for request.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async request is completed.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
+    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
-      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback);
+      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
     }
 
     /// <summary>
@@ -686,16 +870,31 @@ namespace Nemiro.OAuth
     /// <param name="contentType">The value of the <b>Content-Type</b> HTTP header.</param>
     /// <param name="callback">A delegate that, if provided, is called when an async web request is completed.</param>
     /// <param name="accessToken">Access token to be used in the request.</param>
+    /// <param name="streamWriteCallback">A delegate that, if provided, is called when writing a data block to the stream of the request.</param>
+    /// <param name="allowSendChunked">The value that indicates whether to send data in segments to the <paramref name="endpoint"/> (for files and request body only). Default: <c>true</c>.</param>
+    /// <param name="allowWriteStreamBuffering">The value that indicates whether to buffer the data sent to the <paramref name="endpoint"/> (for files and request body only). Default: <c>false</c>.</param>
+    /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
+    /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
+    /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
+    /// <para>
+    /// Sending big data is performed in parts. This allows to reduce the amount of consumed memory.
+    /// But not all servers support receiving chunked data.
+    /// If you have problems, set the parameter <paramref name="allowSendChunked"/> to <c>false</c>.
+    /// In this case you have to manually specify the size of the content (<paramref name="contentLength"/>), or enable buffering (<paramref name="allowWriteStreamBuffering"/> = <c>true</c>).
+    /// </para>
+    /// <para>
+    /// The <paramref name="streamWriteCallback"/> call may be from a separate thread. 
+    /// In Windows Forms applications should be returned to the main thread, to have access to the form elements.
+    /// </para>
     /// </remarks>
-    /// <returns>Returns an instance of the <see cref="RequestResult"/> class, which contains the result of the request.</returns>
     /// <exception cref="System.ArgumentNullException"></exception>
     /// <exception cref="RequestException"></exception>
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null)
+    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
     {
       var t = new Thread
       (() =>
@@ -703,7 +902,7 @@ namespace Nemiro.OAuth
         RequestResult result = null;
         try
         {
-          result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType, accessToken);
+          result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
         }
         catch (RequestException ex)
         {

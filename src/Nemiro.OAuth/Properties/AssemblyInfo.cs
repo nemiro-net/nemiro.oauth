@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("Nemiro.OAuth")]
-[assembly: AssemblyDescription("OAuth clients for .NET Framework.")]
+[assembly: AssemblyDescription("OAuth clients for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Aleksey Nemiro")]
 [assembly: AssemblyProduct("Nemiro.OAuth")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номер построения и номер редакции по умолчанию, 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.11.4.2402")]
-[assembly: AssemblyFileVersion("1.11.4.2402")]
+[assembly: AssemblyVersion("1.11.4.2421")]
+[assembly: AssemblyFileVersion("1.11.4.2421")]

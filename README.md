@@ -1,4 +1,4 @@
-### Nemiro.OAuth
+# Nemiro.OAuth
 
 **Nemiro.OAuth** is a class library for authorization via **OAuth** protocol in **.NET Framework**.
 
@@ -10,11 +10,11 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
 
 `PM> Install-Package Nemiro.OAuth`
 
-#### Demo
+## Demo
 
 http://demo-oauth.nemiro.net/
 
-### Features
+## Features
 
 * Support OAuth 1.0 and 2.0; 
 * Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number; 
@@ -25,12 +25,12 @@ http://demo-oauth.nemiro.net/
 
 Less code, more functionality!
 
-### System Requirements
+## System Requirements
 
-* Microsoft Windows XP, 7 or later with .NET Framework 3.5, 4.0 or 4.5 
-* Microsoft Visual Studio 2010 (recommended Professional Edition with Service Pack 1) or later.
+* Microsoft Windows XP, 7 or later with .NET Framework 3.5, 4.0, 4.5 or 4.6 
+* Microsoft Visual Studio 2013 (recommended Professional Edition with Service Pack 1) or later.
 
-### How to use
+## How to use
 
 1\. Create an application at the **OAuth** provider site.
 
@@ -42,9 +42,9 @@ For example, **Facebook**:
 ```C#
 OAuthManager.RegisterClient
 (
-	"facebook", 
-	"1435890426686808", 
-	"c6057dfae399beee9e8dc46a4182e8fd"
+  "facebook", 
+  "1435890426686808", 
+  "c6057dfae399beee9e8dc46a4182e8fd"
 );
 ```
 
@@ -52,9 +52,9 @@ OAuthManager.RegisterClient
 ```VBNet
 OAuthManager.RegisterClient _
 (
-	"facebook", 
-	"1435890426686808", 
-	"c6057dfae399beee9e8dc46a4182e8fd"
+  "facebook", 
+  "1435890426686808", 
+  "c6057dfae399beee9e8dc46a4182e8fd"
 )
 ```
 
@@ -66,22 +66,22 @@ For example:
 ```C#
 public partial class ExternalLoginResult : System.Web.UI.Page
 {
-	protected void Page_Load(object sender, EventArgs e)
-	{
-		var result = OAuthWeb.VerifyAuthorization();
-		Response.Write(String.Format("Provider: {0}<br />", result.ProviderName));
-		if (result.IsSuccessfully)
-		{
-			var user = result.UserInfo;
-			Response.Write(String.Format("User ID:  {0}<br />", user.UserId));
-			Response.Write(String.Format("Name:     {0}<br />", user.DisplayName));
-			Response.Write(String.Format("Email:    {0}", user.Email));
-		}
-		else
-		{
-			Response.Write(result.ErrorInfo.Message);
-		}
-	}
+  protected void Page_Load(object sender, EventArgs e)
+  {
+    var result = OAuthWeb.VerifyAuthorization();
+    Response.Write(String.Format("Provider: {0}<br />", result.ProviderName));
+    if (result.IsSuccessfully)
+    {
+      var user = result.UserInfo;
+      Response.Write(String.Format("User ID:  {0}<br />", user.UserId));
+      Response.Write(String.Format("Name:     {0}<br />", user.DisplayName));
+      Response.Write(String.Format("Email:    {0}", user.Email));
+    }
+    else
+    {
+      Response.Write(result.ErrorInfo.Message);
+    }
+  }
 }
 ```
 
@@ -125,6 +125,6 @@ OAuthWeb.RedirectToAuthorization("facebook", returnUrl)
 ### See Also
 
 * [Guide Nemiro.OAuth](http://oauth.nemiro.net)
-* [Web Demo](http://demo-oauth.nemiro.net/)
-* [Nemiro.OAuth.LoginForms](https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms)
+* [Online Demo](http://demo-oauth.nemiro.net/)
+* [Forms for Windows Applications](https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms)
 * [Other projects](http://nemiro.net)

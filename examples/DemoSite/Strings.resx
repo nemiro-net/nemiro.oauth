@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioList" xml:space="preserve">
+    <value>Get list of music</value>
+  </data>
+  <data name="BackToProviders" xml:space="preserve">
+    <value>Back to list of providers</value>
+  </data>
+  <data name="ClientIdIsRequired" xml:space="preserve">
+    <value>Client ID for [{0}] not found. Please set value to the [oauth:{0}:id] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="ClientKeyIsRequired" xml:space="preserve">
+    <value>Cleint Secret for [{0}] not found. Please set value to the [oauth:{0}:key] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>Get list of contacts</value>
+  </data>
+  <data name="CurrentStatus" xml:space="preserve">
+    <value>Get status</value>
+  </data>
+  <data name="DefaultAbout" xml:space="preserve">
+    <value>&lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
+&lt;p&gt;Clients registration occurs in the &lt;strong&gt;Global.asax&lt;/strong&gt; file.&lt;/p&gt;
+&lt;p&gt;Redirects to the login page you can found in the server code of the page.&lt;/p&gt;
+&lt;p&gt;The result is handled in the &lt;strong&gt;ExternalLoginResult&lt;/strong&gt; page.&lt;/p&gt;
+&lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoFeedback" xml:space="preserve">
+    <value>&lt;p&gt;If something is not working or is not working properly, please &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoHow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DemoIntro" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; is a class library for authorization via &lt;strong&gt;OAuth&lt;/strong&gt; protocol in &lt;strong&gt;.NET Framework. (VB, C#)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The library is &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;open source&lt;/a&gt; and is licensed under the &lt;strong&gt;Apache License Version 2.0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+  To test, click on one of the icons below. Provide the required permissions for test application.&lt;br /&gt;
+  If everything works correctly, then after login, you will redirect to the &lt;strong&gt;demo-oauth.nemiro.net&lt;/strong&gt;, &lt;br /&gt;
+  where you can check work with an &lt;strong&gt;API&lt;/strong&gt; of the &lt;strong&gt;OAuth&lt;/strong&gt; provider.
+&lt;/p&gt;</value>
+  </data>
+  <data name="DemoProvidersTable" xml:space="preserve">
+    <value>Registration and management of applications</value>
+  </data>
+  <data name="DemoProviderTableInfo" xml:space="preserve">
+    <value>&lt;p&gt;The information in the table is current as of &lt;strong&gt;March 2015&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;internal name&lt;/strong&gt; is case-insensitive.&lt;/p&gt;
+&lt;p&gt;If the provider supports the &lt;strong&gt;localhost&lt;/strong&gt;, then allowed to use the &lt;strong&gt;HTTP&lt;/strong&gt; protocol for &lt;strong&gt;localhost&lt;/strong&gt;.
+&lt;strong&gt;HTTP&lt;/strong&gt; supports field is only for external addresses.&lt;/p&gt;
+</value>
+  </data>
+  <data name="DemoSecurity" xml:space="preserve">
+    <value>&lt;h2&gt;Is it safe?&lt;/h2&gt;
+&lt;p&gt;Yes safely.&lt;/p&gt;
+&lt;p&gt;
+  After authentication and authorization, the provider server sends special authorization code to the callback page.
+  This code is a one-off and has a limited duration.
+&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; library uses the authorization code for convertion to an &lt;strong&gt;access token&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The access token is stored in the server &lt;strong&gt;session&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The access token is used to work with &lt;strong&gt;API&lt;/strong&gt; and does not appear on the site.&lt;/p&gt;</value>
+  </data>
+  <data name="DemoTechInfo" xml:space="preserve">
+    <value>&lt;h2&gt;Technical information&lt;/h2&gt;
+&lt;p&gt;Latest release of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt;:&lt;/p&gt;
+&lt;h3&gt;v{1}&lt;/h3&gt;
+&lt;p&gt;Version of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; on the current server:&lt;/p&gt;
+&lt;h3&gt;v{0}&lt;/h3&gt;
+&lt;p&gt;NOTE: The version number of the library on the server may differ from the number of the latest release.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;em&gt;The first number - is the major version number. Now it is 1. In the near future the number change is not planned;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The second number - is the minor version number. Is incremented when only minor features or significant fixes have been added. While maintaining compatibility with previous versions.;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The third number - is the version of the &lt;strong&gt;.NET Framework&lt;/strong&gt;;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;The fourth number - is the revision number in local revision control system.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>Nemiro.OAuth demo site</value>
+  </data>
+  <data name="DemoUsefulLinks" xml:space="preserve">
+    <value>&lt;h2&gt;Additional resources&lt;/h2&gt;
+&lt;p&gt;
+  Source code:&lt;br /&gt;
+  &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll"&gt;https://github.com/alekseynemiro/nemiro.oauth.dll&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Documentation:&lt;br /&gt;
+  &lt;a href="http://oauth.nemiro.net/"&gt;http://oauth.nemiro.net/&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Ready OAuth login forms for Windows Forms projects:&lt;br /&gt;
+&lt;a href="https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms"&gt;https://github.com/alekseynemiro/Nemiro.OAuth.LoginForms&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Article: «Users Authorization through OAuth in .NET Framework»&lt;br /&gt;
+&lt;a href="http://www.codeproject.com/Articles/875991/Users-Authorization-through-OAuth-in-NET-Framework"&gt;http://www.codeproject.com/Articles/875991/Users-Authorization-through-OAuth-in-NET-Framework&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Video: «Creating a simple file manager for Dropbox»&lt;br /&gt;
+&lt;a href="http://www.youtube.com/watch?v=fcT-Jt8rcdY"&gt;http://www.youtube.com/watch?v=fcT-Jt8rcdY&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Other projects:&lt;br /&gt;
+  &lt;a href="http://nemiro.net/"&gt;http://nemiro.net/&lt;/a&gt;
+&lt;p&gt;
+&lt;a href="https://stackoverflow.com/questions/ask?tags=nemiro.oauth" style="color:red"&gt;Ask a Question&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="FriendsList" xml:space="preserve">
+    <value>Get list of friends</value>
+  </data>
+  <data name="GroupsList" xml:space="preserve">
+    <value>Get list of groups</value>
+  </data>
+  <data name="HTTPSupports" xml:space="preserve">
+    <value>HTTP&lt;br /&gt;supports</value>
+  </data>
+  <data name="IndexAbout" xml:space="preserve">
+    <value>&lt;p&gt;This page displays a list of registered clients.&lt;/p&gt;
+&lt;p&gt;Clients registration occurs in the &lt;strong&gt;Global.asax&lt;/strong&gt; file.&lt;/p&gt;
+&lt;p&gt;Code redirects to the login page can be found in the &lt;strong&gt;ExternalLogin&lt;/strong&gt; method  of the &lt;strong&gt;HomeController&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The result is handled in the &lt;strong&gt;ExternalLoginResult&lt;/strong&gt; method.&lt;/p&gt;
+&lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
+  </data>
+  <data name="InstallViaNuGet" xml:space="preserve">
+    <value>Install via &lt;a href="https://www.nuget.org/packages/Nemiro.OAuth/"&gt;NuGet&lt;/a&gt;</value>
+  </data>
+  <data name="InterestsList" xml:space="preserve">
+    <value>Get list of interests</value>
+  </data>
+  <data name="InternalName" xml:space="preserve">
+    <value>Internal name</value>
+  </data>
+  <data name="LikesList" xml:space="preserve">
+    <value>Get list of likes</value>
+  </data>
+  <data name="LocalhostSupports" xml:space="preserve">
+    <value>localhost&lt;br /&gt;supports</value>
+  </data>
+  <data name="MultipleUrlSupports" xml:space="preserve">
+    <value>Multiple Url&lt;br /&gt;supports</value>
+  </data>
+  <data name="NoForLocalhost" xml:space="preserve">
+    <value>&lt;h1 style="color:red;text-align:center;"&gt;This site works correctly only on the demo-oauth.nemiro.net!&lt;/h1&gt;</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Photoalbums" xml:space="preserve">
+    <value>Get list of photo albums</value>
+  </data>
+  <data name="Port59962" xml:space="preserve">
+    <value>All applications are configured on the port &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br /&gt;If you have another port, the results will not shown.&lt;br /&gt;Configure the port settings for this web project (Project =&amp;gt; Properties =&amp;gt; Web =&amp;gt; Specified port), or use your own configuration applications (on sites of providers).</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="PublicKeyIsRequired" xml:space="preserve">
+    <value>Public Key for [{0}] not found. Please set value to the [oauth:{0}:publicKey] parameter or remove [{0}] from [oauth:clients].</value>
+  </data>
+  <data name="SeeAlsoDemo" xml:space="preserve">
+    <value>See also &lt;a href="http://demo-oauth.nemiro.net/"&gt;http://demo-oauth.nemiro.net/&lt;/a&gt;.</value>
+  </data>
+  <data name="SessionIsDead" xml:space="preserve">
+    <value>The session ended. Please authorize in again to create a new session.</value>
+  </data>
+  <data name="Twits" xml:space="preserve">
+    <value>Get list of twits</value>
+  </data>
+  <data name="TwitterFollowersList" xml:space="preserve">
+    <value>Get list of followers</value>
+  </data>
+  <data name="UpdatesList" xml:space="preserve">
+    <value>Get list of news</value>
+  </data>
+  <data name="UseJavaScriptLinks" xml:space="preserve">
+    <value>Use JavaScript links to prevent them from indexing.</value>
+  </data>
+  <data name="UserInfoTitle" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="YandexDiskContent" xml:space="preserve">
+    <value>Get files list of Yandex.Disk</value>
+  </data>
+  <data name="YandexDiskSummary" xml:space="preserve">
+    <value>Summary info of Yandex.Disk</value>
+  </data>
+  <data name="RefreshToken" xml:space="preserve">
+    <value>Refresh token</value>
+  </data>
+  <data name="RevokeToken" xml:space="preserve">
+    <value>Revoke token</value>
+  </data>
+  <data name="ShowToken" xml:space="preserve">
+    <value>Show token</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>User info</value>
+  </data>
+</root>
