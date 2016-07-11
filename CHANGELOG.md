@@ -1,8 +1,8 @@
 # Change Log
 
-This document summarizes the changes in recent releases.
+All notable changes to **Nemiro.OAuth** will be documented in this file.
 
-## [v1.11] - unreleased
+## [v1.11] - 2016-07-11
 
 This release includes minor fixes and enhancements.
 
