@@ -27,8 +27,7 @@ Less code, more functionality!
 
 ## System Requirements
 
-* Microsoft Windows XP, 7 or later with .NET Framework 3.5, 4.0, 4.5 or 4.6 
-* Microsoft Visual Studio 2013 (recommended Professional Edition with Service Pack 1) or later.
+* .NET Framework 3.5, 4.0, 4.5 or 4.6
 
 ## How to use
 
