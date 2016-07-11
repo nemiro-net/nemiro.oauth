@@ -25,7 +25,15 @@ namespace DemoOAuth
     public static void RegisterRoutes(RouteCollection routes)
     {
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-      
+      routes.AppendTrailingSlash = true;
+
+      routes.MapRoute
+      (
+        "Api",
+        "Api/{action}/{method}",
+        new { controller = "Api", action = "Index", method = UrlParameter.Optional }
+      );
+
       routes.MapRoute
       (
         "Default", 

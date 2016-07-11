@@ -64,13 +64,16 @@ namespace DemoOAuth.Controllers
     public ActionResult ExternalLogin(string provider)
     {
       string protocol = null;
+
       // I have not normal SSL
       // but some providers require https
-      string[] notSupportedHttp = { "dropbox", "amazon", "codeproject" };
+      string[] notSupportedHttp = { "dropbox", "amazon", "codeproject", "odnoklassniki" };
+
       if (notSupportedHttp.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
       {
         protocol = "https";
       }
+
       // redirect to authorization page of the specified provider
       return Redirect(Nemiro.OAuth.OAuthWeb.GetAuthorizationUrl(provider, Url.Action("ExternalLoginResult", "Home", null, protocol, Request.Url.Host)));
     }
@@ -82,7 +85,9 @@ namespace DemoOAuth.Controllers
     public ActionResult ExternalLoginResult()
     {
       Response.StatusCode = 403;
+
       var result = Nemiro.OAuth.OAuthWeb.VerifyAuthorization();
+
       if (result.IsSuccessfully)
       {
         Session[String.Format("{0}:AccessToken", result.ProviderName)] = result.AccessToken;
@@ -96,7 +101,9 @@ namespace DemoOAuth.Controllers
           Session[String.Format("{0}:ReturnUrl", result.ProviderName)] = Request.Url.ToString();
         }
       }
+
       TempData["ExternalLoginResult"] = result;
+
       return RedirectToAction("Result");
     }
 
@@ -110,7 +117,9 @@ namespace DemoOAuth.Controllers
       {
         return RedirectToAction("Index");
       }
+
       Response.StatusCode = 403;
+
       return View(TempData["ExternalLoginResult"]);
     }
 
