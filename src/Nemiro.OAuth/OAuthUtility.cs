@@ -18,7 +18,6 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
-using System.Web;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using System.Collections.Generic;
@@ -166,7 +165,7 @@ namespace Nemiro.OAuth
       }
       else if (encodingType == UrlEncodingType.Default)
       {
-        return HttpUtility.UrlEncode(value, codePage);
+        return System.Web.HttpUtility.UrlEncode(value, codePage);
       }
       else
       {
@@ -278,6 +277,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -297,9 +297,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static RequestResult Get(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      return OAuthUtility.ExecuteRequest("GET", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -317,6 +317,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -336,9 +337,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static RequestResult Post(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      return OAuthUtility.ExecuteRequest("POST", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -356,6 +357,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -375,9 +377,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static RequestResult Put(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      return OAuthUtility.ExecuteRequest("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -394,6 +396,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -413,9 +416,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static RequestResult Delete(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      return OAuthUtility.ExecuteRequest("DELETE", endpoint, parameters, authorization, headers, null, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -434,6 +437,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -453,7 +457,7 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static RequestResult ExecuteRequest(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
       // checking
       if (String.IsNullOrEmpty(endpoint)) { throw new ArgumentNullException("endpoint"); }
@@ -522,7 +526,7 @@ namespace Nemiro.OAuth
       {
         // set parameters to the URL if the request is executed using the GET method
         requestUrl += (requestUrl.Contains("?") ? "&" : "?");
-        requestUrl += parameters.ToStringParameters();
+        requestUrl += parameters.ToStringParameters(donotEncodeKeys);
       }
       else if (isPost && parameters != null && parameters.Count > 0)
       {
@@ -534,7 +538,7 @@ namespace Nemiro.OAuth
           if (p.Count > 0)
           {
             requestUrl += (requestUrl.Contains("?") ? "&" : "?");
-            requestUrl += p.ToStringParameters();
+            requestUrl += p.ToStringParameters(donotEncodeKeys);
           }
         }
         else
@@ -544,7 +548,7 @@ namespace Nemiro.OAuth
           if (p.Count > 0)
           {
             requestUrl += (requestUrl.Contains("?") ? "&" : "?");
-            requestUrl += p.ToStringParameters();
+            requestUrl += p.ToStringParameters(donotEncodeKeys);
           }
         }
       }
@@ -562,7 +566,12 @@ namespace Nemiro.OAuth
 
       // json format acceptable for the response
       req.Accept = "application/json";
-      
+
+      if (isPost)
+      {
+        req.ContentType = contentType;
+      }
+
       // set authorization header
       if (authorization != null)
       {
@@ -591,7 +600,7 @@ namespace Nemiro.OAuth
       {
         if (parameters != null && parameters.Count > 0)
         {
-          req.ContentType = contentType;
+          //req.ContentType = contentType;
 
           if (contentLength > 0)
           {
@@ -720,6 +729,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -738,9 +748,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static void GetAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      OAuthUtility.ExecuteRequestAsync("GET", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -759,6 +769,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -777,9 +788,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static void PostAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      OAuthUtility.ExecuteRequestAsync("POST", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -798,6 +809,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -816,9 +828,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static void PutAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      OAuthUtility.ExecuteRequestAsync("PUT", endpoint, parameters, authorization, headers, contentType, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -836,6 +848,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -854,9 +867,9 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static void DeleteAsync(string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
-      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+      OAuthUtility.ExecuteRequestAsync("DELETE", endpoint, parameters, authorization, headers, null, accessToken, callback, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
     }
 
     /// <summary>
@@ -876,6 +889,7 @@ namespace Nemiro.OAuth
     /// <param name="contentLength">The size of the content. Only for files and request body. The size of the content is required if the value of the parameter <paramref name="allowSendChunked"/> equals <c>false</c>.</param>
     /// <param name="readBufferSize">Read buffer size. Default: <c>4096</c>.</param>
     /// <param name="writeBufferSize">Write buffer size. Default: <c>4096</c>.</param>
+    /// <param name="donotEncodeKeys">This option allows to disable the encoding of a parameters names. Default: <c>false</c> (to encode names).</param>
     /// <remarks>
     /// <para>Can not be used simultaneously <paramref name="accessToken"/> and <paramref name="authorization"/>. Use only one of these parameters.</para>
     /// <para>
@@ -894,25 +908,25 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentException">
     /// <para>The exception occurs when the query parameters are specified at the same time <paramref name="authorization"/> and <paramref name="accessToken"/>.</para>
     /// </exception>
-    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096)
+    public static void ExecuteRequestAsync(string method = "POST", string endpoint = null, HttpParameterCollection parameters = null, HttpAuthorization authorization = null, NameValueCollection headers = null, string contentType = null, AccessToken accessToken = null, ExecuteRequestAsyncCallback callback = null, bool allowWriteStreamBuffering = false, bool allowSendChunked = true, long contentLength = -1, HttpWriteRequestStream streamWriteCallback = null, int writeBufferSize = 4096, int readBufferSize = 4096, bool donotEncodeKeys = false)
     {
       var t = new Thread
       (() =>
-      {
-        RequestResult result = null;
-        try
         {
-          result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize);
+          RequestResult result = null;
+          try
+          {
+            result = OAuthUtility.ExecuteRequest(method, endpoint, parameters, authorization, headers, contentType, accessToken, allowWriteStreamBuffering, allowSendChunked, contentLength, streamWriteCallback, writeBufferSize, readBufferSize, donotEncodeKeys);
+          }
+          catch (RequestException ex)
+          {
+            result = ex.RequestResult;
+          }
+          if (callback != null)
+          {
+            callback(result);
+          }
         }
-        catch (RequestException ex)
-        {
-          result = ex.RequestResult;
-        }
-        if (callback != null)
-        {
-          callback(result);
-        }
-      }
       );
       t.IsBackground = true;
       t.Start();

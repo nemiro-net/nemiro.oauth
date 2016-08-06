@@ -43,7 +43,11 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Body of the request.
     /// </summary>
-    RequestBody = 8
+    RequestBody = 8,
+    /// <summary>
+    /// Do not encode parameter names.
+    /// </summary>
+    OptDonotEncodeKeys = 1024
   }
 
 }

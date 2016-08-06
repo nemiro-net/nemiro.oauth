@@ -391,6 +391,7 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="value">The value to be assigned.</param>
     /// <returns>New instance of the <see cref="HttpParameterValue"/>.</returns>
+    [Obsolete("In the future, will not be supported.", false)]
     public static implicit operator HttpParameterValue(HttpPostedFile value)
     {
       return new HttpParameterValue(value.InputStream);

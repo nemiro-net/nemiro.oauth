@@ -243,6 +243,7 @@ namespace Nemiro.OAuth
     /// </summary>
     /// <param name="name">The name of parameter.</param>
     /// <param name="file">The posted file.</param>
+    [Obsolete("Use overload.", false)]
     public void Add(string name, System.Web.HttpPostedFile file)
     {
       if (file == null)
@@ -256,6 +257,7 @@ namespace Nemiro.OAuth
     /// Adds a <see cref="HttpRequestBody"/> to the end of the collection.
     /// </summary>
     /// <param name="file">The posted file.</param>
+    [Obsolete("Use overload.", false)]
     public void Add(System.Web.HttpPostedFile file)
     {
       if (file == null)
@@ -405,6 +407,7 @@ namespace Nemiro.OAuth
     /// Adds file as content to the end of the collection.
     /// </summary>
     /// <param name="file">The posted file.</param>
+    [Obsolete("Use overload.", false)]
     public void AddContent(System.Web.HttpPostedFile file)
     {
       this.AddContent(null, file);
@@ -606,7 +609,23 @@ namespace Nemiro.OAuth
     /// </summary>
     public string ToStringParameters()
     {
-      return this.ToStringParameters("&", UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url);
+      return this.ToStringParameters(false);
+    }
+
+    /// <summary>
+    /// Returns a string query parameters encoded by default method (<see cref="System.Web.HttpUtility.UrlEncode(string)"/>).
+    /// </summary>
+    /// <param name="donotEncodeKeys">Allows forbid to encode a parameters names.</param>
+    public string ToStringParameters(bool donotEncodeKeys)
+    {
+      if (donotEncodeKeys)
+      {
+        return this.ToStringParameters("&", UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url | HttpParameterType.OptDonotEncodeKeys);
+      }
+      else
+      {
+        return this.ToStringParameters("&", UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url);
+      }
     }
 
     /// <summary>
@@ -615,28 +634,74 @@ namespace Nemiro.OAuth
     /// <param name="separator">The separator of query parameters. For example: &amp;</param>
     public string ToStringParameters(string separator)
     {
-      return this.ToStringParameters(separator, UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url);
+      return this.ToStringParameters(separator, false);
     }
 
     /// <summary>
-    /// Returns a string of query parameters with a specified encoding parameters.
+    /// Returns a string of query parameters with a specified separator.
     /// </summary>
-    public string ToStringParameters(string separator, UrlEncodingType encodingType)
+    /// <param name="separator">The separator of query parameters. For example: &amp;</param>
+    /// <param name="donotEncodeKeys">Allows forbid to encode a parameters names.</param>
+    public string ToStringParameters(string separator, bool donotEncodeKeys)
     {
-      return this.ToStringParameters(separator, encodingType, HttpParameterType.Unformed | HttpParameterType.Url);
+      if (donotEncodeKeys)
+      {
+        return this.ToStringParameters(separator, UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url | HttpParameterType.OptDonotEncodeKeys);
+      }
+      else
+      {
+        return this.ToStringParameters(separator, UrlEncodingType.Default, HttpParameterType.Unformed | HttpParameterType.Url);
+      }
     }
 
     /// <summary>
     /// Returns a string of query parameters with a specified encoding parameters.
     /// </summary>
+    /// <param name="separator">The separator of query parameters. For example: &amp;</param>
+    /// <param name="donotEncodeKeys">Allows forbid to encode a parameters names.</param>
+    /// <param name="encodingType">The type of url encoding.</param>
+    public string ToStringParameters(string separator, UrlEncodingType encodingType, bool donotEncodeKeys)
+    {
+      if (donotEncodeKeys)
+      {
+        return this.ToStringParameters(separator, encodingType, HttpParameterType.Unformed | HttpParameterType.Url | HttpParameterType.OptDonotEncodeKeys);
+      }
+      else
+      {
+        return this.ToStringParameters(separator, encodingType, HttpParameterType.Unformed | HttpParameterType.Url);
+      }
+    }
+
+    /// <summary>
+    /// Returns a string of query parameters with a specified encoding parameters.
+    /// </summary>
+    /// <param name="encodingType">The type of url encoding.</param>
     public string ToStringParameters(UrlEncodingType encodingType)
     {
-      return this.ToStringParameters("&", encodingType, HttpParameterType.Unformed | HttpParameterType.Url);
+      return this.ToStringParameters(encodingType, false);
     }
 
     /// <summary>
     /// Returns a string of query parameters with a specified encoding parameters.
     /// </summary>
+    /// <param name="donotEncodeKeys">Allows forbid to encode a parameters names.</param>
+    /// <param name="encodingType">The type of url encoding.</param>
+    public string ToStringParameters(UrlEncodingType encodingType, bool donotEncodeKeys)
+    {
+      if (donotEncodeKeys)
+      {
+        return this.ToStringParameters("&", encodingType, HttpParameterType.Unformed | HttpParameterType.Url | HttpParameterType.OptDonotEncodeKeys);
+      }
+      else
+      {
+        return this.ToStringParameters("&", encodingType, HttpParameterType.Unformed | HttpParameterType.Url);
+      }
+    }
+
+    /// <summary>
+    /// Returns a string of query parameters with a specified encoding parameters.
+    /// </summary>
+    /// <param name="parametersType">The parameter type.</param>
     public string ToStringParameters(HttpParameterType parametersType)
     {
       return this.ToStringParameters("&", UrlEncodingType.Default, parametersType);
@@ -645,6 +710,8 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Returns a string of query parameters with a specified encoding parameters.
     /// </summary>
+    /// <param name="encodingType">The type of url encoding.</param>
+    /// <param name="parametersType">The parameter type.</param>
     public string ToStringParameters(UrlEncodingType encodingType, HttpParameterType parametersType)
     {
       return this.ToStringParameters("&", encodingType, parametersType);
@@ -653,9 +720,11 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Returns a string of query parameters with a specified encoding parameters.
     /// </summary>
-    public string ToStringParameters(string separator, HttpParameterType parametersTypee)
+    /// <param name="separator">The separator of query parameters. For example: &amp;</param>
+    /// <param name="parametersType">The parameter type.</param>
+    public string ToStringParameters(string separator, HttpParameterType parametersType)
     {
-      return this.ToStringParameters(separator, UrlEncodingType.Default, parametersTypee);
+      return this.ToStringParameters(separator, UrlEncodingType.Default, parametersType);
     }
 
     /// <summary>
@@ -667,16 +736,28 @@ namespace Nemiro.OAuth
     public string ToStringParameters(string separator, UrlEncodingType encodingType, HttpParameterType parametersType)
     {
       string result = "";
+
       foreach (var itm in this)
       {
         // ignore files and request body
         if (itm.GetType() == typeof(HttpFile) || itm.GetType() == typeof(HttpRequestBody)) { continue; }
+
         // ignore common parameters, if specified in the rule
         // note: !parametersType.HasFlag(HttpParameterType.Unformed) is not supported in the .net framework 3.5
         if (itm.GetType() != typeof(HttpUrlParameter) && (parametersType & HttpParameterType.Unformed) != HttpParameterType.Unformed) { continue; }
+
         if (result.Length > 0) { result += "&"; }
-        result += String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Name, encodingType), itm.Value.ToEncodedString(encodingType));
+
+        if ((parametersType & HttpParameterType.OptDonotEncodeKeys) == HttpParameterType.OptDonotEncodeKeys)
+        {
+          result += String.Format("{0}={1}", itm.Name, itm.Value.ToEncodedString(encodingType));
+        }
+        else
+        {
+          result += String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Name, encodingType), itm.Value.ToEncodedString(encodingType));
+        }
       }
+
       return result;
     }
 
