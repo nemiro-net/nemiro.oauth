@@ -198,15 +198,15 @@ Public Class MainForm
     Dim parameters As New HttpParameterCollection()
     parameters.AddFormParameter("status", Me.tbMessage.Text)
 
-    OAuthUtility.PostAsync _
-    (
-      "https://api.twitter.com/1.1/statuses/update.json",
-      parameters:=parameters,
-      authorization:=Me.GetAuth(),
-      callback:=AddressOf SendTweet_Result,
-      contentType:="multipart/form-data"
-    )
-  End Sub
+		OAuthUtility.PostAsync _
+		(
+			"https://api.twitter.com/1.1/statuses/update.json",
+			parameters:=parameters,
+			authorization:=Me.GetAuth(),
+			callback:=AddressOf SendTweet_Result,
+			contentType:="multipart/form-data"
+		)
+	End Sub
   Private Sub SendTweet_Result(result As RequestResult)
     If Me.InvokeRequired Then
       Me.Invoke(New Action(Of RequestResult)(AddressOf SendTweet_Result), result)

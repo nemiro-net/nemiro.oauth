@@ -2,6 +2,22 @@
 
 All notable changes to **Nemiro.OAuth** will be documented in this file.
 
+## [v1.11.2477] - 2016-08-08
+
+This release includes minor fixes.
+
+### Added
+* Added ability to disable the encoding of the names of query parameters.
+
+### Changed
+* Methods that takes `HttpPostedFile` is deprecated.
+
+### Fixed
+* Fixed a problem with the specified `Content-Type`, which could lead to an incorrect calculation of the signature OAuth 1.0 in some cases.
+
+### Thanks
+* [Shakeel Ahmad](http://www.codeproject.com/script/Membership/View.aspx?mid=6184216)
+
 ## [v1.11] - 2016-07-11
 
 This release includes minor fixes and enhancements.

@@ -15,7 +15,7 @@
 
 		<asp:Panel ID="pnlUpload" runat="server">
 			<h3>The access token is found in the Session!</h3>
-			<h4>You can upload a file to Dropbox:</h4>
+			<h4>You can upload a file to Google Drive:</h4>
 			<asp:FileUpload ID="FileUpload1" runat="server" /><br /><br />
 			<asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Upload" />
 		</asp:Panel>

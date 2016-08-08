@@ -38,12 +38,12 @@
     <ApplicationIcon>Resources\codeproject.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth, Version=1.11.4.2421, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.11\lib\net40\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.11.4.2477, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.11.2477\lib\net40\Nemiro.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.4.4.2423, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.LoginForms.1.4.2423\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.4.4.2483, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.LoginForms.1.4.2483\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -87,7 +87,7 @@ ul.oauth li{float:left;padding:4px;}
 .message .text{padding:2px;}
 
 #download .date-release{color:#666666;font-size:0.8em;}
-#download a {width:42px;display:inline-block;}
+#download a { min-width:75px;display:inline-block;}
 
 .clear{clear:both;}
 

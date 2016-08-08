@@ -394,6 +394,16 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
+    /// Adds a <see cref="HttpUrlParameter"/> to the end of the collection.
+    /// </summary>
+    /// <param name="parameterName">The name of parameter.</param>
+    /// <param name="parameterValue">The parameter value.</param>
+    public void AddUrlParameter(string parameterName, object parameterValue)
+    {
+      this.Add(HttpParameterType.Url, parameterName, parameterValue.ToString());
+    }
+
+    /// <summary>
     /// Adds a <see cref="HttpFormParameter"/> to the end of the collection.
     /// </summary>
     /// <param name="parameterName">The name of parameter.</param>
@@ -401,6 +411,16 @@ namespace Nemiro.OAuth
     public void AddFormParameter(string parameterName, string parameterValue)
     {
       this.Add(HttpParameterType.Form, parameterName, parameterValue);
+    }
+
+    /// <summary>
+    /// Adds a <see cref="HttpFormParameter"/> to the end of the collection.
+    /// </summary>
+    /// <param name="parameterName">The name of parameter.</param>
+    /// <param name="parameterValue">The parameter value.</param>
+    public void AddFormParameter(string parameterName, object parameterValue)
+    {
+      this.Add(HttpParameterType.Form, parameterName, parameterValue.ToString());
     }
 
     /// <summary>

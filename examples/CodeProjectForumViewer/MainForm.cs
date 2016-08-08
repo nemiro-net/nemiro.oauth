@@ -119,6 +119,7 @@ namespace CodeProjectForumViewer
         Properties.Settings.Default.Save();
         // update the list of messages
         toolStripComboBox1.SelectedIndex = 0;
+        toolStripComboBox1_SelectedIndexChanged(toolStripComboBox1, null);
       }
       // is fails
       else

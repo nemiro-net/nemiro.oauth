@@ -13,22 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // ----------------------------------------------------------------------------
-using System;
-using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace TwitterExample
 {
-  static class Program
-  {
-    /// <summary>
-    /// Главная точка входа для приложения.
-    /// </summary>
-    [STAThread]
-    static void Main()
-    {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainForm());
-    }
-  }
+
+  public delegate void MeadiaUploadEventHandler(object sender, ProgressChangedEventArgs e);
+
 }
