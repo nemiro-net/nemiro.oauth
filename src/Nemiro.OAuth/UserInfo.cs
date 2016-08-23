@@ -86,6 +86,11 @@ namespace Nemiro.OAuth
     public string Userpic { get; protected internal set; }
 
     /// <summary>
+    /// Gets or sets user language name or code. For example: en, ru, en-us, ru-ru.
+    /// </summary>
+    public string Language { get; protected internal set; }
+
+    /// <summary>
     /// Gets or sets gender of the user.
     /// </summary>
     public Sex Sex { get; protected internal set; }

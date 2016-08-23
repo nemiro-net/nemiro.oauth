@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -107,8 +107,8 @@ namespace Nemiro.OAuth.Clients
     /// <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
     public DropboxClient(string clientId, string clientSecret) : base
     (
-      "https://www.dropbox.com/1/oauth2/authorize",
-      "https://api.dropbox.com/1/oauth2/token", 
+      "https://www.dropbox.com/oauth2/authorize",
+      "https://api.dropboxapi.com/oauth2/token", 
       clientId,
       clientSecret
     ) 
@@ -123,18 +123,52 @@ namespace Nemiro.OAuth.Clients
     /// <returns>
     /// <para>Returns an instance of the <see cref="UserInfo"/> class, containing information about the user.</para>
     /// </returns>
+    /// <remarks>
+    /// <para>For more information, please visit to <see href="https://www.dropbox.com/developers/documentation/http/documentation#users-get_current_account"/>.</para>
+    /// </remarks>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // execute the request
-      var result = OAuthUtility.Get("https://api.dropbox.com/1/account/info", accessToken: accessToken);
+      var result = OAuthUtility.Post("https://api.dropboxapi.com/2/users/get_current_account", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
-      map.Add("uid", "UserId", typeof(string));
-      map.Add("display_name", "DisplayName");
+      map.Add("account_id", "UserId", typeof(string));
       map.Add("email", "Email");
+      map.Add("profile_photo_url", "Userpic");
+      map.Add("locale", "Language");
+
+      map.Add
+      (
+        "name", "DisplayName",
+        delegate (UniValue value)
+        {
+          if (!value.HasValue) { return null; }
+          return value["display_name"].ToString();
+        }
+      );
+
+      map.Add
+      (
+        "name", "FirstName",
+        delegate (UniValue value)
+        {
+          if (!value.HasValue) { return null; }
+          return value["given_name"].ToString();
+        }
+      );
+      
+      map.Add
+      (
+        "name", "LastName",
+        delegate (UniValue value)
+        {
+          if (!value.HasValue) { return null; }
+          return value["surname"].ToString();
+        }
+      );
 
       // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
@@ -157,7 +191,7 @@ namespace Nemiro.OAuth.Clients
 
       return OAuthUtility.Post
       (
-        "https://api.dropbox.com/1/disable_access_token",
+        "https://api.dropboxapi.com/oauth2/token/revoke", // /2/auth/token/revoke
         accessToken: accessToken
       );
     }
