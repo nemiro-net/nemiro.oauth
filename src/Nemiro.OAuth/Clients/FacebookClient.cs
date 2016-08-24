@@ -331,7 +331,7 @@ namespace Nemiro.OAuth.Clients
     /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     /// <remarks>
     /// <para>
-    /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.0/user">User</see> method in <b>Guide of Facebook Graph API</b>.
+    /// For more details, please see <see href="https://developers.facebook.com/docs/graph-api/reference/v2.7/user">User</see> method in <b>Guide of Facebook Graph API</b>.
     /// </para>
     /// </remarks>
     /// <returns>
@@ -342,7 +342,7 @@ namespace Nemiro.OAuth.Clients
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // execute the request
-      var result = OAuthUtility.Get("https://graph.facebook.com/v2.2/me", accessToken: accessToken);
+      var result = OAuthUtility.Get("https://graph.facebook.com/v2.7/me?fields=id,name,first_name,last_name,email,birthday,link,gender", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -394,7 +394,7 @@ namespace Nemiro.OAuth.Clients
 
       return OAuthUtility.Delete
       (
-        "https://graph.facebook.com/v2.2/me/permissions", 
+        "https://graph.facebook.com/v2.7/me/permissions", 
         new NameValueCollection
         { 
           { "access_token", accessToken.Value }
