@@ -101,10 +101,22 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Returns an encoded string of the value.
     /// </summary>
+    /// <param name="encodingType">The type of the encoder.</param>
     public string ToEncodedString(UrlEncodingType encodingType)
     {
+      return this.ToEncodedString(UrlEncodingType.Default, Encoding.UTF8);
+    }
+
+    /// <summary>
+    /// Returns an encoded string of the value.
+    /// </summary>
+    /// <param name="encodingType">The type of the encoder.</param>
+    /// <param name="codePage">The character encoding.</param>
+    public string ToEncodedString(UrlEncodingType encodingType, Encoding codePage)
+    {
       if (this.Value == null) { return null; }
-      return OAuthUtility.UrlEncode(this.ToString(), encodingType);
+
+      return OAuthUtility.UrlEncode(this.ToString(), encodingType, codePage);
     }
 
     /// <summary>
@@ -113,19 +125,27 @@ namespace Nemiro.OAuth
     public override string ToString()
     {
       if (this.Value == null) { return null; }
+
       if (this.Value.GetType() == typeof(byte[]))
       {
         return Convert.ToBase64String((byte[])this.Value);
       }
+
       return this.Value.ToString();
     }
 
     /// <summary>
     /// Returns a byte array that represents the current value.
     /// </summary>
-    public byte[] ToByteArray()
+    /// <param name="codePage">The character encoding.</param>
+    public byte[] ToByteArray(Encoding codePage = null)
     {
       if (this.Value == null) { return null; }
+
+      if (codePage == null)
+      {
+        codePage = Encoding.Default;
+      }
 
       if (this.Value.GetType() == typeof(byte[]))
       {
@@ -154,7 +174,7 @@ namespace Nemiro.OAuth
         }
       }
 
-      return Encoding.Default.GetBytes(this.Value.ToString());
+      return codePage.GetBytes(this.Value.ToString());
     }
 
     /// <summary>
@@ -163,7 +183,7 @@ namespace Nemiro.OAuth
     /// <param name="output">The output stream.</param>
     public void WriteToStream(Stream output)
     {
-      this.WriteToStream(output, 4096, null);
+      this.WriteToStream(output, 4096, null, null, Encoding.Default);
     }
 
     /// <summary>
@@ -173,7 +193,7 @@ namespace Nemiro.OAuth
     /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
     public void WriteToStream(Stream output, StreamWriteEventArgs outputStatus)
     {
-      this.WriteToStream(output, 4096, outputStatus);
+      this.WriteToStream(output, 4096, outputStatus, null, Encoding.Default);
     }
 
     /// <summary>
@@ -183,6 +203,19 @@ namespace Nemiro.OAuth
     /// <param name="bufferSize">Buffer size.</param>
     /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
     public void WriteToStream(Stream output, int bufferSize, StreamWriteEventArgs outputStatus)
+    {
+      this.WriteToStream(output, bufferSize, outputStatus, null, Encoding.Default);
+    }
+
+    /// <summary>
+    /// Writes the value of the current instance of the class to the output stream.
+    /// </summary>
+    /// <param name="output">The output stream.</param>
+    /// <param name="bufferSize">Buffer size.</param>
+    /// <param name="outputStatus">To parameter is passed information about the state of the writes to stream.</param>
+    /// <param name="contentType">The type of content.</param>
+    /// <param name="codePage">The character encoding.</param>
+    public void WriteToStream(Stream output, int bufferSize, StreamWriteEventArgs outputStatus, string contentType, Encoding codePage)
     {
       if (this.Value == null) { return; }
 
@@ -225,9 +258,42 @@ namespace Nemiro.OAuth
           }
         }
       }
+      /*else if (this.Value.GetType() == typeof(string) || this.Value.GetType() == typeof(char) || this.Value.GetType() == typeof(StringBuilder))
+      {
+        var buffer = codePage.GetBytes(this.Value.ToString());
+        output.Write(buffer, 0, buffer.Length);
+        outputStatus.BytesWritten = buffer.Length;
+      }*/
       else
       {
-        var buffer = Encoding.Default.GetBytes(this.Value.ToString());
+        string dataToWrite = "";
+
+        if (contentType == null) { contentType = ""; }
+
+        contentType = contentType.ToLower();
+
+        if (contentType.Contains("json"))
+        {
+          dataToWrite = new System.Web.Script.Serialization.JavaScriptSerializer()
+          {
+            MaxJsonLength = int.MaxValue,
+            RecursionLimit = int.MaxValue
+          }.Serialize(this.Value);
+        }
+        else if (contentType.Contains("xml"))
+        {
+          using (var m = new MemoryStream())
+          {
+            new System.Xml.Serialization.XmlSerializer(this.Value.GetType()).Serialize(m, this.Value);
+            dataToWrite = codePage.GetString(m.ToArray());
+          }
+        }
+        else
+        {
+          dataToWrite = this.Value.ToString();
+        }
+
+        var buffer = codePage.GetBytes(dataToWrite);
         output.Write(buffer, 0, buffer.Length);
         outputStatus.BytesWritten = buffer.Length;
       }

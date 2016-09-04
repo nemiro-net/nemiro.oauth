@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -122,6 +122,10 @@ namespace Nemiro.OAuth
       }
     }
 
+    /// <summary>
+    /// Gets custom state.
+    /// </summary>
+    public object State { get; protected internal set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AuthorizationResult"/> class.

@@ -363,7 +363,8 @@ namespace Nemiro.OAuth
       }
       else
       {
-        this.Add(this.Encoding.GetBytes(Convert.ToString(requestBody)));
+        // this.Add(this.Encoding.GetBytes(Convert.ToString(requestBody)));
+        this.Add(new HttpRequestBody(requestBody));
       }
     }
 
@@ -445,7 +446,7 @@ namespace Nemiro.OAuth
         contentType = ((System.Web.HttpPostedFile)value).ContentType;
       }
 
-      if (String.IsNullOrEmpty(contentType)) 
+      if (String.IsNullOrEmpty(contentType))
       {
         throw new ArgumentNullException("contentType");
       }
@@ -755,6 +756,11 @@ namespace Nemiro.OAuth
     /// <param name="parametersType">The types of parameters to be used.</param>
     public string ToStringParameters(string separator, UrlEncodingType encodingType, HttpParameterType parametersType)
     {
+      if ((parametersType & HttpParameterType.Form) == HttpParameterType.Form || (parametersType & HttpParameterType.RequestBody) == HttpParameterType.RequestBody || (parametersType & HttpParameterType.File) == HttpParameterType.File)
+      {
+        throw new NotSupportedException("Only url parameters allowed.");
+      }
+
       string result = "";
 
       foreach (var itm in this)
@@ -768,13 +774,20 @@ namespace Nemiro.OAuth
 
         if (result.Length > 0) { result += "&"; }
 
+        var value = "";
+
+        if (itm.Value != null)
+        {
+          value = itm.Value.ToEncodedString(encodingType);
+        }
+
         if ((parametersType & HttpParameterType.OptDonotEncodeKeys) == HttpParameterType.OptDonotEncodeKeys)
         {
-          result += String.Format("{0}={1}", itm.Name, itm.Value.ToEncodedString(encodingType));
+          result += String.Format("{0}={1}", itm.Name, value);
         }
         else
         {
-          result += String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Name, encodingType), itm.Value.ToEncodedString(encodingType));
+          result += String.Format("{0}={1}", OAuthUtility.UrlEncode(itm.Name, encodingType), value);
         }
       }
 
@@ -803,65 +816,10 @@ namespace Nemiro.OAuth
     /// Gets a body for the request.
     /// </summary>
     /// <param name="contentType">Content-Type</param>
-    [Obsolete("Please use WriteRequestBody. // v1.11", false)]
+    [Obsolete("Please use WriteRequestBody. // v1.11", true)]
     public byte[] ToRequestBody(string contentType = null)
     {
-      if (contentType == null) { contentType = ""; }
-
-      contentType = contentType.ToLower();
-
-      bool isMultipart = contentType.Contains("multipart/"); // multipart/form-data
-      bool isFormData = contentType.Contains("multipart/form-data");
-
-      if (this.IsRequestBody && !isMultipart)
-      {
-        return this.FirstOrDefault(itm => itm.GetType() == typeof(HttpRequestBody)).Value.ToByteArray();
-      }
-      else if (this.HasFiles || isMultipart)
-      {
-        using (MemoryStream m = new MemoryStream())
-        {
-          foreach (var itm in this)
-          {
-            if (itm.GetType() == typeof(HttpUrlParameter)) { continue; } // url paramters ignore
-            if (itm.GetType() == typeof(HttpFile))
-            {
-              var file = itm as HttpFile;
-              if (isFormData)
-              {
-                // add form-data parameter
-                this.WriteFormDataFile(itm.Name, file.FileName, file.ContentType, file.Value.ToByteArray(), m);
-              }
-              else
-              {
-                // add other type
-                this.WriteParameter(itm.ContentType, file.Value.ToByteArray(), m);
-              }
-            }
-            else
-            {
-              if (isFormData)
-              {
-                // add form-data parameter
-                this.WriteFormDataParameter(itm.Name, itm.Value.ToString(), m);
-              }
-              else
-              {
-                // add other type
-                this.WriteParameter(itm.ContentType, itm.Value.ToByteArray(), m);
-              }
-            }
-          }
-          var end = this.Encoding.GetBytes(String.Format("\r\n--{0}--\r\n", this.Boundary));
-          m.Write(end, 0, end.Length);
-          m.Flush();
-          return m.ToArray();
-        }
-      }
-      else
-      {
-        return this.Encoding.GetBytes(((HttpParameterCollection)this.Where(itm => itm.GetType() != typeof(HttpUrlParameter)).ToArray()).ToStringParameters(UrlEncodingType.PercentEncoding));
-      }
+      return this.GetRequestBody(contentType, 4096);
     }
 
     /// <summary>
@@ -892,7 +850,7 @@ namespace Nemiro.OAuth
 
       if (this.IsRequestBody && !isMultipart)
       {
-        this.FirstOrDefault(itm => itm.GetType() == typeof(HttpRequestBody)).Value.WriteToStream(output, bufferSize, outputStatus);
+        this.First(itm => itm.GetType() == typeof(HttpRequestBody)).Value.WriteToStream(output, bufferSize, outputStatus, contentType, this.Encoding);
       }
       else if (this.HasFiles || isMultipart)
       {
@@ -1018,7 +976,8 @@ namespace Nemiro.OAuth
         bool beginGetRequestStream = false;
 
         // write async
-        var asyncResult = req.BeginGetRequestStream((IAsyncResult r) => {
+        var asyncResult = req.BeginGetRequestStream((IAsyncResult r) =>
+        {
           using (var s = req.EndGetRequestStream(r))
           {
             this.WriteRequestBody(s, req.ContentType, bufferSize, writerArgs);
@@ -1041,7 +1000,7 @@ namespace Nemiro.OAuth
         #region small data (old/original code)
 
         // get request body 
-        byte[] b = this.ToRequestBody(req.ContentType);
+        byte[] b = this.GetRequestBody(req.ContentType, bufferSize);
 
         // fix for .NET Framework 2.0/3.0/3.5
         if (Environment.Version.Major < 4)
@@ -1055,6 +1014,80 @@ namespace Nemiro.OAuth
         writerArgs.IsCompleted = true;
 
         #endregion
+      }
+    }
+
+    /// <summary>
+    /// Gets a body for the request.
+    /// </summary>
+    /// <param name="contentType">Content-Type</param>
+    /// <param name="bufferSize">Buffer size. Default: 4096.</param>
+    private byte[] GetRequestBody(string contentType, int bufferSize)
+    {
+      if (contentType == null) { contentType = ""; }
+      if (bufferSize <= 0) { bufferSize = 4096; }
+
+      contentType = contentType.ToLower();
+
+      bool isMultipart = contentType.Contains("multipart/"); // multipart/form-data
+      bool isFormData = contentType.Contains("multipart/form-data");
+
+      if (this.IsRequestBody && !isMultipart)
+      {
+        using (var m = new MemoryStream())
+        {
+          this.First(itm => itm.GetType() == typeof(HttpRequestBody)).Value.WriteToStream(m, bufferSize, null, contentType, this.Encoding);
+
+          return m.ToArray();
+        }
+      }
+      else if (this.HasFiles || isMultipart)
+      {
+        using (var m = new MemoryStream())
+        {
+          foreach (var itm in this)
+          {
+            if (itm.GetType() == typeof(HttpUrlParameter)) { continue; } // url paramters ignore
+            if (itm.GetType() == typeof(HttpFile))
+            {
+              var file = itm as HttpFile;
+              if (isFormData)
+              {
+                // add form-data parameter
+                this.WriteFormDataFile(itm.Name, file.FileName, file.ContentType, file.Value.ToByteArray(this.Encoding), m);
+              }
+              else
+              {
+                // add other type
+                this.WriteParameter(itm.ContentType, file.Value.ToByteArray(this.Encoding), m);
+              }
+            }
+            else
+            {
+              if (isFormData)
+              {
+                // add form-data parameter
+                this.WriteFormDataParameter(itm.Name, itm.Value.ToString(), m);
+              }
+              else
+              {
+                // add other type
+                this.WriteParameter(itm.ContentType, itm.Value.ToByteArray(this.Encoding), m);
+              }
+            }
+          }
+
+          var end = this.Encoding.GetBytes(String.Format("\r\n--{0}--\r\n", this.Boundary));
+
+          m.Write(end, 0, end.Length);
+          m.Flush();
+
+          return m.ToArray();
+        }
+      }
+      else
+      {
+        return this.Encoding.GetBytes(((HttpParameterCollection)this.Where(itm => itm.GetType() != typeof(HttpUrlParameter)).ToArray()).ToStringParameters(UrlEncodingType.PercentEncoding));
       }
     }
 
@@ -1110,7 +1143,7 @@ namespace Nemiro.OAuth
       byte[] buffer = this.Encoding.GetBytes(String.Format(formDataTemplate, parameterName, value));
       output.Write(buffer, 0, buffer.Length);
     }
-    
+
     /// <summary>
     /// Writes any parameter to the request.
     /// </summary>

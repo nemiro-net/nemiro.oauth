@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
-using System.Timers;
 using System.Collections.Specialized;
 
 namespace Nemiro.OAuth
@@ -54,43 +53,17 @@ namespace Nemiro.OAuth
 
     #region ..fields & properties..
 
-    private static Timer _Timer = new Timer(60000);
+    internal static IOAuthRequestsProvider RequestsProvider { get; private set; }
 
-    private static Dictionary<string, Type> _AllClients = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
     /// <summary>
     /// Gets the list of all clients.
     /// </summary>
-    internal static Dictionary<string, Type> AllClients
-    {
-      get
-      {
-        return _AllClients;
-      }
-    }
+    internal static Dictionary<string, Type> AllClients { get; private set; }
 
-    private static Dictionary<string, OAuthRequest> _Requests = new Dictionary<string, OAuthRequest>();
-    /// <summary>
-    /// Gets the list of active requests.
-    /// </summary>
-    internal static Dictionary<string, OAuthRequest> Requests
-    {
-      get
-      {
-        return _Requests;
-      }
-    }
-
-    private static Dictionary<ClientName, OAuthBase> _RegisteredClients = new Dictionary<ClientName, OAuthBase>();
     /// <summary>
     /// Gets the list of registered clients.
     /// </summary>
-    public static Dictionary<ClientName, OAuthBase> RegisteredClients
-    {
-      get
-      {
-        return _RegisteredClients;
-      }
-    }
+    public static Dictionary<ClientName, OAuthBase> RegisteredClients { get; private set; }
 
     #endregion
     #region ..constructor..
@@ -100,6 +73,9 @@ namespace Nemiro.OAuth
     /// </summary>
     static OAuthManager()
     {
+      OAuthManager.RegisteredClients = new Dictionary<ClientName, OAuthBase>();
+      OAuthManager.AllClients = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+
       // get all clients
       var types = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where
       (
@@ -107,6 +83,7 @@ namespace Nemiro.OAuth
         itm.BaseType != null &&
         (itm.BaseType == typeof(OAuthClient) || itm.BaseType == typeof(OAuth2Client))
       );
+
       // creating clients list
       foreach (var t in types)
       {
@@ -124,45 +101,40 @@ namespace Nemiro.OAuth
           }
         }
         var client = Activator.CreateInstance(t, param.ToArray()) as OAuthBase;
-        _AllClients.Add(client.ProviderName, t);
+        OAuthManager.AllClients.Add(client.ProviderName, t);
         // OAuthManager.RemoveRequest(client.State);
       }
       // --
-      _Timer.Elapsed += Timer_Elapsed;
+
+      // create request provider
+      OAuthManager.SetAuthRequestsProvider(typeof(DefaultOAuthRequestsProvider));
     }
 
     #endregion
     #region ..methods..
 
     /// <summary>
-    /// The method is called when the interval elapsed.
+    /// Sets a requests provider.
     /// </summary>
-    /// <param name="sender">Instance of the object that raised the event.</param>
-    /// <param name="e">The event data.</param>
-    private static void Timer_Elapsed(object sender, EventArgs e)
+    /// <param name="type">Type of requests provider that implements <see cref="IOAuthRequestsProvider"/>.</param>
+    public static void SetAuthRequestsProvider(Type type)
     {
-      if (_Requests.Count <= 0)
+      if (type == null)
       {
-        // no active requests, stop the time
-        _Timer.Stop();
-        return;
+        throw new ArgumentNullException("type");
       }
 
-      // lifetime request - 20 minutes
-      // remove old requests
-      var now = DateTime.Now;
-      var toRemove = _Requests.Where(itm2 => now.Subtract(itm2.Value.DateCreated).TotalMinutes >= 20).ToList();
-
-      foreach (var itm in toRemove)
+      if (!typeof(IOAuthRequestsProvider).IsAssignableFrom(type))
       {
-        if (_Requests.ContainsKey(itm.Key))
-        {
-          OAuthManager.RemoveRequest(itm.Key);
-        }
+        throw new NotImplementedException(String.Format("IAuthRequestsProvider interface is not implemented in the type \"{0}\". Implement the IAuthRequestsProvider and try again.", type.ToString()));
       }
 
-      // change the status of the timer
-      _Timer.Enabled = (_Requests.Count > 0);
+      if (OAuthManager.RequestsProvider != null)
+      {
+        OAuthManager.RequestsProvider.Clear();
+      }
+
+      OAuthManager.RequestsProvider = (IOAuthRequestsProvider)Activator.CreateInstance(type);
     }
 
     /// <summary>
@@ -173,8 +145,19 @@ namespace Nemiro.OAuth
     /// <param name="client">The client instance.</param>
     internal static void AddRequest(string key, ClientName clientName, OAuthBase client)
     {
-      OAuthManager.Requests.Add(key, new OAuthRequest(clientName, client));
-      _Timer.Start();
+      OAuthManager.AddRequest(key, clientName, client, null);
+    }
+
+    /// <summary>
+    /// Adds the specified request to the collection.
+    /// </summary>
+    /// <param name="key">The unique request key.</param>
+    /// <param name="clientName">The client name.</param>
+    /// <param name="client">The client instance.</param>
+    /// <param name="state">Custom state associated with authorization request.</param>
+    internal static void AddRequest(string key, ClientName clientName, OAuthBase client, object state)
+    {
+      OAuthManager.RequestsProvider.Add(key, clientName, client, state);
     }
 
     /// <summary>
@@ -183,12 +166,7 @@ namespace Nemiro.OAuth
     /// <param name="key">The unique request key to remove..</param>
     internal static void RemoveRequest(string key)
     {
-      if (String.IsNullOrEmpty(key)) { return; }
-      if (_Requests.ContainsKey(key))
-      {
-        _Requests.Remove(key);
-      }
-      _Timer.Enabled = (_Requests.Count > 0);
+      OAuthManager.RequestsProvider.Remove(key);
     }
 
     /// <summary>
@@ -448,13 +426,13 @@ namespace Nemiro.OAuth
 
       var name = ClientName.Create(clientName, client.ProviderName);
 
-      if (_RegisteredClients.ContainsKey(name))
+      if (OAuthManager.RegisteredClients.ContainsKey(name))
       {
         throw new DuplicateProviderException(name);
       }
 
       // add client
-      _RegisteredClients.Add(name, client);
+      OAuthManager.RegisteredClients.Add(name, client);
 
       // remove from watching 
       // OAuthManager.RemoveRequest(client.State.ToString());
@@ -662,21 +640,26 @@ namespace Nemiro.OAuth
       if (String.IsNullOrEmpty(clientName)) { throw new ArgumentNullException("clientName"); }
       if (String.IsNullOrEmpty(clientId)) { throw new ArgumentNullException("clientId"); }
       if (String.IsNullOrEmpty(clientSecret)) { throw new ArgumentNullException("clientSecret"); }
+
       // searching provider by name
       if (!OAuthManager.AllClients.ContainsKey(clientName.ProviderName))
       {
         throw new UnknownProviderException("Provider [{0}] not found. Please, check provider name.", clientName.ProviderName);
       }
+
       // init parameters
       var parm = new ArrayList();
       parm.Add(clientId);
       parm.Add(clientSecret);
+
       if (initArgs != null && initArgs.Length > 0)
       {
         parm.AddRange(initArgs);
       }
+
       // creating client instance
       OAuthBase client = Activator.CreateInstance(OAuthManager.AllClients[clientName.ProviderName], parm.ToArray()) as OAuthBase;
+
       if (!String.IsNullOrEmpty(scope))
       {
         if (client.GetType().BaseType != typeof(OAuth2Client))
@@ -685,10 +668,12 @@ namespace Nemiro.OAuth
         }
         ((OAuth2Client)client).Scope = scope;
       }
+
       if (parameters != null)
       {
         client.Parameters = parameters;
       }
+
       // add client
       OAuthManager.RegisterClient(clientName.Key, client);
     }
@@ -714,24 +699,16 @@ namespace Nemiro.OAuth
     public static Type GetClientTypeByName(string providerName)
     {
       if (String.IsNullOrEmpty(providerName)) { return null; }
+
       // searching provider by name
       if (!OAuthManager.AllClients.ContainsKey(providerName))
       {
         return null;
       }
+
       // return provider type
       return OAuthManager.AllClients[providerName].GetType();
     }
-
-    /*public static OAuthBase GetRegisteredClientByName(string providerName)
-    {
-      if (String.IsNullOrEmpty(providerName)) { return null; }
-      if (!OAuthManager.AllClients.ContainsKey(providerName) || !_RegisteredClients.ContainsKey(providerName))
-      {
-        return null;
-      }
-      return _RegisteredClients[providerName];
-    }*/
 
     #endregion
 

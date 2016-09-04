@@ -42,6 +42,12 @@ namespace Nemiro.OAuth
     /// <param name="value">The parameter value.</param>
     public HttpRequestBody(Stream value) : base(HttpParameterType.RequestBody, "RequestBody", value, null) { }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HttpRequestBody"/> class with a specified value.
+    /// </summary>
+    /// <param name="value">The parameter value.</param>
+    public HttpRequestBody(object value) : base(HttpParameterType.RequestBody, "RequestBody", new HttpParameterValue(value), null) { }
+
   }
 
 }

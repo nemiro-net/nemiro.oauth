@@ -69,6 +69,7 @@
     <Compile Include="Clients\InstagramClient.cs" />
     <Compile Include="Clients\CodeProjectClient.cs" />
     <Compile Include="Clients\AssemblaClient.cs" />
+    <Compile Include="DefaultOAuthRequestsProvider.cs" />
     <Compile Include="Enums\AccessTokenType.cs" />
     <Compile Include="Enums\AuthorizationType.cs" />
     <Compile Include="Enums\HttpParameterType.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="HttpParameterCollection.cs" />
     <Compile Include="HttpParameterValue.cs" />
     <Compile Include="HttpRequestBody.cs" />
+    <Compile Include="IOAuthRequestsProvider.cs" />
     <Compile Include="StreamWriteEventArgs.cs" />
     <Compile Include="OAuthBase.cs" />
     <Compile Include="OAuth2\OAuth2AccessToken.cs" />

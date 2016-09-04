@@ -73,7 +73,7 @@ namespace Nemiro.OAuth
         string result = this.AuthorizeUrl;
         result += result.Contains("?") ? "&" : "?";
         result += String.Format("client_id={0}&response_type=code", OAuthUtility.UrlEncode(this.ApplicationId));
-        result += String.Format("&state={0}", OAuthUtility.UrlEncode(this.State.ToString()));
+        result += String.Format("&state={0}", OAuthUtility.UrlEncode(this.State));
 
         // add default scope
         string scope = this.DefaultScope;

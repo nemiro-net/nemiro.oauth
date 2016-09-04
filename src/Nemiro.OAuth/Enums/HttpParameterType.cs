@@ -25,25 +25,29 @@ namespace Nemiro.OAuth
   public enum HttpParameterType
   {
     /// <summary>
+    /// Not specified.
+    /// </summary>
+    None = 0,
+    /// <summary>
     /// Unformed parameter.
     /// </summary>
-    Unformed = 0,
+    Unformed = 1,
     /// <summary>
     /// Parameter of the query string.
     /// </summary>
-    Url = 1,
+    Url = 2,
     /// <summary>
     /// Parameter of the form.
     /// </summary>
-    Form = 2,
+    Form = 4,
     /// <summary>
     /// File.
     /// </summary>
-    File = 4,
+    File = 8,
     /// <summary>
     /// Body of the request.
     /// </summary>
-    RequestBody = 8,
+    RequestBody = 16,
     /// <summary>
     /// Do not encode parameter names.
     /// </summary>

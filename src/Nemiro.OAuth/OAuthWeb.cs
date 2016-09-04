@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -390,6 +390,27 @@ namespace Nemiro.OAuth
     }
 
     /// <summary>
+    /// Redirects current client to the authorization page of the specified provider and return URL.
+    /// </summary>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <param name="state">Custom state associated with authorization request.</param>
+    /// <exception cref="ClientIsNotRegisteredException">
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// </exception>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    /// <remarks>
+    /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, string)"/>.</para>
+    /// </remarks>
+    /// <seealso cref="GetAuthorizationUrl(string, string, object)"/>
+    public static void RedirectToAuthorization(string clientName, string returnUrl, object state)
+    {
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, returnUrl, state);
+    }
+
+    /// <summary>
     /// Redirects current client to the authorization page of the specified provider, query parameters and return URL.
     /// </summary>
     /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
@@ -425,8 +446,30 @@ namespace Nemiro.OAuth
     /// <remarks>
     /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>.</para>
     /// </remarks>
-    /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>
+    /// <seealso cref="GetAuthorizationUrl(ClientName, NameValueCollection, string)"/>
     public static void RedirectToAuthorization(ClientName clientName, NameValueCollection parameters, string returnUrl)
+    {
+      OAuthWeb.RedirectToAuthorization(clientName, parameters, returnUrl);
+    }
+
+    /// <summary>
+    /// Redirects current client to the authorization page of the specified provider, query parameters and return URL.
+    /// </summary>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <param name="parameters">Additional parameters to be passed to the authorization query.</param>
+    /// <param name="state">Custom state associated with authorization request.</param>
+    /// <exception cref="ClientIsNotRegisteredException">
+    /// <paramref name="clientName"/> is unregistered. Use the <see cref="OAuthManager.RegisterClient(OAuthBase)" /> for OAuth clients registration.
+    /// </exception>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    /// <remarks>
+    /// <para>The method will not work in desktop applications. For desktop applications you can use <see cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>.</para>
+    /// </remarks>
+    /// <seealso cref="GetAuthorizationUrl(ClientName, NameValueCollection, string, object)"/>
+    public static void RedirectToAuthorization(ClientName clientName, NameValueCollection parameters, string returnUrl, object state)
     {
       if (!OAuthManager.RegisteredClients.ContainsKey(clientName))
       {
@@ -440,7 +483,7 @@ namespace Nemiro.OAuth
       var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
 
       // add request
-      OAuthManager.AddRequest(client.State, clientName, client);
+      OAuthManager.AddRequest(client.State, clientName, client, state);
 
       // redirect
       client.RedirectToAuthorization();
@@ -458,7 +501,7 @@ namespace Nemiro.OAuth
     /// </exception>
     public static string GetAuthorizationUrl(string clientName)
     {
-      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, null);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, null, null);
     }
 
     /// <summary>
@@ -471,7 +514,7 @@ namespace Nemiro.OAuth
     /// </exception>
     public static string GetAuthorizationUrl(string clientName, NameValueCollection parameters)
     {
-      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, null);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, null, null);
     }
 
     /// <summary>
@@ -484,7 +527,21 @@ namespace Nemiro.OAuth
     /// </exception>
     public static string GetAuthorizationUrl(string clientName, string returnUrl)
     {
-      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, returnUrl);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, returnUrl, null);
+    }
+
+    /// <summary>
+    /// Returns the authorization URL of the specified provider and return URL.
+    /// </summary>
+    /// <param name="clientName">Provider name, through which it is necessary to authorize the current user.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <param name="state">Custom state associated with authorization request.</param>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    public static string GetAuthorizationUrl(string clientName, string returnUrl, object state)
+    {
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), null, returnUrl, state);
     }
 
     /// <summary>
@@ -498,7 +555,7 @@ namespace Nemiro.OAuth
     /// </exception>
     public static string GetAuthorizationUrl(string clientName, NameValueCollection parameters, string returnUrl)
     {
-      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, returnUrl);
+      return OAuthWeb.GetAuthorizationUrl(ClientName.Parse(clientName), parameters, returnUrl, null);
     }
 
     /// <summary>
@@ -514,6 +571,23 @@ namespace Nemiro.OAuth
     /// </exception>
     public static string GetAuthorizationUrl(ClientName clientName, NameValueCollection parameters, string returnUrl)
     {
+      return OAuthWeb.GetAuthorizationUrl(clientName, parameters, returnUrl, null);
+    }
+
+    /// <summary>
+    /// Returns the authorization URL of the specified provider, query parameters and return URL.
+    /// </summary>
+    /// <param name="clientName">
+    /// The provider name, through which it is necessary to authorize the current user; or the name of the registered client.
+    /// </param>
+    /// <param name="parameters">Additional parameters to be passed to the authorization URL.</param>
+    /// <param name="returnUrl">The address to which the user is redirected after the authorization.</param>
+    /// <param name="state">Custom state associated with authorization request.</param>
+    /// <exception cref="NullHttpContextException">
+    /// The exception that is thrown when you try to access methods that are designed for web projects.
+    /// </exception>
+    public static string GetAuthorizationUrl(ClientName clientName, NameValueCollection parameters, string returnUrl, object state)
+    {
       if (!OAuthManager.RegisteredClients.ContainsKey(clientName))
       {
         throw new ClientIsNotRegisteredException();
@@ -526,7 +600,7 @@ namespace Nemiro.OAuth
       var client = OAuthManager.RegisteredClients[clientName].Clone(parameters, returnUrl);
 
       // add request
-      OAuthManager.AddRequest(client.State, clientName, client);
+      OAuthManager.AddRequest(client.State, clientName, client, state);
 
       // return url
       return client.AuthorizationUrl;
@@ -562,7 +636,8 @@ namespace Nemiro.OAuth
     /// </returns>
     public static AuthorizationResult VerifyAuthorization(string url)
     {
-      AuthorizationResult result = new AuthorizationResult();
+      var result = new AuthorizationResult();
+
       try
       {
         // HtmlDecode - small fix for wrong data from provider. 
@@ -588,6 +663,7 @@ namespace Nemiro.OAuth
         {
           throw new AccessDeniedException(qs["error_description"]);
         }
+
         if (!String.IsNullOrEmpty(qs["error"]))
         {
           switch (qs["error"].ToLower())
@@ -624,30 +700,34 @@ namespace Nemiro.OAuth
     public static AuthorizationResult VerifyAuthorization(string requestId, string code)
     {
       var result = new AuthorizationResult();
+
       try
       {
         if (String.IsNullOrEmpty(requestId))
         {
           throw new ArgumentNullException("requestId");
         }
+
         if (String.IsNullOrEmpty(code))
         {
           throw new ArgumentNullException("code");
         }
 
-        if (!OAuthManager.Requests.ContainsKey(requestId))
+        if (!OAuthManager.RequestsProvider.ContainsKey(requestId))
         {
           throw new AuthorizationException("Sorry, request key not found. Please try again authorization.");
         }
 
-        var client = OAuthManager.Requests[requestId].Client;
-        client.AuthorizationCode = code;
+        var request = OAuthManager.RequestsProvider.Get(requestId);
+        var client = request.Client;
 
+        client.AuthorizationCode = code;
         result.RequestId = requestId;
-        result.ClientName = OAuthManager.Requests[requestId].ClientName;
+        result.ClientName = request.ClientName;
         result.ProtocolVersion = client.Version;
         result.AccessToken = client.AccessToken;
-         
+        result.State = request.State;
+
         // is not empty and not error
         if (!result.AccessToken.IsEmpty && result.AccessToken.IsSuccessfully)
         {
@@ -660,6 +740,7 @@ namespace Nemiro.OAuth
         // error
         result.ErrorInfo = ex;
       }
+
       return result;
     }
 

@@ -11,6 +11,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Reflection;
 using System.Web.Script.Serialization;
+using System.Net;
 
 namespace TestProject1
 {
@@ -51,9 +52,15 @@ namespace TestProject1
 
       foreach (var p in parameters)
       {
+        Assert.AreEqual(HttpParameterType.Unformed, p.ParameterType);
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      string r = parameters.ToStringParameters();
+
+      Assert.AreEqual("test=&test2=&test3=", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -69,7 +76,12 @@ namespace TestProject1
       {
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("n=1&n=2&n=3", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -85,7 +97,12 @@ namespace TestProject1
       {
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("n%5b%5d=1&n%5b%5d=2&n%5b%5d=3", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -104,11 +121,23 @@ namespace TestProject1
         { "y", 456 }
       };
 
-      foreach (var p in parameters)
+      for (int i = 0; i < parameters.Count; i++)
       {
+        var p = parameters[i];
+        
+        if (i < 3)
+        {
+          Assert.AreEqual(HttpParameterType.File, p.ParameterType);
+        }
+
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("x=123&y=456", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -120,11 +149,23 @@ namespace TestProject1
         { "y", 456 }
       };
 
-      foreach (var p in parameters)
+      for (int i = 0; i < parameters.Count; i++)
       {
+        var p = parameters[i];
+
+        if (i == 0)
+        {
+          Assert.AreEqual(HttpParameterType.RequestBody, p.ParameterType);
+        }
+
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("x=123&y=456", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -136,11 +177,23 @@ namespace TestProject1
         { "y", 456 }
       };
 
-      foreach (var p in parameters)
+      for (int i = 0; i < parameters.Count; i++)
       {
+        var p = parameters[i];
+
+        if (i == 0)
+        {
+          Assert.AreEqual(HttpParameterType.RequestBody, p.ParameterType);
+        }
+
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("x=123&y=456", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -157,7 +210,12 @@ namespace TestProject1
       {
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(parameters.ToStringParameters());
+
+      r = parameters.ToStringParameters();
+
+      Assert.AreEqual("x=123&x=789&y=456", r);
+
+      Console.WriteLine(r);
 
       Console.WriteLine("-------------------------------------");
 
@@ -168,10 +226,19 @@ namespace TestProject1
         { obj2 }
       };
 
-      foreach (var p in parameters)
+
+      for (int i = 0; i < parameters.Count; i++)
       {
+        var p = parameters[i];
+
+        if (i == 0)
+        {
+          Assert.AreEqual(HttpParameterType.RequestBody, p.ParameterType);
+        }
+
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
+
       Console.WriteLine(parameters.ToStringParameters());
 
       Console.WriteLine("-------------------------------------");
@@ -188,7 +255,117 @@ namespace TestProject1
       {
         Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
       }
-      Console.WriteLine(((HttpParameterCollection)parameters2).ToStringParameters());
+
+      r = ((HttpParameterCollection)parameters2).ToStringParameters();
+
+      Assert.AreEqual("a=123%2c245&b=abc", r);
+
+      Console.WriteLine(r);
+    }
+
+    [TestMethod]
+    public void HttpParametersWriteTest()
+    {
+      Console.WriteLine("Test 1");
+      object obj = null;
+      string str = null;
+      int? @int = null;
+      var parameters = new HttpParameterCollection
+      {
+        { "test", obj },
+        { "test2", str },
+        { "test3", @int }
+      };
+
+      foreach (var p in parameters)
+      {
+        Assert.AreEqual(HttpParameterType.Unformed, p.ParameterType);
+        Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
+      }
+
+      var req = (HttpWebRequest)WebRequest.Create("http://api.foxtools.ru/v2/hash");
+      req.Method = "POST";
+
+      parameters.WriteToRequestStream(req);
+
+      string r = parameters.ToStringParameters();
+
+      Assert.AreEqual("test=&test2=&test3=", r);
+
+      Console.WriteLine(r);
+
+      Console.WriteLine("-------------------------------------");
+      Console.WriteLine("Test 2");
+
+      parameters = new HttpParameterCollection
+      {
+        new HttpUrlParameter("test", "123"),
+        new HttpFormParameter("test2", null),
+        new HttpFormParameter("text", "test")
+      };
+
+
+      for (int i = 0; i < parameters.Count; i++)
+      {
+        var p = parameters[i];
+
+        if (i == 0)
+        {
+          Assert.AreEqual(HttpParameterType.Url, p.ParameterType);
+        }
+        else
+        {
+          Assert.AreEqual(HttpParameterType.Form, p.ParameterType);
+        }
+
+        Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
+      }
+
+      req = (HttpWebRequest)WebRequest.Create("http://api.foxtools.ru/v2/hash");
+      req.Method = "POST";
+
+      parameters.WriteToRequestStream(req);
+
+      r = parameters.ToStringParameters(HttpParameterType.Url);
+
+      Assert.AreEqual("test=123", r);
+
+      Console.WriteLine("-------------------------------------");
+
+      Console.WriteLine("Test 3");
+
+      parameters = new HttpParameterCollection
+      {
+        new { a = 1, b = 2, c = "abc" }
+      };
+
+
+      for (int i = 0; i < parameters.Count; i++)
+      {
+        var p = parameters[i];
+
+        Assert.AreEqual(HttpParameterType.RequestBody, p.ParameterType);
+
+        Console.WriteLine("{0} is {1}", p.Name, p.GetType().Name);
+      }
+
+      req = (HttpWebRequest)WebRequest.Create("http://api.foxtools.ru/v2/hash");
+      req.Method = "POST";
+      req.ContentType = "application/json";
+
+      parameters.WriteToRequestStream(req);
+
+      req.GetResponse();
+
+      req = (HttpWebRequest)WebRequest.Create("http://api.foxtools.ru/v2/hash");
+      req.Method = "POST";
+
+      parameters.WriteToRequestStream(req);
+
+      req.GetResponse();
+
+      Console.WriteLine("-------------------------------------");
+
     }
 
     [TestMethod]

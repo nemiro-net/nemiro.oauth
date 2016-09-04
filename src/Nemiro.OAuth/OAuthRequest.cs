@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,69 +21,64 @@ namespace Nemiro.OAuth
   /// <summary>
   /// Represents the request item to OAuth server.
   /// </summary>
-  internal class OAuthRequest
+  public class OAuthRequest
   {
-
-    private ClientName _ClientName = null;
 
     /// <summary>
     /// Gets name of the client.
     /// </summary>
-    public ClientName ClientName
-    {
-      get
-      {
-        return _ClientName;
-      }
-    }
-
-    private OAuthBase _Client = null;
+    public ClientName ClientName { get; private set; }
 
     /// <summary>
     /// Gets instance of the OAuth client.
     /// </summary>
-    public OAuthBase Client
-    {
-      get
-      {
-        return _Client;
-      }
-    }
-
-    private DateTime _DateCreated = DateTime.Now;
+    public OAuthBase Client { get; private set; }
 
     /// <summary>
     /// Gets date and time creation of the request.
     /// </summary>
-    public DateTime DateCreated
-    {
-      get
-      {
-        return _DateCreated;
-      }
-    }
+    public DateTime DateCreated { get; private set; }
+
+    /// <summary>
+    /// Gets custom state.
+    /// </summary>
+    public object State { get; private set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuthRequest"/> class.
+    /// </summary>
+    /// <param name="client">The instance of the OAuth client.</param>
+    public OAuthRequest(OAuthBase client) : this (null, client, null) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthRequest"/> class.
     /// </summary>
     /// <param name="client">The instance of the OAuth client.</param>
     /// <param name="clientName">The client name.</param>
-    public OAuthRequest(ClientName clientName, OAuthBase client)
+    public OAuthRequest(ClientName clientName, OAuthBase client) : this (clientName, client, null) { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OAuthRequest"/> class.
+    /// </summary>
+    /// <param name="client">The instance of the OAuth client.</param>
+    /// <param name="clientName">The client name.</param>
+    /// <param name="state">Custom state associated with the request.</param>
+    public OAuthRequest(ClientName clientName, OAuthBase client, object state)
     {
-      /* is is not possible
       if (client == null)
       {
         throw new ArgumentNullException("client");
       }
-      */
 
       if (String.IsNullOrEmpty(clientName))
       {
         clientName = client.ProviderName;
       }
 
-      _ClientName = clientName;
-      _Client = client;
+      this.ClientName = clientName;
+      this.Client = client;
+      this.DateCreated = DateTime.Now;
+      this.State = state;
     }
 
   }
