@@ -346,7 +346,7 @@ namespace Nemiro.OAuth
     /// <seealso cref="GetAuthorizationUrl(string)"/>
     public static void RedirectToAuthorization(string clientName)
     {
-      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, null);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, null, null);
     }
 
     /// <summary>
@@ -366,7 +366,7 @@ namespace Nemiro.OAuth
     /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection)"/>
     public static void RedirectToAuthorization(string clientName, NameValueCollection parameters)
     {
-      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, null);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, null, null);
     }
 
     /// <summary>
@@ -386,7 +386,7 @@ namespace Nemiro.OAuth
     /// <seealso cref="GetAuthorizationUrl(string, string)"/>
     public static void RedirectToAuthorization(string clientName, string returnUrl)
     {
-      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, returnUrl);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), null, returnUrl, null);
     }
 
     /// <summary>
@@ -428,7 +428,7 @@ namespace Nemiro.OAuth
     /// <seealso cref="GetAuthorizationUrl(string, NameValueCollection, string)"/>
     public static void RedirectToAuthorization(string clientName, NameValueCollection parameters, string returnUrl)
     {
-      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, returnUrl);
+      OAuthWeb.RedirectToAuthorization(ClientName.Parse(clientName), parameters, returnUrl, null);
     }
 
     /// <summary>
@@ -449,7 +449,7 @@ namespace Nemiro.OAuth
     /// <seealso cref="GetAuthorizationUrl(ClientName, NameValueCollection, string)"/>
     public static void RedirectToAuthorization(ClientName clientName, NameValueCollection parameters, string returnUrl)
     {
-      OAuthWeb.RedirectToAuthorization(clientName, parameters, returnUrl);
+      OAuthWeb.RedirectToAuthorization(clientName, parameters, returnUrl, null);
     }
 
     /// <summary>
