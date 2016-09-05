@@ -1,0 +1,17 @@
+﻿@{
+  ViewBag.Title = "Login";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login with:</h2>
+
+<ul>
+	@foreach (var client in Nemiro.OAuth.OAuthManager.RegisteredClients)
+	{
+		<li>
+			<a href="javascript:window.location.href='@Url.Action("ExternalLogin", new { provider = client.Key })'">
+				@client.Value.ProviderName
+			</a>
+		</li>
+	}
+</ul>
