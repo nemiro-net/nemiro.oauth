@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014, 2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Nemiro.OAuth;
 using System.IO;
+using System.Collections.Specialized;
 
 namespace DropboxExample
 {
@@ -28,6 +29,8 @@ namespace DropboxExample
     private long CurrentFileLength = 0;
     private int TotalFiles = 0;
     private Dictionary<string, string>.Enumerator Files;
+
+    private HttpAuthorization Authorization = new HttpAuthorization(AuthorizationType.Bearer, Properties.Settings.Default.AccessToken);
 
     public Upload()
     {
@@ -101,18 +104,23 @@ namespace DropboxExample
 
       serverPath = serverPath.Replace("\\", "/");
 
+      if (!serverPath.StartsWith("/"))
+      {
+        serverPath = serverPath.Insert(0, "/");
+      }
+
       if (File.GetAttributes(localPath) == FileAttributes.Directory)
       {
         // create folder
         OAuthUtility.PostAsync
         (
-          "https://api.dropbox.com/1/fileops/create_folder",
+          "https://api.dropboxapi.com/2/files/create_folder",
           new HttpParameterCollection
           { 
-            { "access_token" , Properties.Settings.Default.AccessToken },
-            { "root", "auto" },
-            { "path", serverPath },
+            new { path = serverPath },
           },
+          contentType: "application/json",
+          authorization: this.Authorization,
           callback: UploadFile_Result
         );
       }
@@ -123,17 +131,22 @@ namespace DropboxExample
         // get file length for progressbar
         this.CurrentFileLength = fs.Length;
 
-        OAuthUtility.PutAsync
+        var fileInfo = UniValue.Empty;
+        fileInfo["path"] = serverPath;
+        fileInfo["mode"] = "add";
+        fileInfo["autorename"] = true;
+        fileInfo["mute"] = false;
+
+        OAuthUtility.PostAsync
         (
-          "https://api-content.dropbox.com/1/files_put/auto/",
+          "https://content.dropboxapi.com/2/files/upload",
           new HttpParameterCollection
           { 
-            { "access_token" , Properties.Settings.Default.AccessToken },
-            { "overwrite", "false" },
-            { "autorename", "false" },
-            { "path", serverPath },
             { fs } // content of the file
           },
+          headers: new NameValueCollection { { "Dropbox-API-Arg", fileInfo.ToString() } },
+          contentType: "application/octet-stream",
+          authorization: this.Authorization,
           // handler of result
           callback: UploadFile_Result,
           // handler of uploading
@@ -163,9 +176,9 @@ namespace DropboxExample
 
       if (result.StatusCode != 200)
       {
-        if (result["error"].HasValue)
+        if (result["error_summary"].HasValue)
         {
-          MessageBox.Show(result["error"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          MessageBox.Show(result["error_summary"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
         {

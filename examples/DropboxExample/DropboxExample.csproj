@@ -38,8 +38,8 @@
     <ApplicationIcon>dropbox.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth, Version=1.11.4.2477, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.11.2477\lib\net40\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.12.4.2603, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.12-beta2603\lib\net40\Nemiro.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nemiro.OAuth.LoginForms, Version=1.4.4.2483, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
@@ -156,6 +156,7 @@
   <ItemGroup>
     <Content Include="dropbox.ico" />
     <Content Include="preview.png" />
+    <None Include="Resources\refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

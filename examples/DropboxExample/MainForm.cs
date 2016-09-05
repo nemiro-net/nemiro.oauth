@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014, 2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,9 +27,11 @@ namespace DropboxExample
   public partial class MainForm : Form
   {
 
-    // https://www.dropbox.com/developers/core/docs
+    // https://www.dropbox.com/developers/documentation/http/documentation
 
     private string _CurrentPath = "";
+
+    private HttpAuthorization Authorization = null;
 
     public string CurrentPath
     {
@@ -83,16 +85,15 @@ namespace DropboxExample
 
       if (listView1.FocusedItem == null || listView1.FocusedItem.Tag == null)
       {
-        btnRename.Enabled = btnRemove.Enabled = false;
-        mnuRename.Enabled = mnuRemove.Enabled = false;
-        btnDownload.Enabled = false;
-        mnuDownload.Enabled = false;
+        btnRename.Enabled = mnuRename.Enabled = false;
+        btnRemove.Enabled = mnuRemove.Enabled = false;
+        btnDownload.Enabled = mnuDownload.Enabled = false;
       }
       else
       {
-        btnRename.Enabled = btnRemove.Enabled = true;
-        mnuRename.Enabled = mnuRemove.Enabled = true;
-        btnDownload.Enabled = mnuDownload.Enabled = !Convert.ToBoolean(((UniValue)listView1.FocusedItem.Tag)["is_dir"]);
+        btnRename.Enabled = mnuRename.Enabled = true;
+        btnRemove.Enabled = mnuRemove.Enabled = true;
+        btnDownload.Enabled = mnuDownload.Enabled = !((UniValue)listView1.FocusedItem.Tag)[".tag"].Equals("folder");
       }
     }
 
@@ -112,16 +113,13 @@ namespace DropboxExample
       {
         UniValue itm = (UniValue)listView1.FocusedItem.Tag;
 
-        if (Convert.ToBoolean(itm["is_dir"]))
+        if (itm[".tag"].Equals("folder"))
         {
-          this.CurrentPath = itm["path"].ToString();
+          this.CurrentPath = itm["path_lower"].ToString();
         }
         else
         {
-          new Download
-          (
-            String.Format("https://api-content.dropbox.com/1/files/auto{0}", itm["path"])
-          ) { Owner = this }.Show();
+          new Download(itm["path_lower"]) { Owner = this }.Show();
         }
       }
     }
@@ -176,7 +174,7 @@ namespace DropboxExample
       }
 
       var file = ((UniValue)listView1.FocusedItem.Tag);
-      var name = Path.GetFileName(file["path"].ToString());
+      var name = file["name"].ToString();
       InputBox ib = null;
 
       if (btnRename.Tag != null)
@@ -203,7 +201,7 @@ namespace DropboxExample
 
       btnRename.Tag = null;
 
-      this.Rename(file["path"].ToString(), Path.Combine(Path.GetDirectoryName(file["path"].ToString()), ib.Value));
+      this.Rename(listView1.FocusedItem, Path.Combine(Path.GetDirectoryName(file["path_display"].ToString()), ib.Value));
     }
 
     private void btnRemove_Click(object sender, EventArgs e)
@@ -214,14 +212,19 @@ namespace DropboxExample
         return;
       }
 
-      var name = Path.GetFileName(((UniValue)listView1.FocusedItem.Tag)["path"].ToString());
+      var name = ((UniValue)listView1.FocusedItem.Tag)["name"].ToString();
 
       if (MessageBox.Show(String.Format("Are you want delete \"{0}\"?", name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
       {
         return;
       }
 
-      this.Delete(((UniValue)listView1.FocusedItem.Tag)["path"].ToString());
+      this.Delete(listView1.FocusedItem);
+    }
+
+    private void btnRefresh_Click(object sender, EventArgs e)
+    {
+      this.UpdateList();
     }
 
     private void MainForm_DragEnter(object sender, DragEventArgs e)
@@ -241,8 +244,54 @@ namespace DropboxExample
       new Upload(files, this.CurrentPath) { Owner = this }.ShowDialog();
     }
 
+    private string GetIconByFileExtension(string value)
+    {
+      value = " " + value + " ";
+
+      if (" .wav .mp3 .ogg .mid .midi ".IndexOf(value) != -1)
+      {
+        return "page_white_sound";
+      }
+      else if (" .zip .7z .rar .gzip .tar .bz ".IndexOf(value) != -1)
+      {
+        return "page_white_compressed";
+      }
+      else if (" .txt .log ".IndexOf(value) != -1)
+      {
+        return "page_white_text";
+      }
+      else if (" .bmp .jpg .jpeg .gif .png ".IndexOf(value) != -1)
+      {
+        return "page_white_picture";
+      }
+      else if (" .doc .docx .rtf ".IndexOf(value) != -1)
+      {
+        return "page_white_word";
+      }
+      else if (" .xls .xlsx ".IndexOf(value) != -1)
+      {
+        return "page_white_excel";
+      }
+
+      return "page_white";
+    }
+
+    private string GetSizeInfo(double size)
+    {
+      string[] sizes = { "B", "KB", "MB", "GB" };
+
+      int order = 0;
+
+      while (size >= 1024 && ++order < sizes.Length)
+      {
+        size = size / 1024.0;
+      }
+
+      return String.Format("{0:0.##} {1}", size, sizes[order]);
+    }
+
     #region dropbox api
-    
+
     private void GetAccessToken()
     {
       if (this.InvokeRequired)
@@ -263,6 +312,9 @@ namespace DropboxExample
         // save the access token to the application settings
         Properties.Settings.Default.AccessToken = login.AccessToken.Value;
         Properties.Settings.Default.Save();
+
+        this.Authorization = new HttpAuthorization(AuthorizationType.Bearer, Properties.Settings.Default.AccessToken);
+
         // update the list of files
         this.UpdateList();
       }
@@ -287,13 +339,12 @@ namespace DropboxExample
     {
       this.RequestStart();
 
-      OAuthUtility.GetAsync
+      this.Authorization = new HttpAuthorization(AuthorizationType.Bearer, Properties.Settings.Default.AccessToken);
+
+      OAuthUtility.PostAsync
       (
-        "https://api.dropbox.com/1/account/info",
-        new HttpParameterCollection 
-        { 
-          { "access_token", Properties.Settings.Default.AccessToken }
-        },
+        "https://api.dropboxapi.com/2/users/get_current_account",
+        authorization: this.Authorization,
         callback: CheckAccessToken_Result
       );
     }
@@ -309,7 +360,6 @@ namespace DropboxExample
       else
       {
         // success
-        //this.RequestEnd(result);
         this.UpdateList();
       }
     }
@@ -321,14 +371,18 @@ namespace DropboxExample
     {
       this.RequestStart();
 
-      OAuthUtility.GetAsync
+      OAuthUtility.PostAsync
       (
-        "https://api.dropbox.com/1/metadata/auto/",
-        new HttpParameterCollection 
-        { 
-          { "path", this.CurrentPath.Replace("\\", "/") },
-          { "access_token", Properties.Settings.Default.AccessToken }
+        "https://api.dropboxapi.com/2/files/list_folder",
+        parameters: new HttpParameterCollection
+        {
+          new {
+            path = this.CurrentPath.Replace("\\", "/"),
+            include_media_info = true
+          }
         },
+        contentType: "application/json",
+        authorization: this.Authorization,
         callback: UpdateList_Result
       );
     }
@@ -344,16 +398,10 @@ namespace DropboxExample
 
       if (result.StatusCode == 200)
       {
-        var fileList = result["contents"].OrderBy(itm => Path.GetFileName(itm["path"].ToString())).OrderByDescending(itm => Convert.ToBoolean(itm["is_dir"]));
+        var fileList = result["entries"].OrderBy(itm => itm["name"].ToString()).OrderByDescending(itm => itm[".tag"].Equals("folder"));
         foreach (UniValue file in fileList)
         {
-          var item = new ListViewItem();
-          item.ImageKey = file["icon"].ToString();
-          item.SubItems.Add(Path.GetFileName(file["path"].ToString()));
-          item.SubItems.Add(file["size"].ToString());
-          item.SubItems.Add(file["mime_type"].ToString());
-          item.Tag = file;
-          listView1.Items.Add(item);
+          this.AddItem(file);
         }
 
         if (!String.IsNullOrEmpty(this.CurrentPath))
@@ -370,39 +418,130 @@ namespace DropboxExample
       this.RequestEnd(result);
     }
 
-    private void Delete(string path)
+    /// <summary>
+    /// Adds file or folder to list.
+    /// </summary>
+    /// <param name="file">Dropbox file or folder.</param>
+    private void AddItem(UniValue file)
+    {
+      var item = new ListViewItem();
+      item.SubItems.Add(file["name"].ToString());
+
+      if (!file[".tag"].Equals("folder"))
+      {
+        item.ImageKey = this.GetIconByFileExtension(Path.GetExtension(file["name"].ToString()));
+        item.SubItems.Add(this.GetSizeInfo(Convert.ToDouble(file["size"])));
+      }
+      else
+      {
+        item.ImageKey = "folder";
+      }
+
+      item.SubItems.Add(file["mime_type"].ToString());
+      item.Tag = file;
+
+      listView1.Items.Add(item);
+    }
+
+    private void Delete(ListViewItem item)
     {
       this.RequestStart();
 
+      var file = (UniValue)item.Tag;
+
       OAuthUtility.PostAsync
       (
-        "https://api.dropbox.com/1/fileops/delete",
+        "https://api.dropboxapi.com/2/files/delete",
         new HttpParameterCollection 
         { 
-          { "access_token", Properties.Settings.Default.AccessToken },
-          { "root", "auto" },
-          { "path", path.Replace("\\", "/") }
+          new { path = file["path_display"].ToString() }
         },
-        callback: FileOperation_Result
+        contentType: "application/json",
+        authorization: this.Authorization,
+        callback: (result) =>
+        {
+          this.Delete_Result(result, item);
+        }
       );
     }
-    
-    private void Rename(string oldPath, string newPath)
+
+    private void Delete_Result(RequestResult result, ListViewItem item)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action<RequestResult, ListViewItem>(Delete_Result), result, item);
+        return;
+      }
+
+      if (result.StatusCode == 200)
+      {
+        if (item != null)
+        {
+          this.listView1.Items.Remove(item);
+          this.RequestEnd(result);
+        }
+        else
+        {
+          this.UpdateList();
+        }
+      }
+      else
+      {
+        this.RequestEnd(result);
+      }
+    }
+
+    private void Rename(ListViewItem item, string newPath)
     {
       this.RequestStart();
-      
+
+      var file = (UniValue)item.Tag;
+
       OAuthUtility.PostAsync
       (
-        "https://api.dropbox.com/1/fileops/move",
+        "https://api.dropboxapi.com/2/files/move",
         new HttpParameterCollection 
         { 
-          { "access_token", Properties.Settings.Default.AccessToken },
-          { "root", "auto" },
-          { "from_path", oldPath.Replace("\\", "/") },
-          { "to_path", newPath.Replace("\\", "/") }
+          new
+          {
+            from_path = file["path_display"].ToString(),
+            to_path = newPath.Replace("\\", "/")
+          }
         },
-        callback: FileOperation_Result
+        contentType: "application/json",
+        authorization: this.Authorization,
+        callback: (result) => 
+        {
+          this.Rename_Result(result, item);
+        }
       );
+    }
+
+    private void Rename_Result(RequestResult result, ListViewItem item)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action<RequestResult, ListViewItem>(Rename_Result), result, item);
+        return;
+      }
+
+      if (result.StatusCode == 200)
+      {
+        if (item != null)
+        {
+          item.Tag = result;
+          item.SubItems[1].Text = result["name"].ToString();
+          this.RequestEnd(result);
+        }
+        else
+        {
+          this.UpdateList();
+        }
+      }
+      else
+      {
+        this.RequestEnd(result);
+      }
     }
 
     private void CreateFolder(string name)
@@ -411,28 +550,33 @@ namespace DropboxExample
 
       OAuthUtility.PostAsync
       (
-        "https://api.dropbox.com/1/fileops/create_folder",
+        "https://api.dropboxapi.com/2/files/create_folder",
         new HttpParameterCollection
         { 
-          { "access_token" , Properties.Settings.Default.AccessToken },
-          { "root", "auto" },
-          { "path", Path.Combine(this.CurrentPath, name).Replace("\\", "/") },
+          new
+          {
+            path = ((String.IsNullOrEmpty(this.CurrentPath) ? "/" : "") + Path.Combine(this.CurrentPath, name)).Replace("\\", "/")
+          }
         },
-        callback: FileOperation_Result
+        contentType: "application/json",
+        authorization: this.Authorization,
+        callback: this.CreateFolder_Result
       );
     }
 
-    private void FileOperation_Result(RequestResult result)
+    private void CreateFolder_Result(RequestResult result)
     {
       if (this.InvokeRequired)
       {
-        this.Invoke(new Action<RequestResult>(FileOperation_Result), result);
+        this.Invoke(new Action<RequestResult>(CreateFolder_Result), result);
         return;
       }
 
       if (result.StatusCode == 200)
       {
-        this.UpdateList();
+        result[".tag"] = "folder";
+        this.AddItem(result);
+        this.RequestEnd(result);
       }
       else
       {
@@ -442,6 +586,7 @@ namespace DropboxExample
 
     private void RequestStart()
     {
+      btnRefresh.Enabled = mnuRefresh.Enabled = false;
       lblStatus.Text = "Please Wait...";
       picStatus.Image = Properties.Resources.loader2;
     }
@@ -454,18 +599,21 @@ namespace DropboxExample
         return;
       }
 
+      btnRefresh.Enabled = mnuRefresh.Enabled = true;
+
       if (result.StatusCode < 200 || result.StatusCode > 299)
       {
-        if (result["error"].HasValue)
+        if (result["error_summary"].HasValue)
         {
-          lblStatus.Text = result["error"].ToString();
-          MessageBox.Show(result["error"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          lblStatus.Text = result["error_summary"].ToString();
         }
         else
         {
           lblStatus.Text = result.ToString();
-          MessageBox.Show(result.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        MessageBox.Show(lblStatus.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         picStatus.Image = Properties.Resources.error;
       }
       else

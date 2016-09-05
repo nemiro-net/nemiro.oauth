@@ -43,10 +43,12 @@ namespace DropboxExample
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.progressBar1 = new System.Windows.Forms.ProgressBar();
       this.label1 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.timer1 = new System.Windows.Forms.Timer(this.components);
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -88,6 +90,11 @@ namespace DropboxExample
       this.tableLayoutPanel1.Size = new System.Drawing.Size(357, 73);
       this.tableLayoutPanel1.TabIndex = 2;
       // 
+      // timer1
+      // 
+      this.timer1.Interval = 250;
+      this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+      // 
       // Download
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -100,7 +107,7 @@ namespace DropboxExample
       this.Name = "Download";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Download";
-      this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Download_FormClosed);
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Download_FormClosing);
       this.Load += new System.EventHandler(this.Download_Load);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
@@ -114,5 +121,6 @@ namespace DropboxExample
     private System.Windows.Forms.ProgressBar progressBar1;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+    private System.Windows.Forms.Timer timer1;
   }
 }

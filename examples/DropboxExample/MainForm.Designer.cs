@@ -50,6 +50,16 @@ namespace DropboxExample
       this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.mnuDownload = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+      this.mnuUpload = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+      this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+      this.mnuRename = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuRemove = new System.Windows.Forms.ToolStripMenuItem();
       this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
       this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
       this.lblStatus = new System.Windows.Forms.Label();
@@ -63,19 +73,13 @@ namespace DropboxExample
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.btnRename = new System.Windows.Forms.ToolStripButton();
       this.btnRemove = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+      this.btnRefresh = new System.Windows.Forms.ToolStripButton();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-      this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.mnuDownload = new System.Windows.Forms.ToolStripMenuItem();
-      this.mnuUpload = new System.Windows.Forms.ToolStripMenuItem();
-      this.mnuCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
-      this.mnuRename = new System.Windows.Forms.ToolStripMenuItem();
-      this.mnuRemove = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-      this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+      this.contextMenuStrip1.SuspendLayout();
       this.flowLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
       this.toolStrip1.SuspendLayout();
-      this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // listView1
@@ -122,6 +126,87 @@ namespace DropboxExample
       this.columnHeader4.Text = "Type";
       this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       this.columnHeader4.Width = 90;
+      // 
+      // contextMenuStrip1
+      // 
+      this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuDownload,
+            this.toolStripSeparator4,
+            this.mnuUpload,
+            this.mnuCreateFolder,
+            this.toolStripSeparator6,
+            this.mnuRefresh,
+            this.toolStripSeparator3,
+            this.mnuRename,
+            this.mnuRemove});
+      this.contextMenuStrip1.Name = "contextMenuStrip1";
+      this.contextMenuStrip1.Size = new System.Drawing.Size(143, 154);
+      // 
+      // mnuDownload
+      // 
+      this.mnuDownload.Image = global::DropboxExample.Properties.Resources.disk;
+      this.mnuDownload.Name = "mnuDownload";
+      this.mnuDownload.Size = new System.Drawing.Size(142, 22);
+      this.mnuDownload.Text = "Download";
+      this.mnuDownload.Click += new System.EventHandler(this.btnDownload_Click);
+      // 
+      // toolStripSeparator4
+      // 
+      this.toolStripSeparator4.Name = "toolStripSeparator4";
+      this.toolStripSeparator4.Size = new System.Drawing.Size(139, 6);
+      // 
+      // mnuUpload
+      // 
+      this.mnuUpload.Image = global::DropboxExample.Properties.Resources.disk__plus;
+      this.mnuUpload.Name = "mnuUpload";
+      this.mnuUpload.Size = new System.Drawing.Size(142, 22);
+      this.mnuUpload.Text = "Upload file";
+      this.mnuUpload.Click += new System.EventHandler(this.btnUpload_Click);
+      // 
+      // mnuCreateFolder
+      // 
+      this.mnuCreateFolder.Image = global::DropboxExample.Properties.Resources.folder__plus;
+      this.mnuCreateFolder.Name = "mnuCreateFolder";
+      this.mnuCreateFolder.Size = new System.Drawing.Size(142, 22);
+      this.mnuCreateFolder.Text = "Create folder";
+      this.mnuCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
+      // 
+      // toolStripSeparator6
+      // 
+      this.toolStripSeparator6.Name = "toolStripSeparator6";
+      this.toolStripSeparator6.Size = new System.Drawing.Size(139, 6);
+      // 
+      // mnuRefresh
+      // 
+      this.mnuRefresh.Image = global::DropboxExample.Properties.Resources.refresh;
+      this.mnuRefresh.Name = "mnuRefresh";
+      this.mnuRefresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+      this.mnuRefresh.Size = new System.Drawing.Size(142, 22);
+      this.mnuRefresh.Text = "Refresh";
+      this.mnuRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+      // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+      // 
+      // mnuRename
+      // 
+      this.mnuRename.Image = global::DropboxExample.Properties.Resources.document__pencil;
+      this.mnuRename.Name = "mnuRename";
+      this.mnuRename.ShortcutKeys = System.Windows.Forms.Keys.F2;
+      this.mnuRename.Size = new System.Drawing.Size(142, 22);
+      this.mnuRename.Text = "Rename";
+      this.mnuRename.Click += new System.EventHandler(this.btnRename_Click);
+      // 
+      // mnuRemove
+      // 
+      this.mnuRemove.Image = global::DropboxExample.Properties.Resources.bin;
+      this.mnuRemove.Name = "mnuRemove";
+      this.mnuRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+      this.mnuRemove.Size = new System.Drawing.Size(142, 22);
+      this.mnuRemove.Text = "Delete";
+      this.mnuRemove.Click += new System.EventHandler(this.btnRemove_Click);
       // 
       // imageListLarge
       // 
@@ -242,7 +327,9 @@ namespace DropboxExample
             this.btnCreateFolder,
             this.toolStripSeparator1,
             this.btnRename,
-            this.btnRemove});
+            this.btnRemove,
+            this.toolStripSeparator5,
+            this.btnRefresh});
       this.toolStrip1.Location = new System.Drawing.Point(0, 0);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.Size = new System.Drawing.Size(552, 25);
@@ -309,75 +396,25 @@ namespace DropboxExample
       this.btnRemove.Text = "Remove";
       this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
       // 
+      // toolStripSeparator5
+      // 
+      this.toolStripSeparator5.Name = "toolStripSeparator5";
+      this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+      // 
+      // btnRefresh
+      // 
+      this.btnRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.btnRefresh.Image = global::DropboxExample.Properties.Resources.refresh;
+      this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.btnRefresh.Name = "btnRefresh";
+      this.btnRefresh.Size = new System.Drawing.Size(23, 22);
+      this.btnRefresh.Text = "Refresh";
+      this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+      // 
       // openFileDialog1
       // 
       this.openFileDialog1.Filter = "All files (*.*) | *.*";
       this.openFileDialog1.Multiselect = true;
-      // 
-      // contextMenuStrip1
-      // 
-      this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDownload,
-            this.toolStripSeparator4,
-            this.mnuUpload,
-            this.mnuCreateFolder,
-            this.toolStripSeparator3,
-            this.mnuRename,
-            this.mnuRemove});
-      this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(143, 126);
-      // 
-      // mnuDownload
-      // 
-      this.mnuDownload.Image = global::DropboxExample.Properties.Resources.disk;
-      this.mnuDownload.Name = "mnuDownload";
-      this.mnuDownload.Size = new System.Drawing.Size(152, 22);
-      this.mnuDownload.Text = "Download";
-      this.mnuDownload.Click += new System.EventHandler(this.btnDownload_Click);
-      // 
-      // mnuUpload
-      // 
-      this.mnuUpload.Image = global::DropboxExample.Properties.Resources.disk__plus;
-      this.mnuUpload.Name = "mnuUpload";
-      this.mnuUpload.Size = new System.Drawing.Size(152, 22);
-      this.mnuUpload.Text = "Upload file";
-      this.mnuUpload.Click += new System.EventHandler(this.btnUpload_Click);
-      // 
-      // mnuCreateFolder
-      // 
-      this.mnuCreateFolder.Image = global::DropboxExample.Properties.Resources.folder__plus;
-      this.mnuCreateFolder.Name = "mnuCreateFolder";
-      this.mnuCreateFolder.Size = new System.Drawing.Size(152, 22);
-      this.mnuCreateFolder.Text = "Create folder";
-      this.mnuCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
-      // 
-      // mnuRename
-      // 
-      this.mnuRename.Image = global::DropboxExample.Properties.Resources.document__pencil;
-      this.mnuRename.Name = "mnuRename";
-      this.mnuRename.ShortcutKeys = System.Windows.Forms.Keys.F2;
-      this.mnuRename.Size = new System.Drawing.Size(152, 22);
-      this.mnuRename.Text = "Rename";
-      this.mnuRename.Click += new System.EventHandler(this.btnRename_Click);
-      // 
-      // mnuRemove
-      // 
-      this.mnuRemove.Image = global::DropboxExample.Properties.Resources.bin;
-      this.mnuRemove.Name = "mnuRemove";
-      this.mnuRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-      this.mnuRemove.Size = new System.Drawing.Size(152, 22);
-      this.mnuRemove.Text = "Delete";
-      this.mnuRemove.Click += new System.EventHandler(this.btnRemove_Click);
-      // 
-      // toolStripSeparator3
-      // 
-      this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
-      // 
-      // toolStripSeparator4
-      // 
-      this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
       // 
       // MainForm
       // 
@@ -394,12 +431,12 @@ namespace DropboxExample
       this.Load += new System.EventHandler(this.Form1_Load);
       this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
       this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
+      this.contextMenuStrip1.ResumeLayout(false);
       this.flowLayoutPanel1.ResumeLayout(false);
       this.flowLayoutPanel1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
-      this.contextMenuStrip1.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -434,6 +471,10 @@ namespace DropboxExample
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem mnuRename;
     private System.Windows.Forms.ToolStripMenuItem mnuRemove;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+    private System.Windows.Forms.ToolStripButton btnRefresh;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+    private System.Windows.Forms.ToolStripMenuItem mnuRefresh;
   }
 }
 
