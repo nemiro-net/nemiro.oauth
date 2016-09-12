@@ -1,6 +1,4 @@
 ﻿Imports Nemiro.OAuth
-Imports Nemiro.OAuth.Extensions
-Imports System.Web.Script.Serialization
 
 Public Class ExternalLoginResult
   Inherits System.Web.UI.Page

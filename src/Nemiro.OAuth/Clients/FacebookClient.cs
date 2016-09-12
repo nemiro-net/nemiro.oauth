@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -342,7 +342,7 @@ namespace Nemiro.OAuth.Clients
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // execute the request
-      var result = OAuthUtility.Get("https://graph.facebook.com/v2.7/me?fields=id,name,first_name,last_name,email,birthday,link,gender", accessToken: accessToken);
+      var result = OAuthUtility.Get("https://graph.facebook.com/v2.7/me?fields=id,name,first_name,last_name,email,birthday,link,gender,languages", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -370,6 +370,19 @@ namespace Nemiro.OAuth.Clients
             }
           }
           return Sex.None;
+        }
+      );
+      map.Add
+      (
+        "languages", "Language",
+        delegate(UniValue value)
+        {
+          if (value.HasValue && value.Count > 0)
+          {
+            return value[0]["name"].ToString();
+          }
+
+          return null;
         }
       );
 

@@ -68,6 +68,18 @@ namespace Nemiro.OAuth
       { '&', "\u0026" }
     };
 
+    private static readonly string[] HttpHeadersToProperty = 
+    {
+      "Accept",
+      "Connection",
+      "Expect",
+      "Transfer-Encoding",
+      "User-Agent",
+      "Connection-Group-Name",
+      "Keep-Alive",
+      "Content-Type"
+    };
+
     /// <summary>
     /// Version number of Nemiro.OAuth.
     /// </summary>
@@ -461,6 +473,7 @@ namespace Nemiro.OAuth
     {
       // checking
       if (String.IsNullOrEmpty(endpoint)) { throw new ArgumentNullException("endpoint"); }
+
       if (!AccessToken.IsNullOrEmpty(accessToken) && authorization != null)
       {
         throw new ArgumentException("The request can not contain both authorization headers and access token.");
@@ -592,7 +605,21 @@ namespace Nemiro.OAuth
       // headers
       if (headers != null)
       {
-        req.Headers.Add(headers);
+        for (int i = 0; i < headers.Count; i++)
+        {
+          if (!OAuthUtility.HttpHeadersToProperty.Contains(headers.Keys[i], StringComparer.OrdinalIgnoreCase))
+          {
+            continue;
+          }
+
+          OAuthUtility.SetHeader(headers.Keys[i], headers, req);
+          i--;
+        }
+
+        if (headers.Count > 0)
+        {
+          req.Headers.Add(headers);
+        }
       }
 
       // set parameters to the body if the request is executed using the POST method
@@ -933,6 +960,28 @@ namespace Nemiro.OAuth
     }
 
     #endregion
+
+    /// <summary>
+    /// Sets header to request and remove from collections.
+    /// </summary>
+    /// <param name="name">Header to set.</param>
+    /// <param name="headers">Headers collection.</param>
+    /// <param name="req">Request.</param>
+    private static void SetHeader(string name, NameValueCollection headers, HttpWebRequest req)
+    {
+      string propertyName = String.Join("", name.ToLower().Split('-').Select(itm => itm.Substring(0, 1).ToUpper() + itm.Substring(1)).ToArray());
+
+      if (propertyName.Equals("KeepAlive"))
+      {
+        req.GetType().GetProperty(propertyName).SetValue(req, Convert.ToBoolean(headers[name]), null);
+      }
+      else
+      {
+        req.GetType().GetProperty(propertyName).SetValue(req, headers[name], null);
+      }
+
+      headers.Remove(name);
+    }
 
     /// <summary>
     /// Gets the value of the specified <paramref name="key"/>, if the <paramref name="source"/> is a <see cref="System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;"/>.

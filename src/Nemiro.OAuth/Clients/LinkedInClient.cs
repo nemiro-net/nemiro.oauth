@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -106,8 +106,8 @@ namespace Nemiro.OAuth.Clients
     /// <param name="clientSecret">The <b>Secret Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
     public LinkedInClient(string clientId, string clientSecret) : base
     (
-      "https://www.linkedin.com/uas/oauth2/authorization",
-      "https://www.linkedin.com/uas/oauth2/accessToken",
+      "https://www.linkedin.com/oauth/v2/authorization",
+      "https://www.linkedin.com/oauth/v2/accessToken",
       clientId,
       clientSecret
     )
@@ -116,7 +116,7 @@ namespace Nemiro.OAuth.Clients
       base.ScopeSeparator = " ";
       base.DefaultScope = "r_basicprofile r_emailaddress";
       // for more details please see 
-      // https://developer.linkedin.com/documents/authentication#granting
+      // https://developer.linkedin.com/docs/oauth2
     }
 
     /// <summary>
@@ -128,10 +128,7 @@ namespace Nemiro.OAuth.Clients
     /// </returns>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
-      // api documentation: 
-      // https://developer.linkedin.com/apis
-      // https://developer.linkedin.com/documents/profile-api
-      // https://developer.linkedin.com/documents/profile-fields
+      // https://developer.linkedin.com/docs/fields/basic-profile
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
@@ -146,7 +143,7 @@ namespace Nemiro.OAuth.Clients
       // execute the request
       var result = OAuthUtility.Get
       (
-        endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,picture-url,email-address)",
+        endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,formatted-name,picture-url,email-address)",
         accessToken: accessToken,
         headers: new NameValueCollection { { "x-li-format", "json" } }
       );
@@ -156,6 +153,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("id", "UserId", typeof(string));
       map.Add("firstName", "FirstName");
       map.Add("lastName", "LastName");
+      map.Add("formattedName", "DisplayName");
       map.Add("pictureUrl", "Userpic");
       map.Add("emailAddress", "Email");
 

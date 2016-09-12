@@ -87,6 +87,13 @@
           <td><a href="@user.Url" target="_blank">@user.Url</a></td>
         </tr>
       }
+			@if (!String.IsNullOrEmpty(user.Language))
+			{
+				<tr>
+					<th>Language:</th>
+					<td>@user.Language</td>
+				</tr>
+			}
       @if (!String.IsNullOrEmpty(user.Userpic))
       {
         <tr>

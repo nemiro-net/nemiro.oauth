@@ -191,7 +191,7 @@ namespace Nemiro.OAuth.Clients
 
       return OAuthUtility.Post
       (
-        "https://api.dropboxapi.com/oauth2/token/revoke", // /2/auth/token/revoke
+        "https://api.dropboxapi.com/2/auth/token/revoke",
         accessToken: accessToken
       );
     }

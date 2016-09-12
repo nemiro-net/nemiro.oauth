@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,8 +22,6 @@ using System.Collections.Specialized;
 
 namespace Nemiro.OAuth.Clients
 {
-
-  // http://apiok.ru/wiki/pages/viewpage.action?pageId=42476652
 
   /// <summary>
   /// OAuth client for <b>Odnoklassniki</b>.
@@ -542,8 +540,8 @@ namespace Nemiro.OAuth.Clients
     /// <param name="publickKey">The Public Key.</param>
     public OdnoklassnikiClient(string clientId, string clientSecret, string publickKey) : base
     (
-      "https://www.odnoklassniki.ru/oauth/authorize",
-      "http://api.odnoklassniki.ru/oauth/token.do",
+      "https://connect.ok.ru/oauth/authorize",
+      "https://api.ok.ru/oauth/token.do",
       clientId,
       clientSecret
     )
@@ -569,7 +567,7 @@ namespace Nemiro.OAuth.Clients
         { "method", "users.getCurrentUser" },
         { "application_key", this.ApplicationKey },
         { "format", "json" },
-        { "fields", "uid,first_name,last_name,name,gender,birthday,location,pic640x480,email" }
+        { "fields", "uid,first_name,last_name,name,gender,birthday,location,pic_full,email,locale" }
       };
 
       // signature base string
@@ -582,7 +580,7 @@ namespace Nemiro.OAuth.Clients
       parameters["access_token"] = accessToken.Value;
 
       // execute the request
-      var result = OAuthUtility.Post("http://api.odnoklassniki.ru/fb.do", parameters);
+      var result = OAuthUtility.Post("https://api.ok.ru/fb.do", parameters);
 
       // error result
       if (result["error_code"].HasValue)
@@ -603,8 +601,9 @@ namespace Nemiro.OAuth.Clients
       map.Add("name", "DisplayName");
       map.Add("email", "Email");
       map.Add("email", "UserName");
-      map.Add("pic640x480", "Userpic");
+      map.Add("pic_full", "Userpic");
       map.Add("link", "Url");
+      map.Add("locale", "Language");
       map.Add("birthday", "Birthday", typeof(DateTime), @"yyyy\-MM\-dd");
       map.Add
       (

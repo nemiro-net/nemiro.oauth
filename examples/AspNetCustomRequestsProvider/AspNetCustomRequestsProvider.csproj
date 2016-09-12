@@ -48,8 +48,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nemiro.OAuth, Version=1.12.45.2603, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.12-beta2603\lib\net45\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.12.45.2615, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.12\lib\net45\Nemiro.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 // If it works, no need to change the code. 
 // Just use it! ;-)
+
+using System.Collections.Specialized;
 
 namespace Nemiro.OAuth.Clients
 {
@@ -130,7 +132,12 @@ namespace Nemiro.OAuth.Clients
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // execute the request
-      var result = OAuthUtility.Get("https://api.github.com/user", accessToken: accessToken);
+      var result = OAuthUtility.Get
+      (
+        "https://api.github.com/user",
+        accessToken: accessToken,
+        headers: new NameValueCollection { { "Accept", "application/vnd.github.v3+json" } }
+      );
 
       // help: https://developer.github.com/v3/users/#get-the-authenticated-user
 

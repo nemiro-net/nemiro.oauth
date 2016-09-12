@@ -58,8 +58,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth, Version=1.11.4.2477, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.11.2477\lib\net40\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.12.4.2615, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.12\lib\net40\Nemiro.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -2,6 +2,34 @@
 
 All notable changes to **Nemiro.OAuth** will be documented in this file.
 
+## [v1.12] - 2016-09-12
+
+This release includes upgrades API, used by clients.
+And also general improvements and enhancements.
+
+### Added
+
+* Added custom state into authorization requests;
+* Added the ability to create custom providers for manage authorization requests;
+* Added automatic serialization to JSON and XML for `RequestBody`;
+* Added the ability to override the HTTP headers: `Accept`, `Connection`, `Expect`, `Transfer-Encoding` and `User-Agent`.
+
+### Changed
+
+* Updated `DropboxClient` to API v2;
+* Updated `FacebookClient` to Graph API v2.7;
+* Updated `GoogleClient` to API v3 and v4 for token;
+* Updated `VkontakteClient` to API v5.53;
+* Updated endpoints for `LinkedinClient` and `OdnoklassnikiClient`;
+* Changed `HttpParameterType`. Added item `None` into the first position, the remaining elements are shifted one step;
+* `HttpParameterCollection.ToStringParameters` only for Url and Unformed parameters;
+* `HttpParameterCollection.ToRequestBody` is discarded.
+
+### Thanks
+* [filmico](https://github.com/filmico)
+* [rrivani](https://github.com/rrivani)
+* [Mike Norgate](https://github.com/mikenorgate)
+
 ## [v1.11.2477] - 2016-08-08
 
 This release includes minor fixes.
@@ -75,7 +103,7 @@ This version includes fixes and enhancements.
 * Fixed typo (internal): `Requet` -> `Requests`;
 
 ### Thanks
-* [Mike Norgate](https://github.com/oesoftware)
+* [Mike Norgate](https://github.com/mikenorgate)
 * [Steve Barron](https://github.com/sdbarron)
 
 ## [v1.8] - 2015-03-08

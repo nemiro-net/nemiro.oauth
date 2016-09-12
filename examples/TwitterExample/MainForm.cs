@@ -197,7 +197,7 @@ namespace TwitterExample
       (
         Settings.ConsumerKey, 
         Settings.ConsumerSecret
-        //, true // auto logout
+        , true // auto logout
       );
 
       login.Owner = this;

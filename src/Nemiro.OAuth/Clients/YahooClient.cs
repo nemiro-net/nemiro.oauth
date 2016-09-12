@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -143,6 +143,7 @@ namespace Nemiro.OAuth.Clients
       map.Add("familyName", "LastName");
       map.Add("nickname", "DisplayName");
       map.Add("profileUrl", "Url");
+      map.Add("lang", "Language");
       map.Add("birthdate", "Birthday", typeof(DateTime), @"MM\/dd\/yyyy");
       map.Add
       (

@@ -369,6 +369,22 @@ namespace TestProject1
     }
 
     [TestMethod]
+    public void HttpHeadersTest()
+    {
+      var result = OAuthUtility.Post
+      (
+        "http://api.foxtools.ru/v2/Hash",
+        headers: new NameValueCollection
+        {
+          { "Accept", "application/xml" },
+          { "User-Agent", "FireBox" },
+          { "X-XXX", "XXX" },
+          { "Content-Type", "custom/type" }
+        }
+      );
+    }
+
+    [TestMethod]
     public void ExecuteRequestTest()
     {
       Console.WriteLine("Test GET");

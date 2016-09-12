@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -333,15 +333,17 @@ namespace Nemiro.OAuth.Clients
     /// <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
     public GoogleClient(string clientId, string clientSecret) : base
     (
-      "https://accounts.google.com/o/oauth2/auth",
-      "https://www.googleapis.com/oauth2/v3/token",
+      "https://accounts.google.com/o/oauth2/v2/auth",
+      "https://www.googleapis.com/oauth2/v4/token",
       clientId,
       clientSecret
     )
     {
-      // visit: https://developers.google.com/+/api/oauth?#login-scopes
+      // https://developers.google.com/identity/protocols/OAuth2WebServer
+
+      // visit: https://developers.google.com/+/web/api/rest/oauth#login-scopes
       base.ScopeSeparator = " ";
-      base.DefaultScope = "https://www.googleapis.com/auth/userinfo.email";
+      base.DefaultScope = "email";
       // features for access token
       base.SupportRevokeToken = true;
       base.SupportRefreshToken = true;
@@ -361,19 +363,20 @@ namespace Nemiro.OAuth.Clients
       // execute the request
       var result = OAuthUtility.Get
       (
-        "https://www.googleapis.com/oauth2/v1/userinfo?alt=json", 
+        "https://www.googleapis.com/oauth2/v3/userinfo",
         accessToken: accessToken
       );
 
       // field mapping
       var map = new ApiDataMapping();
-      map.Add("id", "UserId", typeof(string));
+      map.Add("sub", "UserId", typeof(string));
       map.Add("given_name", "FirstName");
       map.Add("family_name", "LastName");
       map.Add("name", "DisplayName");
       map.Add("email", "Email");
       map.Add("link", "Url");
       map.Add("picture", "Userpic");
+      map.Add("locale", "Language");
       map.Add("birthday", "Birthday", typeof(DateTime), @"MM\/dd\/yyyy");
       map.Add
       (

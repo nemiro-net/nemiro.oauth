@@ -125,8 +125,11 @@ namespace Nemiro.OAuth
     public UserInfo(UniValue source, ApiDataMapping mapping)
     {
       if (mapping == null || !source.HasValue) { return; }
+
       this.Items = source;
+
       var t = typeof(UserInfo);
+
       foreach (var p in t.GetProperties())
       {
         var item = mapping.FirstOrDefault(itm => itm.DestinationName.Equals(p.Name, StringComparison.OrdinalIgnoreCase));

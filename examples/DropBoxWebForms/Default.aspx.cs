@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -51,22 +52,28 @@ namespace DropBoxWebForms
 
       var token = Session["AccessToken"].ToString();
 
-      string serverPath = System.IO.Path.GetFileName(FileUpload1.FileName);
+      string serverPath = "/" + System.IO.Path.GetFileName(FileUpload1.FileName);
 
       // you can upload to any folder:
       // serverPath = "/folder_name/" + System.IO.Path.GetFileName(FileUpload1.FileName);
       // folder_name - should exist in dropbox
 
-      var result = OAuthUtility.Put
+      var fileInfo = UniValue.Empty;
+      fileInfo["path"] = serverPath;
+      fileInfo["mode"] = "add";
+      fileInfo["autorename"] = true;
+      fileInfo["mute"] = false;
+
+      var result = OAuthUtility.Post
       (
-        "https://api-content.dropbox.com/1/files_put/auto/",
+        "https://content.dropboxapi.com/2/files/upload",
         new HttpParameterCollection
         { 
-          { "access_token", token },
-          { "overwrite", "true" },
-          { "path", serverPath },
           { FileUpload1.PostedFile } 
-        }
+        },
+        headers: new NameValueCollection { { "Dropbox-API-Arg", fileInfo.ToString() } },
+        contentType: "application/octet-stream",
+        authorization: String.Format("Bearer {0}", token)
       );
 
       if (result.StatusCode != 200)
@@ -76,12 +83,37 @@ namespace DropBoxWebForms
       }
       else
       {
-        // ok
-        hlResult.NavigateUrl = String.Format("https://api-content.dropbox.com/1/files/auto{0}?access_token={1}", result["path"], token);
-        hlResult.Text = hlResult.NavigateUrl;
+        // get shared link
+        result = OAuthUtility.Post
+        (
+          "https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings",
+          parameters: new HttpParameterCollection
+          {
+            new
+            {
+              path = serverPath,
+              settings = new
+              {
+                requested_visibility = "public"
+              }
+            }
+          },
+          authorization: String.Format("Bearer {0}", token),
+          contentType: "application/json"
+        );
 
-        pnlSuccess.Visible = true;
-        pnlUpload.Visible = false;
+        if (result.StatusCode != 200)
+        {
+          Response.Write(result["error"].ToString());
+        }
+        else
+        {
+          hlResult.NavigateUrl = result["url"].ToString();
+          hlResult.Text = hlResult.NavigateUrl;
+
+          pnlSuccess.Visible = true;
+          pnlUpload.Visible = false;
+        }
       }
     }
 

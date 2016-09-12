@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -564,7 +564,8 @@ namespace Nemiro.OAuth.Clients
       var parameters = new NameValueCollection
       { 
         { "user_ids", accessToken["user_id"].ToString() },
-        { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" }
+        { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" },
+        { "v", "5.53" }
       };
 
       // execute the request
@@ -582,7 +583,7 @@ namespace Nemiro.OAuth.Clients
 
       // field mapping
       var map = new ApiDataMapping();
-      map.Add("uid", "UserId", typeof(string));
+      map.Add("id", "UserId", typeof(string));
       map.Add("first_name", "FirstName");
       map.Add("last_name", "LastName");
       map.Add("domain", "UserName");

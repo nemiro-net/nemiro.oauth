@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014, 2016. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -151,25 +151,10 @@ namespace Nemiro.OAuth.Clients
       var map = new ApiDataMapping();
       map.Add("username", "UserName");
       map.Add("name", "DisplayName");
-      map.Add
-      (
-        "sex", "Sex",
-        delegate(UniValue value)
-        {
-          if (value.Equals("Male", StringComparison.OrdinalIgnoreCase))
-          {
-            return Sex.Male;
-          }
-          else if (value.Equals("Female", StringComparison.OrdinalIgnoreCase))
-          {
-            return Sex.Female;
-          }
-          return Sex.None;
-        }
-      );
+      map.Add("url", "Url");
 
       // parse the server response and returns the UserInfo instance
-      return new UserInfo(UniValue.Empty, map);
+      return new UserInfo(result["developers"][0], map);
     }
 
     /// <summary>
