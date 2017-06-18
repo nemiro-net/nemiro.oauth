@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015, 2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,11 @@ namespace Nemiro.OAuth
     #region ..fields & properties..
 
     /// <summary>
+    /// Gets version number of the OAuth protocol.
+    /// </summary>
+    public abstract Version Version { get; }
+
+    /// <summary>
     /// Unique provider name.
     /// </summary>
     /// <remarks>
@@ -54,13 +59,7 @@ namespace Nemiro.OAuth
     /// <remarks>
     /// <para>This property is implemented at the protocol level (<see cref="OAuthClient"/> &amp; <see cref="OAuth2Client"/>).</para>
     /// </remarks>
-    public virtual string AuthorizationUrl
-    {
-      get
-      {
-        throw new NotSupportedException();
-      }
-    }
+    public abstract string AuthorizationUrl { get; }
 
     private AccessToken _AccessToken = null;
 
@@ -75,6 +74,7 @@ namespace Nemiro.OAuth
         {
           this.GetAccessToken();
         }
+
         return _AccessToken;
       }
       protected set
@@ -94,6 +94,7 @@ namespace Nemiro.OAuth
         {
           return ((AccessToken)this.AccessToken).Value;
         }
+
         return null;
       }
     }
@@ -111,10 +112,11 @@ namespace Nemiro.OAuth
       }
       set
       {
-        if (_AuthorizationCode != value)
+        if (_AuthorizationCode != value && (this.Version.Major != 2 || (this.Version.Major == 2 && !this.Get<OAuth2Client>().ResponseType.IsToken)))
         {
           _AccessToken = null;
         }
+
         _AuthorizationCode = value;
       }
     }
@@ -145,28 +147,6 @@ namespace Nemiro.OAuth
     /// </summary>
     protected string AccessTokenUrl { get; set; }
 
-    /// <summary>
-    /// Gets the version of the OAuth protocol.
-    /// </summary>
-    public string Version
-    {
-      get
-      {
-        if (this.GetType().IsSubclassOf(typeof(OAuthClient)))
-        {
-          return "1.0";
-        }
-        else if (this.GetType().IsSubclassOf(typeof(OAuth2Client)))
-        {
-          return "2.0";
-        }
-        else
-        {
-          return "0.0";
-        }
-      }
-    }
-
     private string _ReturnUrl = "";
 
     /// <summary>
@@ -188,6 +168,7 @@ namespace Nemiro.OAuth
         {
           this.AuthorizationCode = "";
         }
+
         _ReturnUrl = value;
       }
     }
@@ -354,7 +335,9 @@ namespace Nemiro.OAuth
     public OAuthBase Clone(NameValueCollection parameters, string returnUrl)
     {
       OAuthBase result = this.Clone() as OAuthBase;
+
       if (returnUrl != null) { result.ReturnUrl = returnUrl; }
+
       if (parameters != null) 
       {
         if (result.Parameters.Count <= 0)
@@ -369,6 +352,7 @@ namespace Nemiro.OAuth
           }
         }
       }
+
       return result;
     }
 
@@ -429,6 +413,34 @@ namespace Nemiro.OAuth
       }
 
       return value;
+    }
+
+    /// <summary>
+    /// Sets an access token.
+    /// </summary>
+    /// <param name="value">Access token to set.</param>
+    public void SetAccessToken(AccessToken value)
+    {
+      if (this.Version.Major == 1)
+      {
+        throw new NotSupportedException("Cannot set an access token. Not supported in the first version of the protocol.");
+      }
+      else if (this.Version.Major == 2 && !this.Get<OAuth2Client>().ResponseType.IsToken)
+      {
+        throw new NotSupportedException("Access token can set only if the ResponseType property is set to \"token\".");
+      }
+
+      this.AccessToken = value;
+      this.AccessToken.StatusCode = 200;
+    }
+
+    /// <summary>
+    /// Returns the strict type of the current instance of the class.
+    /// </summary>
+    /// <typeparam name="T">A type derived from <see cref="OAuthBase"/>, which should be returned.</typeparam>
+    public T Get<T>() where T : OAuthBase
+    {
+      return (T)this;
     }
 
     #endregion

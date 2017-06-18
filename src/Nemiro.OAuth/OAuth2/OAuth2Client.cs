@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015, 2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.Specialized;
 using Nemiro.OAuth.Extensions;
+using System.Text;
 
 namespace Nemiro.OAuth
 {
@@ -32,6 +33,19 @@ namespace Nemiro.OAuth
   {
 
     #region ..fields & properties..
+
+    private readonly Version _Version = new Version(2, 0);
+
+    /// <summary>
+    /// Gets version number of the OAuth protocol.
+    /// </summary>
+    public override Version Version
+    {
+      get
+      {
+        return this._Version;
+      }
+    }
 
     /// <summary>
     /// The scope of the access request.
@@ -54,6 +68,11 @@ namespace Nemiro.OAuth
     public GrantType GrantType { get; set; }
 
     /// <summary>
+    /// Gets or sets response type.
+    /// </summary>
+    public ResponseType ResponseType { get; set; }
+
+    /// <summary>
     /// Gets or sets <b>username</b> if <see cref="GrantType"/> is <b>password</b> or <b>client_credentials</b>.
     /// </summary>
     public string Username { get; set; }
@@ -70,22 +89,26 @@ namespace Nemiro.OAuth
     {
       get
       {
-        string result = this.AuthorizeUrl;
-        result += result.Contains("?") ? "&" : "?";
-        result += String.Format("client_id={0}&response_type=code", OAuthUtility.UrlEncode(this.ApplicationId));
-        result += String.Format("&state={0}", OAuthUtility.UrlEncode(this.State));
+        var result = new StringBuilder();
+
+        result.Append(this.AuthorizeUrl);
+        result.Append(this.AuthorizeUrl.Contains("?") ? "&" : "?");
+        result.AppendFormat("client_id={0}&response_type={1}", OAuthUtility.UrlEncode(this.ApplicationId), this.ResponseType);
+        result.AppendFormat("&state={0}", OAuthUtility.UrlEncode(this.State));
 
         // add default scope
         string scope = this.DefaultScope;
 
         // add custom scope
-        if (!String.IsNullOrEmpty(this.Scope))
+        if (!string.IsNullOrEmpty(this.Scope))
         {
           var scopeToAdd = new List<string>();
-          if (!String.IsNullOrEmpty(scope))
+
+          if (!string.IsNullOrEmpty(scope))
           {
             var scope1 = scope.Split(this.ScopeSeparator.ToCharArray());
             var scope2 = this.Scope.Split(this.ScopeSeparator.ToCharArray());
+
             foreach (var s in scope2)
             {
               if (!scope1.Any(itm => itm.Equals(s, StringComparison.OrdinalIgnoreCase)))
@@ -93,35 +116,37 @@ namespace Nemiro.OAuth
                 scopeToAdd.Add(s);
               }
             }
+
             if (scopeToAdd.Count > 0) { scope += this.ScopeSeparator; }
           }
-          else 
+          else
           {
             // Fix. Thanks to @codexboise ( https://github.com/codexboise ) // v1.8
             scope = this.Scope;
           }
-          scope += String.Join(this.ScopeSeparator, scopeToAdd.ToArray());
+
+          scope += string.Join(this.ScopeSeparator, scopeToAdd.ToArray());
         }
 
         // add scope to url
-        if (!String.IsNullOrEmpty(scope))
+        if (!string.IsNullOrEmpty(scope))
         {
-          result += String.Format("&scope={0}", OAuthUtility.UrlEncode(scope));
+          result.AppendFormat("&scope={0}", OAuthUtility.UrlEncode(scope));
         }
 
         // add return url to url
-        if (!String.IsNullOrEmpty(this.ReturnUrl))
+        if (!string.IsNullOrEmpty(this.ReturnUrl))
         {
-          result += String.Format("&redirect_uri={0}", OAuthUtility.UrlEncode(this.ReturnUrl));
+          result.AppendFormat("&redirect_uri={0}", OAuthUtility.UrlEncode(this.ReturnUrl));
         }
 
         // other parameters
         if (this.Parameters != null && this.Parameters.Count > 0)
         {
-          result += "&" + this.Parameters.ToParametersString("&");
+          result.Append("&").Append(this.Parameters.ToParametersString("&"));
         }
 
-        return result;
+        return result.ToString();
       }
     }
 
@@ -138,6 +163,7 @@ namespace Nemiro.OAuth
     public OAuth2Client(string authorizeUrl, string accessTokenUrl, string clientId, string clientSecret) : base(authorizeUrl, accessTokenUrl, clientId, clientSecret) 
     {
       this.GrantType = GrantType.AuthorizationCode;
+      this.ResponseType = ResponseType.Code;
     }
 
     #endregion
@@ -151,22 +177,23 @@ namespace Nemiro.OAuth
     protected override void GetAccessToken()
     {
       // authorization code is required for request
-      if (this.GrantType.IsAuthorizationCode && String.IsNullOrEmpty(this.AuthorizationCode))
+      if (this.GrantType.IsAuthorizationCode && string.IsNullOrEmpty(this.AuthorizationCode))
       {
         throw new ArgumentNullException("AuthorizationCode");
       }
       else if (this.GrantType.IsPassword || this.GrantType.IsClientCredentials)
       {
-        if (String.IsNullOrEmpty(this.Username))
+        if (string.IsNullOrEmpty(this.Username))
         {
           throw new ArgumentNullException("username");
         }
-        if (String.IsNullOrEmpty(this.Password))
+
+        if (string.IsNullOrEmpty(this.Password))
         {
           throw new ArgumentNullException("password");
         }
       }
-
+      
       // set default access token value
       this.AccessToken = Nemiro.OAuth.AccessToken.Empty;
       
@@ -192,15 +219,14 @@ namespace Nemiro.OAuth
       }
       else
       {
-        throw new NotSupportedException(String.Format("GrantType '{0}' is not supported. Please write the code ;)", this.GrantType));
+        throw new NotSupportedException(string.Format("GrantType '{0}' is not supported. Please write the code ;)", this.GrantType));
       }
       
       parameters.Add("client_id", this.ApplicationId);
       parameters.Add("client_secret", this.ApplicationSecret);
       parameters.Add("grant_type", this.GrantType);
-
-
-      if (!String.IsNullOrEmpty(this.ReturnUrl))
+      
+      if (!string.IsNullOrEmpty(this.ReturnUrl))
       {
         parameters.Add("redirect_uri", this.ReturnUrl);
       }
@@ -258,7 +284,7 @@ namespace Nemiro.OAuth
         { "refresh_token", token.RefreshToken }
       };
 
-      /*if (!String.IsNullOrEmpty(token.TokenType) && token.TokenType.Equals(AccessTokenType.Bearer, StringComparison.OrdinalIgnoreCase))
+      /*if (!string.IsNullOrEmpty(token.TokenType) && token.TokenType.Equals(AccessTokenType.Bearer, StringComparison.OrdinalIgnoreCase))
       {
         authorization = new HttpAuthorization(AuthorizationType.Bearer, accessToken.Value);
       }

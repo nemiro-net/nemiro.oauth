@@ -1002,11 +1002,10 @@ namespace Nemiro.OAuth
         // get request body 
         byte[] b = this.GetRequestBody(req.ContentType, bufferSize);
 
+#if NET35
         // fix for .NET Framework 2.0/3.0/3.5
-        if (Environment.Version.Major < 4)
-        {
-          req.ContentLength = b.Length;
-        }
+        req.ContentLength = b.Length;
+#endif
 
         req.GetRequestStream().Write(b, 0, b.Length);
 

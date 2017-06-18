@@ -72,6 +72,7 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       this.TokenSecret = info.GetString("TokenSecret");
     }
 
@@ -101,7 +102,9 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       info.AddValue("TokenSecret", this.TokenSecret);
+
       base.GetObjectData(info, context);
     }
 

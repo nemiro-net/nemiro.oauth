@@ -39,6 +39,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_consumer_key")) { return null; }
+
         return base["oauth_consumer_key"].ToString();
       }
       set
@@ -60,6 +61,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_token")) { return null; }
+
         return base["oauth_token"].ToString();
       }
       set
@@ -81,6 +83,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_signature_method")) { return null; }
+
         return base["oauth_signature_method"].ToString();
       }
       set
@@ -115,6 +118,7 @@ namespace Nemiro.OAuth
         {
           base["oauth_nonce"] = OAuthUtility.GetRandomKey();
         }
+
         return base["oauth_nonce"].ToString();
       }
       set
@@ -134,6 +138,7 @@ namespace Nemiro.OAuth
         {
           base["oauth_timestamp"] = OAuthUtility.GetRandomKey();
         }
+
         return base["oauth_timestamp"].ToString();
       }
       set
@@ -165,6 +170,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_signature")) { return null; }
+
         return base["oauth_signature"].ToString();
       }
       internal set
@@ -181,6 +187,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_callback")) { return null; }
+
         return base["oauth_callback"].ToString();
       }
       set
@@ -197,6 +204,7 @@ namespace Nemiro.OAuth
       get
       {
         if (!base.Value.ContainsKey("oauth_verifier")) { return null; }
+
         return base["oauth_verifier"].ToString();
       }
       internal set
@@ -249,6 +257,7 @@ namespace Nemiro.OAuth
     internal override void Build(string httpMethod, string url, string contentType, HttpParameterCollection parameters)
     {
       NameValueCollection param = null;
+
       if (parameters != null)
       {
         if (!String.IsNullOrEmpty(contentType) && contentType.ToLower().Contains("multipart/form-data"))
@@ -260,6 +269,7 @@ namespace Nemiro.OAuth
           param = parameters.ToNameValueCollection();
         }
       }
+
       this.Signature = new OAuthSignature
       (
         this.SignatureMethod.ToString(),
@@ -308,6 +318,7 @@ namespace Nemiro.OAuth
       if (url == null) { throw new ArgumentNullException("url"); }
 
       var param = new NameValueCollection();
+
       if (parameters != null) { param.Add(parameters); }
 
       // append the authorization headers
@@ -319,18 +330,21 @@ namespace Nemiro.OAuth
 
       // append the query parameters
       string queryString = url.GetComponents(UriComponents.Query, UriFormat.Unescaped);
+
       if (!String.IsNullOrEmpty(queryString))
       {
         foreach (string q in queryString.Split('&'))
         {
           string[] p = q.Split('=');
           string key = p.First(), value = (p.Length > 1 ? p.Last() : "");
+
           param.Add(key, value);
         }
       }
 
       // sorting and build base string of the signature
       StringBuilder signBaseString = new StringBuilder();
+
       foreach (var itm in param.Sort().ToKeyValuePairCollection())
       {
         //if (itm.Key.Equals("oauth_verifier", StringComparison.OrdinalIgnoreCase)) { continue; }

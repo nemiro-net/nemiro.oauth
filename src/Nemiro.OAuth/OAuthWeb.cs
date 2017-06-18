@@ -724,7 +724,7 @@ namespace Nemiro.OAuth
         client.AuthorizationCode = code;
         result.RequestId = requestId;
         result.ClientName = request.ClientName;
-        result.ProtocolVersion = client.Version;
+        result.ProtocolVersion = client.Version.ToString(2);
         result.AccessToken = client.AccessToken;
         result.State = request.State;
 

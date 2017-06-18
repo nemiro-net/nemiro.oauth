@@ -37,7 +37,7 @@ namespace Nemiro.OAuth
     /// <summary>
     /// Gets or sets the HTTP status code of the output returned to the client.
     /// </summary>
-    public int StatusCode { get; protected set; }
+    public int StatusCode { get; protected internal set; }
 
     /// <summary>
     /// Gets a value indicating whether the current request result is successful or not.

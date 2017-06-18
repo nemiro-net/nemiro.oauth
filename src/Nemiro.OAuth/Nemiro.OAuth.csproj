@@ -1,159 +1,80 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nemiro.OAuth</RootNamespace>
+    <Version>1.13.0.2795</Version>
+    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462</TargetFrameworks>
     <AssemblyName>Nemiro.OAuth</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Nemiro.OAuth.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Nemiro.OAuth.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <GenerateAssemblyConfigurationAttribute>False</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>False</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>True</GenerateAssemblyProductAttribute>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Nemiro.OAuth.snk</AssemblyOriginatorKeyFile>
+    <Description>Nemiro.OAuth is a class library for authorization via OAuth protocol in .NET Framework.
+
+The library provides mechanisms for implementing OAuth clients, and also contains a ready-to-use clients for popular websites.
+
+Nemiro.OAuth is licensed under the Apache License Version 2.0.
+
+Features
+
+* Support OAuth 1.0 and 2.0;
+* Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number;
+* Ready-to-Use OAuth clients for: Amazon, Assembla, CodeProject, Dropbox, Facebook, Foursquare, GitHub, Google, Instagram, LinkedIn, Microsoft Live, Mail.Ru, Odnoklassniki, SoundCloud, SourceForge, Tumblr, Twitter, VKontakte, Yahoo! and Yandex;
+* Base classes to create additional clients;
+* Basic principles of operation with API of different providers;
+* Unified mechanisms to facilitate integration with a variety of API.
+
+Less code, more functionality!
+
+Demo: http://demo-oauth.nemiro.net/</Description>
+    <Authors>Aleksey Nemiro</Authors>
+    <Copyright>Copyright © Aleksey Nemiro, 2014-2017</Copyright>
+    <PackageVersion>1.13.0-alpha17</PackageVersion>
+    <PackageId>Nemiro.OAuth</PackageId>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>http://oauth.nemiro.net/?topic=license.html</PackageLicenseUrl>
+    <PackageProjectUrl>http://oauth.nemiro.net/</PackageProjectUrl>
+    <PackageIconUrl>http://content.nemiro.net/images/oauth64.png</PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags>OAuth;VB.NET;C#;WebForms;MVC;ASP.NET;WinForms;Windows</PackageTags>
+    <RepositoryUrl>https://github.com/alekseynemiro/nemiro.oauth.dll</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
+
+  <PropertyGroup>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\Nemiro.OAuth.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <FrameworkPathOverride>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
+  </PropertyGroup>
+  
+  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="dotnet pack --no-build --output F:/Nuget --configuration $(Configuration)" />
+  </Target>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net35' ">
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Reference Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Web.dll" />
+    <Reference Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\System.Web.Extensions.dll" />
+  </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AccessToken.cs" />
-    <Compile Include="AuthorizationResult.cs" />
-    <Compile Include="ClientName.cs" />
-    <Compile Include="Clients\GoogleClient.cs" />
-    <Compile Include="Clients\AmazonClient.cs" />
-    <Compile Include="Clients\LiveClient.cs" />
-    <Compile Include="Clients\GitHubClient.cs" />
-    <Compile Include="Clients\DropboxClient.cs" />
-    <Compile Include="Clients\FoursquareClient.cs" />
-    <Compile Include="Clients\SoundCloudClient.cs" />
-    <Compile Include="Clients\SourceForgeClient.cs" />
-    <Compile Include="Clients\YahooClient.cs" />
-    <Compile Include="Clients\LinkedInClient.cs" />
-    <Compile Include="Clients\TumblrClient.cs" />
-    <Compile Include="Clients\InstagramClient.cs" />
-    <Compile Include="Clients\CodeProjectClient.cs" />
-    <Compile Include="Clients\AssemblaClient.cs" />
-    <Compile Include="DefaultOAuthRequestsProvider.cs" />
-    <Compile Include="Enums\AccessTokenType.cs" />
-    <Compile Include="Enums\AuthorizationType.cs" />
-    <Compile Include="Enums\HttpParameterType.cs" />
-    <Compile Include="Enums\Sex.cs" />
-    <Compile Include="Enums\UrlEncodingType.cs" />
-    <Compile Include="Exceptions\AccessTokenException.cs" />
-    <Compile Include="Exceptions\ApiException.cs" />
-    <Compile Include="Clients\FacebookClient.cs" />
-    <Compile Include="Clients\OdnoklassnikiClient.cs" />
-    <Compile Include="Delegates.cs" />
-    <Compile Include="ErrorResult.cs" />
-    <Compile Include="Exceptions\AccessDeniedException.cs" />
-    <Compile Include="Exceptions\AuthorizationException.cs" />
-    <Compile Include="Exceptions\ClientIsNotRegisteredException.cs" />
-    <Compile Include="EmptyResult.cs" />
-    <Compile Include="Exceptions\DuplicateProviderException.cs" />
-    <Compile Include="Exceptions\MultipleRequestBodyException.cs" />
-    <Compile Include="Exceptions\NullHttpContextException.cs" />
-    <Compile Include="Exceptions\RequestException.cs" />
-    <Compile Include="Exceptions\UnknownProviderException.cs" />
-    <Compile Include="Exceptions\IncompatibleHttpParametersException.cs" />
-    <Compile Include="HttpAuthorization.cs" />
-    <Compile Include="HttpFile.cs" />
-    <Compile Include="HttpParameter.cs" />
-    <Compile Include="HttpParameterCollection.cs" />
-    <Compile Include="HttpParameterValue.cs" />
-    <Compile Include="HttpRequestBody.cs" />
-    <Compile Include="IOAuthRequestsProvider.cs" />
-    <Compile Include="StreamWriteEventArgs.cs" />
-    <Compile Include="OAuthBase.cs" />
-    <Compile Include="OAuth2\OAuth2AccessToken.cs" />
-    <Compile Include="GrantType.cs" />
-    <Compile Include="OAuthUtility.cs" />
-    <Compile Include="OAuth2\OAuth2Client.cs" />
-    <Compile Include="Extensions\NameValueCollectionExtension.cs" />
-    <Compile Include="OAuthRequest.cs" />
-    <Compile Include="OAuthWeb.cs" />
-    <Compile Include="OAuth\OAuthAccessToken.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RequestResult.cs" />
-    <Compile Include="OAuth\OAuthAuthorization.cs" />
-    <Compile Include="Clients\MailRuClient.cs" />
-    <Compile Include="OAuth\OAuthClient.cs" />
-    <Compile Include="OAuthManager.cs" />
-    <Compile Include="Enums\SignatureMethods.cs" />
-    <Compile Include="OAuth\OAuthSignature.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OAuth\OAuthRequestToken.cs" />
-    <Compile Include="Clients\TwitterClient.cs" />
-    <Compile Include="Clients\VkontakteClient.cs" />
-    <Compile Include="Clients\YandexClient.cs" />
-    <Compile Include="HttpUrlParameter.cs" />
-    <Compile Include="UniValuePropertyDescriptor.cs" />
-    <Compile Include="UniValueTypeDescriptor.cs" />
-    <Compile Include="UniTypedValue.cs" />
-    <Compile Include="UniValue.cs" />
-    <Compile Include="UniValueCollection.cs" />
-    <Compile Include="UserInfo.cs" />
-    <Compile Include="ApiDataMapping.cs" />
-    <Compile Include="ApiDataMappingItem.cs" />
-    <Compile Include="HttpFormParameter.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="LICENSE" />
-    <None Include="Nemiro.OAuth.snk" />
-    <None Include="Resources\aleksey.nemiro.gif" />
-    <None Include="Resources\mediakit.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

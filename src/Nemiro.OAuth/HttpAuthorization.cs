@@ -137,6 +137,7 @@ namespace Nemiro.OAuth
       if (regex.IsMatch(source))
       {
         var mc = regex.Matches(source);
+
         foreach (Match m in mc)
         {
           this.Value.Add(m.Groups["key"].Value.Trim(), System.Web.HttpUtility.UrlDecode(m.Groups["value"].Value.Trim()));

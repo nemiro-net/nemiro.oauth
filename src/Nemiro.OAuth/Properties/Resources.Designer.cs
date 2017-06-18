@@ -63,28 +63,20 @@ namespace Nemiro.OAuth.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap alekseynemiro {
+        internal static System.Drawing.Bitmap aleksey_nemiro {
             get {
-                object obj = ResourceManager.GetObject("alekseynemiro", resourceCulture);
+                object obj = ResourceManager.GetObject("aleksey_nemiro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на **Aleksey Sergeevich Nemiro** is a Russian developer of applications and websites, 
-        ///author of articles on programming and information technology.
-        ///
-        ///Aleksey was born on October 3, 1983 in the city of Vladivostok (Primorsky Krai, Russia).
-        ///In 2009, Aleksey migrated to the city of Yoshkar-Ola (Mari El, Russia).
-        ///
-        ///Started programming in 1998 on the G-Basic and QBasic.
-        ///
-        ///At various times worked with programming languages and technologies: 
-        ///Visaul Basic, Delphi, C, Visual C++, Java, PHP, ASP VBScript and JSc [остаток строки не уместился]&quot;;.
+        ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static string mediakit {
+        internal static byte[] mediakit {
             get {
-                return ResourceManager.GetString("mediakit", resourceCulture);
+                object obj = ResourceManager.GetObject("mediakit", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

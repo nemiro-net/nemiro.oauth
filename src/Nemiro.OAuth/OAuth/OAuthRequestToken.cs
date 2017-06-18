@@ -100,7 +100,8 @@ namespace Nemiro.OAuth
       _OAuthCallbackConfirmed = Convert.ToBoolean(base["oauth_callback_confirmed"]);
       _AuthorizationUrl = authorizeUrl;
       _AuthorizationUrl += _AuthorizationUrl.EndsWith("?") ? "&" : "?";
-      _AuthorizationUrl += String.Format("oauth_token={0}", OAuthUtility.UrlEncode(_OAuthToken));
+      _AuthorizationUrl += string.Format("oauth_token={0}", OAuthUtility.UrlEncode(_OAuthToken));
+
       if (parameters != null && parameters.Count > 0)
       {
         _AuthorizationUrl += "&" + parameters.ToParametersString("&");
@@ -127,13 +128,13 @@ namespace Nemiro.OAuth
     /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo"/> with data.</param>
     /// <param name="context">The <see cref="System.Runtime.Serialization.StreamingContext"/> for this serialization.</param>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    protected OAuthRequestToken(SerializationInfo info, StreamingContext context)
-      : base(info, context)
+    protected OAuthRequestToken(SerializationInfo info, StreamingContext context) : base(info, context)
     {
       if (info == null)
       {
         throw new ArgumentNullException("info");
       }
+
       _OAuthToken = info.GetString("OAuthToken");
       _OAuthTokenSecret = info.GetString("OAuthTokenSecret");
       _AuthorizationUrl = info.GetString("AuthorizationUrl");
@@ -153,10 +154,12 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       info.AddValue("OAuthToken", this.OAuthToken);
       info.AddValue("OAuthTokenSecret", this.OAuthTokenSecret);
       info.AddValue("AuthorizationUrl", this.AuthorizationUrl);
       info.AddValue("OAuthCallbackConfirmed", this.OAuthCallbackConfirmed);
+
       base.GetObjectData(info, context);
     }
 

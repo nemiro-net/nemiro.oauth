@@ -123,7 +123,9 @@ namespace Nemiro.OAuth
 
       // value
       var r = (T)Activator.CreateInstance(typeof(T), true);
+
       r.Value = value;
+
       return r;
     }
 
@@ -171,7 +173,9 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       info.AddValue("Value", this.Value);
+
       base.GetObjectData(info, context);
     }
 

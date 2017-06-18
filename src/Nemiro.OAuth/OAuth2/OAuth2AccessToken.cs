@@ -89,6 +89,7 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       this.ExpiresIn = info.GetInt64("ExpiresIn");
       this.RefreshToken = info.GetString("RefreshToken");
       this.Scope = info.GetString("Scope");
@@ -102,23 +103,28 @@ namespace Nemiro.OAuth
     public OAuth2AccessToken(RequestResult result) : base(result)
     {
       this.Value = result["access_token"].ToString();
+
       if (result.ContainsKey("expires_in"))
       {
         this.ExpiresIn = Convert.ToInt64(result["expires_in"]);
       }
+
       // todo: think
       /*if (result.ContainsKey("expires"))
       {
         this.ExpiresIn = Convert.ToInt64(result["expires"]);
       }*/
+
       if (result.ContainsKey("refresh_token") && result["refresh_token"].HasValue)
       {
         this.RefreshToken = result["refresh_token"].ToString();
       }
+
       if (result.ContainsKey("scope") && result["scope"].HasValue)
       {
         this.Scope = result["scope"].ToString();
       }
+
       if (result.ContainsKey("token_type") && result["token_type"].HasValue)
       {
         this.TokenType = result["token_type"].ToString();
@@ -140,10 +146,12 @@ namespace Nemiro.OAuth
     public OAuth2AccessToken(string accessTolen, string refreshToken, string tokenType) : base()
     {
       this["access_token"] = this.Value = accessTolen;
+
       if (!String.IsNullOrEmpty(refreshToken))
       {
         this["refresh_token"] = this.RefreshToken = refreshToken;
       }
+
       if (!String.IsNullOrEmpty(tokenType))
       {
         this["token_type"] = this.TokenType = tokenType;
@@ -166,10 +174,12 @@ namespace Nemiro.OAuth
       {
         throw new ArgumentNullException("info");
       }
+
       info.AddValue("ExpiresIn", this.ExpiresIn);
       info.AddValue("RefreshToken", this.RefreshToken);
       info.AddValue("Scope", this.Scope);
       info.AddValue("TokenType", this.TokenType);
+
       base.GetObjectData(info, context);
     }
 

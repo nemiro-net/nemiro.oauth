@@ -1,58 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nemiro.OAuth", "Nemiro.OAuth\Nemiro.OAuth.csproj", "{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nemiro.OAuth", "Nemiro.OAuth\Nemiro.OAuth.csproj", "{E0BA06DB-7578-42FF-888C-FF4C6C4D44FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{330DC25B-17C5-4D96-B51D-3AA941C5D516}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nemiro.OAuth.Test", "Nemiro.OAuth.Test\Nemiro.OAuth.Test.csproj", "{235B4ED0-FA8B-4AD6-98E2-25008876885F}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|Mixed Platforms = Debug|Mixed Platforms
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|Mixed Platforms = Release|Mixed Platforms
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{00C92C2A-D6F0-4F92-9E92-30BC891FDEE1}.Release|x86.ActiveCfg = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Debug|x86.Build.0 = Debug|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|x86.ActiveCfg = Release|Any CPU
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92}.Release|x86.Build.0 = Release|Any CPU
+		{E0BA06DB-7578-42FF-888C-FF4C6C4D44FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BA06DB-7578-42FF-888C-FF4C6C4D44FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BA06DB-7578-42FF-888C-FF4C6C4D44FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BA06DB-7578-42FF-888C-FF4C6C4D44FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235B4ED0-FA8B-4AD6-98E2-25008876885F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235B4ED0-FA8B-4AD6-98E2-25008876885F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235B4ED0-FA8B-4AD6-98E2-25008876885F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235B4ED0-FA8B-4AD6-98E2-25008876885F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{AF7CAEF7-7352-4743-9FB7-6F5EB741AC92} = {330DC25B-17C5-4D96-B51D-3AA941C5D516}
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Nemiro.OAuth.vsmdi
 	EndGlobalSection
 EndGlobal

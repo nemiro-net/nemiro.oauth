@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015, 2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -516,21 +516,27 @@ namespace Nemiro.OAuth
       if (value.GetType().IsArray && value.GetType() != typeof(byte[]) && value.GetType() != typeof(XElement[]))
       {
         #region array
+
         var result = new UniValueCollection(this);
         var data = value as Array;
+
         for (int i = 0; i <= data.Length - 1; i++)
         {
           result.Add(i.ToString(), UniValue.Create(data.GetValue(i), this.GetParent()));
         }
+
         this.Data = result;
         this.IsArraySubtype = true;
+
         #endregion
       }
       else if (value.GetType() == typeof(Dictionary<string, object>))
       {
         #region dictionary
+
         var result = new UniValueCollection(this);
         var data = value as Dictionary<string, object>;
+
         foreach (var itm in data)
         {
           var v = UniValue.Create(itm.Value, this.GetParent());
@@ -547,14 +553,18 @@ namespace Nemiro.OAuth
             result.Add(itm.Key, v);
           }
         }
+
         this.Data = result;
+
         #endregion
       }
       else if (value.GetType() == typeof(NameValueCollection))
       {
-        #region vameValueCollection
+        #region nameValueCollection
+
         var result = new UniValueCollection(this);
         var data = value as NameValueCollection;
+
         foreach (var key in data.Keys)
         {
           if (data[key.ToString()].IndexOf(",") != -1)
@@ -566,76 +576,99 @@ namespace Nemiro.OAuth
             result.Add(key.ToString(), UniValue.Create(data[key.ToString()], this.GetParent()));
           }
         }
+
         this.Data = result;
+
         #endregion
       }
       else if (value.GetType() == typeof(XDocument))
       {
         #region xdocument
+
         this.Data = null;
         var result = new UniValueCollection(this);
         var data = ((XDocument)value).Elements();
+
         foreach (var itm in data)
         {
           this.ParseXElement(result, itm, this.GetParent());
         }
+
         this.Data = result;
+
         #endregion
       }
       else if (value.GetType() == typeof(XElement[]))
       {
         #region xelement[]
+
         this.Data = null;
         var result = new UniValueCollection(this);
         var data = (XElement[])value;
+
         foreach (var itm in data)
         {
           this.ParseXElement(result, itm, this.GetParent());
         }
+
         this.Data = result;
+
         #endregion
       }
       else if (value.GetType() == typeof(XElement))
       {
         #region xelement
+
         this.Data = null;
         var result = new UniValueCollection(this);
         var itm = (XElement)value;
+
         this.ParseXElement(result, itm, this.GetParent());
+
         this.Data = result;
+
         #endregion
       }
       else if (value.GetType() == typeof(StringBuilder))
       {
         #region stringBuilder
+
         this.Data = value.ToString();
+
         #endregion
       }
       else if (value.GetType() == typeof(UniValueCollection))
       {
         #region uniValueCollection
+
         this.Data = value;
+
         #endregion
       }
       else if (value.GetType() == typeof(UniValue) || value.GetType().IsSubclassOf(typeof(UniValue)))
       {
         #region uniValue
+
         this.Parent = ((UniValue)value).Parent;
         this.Data = ((UniValue)value).Data;
         this.Attributes = ((UniValue)value).Attributes;
+
         #endregion
       }
       else
       {
         #region other
+
         if (value.GetType().IsClass && Array.IndexOf(OAuthUtility.ExcludedTypeOfClasses, value.GetType()) == -1)
         {
           // is class
           var result = new UniValueCollection(this);
+
           foreach (var itm in value.GetType().GetProperties())
           {
             result.Add(itm.Name, UniValue.Create((itm.CanRead ? itm.GetValue(value, null) : null), this.GetParent()));
           }
+
           this.Data = result;
         }
         else
@@ -646,6 +679,7 @@ namespace Nemiro.OAuth
           // (parent != null && parent.Parent != null ? (parent.Parent ?? (parent ?? this)) : (parent ?? this))
           // parent ?? this
         }
+
         #endregion
       }
     }
@@ -1004,19 +1038,24 @@ namespace Nemiro.OAuth
     public static UniValue ParseParameters(string text)
     {
       if (String.IsNullOrEmpty(text)) { return UniValue.Empty; }
+
       if (text.IndexOf("\r") != -1 || text.IndexOf("\n") != -1)
       {
         throw new InvalidDataException("CR and LF are not allowed in the Parameters string.");
       }
+
       if (Regex.IsMatch(text, @"([^\x3D]+)=([^\x26]*)", RegexOptions.Multiline | RegexOptions.Singleline | RegexOptions.IgnoreCase))
       {
-        NameValueCollection items = new NameValueCollection();
+        var items = new NameValueCollection();
+
         foreach (string q in text.Split('&'))
         {
           string[] p = q.Split('=');
           string key = p.First(), value = (p.Length > 1 ? p.Last() : "");
-          items.Add(key, value);
+
+          items.Add(key, System.Web.HttpUtility.UrlDecode(value));
         }
+
         return UniValue.Create(items, null);
       }
       else

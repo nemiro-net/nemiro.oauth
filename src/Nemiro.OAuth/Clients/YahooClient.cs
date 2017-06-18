@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -129,15 +129,29 @@ namespace Nemiro.OAuth.Clients
     {
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
-      string url = String.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", accessToken["xoauth_yahoo_guid"]);
+      RequestResult result;
+      string guid = null;
 
-      var result = OAuthUtility.Get
+      if (!UniValue.IsNullOrEmpty(accessToken["xoauth_yahoo_guid"]))
+      {
+        guid = accessToken["xoauth_yahoo_guid"].ToString();
+      }
+      else
+      {
+        result = OAuthUtility.Get("https://social.yahooapis.com/v1/me/guid", accessToken: accessToken);
+        guid = result["guid"]["value"].ToString();
+      }
+
+      string url = string.Format("https://social.yahooapis.com/v1/user/{0}/profile?format=json", guid);
+
+      result = OAuthUtility.Get
       (
         endpoint: url,
         accessToken: accessToken
       );
 
       var map = new ApiDataMapping();
+
       map.Add("guid", "UserId", typeof(string));
       map.Add("givenName", "FirstName");
       map.Add("familyName", "LastName");

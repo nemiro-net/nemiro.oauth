@@ -2,6 +2,30 @@
 
 All notable changes to **Nemiro.OAuth** will be documented in this file.
 
+## [v1.13] - unreleased
+
+### Added
+
+* Added `ResponseType` to `OAuth2Client`;
+* Added default return URL to `OdnoklassnikiClient`;
+* Added method `SetAccessToken` to `OAuthBase` (only for OAuth v2.0 and token requests);
+* Added method `Get` to `OAuthBase` for strict type of clients.
+
+### Changed
+
+* Changed type of the `Version` property. Now is `Version` type;
+* Types normalization.
+
+### Fixed
+
+* Added `UrlDecore` to the `ParseParameters`;
+* `YahooClient`: Receiving a user GUID, if there is no such identifier in the headers.
+
+### Thanks
+
+[Visio70](https://github.com/Visio70)
+[santoshpasi](https://github.com/santoshpasi)
+
 ## [v1.12] - 2016-09-12
 
 This release includes upgrades API, used by clients.

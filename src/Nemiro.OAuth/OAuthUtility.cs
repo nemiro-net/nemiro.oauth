@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015, 2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,10 +46,10 @@ namespace Nemiro.OAuth
 
     internal static readonly Type[] NumericType = new Type[] 
     { 
-      typeof(Byte), typeof(SByte), 
-      typeof(Int16), typeof(Int32), typeof(Int64), 
-      typeof(UInt16), typeof(UInt32), typeof(UInt64),
-      typeof(Decimal), typeof(Double), typeof(Single)
+      typeof(byte), typeof(sbyte), 
+      typeof(short), typeof(int), typeof(long), 
+      typeof(ushort), typeof(uint), typeof(ulong),
+      typeof(decimal), typeof(double), typeof(float)
     };
 
     internal static readonly Type[] ExcludedTypeOfClasses = new Type[] { typeof(string), typeof(byte[]) };

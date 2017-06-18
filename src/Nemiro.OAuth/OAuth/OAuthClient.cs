@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2015. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2015, 2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,6 +29,19 @@ namespace Nemiro.OAuth
   {
 
     #region ..fields & properties..
+
+    private readonly Version _Version = new Version(1, 0);
+
+    /// <summary>
+    /// Gets version number of the OAuth protocol.
+    /// </summary>
+    public override Version Version
+    {
+      get
+      {
+        return this._Version;
+      }
+    }
 
     /// <summary>
     /// Gets or sets the address for the request token.
@@ -72,6 +85,7 @@ namespace Nemiro.OAuth
         {
           this.GetRequestToken();
         }
+
         return _RequestToken;
       }
       protected internal set
@@ -95,7 +109,7 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
     public OAuthClient(string requestTokenUrl, string authorizeUrl, string accessTokenUrl, string consumerKey, string consumerSecret, string signatureMethod = SignatureMethods.HMACSHA1) : base(authorizeUrl, accessTokenUrl, consumerKey, consumerSecret)
     {
-      if (String.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
+      if (string.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
 
       this.RequestTokenUrl = requestTokenUrl;
 
@@ -139,7 +153,7 @@ namespace Nemiro.OAuth
     {
       this.Authorization.PrepareForRequestToken();
 
-      if (!String.IsNullOrEmpty(this.ReturnUrl))
+      if (!string.IsNullOrEmpty(this.ReturnUrl))
       {
         this.Authorization.Callback = String.Format
         (
@@ -155,7 +169,8 @@ namespace Nemiro.OAuth
         OAuthUtility.Post
         (
           this.RequestTokenUrl,
-          authorization: this.Authorization
+          authorization: this.Authorization,
+          headers: new NameValueCollection { { "Accept", "text/plain" } } // application/x-www-form-urlencoded ???
         ),
         this.AuthorizeUrl,
         this.Parameters
@@ -168,7 +183,7 @@ namespace Nemiro.OAuth
     protected override void GetAccessToken()
     {
       // authorization code is required for request
-      if (String.IsNullOrEmpty(this.AuthorizationCode))
+      if (string.IsNullOrEmpty(this.AuthorizationCode))
       {
         throw new ArgumentNullException("AuthorizationCode");
       }
@@ -190,7 +205,8 @@ namespace Nemiro.OAuth
         OAuthUtility.Post
         (
           this.AccessTokenUrl,
-          authorization: this.Authorization
+          authorization: this.Authorization,
+          headers: new NameValueCollection { { "Accept", "text/plain" } } // application/x-www-form-urlencoded ???
         )
       );
 

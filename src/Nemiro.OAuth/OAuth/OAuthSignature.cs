@@ -127,7 +127,7 @@ namespace Nemiro.OAuth
           break;
 
         default:
-          throw new NotSupportedException(String.Format("Signature method \"{0}\" not suppored.", signatureMethod));
+          throw new NotSupportedException(string.Format("Signature method \"{0}\" not suppored.", signatureMethod));
       }
     }
 

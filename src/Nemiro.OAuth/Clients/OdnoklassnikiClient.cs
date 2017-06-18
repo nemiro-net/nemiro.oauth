@@ -528,6 +528,26 @@ namespace Nemiro.OAuth.Clients
     }
 
     /// <summary>
+    /// Return URL.
+    /// </summary>
+    public override string ReturnUrl
+    {
+      get
+      {
+        if (String.IsNullOrEmpty(base.ReturnUrl))
+        {
+          // default return url
+          return "https://api.ok.ru/blank.html";
+        }
+        return base.ReturnUrl;
+      }
+      set
+      {
+        base.ReturnUrl = value;
+      }
+    }
+
+    /// <summary>
     /// Public Key for access to API.
     /// </summary>
     public string ApplicationKey { get; protected set; }
