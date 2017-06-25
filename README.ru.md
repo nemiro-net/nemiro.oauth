@@ -16,13 +16,20 @@
 
 Посмотреть на работу библиотеки **Nemiro.OAuth** можно на демонстрационном сайте:
 
-http://demo-oauth.nemiro.net/
+[demo-oauth.nemiro.net](http://demo-oauth.nemiro.net/)
 
 ## Особенности
 
 * Поддержка протоколов **OAuth 1.0** и **2.0**;
 * Получение базовой информации о пользователях (если поставщик поддерживает и достаточно разрешений): ID, полное имя, пол, дата рождения, email и номер телефона;
-* **OAuth**-клиенты «из коробки» для: **Amazon**, **Assembla**, **CodeProject**, **Dropbox**, **Facebook**, **Foursquare**, **GitHub**, **Google**, **Instagram**, **LinkedIn**, **Microsoft Live**, **Mail.Ru**, **Odnoklassniki**, **SoundCloud**, **SourceForge**, **Tumblr**, **Twitter**, **VK**, **Yahoo!**, **Yandex**;
+* **OAuth**-клиенты «из коробки» для: 
+  **Amazon**, **Assembla**, **CodeProject**, 
+  **Dropbox**, **Facebook**, **Foursquare**, 
+  **GitHub**, **Google**, **Instagram**, 
+  **LinkedIn**, **Microsoft Live**, **Mail.Ru**, 
+  **Odnoklassniki**, **SoundCloud**, **SourceForge**, 
+  **Tumblr**, **Twitter**, **VK**, 
+  **Yahoo!**, **Yandex**;
 * Классы для создания собственных клиентов;
 * Унифицированные методы работы с разнообразными **API**.
 
@@ -30,7 +37,11 @@ http://demo-oauth.nemiro.net/
 
 ### Системные требования
 
-* .NET Framework 3.5, 4.0, 4.5 или 4.6
+* .NET Framework 3.5, 4.0, 4.5, 4.6 или 4.7
+
+### Лицензия
+
+**Nemiro.OAuth** поставляется на условиях лицензии **Apache License Version 2.0**.
 
 ### Использование
 

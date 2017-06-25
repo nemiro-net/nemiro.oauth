@@ -4,7 +4,7 @@
 
 The library provides mechanisms for implementing **OAuth** clients, and also contains a ready-to-use clients for popular websites.
 
-**Nemiro.OAuth** is licensed under the **Apache License Version 2.0**.
+**Nemiro.OAuth** is distributed under **Apache License Version 2.0**.
 
 To install **Nemiro.OAuth**, run the following command in the **Package Manager Console**:
 
@@ -12,13 +12,20 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
 
 ## Demo
 
-http://demo-oauth.nemiro.net/
+[demo-oauth.nemiro.net](http://demo-oauth.nemiro.net/)
 
 ## Features
 
 * Support OAuth 1.0 and 2.0; 
 * Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number; 
-* Ready-to-Use OAuth clients for: Amazon, Assembla, CodeProject, Dropbox, Facebook, Foursquare, GitHub, Google, Instagram, LinkedIn, Microsoft Live, Mail.Ru, Odnoklassniki (odnoklassniki.ru), SoundCloud, SourceForge, Tumblr, Twitter, VK (vkontakte, vk.com), Yahoo!, Yandex (yandex.ru);
+* Ready-to-Use OAuth clients for:
+  Amazon, Assembla, CodeProject, 
+  Dropbox, Facebook, Foursquare, 
+  GitHub, Google, Instagram, 
+  LinkedIn, Microsoft Live, Mail.Ru, 
+  Odnoklassniki (odnoklassniki.ru), SoundCloud, SourceForge, 
+  Tumblr, Twitter, VK (vkontakte, vk.com), 
+  Yahoo!, Yandex (yandex.ru);
 * Base classes to create additional clients; 
 * Basic principles of operation with API of different providers;
 * Unified mechanisms to facilitate integration with a variety of API.
@@ -27,7 +34,11 @@ Less code, more functionality!
 
 ## System Requirements
 
-* .NET Framework 3.5, 4.0, 4.5 or 4.6
+* .NET Framework 3.5, 4.0, 4.5, 4.6 or 4.7
+
+## License
+
+**Nemiro.OAuth** is distributed under **Apache License Version 2.0**.
 
 ## How to use
 
