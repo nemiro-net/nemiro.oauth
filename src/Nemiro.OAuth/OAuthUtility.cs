@@ -721,19 +721,19 @@ namespace Nemiro.OAuth
         throw new ArgumentOutOfRangeException("The value of the bufferSize must be greater than zero.");
       }
 
-      using (Stream s = resp.GetResponseStream())
+      using (var s = resp.GetResponseStream())
+      using (var sr = new BinaryReader(s, Encoding.UTF8))
       {
-        using (BinaryReader sr = new BinaryReader(s, Encoding.UTF8))
+        using (var result = new MemoryStream())
         {
-          using (MemoryStream result = new MemoryStream())
+          int readed = 0; byte[] buffer = new byte[bufferSize];
+
+          while ((readed = sr.Read(buffer, 0, buffer.Length)) != 0)
           {
-            int readed = 0; byte[] buffer = new byte[bufferSize];
-            while ((readed = sr.Read(buffer, 0, buffer.Length)) != 0)
-            {
-              result.Write(buffer, 0, readed);
-            }
-            return result.ToArray();
+            result.Write(buffer, 0, readed);
           }
+
+          return result.ToArray();
         }
       }
     }

@@ -16,9 +16,6 @@
 using System;
 using System.Collections.Specialized;
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -189,7 +186,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -222,7 +218,7 @@ namespace Nemiro.OAuth.Clients
       clientSecret
     )
     {
-      // http://msdn.microsoft.com/en-us/library/hh243646.aspx
+      // https://msdn.microsoft.com/en-us/library/hh243646.aspx#types
       base.ScopeSeparator = ",";
       base.DefaultScope = "wl.basic,wl.emails,wl.birthday,wl.phone_numbers";
       // features for access token
@@ -250,6 +246,7 @@ namespace Nemiro.OAuth.Clients
       );
 
       var map = new ApiDataMapping();
+
       map.Add("id", "UserId", typeof(string));
       map.Add("first_name", "FirstName");
       map.Add("last_name", "LastName");
@@ -385,4 +382,5 @@ namespace Nemiro.OAuth.Clients
     }
 
   }
+
 }

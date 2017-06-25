@@ -276,8 +276,8 @@ namespace Nemiro.OAuth
         {
           dataToWrite = new System.Web.Script.Serialization.JavaScriptSerializer()
           {
-            MaxJsonLength = int.MaxValue,
-            RecursionLimit = int.MaxValue
+            MaxJsonLength = Int32.MaxValue,
+            RecursionLimit = Int32.MaxValue
           }.Serialize(this.Value);
         }
         else if (contentType.Contains("xml"))

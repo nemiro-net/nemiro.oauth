@@ -14,9 +14,6 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -35,7 +32,7 @@ namespace Nemiro.OAuth.Clients
   /// </term>
   /// </item>
   /// </list>
-  /// <para><b><see href="http://instagram.com/developer/register/">Register as Developer</see></b> and <b><see href="http://instagram.com/developer/clients/register/">Register new Client ID</see></b>.</para>
+  /// <para><b><see href="http://www.instagram.com/developer/register/">Register as Developer</see></b> and <b><see href="http://www.instagram.com/developer/clients/register/">Register new Client ID</see></b>.</para>
   /// <para>
   /// In the application settings  you can found <b>Client ID</b> and <b>Client Key</b>.
   /// Use this for creating an instance of the <see cref="InstagramClient"/> class.
@@ -61,7 +58,7 @@ namespace Nemiro.OAuth.Clients
   /// )
   /// </code>
   /// <para>
-  /// For more details, please visit <see href="http://instagram.com/developer/">Instagram Developer Documentation</see>.
+  /// For more details, please visit <see href="https://www.instagram.com/developer/">Instagram Developer Documentation</see>.
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
@@ -78,7 +75,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -115,7 +111,7 @@ namespace Nemiro.OAuth.Clients
       base.ScopeSeparator = " ";
       base.DefaultScope = "basic";
       // for more details please see 
-      // http://instagram.com/developer/authentication/#scope
+      // https://www.instagram.com/developer/authorization/
     }
 
     /// <summary>

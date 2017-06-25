@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,6 @@
 // ----------------------------------------------------------------------------
 using System;
 using System.Collections.Specialized;
-
-// If it works, no need to change the code. 
-// Just use it! ;-)
 
 namespace Nemiro.OAuth.Clients
 {
@@ -264,7 +261,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -296,6 +292,7 @@ namespace Nemiro.OAuth.Clients
           // default return url
           return "https://www.facebook.com/connect/login_success.html";
         }
+
         return base.ReturnUrl;
       }
       set
@@ -342,7 +339,7 @@ namespace Nemiro.OAuth.Clients
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
       // execute the request
-      var result = OAuthUtility.Get("https://graph.facebook.com/v2.7/me?fields=id,name,first_name,last_name,email,birthday,link,gender,languages", accessToken: accessToken);
+      var result = OAuthUtility.Get("https://graph.facebook.com/v2.9/me?fields=id,name,first_name,last_name,email,birthday,link,gender,languages", accessToken: accessToken);
 
       // field mapping
       var map = new ApiDataMapping();
@@ -407,7 +404,7 @@ namespace Nemiro.OAuth.Clients
 
       return OAuthUtility.Delete
       (
-        "https://graph.facebook.com/v2.7/me/permissions", 
+        "https://graph.facebook.com/v2.9/me/permissions", 
         new NameValueCollection
         { 
           { "access_token", accessToken.Value }

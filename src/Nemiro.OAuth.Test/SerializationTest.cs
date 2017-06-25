@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Xunit;
 
-namespace Nemiro.OAuth
+namespace Nemiro.OAuth.Test
 {
 
   public class SerializationTest

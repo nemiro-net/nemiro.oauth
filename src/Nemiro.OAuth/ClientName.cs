@@ -172,6 +172,7 @@ namespace Nemiro.OAuth
     internal static string Escape(string value)
     {
       if (String.IsNullOrEmpty(value)) { return value; }
+
       return value.Replace("/", "//");
     }
 
@@ -182,6 +183,7 @@ namespace Nemiro.OAuth
     internal static string Unescape(string value)
     {
       if (String.IsNullOrEmpty(value)) { return value; }
+
       return value.Replace("//", "/");
     }
 

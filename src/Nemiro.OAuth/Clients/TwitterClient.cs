@@ -15,9 +15,6 @@
 // ----------------------------------------------------------------------------
 using System;
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -347,7 +344,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -388,7 +384,7 @@ namespace Nemiro.OAuth.Clients
     /// <param name="accessToken">May contain an access token, which will have to be used in obtaining information about the user.</param>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
-      // help: https://dev.twitter.com/docs/api/1/get/users/show
+      // help: https://dev.twitter.com/rest/reference/get/users/show
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
@@ -396,6 +392,7 @@ namespace Nemiro.OAuth.Clients
 
       // query parameters
       var parameters = new HttpParameterCollection();
+
       parameters.AddUrlParameter("user_id", accessToken["user_id"].ToString());
       parameters.AddUrlParameter("screen_name", accessToken["screen_name"].ToString());
       parameters.AddUrlParameter("include_entities", "false");
@@ -408,6 +405,7 @@ namespace Nemiro.OAuth.Clients
 
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("id_str", "UserId", typeof(string));
       map.Add("name", "DisplayName");
       map.Add("screen_name", "UserName");

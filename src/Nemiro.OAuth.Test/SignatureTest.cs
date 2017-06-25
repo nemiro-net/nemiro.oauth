@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using Xunit;
 
-namespace Nemiro.OAuth
+namespace Nemiro.OAuth.Test
 {
 
   public class SignatureTest

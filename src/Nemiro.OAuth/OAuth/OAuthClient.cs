@@ -109,7 +109,7 @@ namespace Nemiro.OAuth
     /// <exception cref="ArgumentNullException">The <paramref name="requestTokenUrl"/> is null or empty.</exception>
     public OAuthClient(string requestTokenUrl, string authorizeUrl, string accessTokenUrl, string consumerKey, string consumerSecret, string signatureMethod = SignatureMethods.HMACSHA1) : base(authorizeUrl, accessTokenUrl, consumerKey, consumerSecret)
     {
-      if (string.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
+      if (String.IsNullOrEmpty(requestTokenUrl)) { throw new ArgumentNullException("requestTokenUrl"); }
 
       this.RequestTokenUrl = requestTokenUrl;
 
@@ -153,7 +153,7 @@ namespace Nemiro.OAuth
     {
       this.Authorization.PrepareForRequestToken();
 
-      if (!string.IsNullOrEmpty(this.ReturnUrl))
+      if (!String.IsNullOrEmpty(this.ReturnUrl))
       {
         this.Authorization.Callback = String.Format
         (
@@ -183,7 +183,7 @@ namespace Nemiro.OAuth
     protected override void GetAccessToken()
     {
       // authorization code is required for request
-      if (string.IsNullOrEmpty(this.AuthorizationCode))
+      if (String.IsNullOrEmpty(this.AuthorizationCode))
       {
         throw new ArgumentNullException("AuthorizationCode");
       }

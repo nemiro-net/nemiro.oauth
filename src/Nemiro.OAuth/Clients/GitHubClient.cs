@@ -13,10 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // ----------------------------------------------------------------------------
-
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 using System.Collections.Specialized;
 
 namespace Nemiro.OAuth.Clients
@@ -65,7 +61,7 @@ namespace Nemiro.OAuth.Clients
   /// )
   /// </code>
   /// <para>
-  /// For more details, please see <see href="https://developer.github.com/guides/">GitHub Development Guides</see>.
+  /// For more details, please see <see href="https://developer.github.com/v3/guides/">GitHub Development Guides</see>.
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
@@ -82,7 +78,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -139,7 +134,7 @@ namespace Nemiro.OAuth.Clients
         headers: new NameValueCollection { { "Accept", "application/vnd.github.v3+json" } }
       );
 
-      // help: https://developer.github.com/v3/users/#get-the-authenticated-user
+      // help: https://developer.github.com/v3/users/#get-a-single-user
 
       // field mapping
       var map = new ApiDataMapping();

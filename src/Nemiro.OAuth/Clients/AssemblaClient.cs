@@ -14,9 +14,6 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -37,7 +34,7 @@ namespace Nemiro.OAuth.Clients
   /// </list>
   /// <para>
   /// </para>
-  /// <para><b><see href="https://www.assembla.com/user/edit/manage_clients">Register a new OAuth application</see></b>.</para>
+  /// <para><b><see href="https://app.assembla.com/user/edit/manage_clients">Register a new OAuth application</see></b>.</para>
   /// <para>
   /// In the application settings  you can found <b>Application ID</b> and <b>Application Secret</b>.
   /// Use this for creating an instance of the <see cref="AssemblaClient"/> class.
@@ -63,7 +60,7 @@ namespace Nemiro.OAuth.Clients
   /// )
   /// </code>
   /// <para>
-  /// For more details, please visit <see href="http://api-doc.assembla.com/index.html">Assembla API Documentation Site</see>.
+  /// For more details, please visit <see href="http://api-docs.assembla.cc/">Assembla API Documentation Site</see>.
   /// </para>
   /// </remarks>
   /// <seealso cref="AmazonClient"/>
@@ -80,7 +77,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -134,11 +130,12 @@ namespace Nemiro.OAuth.Clients
         accessToken: accessToken
       );
 
-      // help: http://api-doc.assembla.com/content/ref/user_show.html
-      // http://api-doc.assembla.com/content/ref/user_fields.html
+      // help: http://api-docs.assembla.cc/content/ref/user_show.html
+      // http://api-docs.assembla.cc/content/ref/user_fields.html
 
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("id", "UserId", typeof(string));
       map.Add("login", "UserName", typeof(string));
       map.Add("name", "DisplayName");

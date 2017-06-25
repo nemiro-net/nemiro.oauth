@@ -6,7 +6,7 @@ using System.Net;
 using System.Reflection;
 using Xunit;
 
-namespace Nemiro.OAuth
+namespace Nemiro.OAuth.Test
 {
 
   public class HttpTest

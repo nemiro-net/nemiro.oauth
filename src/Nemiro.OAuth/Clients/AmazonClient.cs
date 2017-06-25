@@ -15,9 +15,6 @@
 // ----------------------------------------------------------------------------
 using System;
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -198,7 +195,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -248,6 +244,7 @@ namespace Nemiro.OAuth.Clients
 
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("user_id", "UserId");
       map.Add("name", "DisplayName");
       map.Add("email", "Email");
@@ -284,6 +281,7 @@ namespace Nemiro.OAuth.Clients
       var token = (OAuth2AccessToken)base.GetSpecifiedTokenOrCurrent(accessToken, refreshTokenRequired: true);
 
       var parameters = new HttpParameterCollection();
+
       parameters.AddFormParameter("access_token", token.Value);
       parameters.AddFormParameter("client_id", this.ApplicationId);
       parameters.AddFormParameter("client_secret", this.ApplicationSecret);

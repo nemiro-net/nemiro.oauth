@@ -4,3 +4,4 @@ chcp 65001
 :: --logger "trx;LogFileName=results.trx"
 :: > output.log
 dotnet test > output.log
+notepad output.log

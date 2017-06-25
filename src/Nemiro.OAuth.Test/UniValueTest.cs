@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using Xunit;
 
-namespace Nemiro.OAuth
+namespace Nemiro.OAuth.Test
 {
 
   public class UniValueTest

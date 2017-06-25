@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// Copyright © Aleksey Nemiro, 2014-2016. All rights reserved.
+// Copyright © Aleksey Nemiro, 2014-2017. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 using System;
 using System.Linq;
 using System.Collections.Specialized;
-
-// If it works, no need to change the code. 
-// Just use it! ;-)
 
 namespace Nemiro.OAuth.Clients
 {
@@ -488,7 +485,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -520,9 +516,10 @@ namespace Nemiro.OAuth.Clients
       {
         if (String.IsNullOrEmpty(base.ReturnUrl))
         {
-          // default return url
+          // default url
           return "https://oauth.vk.com/blank.html";
         }
+
         return base.ReturnUrl;
       }
       set
@@ -565,7 +562,7 @@ namespace Nemiro.OAuth.Clients
       { 
         { "user_ids", accessToken["user_id"].ToString() },
         { "fields", "sex,bdate,city,country,photo_max_orig,domain,contacts,site" },
-        { "v", "5.53" }
+        { "v", "5.65" }
       };
 
       // execute the request
@@ -583,6 +580,7 @@ namespace Nemiro.OAuth.Clients
 
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("id", "UserId", typeof(string));
       map.Add("first_name", "FirstName");
       map.Add("last_name", "LastName");
@@ -596,6 +594,7 @@ namespace Nemiro.OAuth.Clients
         delegate(UniValue value)
         {
           if (value.HasValue || String.IsNullOrEmpty(value.ToString())) { return null; }
+
           return value.ToString().Split(' ').First();
         }
       );
@@ -612,6 +611,7 @@ namespace Nemiro.OAuth.Clients
           {
             return Sex.Female;
           }
+
           return Sex.None;
         }
       );

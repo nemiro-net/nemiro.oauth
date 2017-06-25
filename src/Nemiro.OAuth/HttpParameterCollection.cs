@@ -489,8 +489,8 @@ namespace Nemiro.OAuth
           {
             string json = new System.Web.Script.Serialization.JavaScriptSerializer()
             {
-              MaxJsonLength = int.MaxValue,
-              RecursionLimit = int.MaxValue
+              MaxJsonLength = Int32.MaxValue,
+              RecursionLimit = Int32.MaxValue
             }.Serialize(value);
             this.Add(new HttpParameter(null, new HttpParameterValue(json), contentType));
           }

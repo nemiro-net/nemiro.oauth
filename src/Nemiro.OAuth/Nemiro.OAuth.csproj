@@ -1,35 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.13.0.2795</Version>
-    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462</TargetFrameworks>
+    <Version>1.13.0.2799</Version>
+    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47</TargetFrameworks>
     <AssemblyName>Nemiro.OAuth</AssemblyName>
     <GenerateAssemblyConfigurationAttribute>False</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>False</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>True</GenerateAssemblyProductAttribute>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Nemiro.OAuth.snk</AssemblyOriginatorKeyFile>
-    <Description>Nemiro.OAuth is a class library for authorization via OAuth protocol in .NET Framework.
-
-The library provides mechanisms for implementing OAuth clients, and also contains a ready-to-use clients for popular websites.
-
-Nemiro.OAuth is licensed under the Apache License Version 2.0.
-
-Features
-
-* Support OAuth 1.0 and 2.0;
-* Obtaining basic information about users: ID, name, sex, date of birth, email address and telephone number;
-* Ready-to-Use OAuth clients for: Amazon, Assembla, CodeProject, Dropbox, Facebook, Foursquare, GitHub, Google, Instagram, LinkedIn, Microsoft Live, Mail.Ru, Odnoklassniki, SoundCloud, SourceForge, Tumblr, Twitter, VKontakte, Yahoo! and Yandex;
-* Base classes to create additional clients;
-* Basic principles of operation with API of different providers;
-* Unified mechanisms to facilitate integration with a variety of API.
-
-Less code, more functionality!
-
-Demo: http://demo-oauth.nemiro.net/</Description>
+    <Description>Class library for OAuth authentication in the .NET Framework. The library provides mechanisms for implementing OAuth clients, and also contains ready-to-use clients for popular websites.</Description>
     <Authors>Aleksey Nemiro</Authors>
     <Copyright>Copyright © Aleksey Nemiro, 2014-2017</Copyright>
-    <PackageVersion>1.13.0-alpha17</PackageVersion>
+    <PackageVersion>1.13.0-beta1</PackageVersion>
     <PackageId>Nemiro.OAuth</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>http://oauth.nemiro.net/?topic=license.html</PackageLicenseUrl>

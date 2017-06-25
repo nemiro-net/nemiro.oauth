@@ -16,9 +16,6 @@
 using System;
 using System.Collections.Specialized;
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -354,7 +351,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -383,9 +379,10 @@ namespace Nemiro.OAuth.Clients
       {
         if (String.IsNullOrEmpty(base.ReturnUrl))
         {
-          // default return url
+          // default url
           return "https://oauth.yandex.ru/verification_code";
         }
+
         return base.ReturnUrl;
       }
       set
@@ -432,6 +429,7 @@ namespace Nemiro.OAuth.Clients
 
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("id", "UserId", typeof(string));
       map.Add("login", "UserName");
       map.Add("first_name", "FirstName");

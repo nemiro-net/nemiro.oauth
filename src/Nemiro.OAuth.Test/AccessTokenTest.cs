@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Nemiro.OAuth
+namespace Nemiro.OAuth.Test
 {
 
   public class AccessTokenTest

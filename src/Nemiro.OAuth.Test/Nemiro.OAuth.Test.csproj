@@ -1,25 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47</TargetFrameworks>
     <AssemblyName>Nemiro.OAuth.Test</AssemblyName>    
-    <RootNamespace>Nemiro.OAuth</RootNamespace>
+    <RootNamespace>Nemiro.OAuth.Test</RootNamespace>
+    <IsPackable>False</IsPackable>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
   </PropertyGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' OR '$(TargetFramework)' == 'net40' ">
     <PackageReference Include="xunit" Version="1.9.0.1566" />
     <PackageReference Include="xunit.runner.visualstudio" Version="1.9.0.1566" />
   </ItemGroup>
-  
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <PackageReference Include="xunit" Version="1.9.0.1566" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="1.9.0.1566" />
-  </ItemGroup>
-  
+
   <ItemGroup Condition=" '$(TargetFramework)' != 'net35' AND '$(TargetFramework)' != 'net40' ">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit" Version="2.2.0" />

@@ -1009,8 +1009,8 @@ namespace Nemiro.OAuth
       (
         new System.Web.Script.Serialization.JavaScriptSerializer()
         {
-          MaxJsonLength = int.MaxValue,
-          RecursionLimit = int.MaxValue
+          MaxJsonLength = Int32.MaxValue,
+          RecursionLimit = Int32.MaxValue
         }.DeserializeObject(text), null, null
       );
     }

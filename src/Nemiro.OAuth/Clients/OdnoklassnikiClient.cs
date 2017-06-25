@@ -17,9 +17,6 @@ using System;
 using Nemiro.OAuth.Extensions;
 using System.Collections.Specialized;
 
-// If it works, no need to change the code. 
-// Just use it! ;-)
-
 namespace Nemiro.OAuth.Clients
 {
 
@@ -95,7 +92,7 @@ namespace Nemiro.OAuth.Clients
   /// )
   /// </code>
   /// <para>
-  /// For more details, please visit to the <see href="http://apiok.ru/wiki/pages/viewpage.action?pageId=42476300">Odnoklassniki API Documentation</see>.
+  /// For more details, please visit to the <see href="https://apiok.ru/en">Odnoklassniki API Documentation</see>.
   /// </para>
   /// </remarks>
   /// <example>
@@ -507,7 +504,6 @@ namespace Nemiro.OAuth.Clients
   /// <seealso cref="MailRuClient"/>
   /// <seealso cref="OdnoklassnikiClient"/>
   /// <seealso cref="SoundCloudClient"/>
-  /// <seealso cref="SourceForgeClient"/>
   /// <seealso cref="TumblrClient"/>
   /// <seealso cref="TwitterClient"/>
   /// <seealso cref="VkontakteClient"/>
@@ -536,9 +532,10 @@ namespace Nemiro.OAuth.Clients
       {
         if (String.IsNullOrEmpty(base.ReturnUrl))
         {
-          // default return url
+          // default url
           return "https://api.ok.ru/blank.html";
         }
+
         return base.ReturnUrl;
       }
       set
@@ -577,7 +574,7 @@ namespace Nemiro.OAuth.Clients
     /// <exception cref="ApiException"/>
     public override UserInfo GetUserInfo(AccessToken accessToken = null)
     {
-      // http://apiok.ru/wiki/pages/viewpage.action?pageId=46137373#APIДокументация(Русский)-users.getCurrentUser
+      // https://apiok.ru/dev/methods/rest/users/users.getCurrentUser
 
       accessToken = base.GetSpecifiedTokenOrCurrent(accessToken);
 
@@ -591,8 +588,8 @@ namespace Nemiro.OAuth.Clients
       };
 
       // signature base string
-      // http://apiok.ru/wiki/pages/viewpage.action?pageId=75989046
       string signatureBaseString = parameters.Sort().ToParametersString(true);
+
       signatureBaseString += OAuthUtility.GetMD5Hash(accessToken.Value + this.ApplicationSecret);
 
       // calculate the signature
@@ -612,9 +609,9 @@ namespace Nemiro.OAuth.Clients
         );
       }
 
-      // successfully
       // field mapping
       var map = new ApiDataMapping();
+
       map.Add("uid", "UserId", typeof(string));
       map.Add("first_name", "FirstName");
       map.Add("last_name", "LastName");
