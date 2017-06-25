@@ -45,9 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nemiro.OAuth, Version=1.12.4.2615, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nemiro.OAuth.1.12\lib\net40\Nemiro.OAuth.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nemiro.OAuth, Version=1.13.0.2799, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nemiro.OAuth.1.13.0-beta1\lib\net40\Nemiro.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />

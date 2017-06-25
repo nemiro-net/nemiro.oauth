@@ -8,7 +8,9 @@ namespace AspNetCustomRequestsProvider.Controllers
 
   public class HomeController : Controller
   {
-    
+
+    string[] NotSupportedLocalhost = { "live", "mail.ru" };
+
     public ActionResult Index()
     {
       return View();
@@ -24,8 +26,7 @@ namespace AspNetCustomRequestsProvider.Controllers
       string returnUrl = Url.Action("ExternalLoginResult", "Home", null, null, Request.Url.Host);
 
       // not suppored localhost (it is only for localhost)
-      string[] notSupportedLocalhost = { "live", "mail.ru", "github" };
-      if (notSupportedLocalhost.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
+      if (this.NotSupportedLocalhost.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
       {
         returnUrl = String.Format("http://oauth.nemiro.net/oauth_redirect.html?returnUrl={0}", Server.UrlEncode(returnUrl));
       }

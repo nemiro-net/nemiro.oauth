@@ -70,15 +70,6 @@ namespace Test.CSharp.AspWebForms
 
       OAuthManager.RegisterClient
       (
-        new GitHubClient
-        (
-          "e14122695d88f5c95bce",
-          "cde23ec001c5180e01e865f4efb57cb0bc848c16"
-        )
-      );
-
-      OAuthManager.RegisterClient
-      (
         new LiveClient
         (
           "0000000040124265",

@@ -22,6 +22,8 @@ Type:           <%#Nemiro.OAuth.OAuthManager.RegisteredClients(GetDataItem()).Ge
 				</ItemTemplate>
 			</asp:Repeater>
 		</div>
+        <hr />
+        <small>Nemiro.OAuth v<%=System.Reflection.Assembly.GetAssembly(GetType(Nemiro.OAuth.OAuth2Client)).GetName().Version%></small>
   </form>
 </body>
 </html>

@@ -48,7 +48,7 @@ namespace Test.CSharp.AspMvc
           "c6057dfae399beee9e8dc46a4182e8fd"
         )
         {
-          Scope = "public_profile,email,user_groups,user_likes,user_interests"
+          Scope = "public_profile,email"
           //Parameters = new NameValueCollection { { "display", "popup" } }
         }
       );

@@ -14,18 +14,16 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Nemiro.OAuth.LoginForms;
 using Nemiro.OAuth;
 
 namespace CodeProjectForumViewer
 {
+
   public partial class MainForm : Form
   {
 
@@ -300,4 +298,5 @@ namespace CodeProjectForumViewer
     }
 
   }
+
 }

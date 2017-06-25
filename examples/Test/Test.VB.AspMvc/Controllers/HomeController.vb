@@ -28,9 +28,12 @@ Namespace Test.VB.AspMvc
       Dim returnUrl As String = Url.Action("ExternalLoginResult", "Home", Nothing, Nothing, Request.Url.Host)
 
       ' not suppored localhost (it is only for localhost)
-      Dim notSupportedLocalhost() As String = {"live", "mail.ru", "github", "yahoo"}
+      Dim notSupportedLocalhost() As String = {"live", "mail.ru", "yahoo"}
+
       If notSupportedLocalhost.Any(Function(itm) itm.Equals(provider, StringComparison.OrdinalIgnoreCase)) Then
         returnUrl = String.Format("http://oauth.nemiro.net/oauth_redirect.html?returnUrl={0}", Server.UrlEncode(returnUrl))
+      ElseIf provider.Equals("github", StringComparison.OrdinalIgnoreCase) Then
+        returnUrl = String.Format("https://oauthproxy.nemiro.net/?returnUrl={0}", Server.UrlEncode(returnUrl))
       End If
 
       ' redirect to authorization page of the specified provider

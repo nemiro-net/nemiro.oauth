@@ -20,6 +20,9 @@
 				<%}%>
 			</ul>
 
+            <hr />
+            <small>Nemiro.OAuth v<%=System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuth2Client)).GetName().Version%></small>
+
 			<script type="text/javascript">
 				function Popup(url, width, height) {
 					if(width == undefined || !width) { width = 550; }

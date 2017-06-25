@@ -38,13 +38,11 @@
     <ApplicationIcon>twitter.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth, Version=1.12.45.2615, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.12\lib\net45\Nemiro.OAuth.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nemiro.OAuth, Version=1.13.0.2799, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.13.0-beta1\lib\net45\Nemiro.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.5.45.2617, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.LoginForms.1.5\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.6.0.2705, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.LoginForms.1.6\lib\net45\Nemiro.OAuth.LoginForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

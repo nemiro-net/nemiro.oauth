@@ -143,7 +143,8 @@
 &lt;p&gt;Try to go through the authorization procedure of any service below.&lt;/p&gt;</value>
   </data>
   <data name="DemoFeedback" xml:space="preserve">
-    <value>&lt;p&gt;If something is not working or is not working properly, please &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;</value>
+    <value>&lt;p&gt;If something is not working or is not working properly, please &lt;a href="https://github.com/alekseynemiro/nemiro.oauth.dll/issues"&gt;report it to the developer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Pay note, applications in social networks are test cases and can have a limit on the number of users and other restrictions.&lt;/p&gt;</value>
   </data>
   <data name="DemoHow" xml:space="preserve">
     <value />
@@ -184,11 +185,7 @@
 &lt;h3&gt;v{1}&lt;/h3&gt;
 &lt;p&gt;Version of the &lt;strong&gt;Nemiro.OAuth&lt;/strong&gt; on the current server:&lt;/p&gt;
 &lt;h3&gt;v{0}&lt;/h3&gt;
-&lt;p&gt;NOTE: The version number of the library on the server may differ from the number of the latest release.&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt;&lt;em&gt;The first number - is the major version number. Now it is 1. In the near future the number change is not planned;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;The second number - is the minor version number. Is incremented when only minor features or significant fixes have been added. While maintaining compatibility with previous versions.;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;The third number - is the version of the &lt;strong&gt;.NET Framework&lt;/strong&gt;;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;The fourth number - is the revision number in local revision control system.&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;</value>
+&lt;p&gt;NOTE: The version number of the library on the server may differ from the number of the latest release.&lt;/p&gt;</value>
   </data>
   <data name="DemoTitle" xml:space="preserve">
     <value>Nemiro.OAuth demo site</value>

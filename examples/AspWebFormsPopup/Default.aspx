@@ -25,6 +25,9 @@
 			</script>
 
     </div>
+
+    <hr />
+    <small>Nemiro.OAuth v<%=System.Reflection.Assembly.GetAssembly(typeof(Nemiro.OAuth.OAuth2Client)).GetName().Version%></small>
     </form>
 </body>
 </html>

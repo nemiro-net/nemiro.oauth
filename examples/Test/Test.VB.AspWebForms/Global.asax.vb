@@ -63,15 +63,6 @@ Public Class Global_asax
 
     OAuthManager.RegisterClient _
     (
-      New GitHubClient _
-      (
-        "e14122695d88f5c95bce",
-        "cde23ec001c5180e01e865f4efb57cb0bc848c16"
-      )
-    )
-
-    OAuthManager.RegisterClient _
-    (
       New LiveClient _
       (
         "0000000040124265",

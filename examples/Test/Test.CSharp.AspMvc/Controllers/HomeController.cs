@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Text;
 using Nemiro.OAuth;
 
 namespace Test.CSharp.AspMvc.Controllers
@@ -41,10 +37,15 @@ namespace Test.CSharp.AspMvc.Controllers
       string returnUrl = Url.Action("ExternalLoginResult", "Home", null, null, Request.Url.Host);
       
       // not suppored localhost (it is only for localhost)
-      string[] notSupportedLocalhost = { "live", "mail.ru", "github" };
+      string[] notSupportedLocalhost = { "live", "mail.ru" };
+
       if (notSupportedLocalhost.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
       {
         returnUrl = String.Format("http://oauth.nemiro.net/oauth_redirect.html?returnUrl={0}", Server.UrlEncode(returnUrl));
+      }
+      else if (provider.Equals("github", StringComparison.OrdinalIgnoreCase))
+      {
+        returnUrl = String.Format("https://oauthproxy.nemiro.net/?returnUrl={0}", Server.UrlEncode(returnUrl));
       }
       // --
 

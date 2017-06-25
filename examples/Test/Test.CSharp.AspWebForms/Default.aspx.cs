@@ -42,7 +42,7 @@ namespace Test.CSharp.AspWebForms
       // build callback url
       string returnUrl =  new Uri(Request.Url, "ExternalLoginResult.aspx").AbsoluteUri;
       // not suppored localhost (it is only for localhost)
-      string[] notSupportedLocalhost = { "live", "mail.ru", "github" };
+      string[] notSupportedLocalhost = { "live", "mail.ru" };
       if (notSupportedLocalhost.Any(itm => itm.Equals(provider, StringComparison.OrdinalIgnoreCase)))
       {
         returnUrl = String.Format("http://oauth.nemiro.net/oauth_redirect.html?returnUrl={0}", Server.UrlEncode(returnUrl));

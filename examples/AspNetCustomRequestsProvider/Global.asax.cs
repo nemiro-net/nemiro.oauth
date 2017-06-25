@@ -45,13 +45,6 @@ namespace AspNetCustomRequestsProvider
 
       OAuthManager.RegisterClient
       (
-        "github",
-        "e14122695d88f5c95bce",
-        "cde23ec001c5180e01e865f4efb57cb0bc848c16"
-      );
-
-      OAuthManager.RegisterClient
-      (
         "live",
         "0000000040124265",
         "6ViSGIbw9N59s5Ndsfz-zaeezlBt62Ep"
