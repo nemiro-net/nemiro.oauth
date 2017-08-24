@@ -2,7 +2,7 @@
 
 All notable changes to **Nemiro.OAuth** will be documented in this file.
 
-## [v1.13] - unreleased
+## [v1.13] - 2017-08-25
 
 This release contains minor improvements and updates API versions used by clients.
 

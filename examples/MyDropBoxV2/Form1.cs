@@ -47,7 +47,7 @@ namespace MyDropBox
 
     private void GetAccessToken()
     {
-      var login = new DropboxLogin("4mlpoeq657vuif8", "1whj6c5mxtkns7m");
+      var login = new DropboxLogin("4mlpoeq657vuif8", "1whj6c5mxtkns7m", "https://oauthproxy.nemiro.net/", false, false);
       login.Owner = this;
       login.ShowDialog();
 

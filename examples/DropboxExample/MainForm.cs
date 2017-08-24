@@ -301,7 +301,7 @@ namespace DropboxExample
       }
 
       // create login form
-      var login = new DropboxLogin("5nkunr8uscwfoba", "n7x9icfwoe6dehq") { Owner = this };
+      var login = new DropboxLogin("5nkunr8uscwfoba", "n7x9icfwoe6dehq", "https://oauthproxy.nemiro.net/", false, false) { Owner = this };
 
       // show login form
       login.ShowDialog();

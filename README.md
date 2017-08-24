@@ -10,7 +10,7 @@ To install **Nemiro.OAuth**, run the following command in the **Package Manager 
 
 `PM> Install-Package Nemiro.OAuth`
 
-## Demo
+## Online Demo
 
 [demo-oauth.nemiro.net](http://demo-oauth.nemiro.net/)
 

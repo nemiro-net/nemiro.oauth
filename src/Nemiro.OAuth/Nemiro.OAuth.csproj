@@ -1,27 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.13.0.2799</Version>
+    <Version>1.13.0.2828</Version>
     <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;net462;net47</TargetFrameworks>
     <AssemblyName>Nemiro.OAuth</AssemblyName>
-    <GenerateAssemblyConfigurationAttribute>False</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>False</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>True</GenerateAssemblyProductAttribute>
-    <SignAssembly>True</SignAssembly>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>true</GenerateAssemblyProductAttribute>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Nemiro.OAuth.snk</AssemblyOriginatorKeyFile>
-    <Description>Class library for OAuth authentication in the .NET Framework. The library provides mechanisms for implementing OAuth clients, and also contains ready-to-use clients for popular websites.</Description>
     <Authors>Aleksey Nemiro</Authors>
     <Copyright>Copyright © Aleksey Nemiro, 2014-2017</Copyright>
-    <PackageVersion>1.13.0-beta1</PackageVersion>
+    <PackageVersion>1.13.0</PackageVersion>
     <PackageId>Nemiro.OAuth</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>http://oauth.nemiro.net/?topic=license.html</PackageLicenseUrl>
     <PackageProjectUrl>http://oauth.nemiro.net/</PackageProjectUrl>
     <PackageIconUrl>http://content.nemiro.net/images/oauth64.png</PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <Description>Class library for authentication using OAuth protocol in .NET Framework. The library provides mechanisms for implementing OAuth clients, and also contains ready-to-use clients for popular websites.</Description>
+    <PackageReleaseNotes>August 25, 2017
+
+This package is no different from v1.13.0-beta1. Just removed from the status of beta testing.
+
+* Added ResponseType to class OAuth2Client;
+* Added default return URL to OdnoklassnikiClient;
+* Added method SetAccessToken to class OAuthBase (only for OAuth v2.0 and token requests);
+* Added method Get to class OAuthBase for strict type of clients;
+* Added assembly for .NET v4.7;
+* Changed type of the Version property. Now is Version type;
+* Updated Facebook Graph API from v2.7 to v2.9;
+* Updated VK API from v5.53 to v5.65;
+* Changed method ParseParameters: added UrlDecore;
+* Fixed YahooClient: Receiving a user GUID, if there is no such identifier in the headers.
+    </PackageReleaseNotes>
     <PackageTags>OAuth;VB.NET;C#;WebForms;MVC;ASP.NET;WinForms;Windows</PackageTags>
     <RepositoryUrl>https://github.com/alekseynemiro/nemiro.oauth.dll</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\Nuget</PackageOutputPath>
+    <NeutralLanguage />
   </PropertyGroup>
 
   <PropertyGroup>
@@ -31,10 +48,6 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <FrameworkPathOverride>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
   </PropertyGroup>
-  
-  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
-    <Exec Command="dotnet pack --no-build --output F:/Nuget --configuration $(Configuration)" />
-  </Target>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net35' ">
     <Reference Include="System.Web" />

@@ -38,16 +38,18 @@
     <ApplicationIcon>Resources\codeproject.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nemiro.OAuth, Version=1.13.0.2799, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.1.13.0-beta1\lib\net40\Nemiro.OAuth.dll</HintPath>
+    <Reference Include="Nemiro.OAuth, Version=1.13.0.2828, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.13.0\lib\net40\Nemiro.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.5.4.2617, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
-      <HintPath>packages\Nemiro.OAuth.LoginForms.1.5\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Nemiro.OAuth.LoginForms, Version=1.7.0.2830, Culture=neutral, PublicKeyToken=2656cfe28099e3f4, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.LoginForms.1.7.0\lib\net40\Nemiro.OAuth.LoginForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

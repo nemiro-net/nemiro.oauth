@@ -59,7 +59,7 @@ namespace InstagramWinForms
       (
         "9fcad1f7740b4b66ba9a0357eb9b7dda", 
         "3f04cbf48f194739a10d4911c93dcece", 
-        "http://oauthproxy.nemiro.net/",
+        "https://oauthproxy.nemiro.net/",
         scope: "basic public_content",
         loadUserInfo: true
       );

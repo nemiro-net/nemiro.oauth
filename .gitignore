@@ -2,3 +2,6 @@ bin
 obj
 *.user
 /src/Nemiro.OAuth.Test/output.log
+.vs
+packages
+*.suo
