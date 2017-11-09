@@ -141,7 +141,7 @@ namespace Nemiro.OAuth.Clients
       // execute the request
       var result = OAuthUtility.Get
       (
-        endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,formatted-name,picture-url,email-address)",
+        endpoint: "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,formatted-name,picture-url,email-address,public-profile-url)",
         accessToken: accessToken,
         headers: new NameValueCollection { { "x-li-format", "json" } }
       );
@@ -155,8 +155,9 @@ namespace Nemiro.OAuth.Clients
       map.Add("formattedName", "DisplayName");
       map.Add("pictureUrl", "Userpic");
       map.Add("emailAddress", "Email");
+      map.Add("publicProfileUrl", "Url");
 
-      // parse the server response and returns the UserInfo instance
+            // parse the server response and returns the UserInfo instance
       return new UserInfo(result, map);
     }
 
